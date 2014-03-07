@@ -1,0 +1,7 @@
+*.pyc
+*.cgi
+*.swp
+demo
+*.bak
+~*
+TODO
