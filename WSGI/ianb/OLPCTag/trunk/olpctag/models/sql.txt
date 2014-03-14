@@ -1,0 +1,46 @@
+CREATE TABLE group (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  slug TEXT UNIQUE,
+  name TEXT,
+  description TEXT,
+  uri TEXT
+);
+
+CREATE TABLE page (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  uri TEXT NOT NULL,
+  title TEXT,
+  added DATETIME
+);
+
+CREATE TABLE tag (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  group_id INT NOT NULL,
+  name TEXT NOT NULL,
+  description TEXT,
+  added DATETIME
+);
+
+CREATE TABLE user (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  username TEXT NOT NULL,
+  name TEXT,
+  added DATETIME
+);
+
+CREATE TABLE annotation (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  user_id INT NOT NULL,
+  tag_id INT NOT NULL,
+  page_id INT NOT NULL,
+  added DATETIME
+);
+
+CREATE TABLE comments (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  user_id INT NOT NULL,
+  page_id INT NOT NULL,
+  group_id INT NOT NULL,
+  added DATETIME,
+  comments TEXT
+);

@@ -1,0 +1,23 @@
+`Request` is a wrapper around a WSGI environment.  This wrapper itself
+doesn't hold any state, which is why it is just a "wrapper".  Because
+it has no state, different instances created from the same WSGI
+environment are indistinguishable.
+
+Setup just involves passing it an environment::
+
+    >>> from testrunner import make_environ
+    >>> env = make_environ(path_info='/foo', method='POST',
+    ...                    body='name=Bob', environ={})
+    >>> from requestobj import Request
+    >>> req = Request(env)
+
+It provides some methods::
+
+    >>> req.params
+    {'name': 'Bob'}
+    >>> req.path_info, req.method
+    ('/foo', 'POST')
+    >>> req.request_url
+    'http://localhost/foo'
+    >>> req.make_url('show', id=1)
+    '/show?id=1'

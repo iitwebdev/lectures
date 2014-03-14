@@ -1,0 +1,873 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.4: http://docutils.sourceforge.net/" />
+<meta name="version" content="S5 1.1" />
+<title>Plugins using Eggs</title>
+<style type="text/css">
+
+/*
+:Author: David Goodger
+:Contact: goodger@users.sourceforge.net
+:Date: $Date: 2005-12-18 01:56:14 +0100 (Sun, 18 Dec 2005) $
+:Revision: $Revision: 4224 $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin-left: 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left {
+  clear: left }
+
+img.align-right {
+  clear: right }
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font-family: serif ;
+  font-size: 100% }
+
+pre.literal-block, pre.doctest-block {
+  margin-left: 2em ;
+  margin-right: 2em ;
+  background-color: #eeeeee }
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+tt.docutils {
+  background-color: #eeeeee }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+<!-- configuration parameters -->
+<meta name="defaultView" content="slideshow" />
+<meta name="controlVis" content="hidden" />
+<!-- style sheet links -->
+<link rel="stylesheet" href="ui/slides.css"
+      type="text/css" media="projection" id="slideProj" />
+<link rel="stylesheet" href="ui/outline.css"
+      type="text/css" media="screen" id="outlineStyle" />
+<link rel="stylesheet" href="ui/print.css"
+      type="text/css" media="print" id="slidePrint" />
+<link rel="stylesheet" href="ui/opera.css"
+      type="text/css" media="projection" id="operaFix" />
+
+<style type="text/css">
+#currentSlide {display: none;}
+</style>
+</head>
+<body>
+<div class="layout">
+<div id="controls"></div>
+<div id="currentSlide"></div>
+<div id="header">
+
+</div>
+<div id="footer">
+<h1>Plugins using Eggs</h1>
+
+</div>
+</div>
+<div class="presentation">
+<div class="slide" id="slide0">
+<h1 class="title">Plugins using Eggs</h1>
+<img align="right" alt="Snake with egg" class="align-right" src="SnakeEgg.GIF" />
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Presentation:</th><td class="field-body">Ian Bicking</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+<div class="slide" id="eggs">
+<h1>Eggs</h1>
+<p>Q: What are Eggs?</p>
+</div>
+<div class="slide" id="id1">
+<h1>Eggs</h1>
+<p>Q: What are Eggs?</p>
+<p>A: They are a kind of package you download</p>
+</div>
+<div class="slide" id="id2">
+<h1>Eggs</h1>
+<p>Q: What are Eggs?</p>
+<p>A: No, I mean they are format for installation that <tt class="docutils literal"><span class="pre">pkg_resources</span></tt>
+knows how to read</p>
+</div>
+<div class="slide" id="so">
+<h1>So...</h1>
+<p>Q: What's this <tt class="docutils literal"><span class="pre">pkg_resources</span></tt> ?</p>
+</div>
+<div class="slide" id="id3">
+<h1>So...</h1>
+<p>Q: What's this <tt class="docutils literal"><span class="pre">pkg_resources</span></tt> ?</p>
+<p>A: It's a module for working with Eggs</p>
+</div>
+<div class="slide" id="id4">
+<h1>So...</h1>
+<p>Q: What's this <tt class="docutils literal"><span class="pre">pkg_resources</span></tt> ?</p>
+<p>A: It's in <tt class="docutils literal"><span class="pre">setuptools</span></tt>.</p>
+</div>
+<div class="slide" id="getting-to-the-point">
+<h1>Getting to the point</h1>
+<p>Q: What's this <tt class="docutils literal"><span class="pre">setuptools</span></tt> ?</p>
+</div>
+<div class="slide" id="id5">
+<h1>Getting to the point</h1>
+<p>Q: What's this <tt class="docutils literal"><span class="pre">setuptools</span></tt> ?</p>
+<p>A: It builds Eggs.</p>
+</div>
+<div class="slide" id="now-you-are-annoying-me">
+<h1>Now you are annoying me</h1>
+<p>Q: What's this <tt class="docutils literal"><span class="pre">setuptools</span></tt> ?</p>
+<p>A: It's really the package that does all of &quot;this&quot;</p>
+</div>
+<div class="slide" id="almost-there">
+<h1>Almost there...</h1>
+<p>Q: What is &quot;this&quot;?</p>
+</div>
+<div class="slide" id="id6">
+<h1>Almost there...</h1>
+<p>Q: What is &quot;this&quot;?</p>
+<p>A: Plugins</p>
+</div>
+<div class="slide" id="plugins">
+<h1>Plugins</h1>
+<p>Q: What's a plugin?</p>
+</div>
+<div class="slide" id="id7">
+<h1>Plugins</h1>
+<p>Q: What's a plugin?</p>
+<p>A: Ok, let's stop now</p>
+</div>
+<div class="slide" id="so-many-names">
+<h1>So Many Names!</h1>
+<img align="right" alt="Scary snake" class="align-right" src="python-viewing.jpg" />
+<p>Some of the concepts:</p>
+<ul class="simple">
+<li>Eggs: a distribution format</li>
+<li>Eggs: an installation format</li>
+<li>pkg_resources: the module that implements runtime Egg support</li>
+<li>easy_install: the script that finds and installs packages</li>
+</ul>
+</div>
+<div class="slide" id="more-names">
+<h1>More Names!</h1>
+<img align="right" alt="Less scary snake" class="align-right" src="Sept035a.jpg" style="height: 280px;" />
+<ul class="simple">
+<li>Setuptools: the project that provides all these features...</li>
+<li>by Phillip J. Eby</li>
+<li>Extension of distutils (also backport of some features)</li>
+<li>Builds Eggs</li>
+<li>Developer tools</li>
+</ul>
+</div>
+<div class="slide" id="id8">
+<h1>...</h1>
+<p>But really it's not that bad.  We Love Egg!</p>
+<div align="center" class="align-center"><img alt="happy eggs" class="align-center" src="wall_03_1024.gif" style="height: 450px;" /></div>
+</div>
+<div class="slide" id="anatomy-of-an-egg">
+<h1>Anatomy of an Egg</h1>
+<p>From a source distribution::</p>
+<pre class="literal-block">
+MyPackage/
+  MyPackage.egg-info/
+    requires.txt
+    top_level.txt
+    entry_points.txt
+  mypackage/
+    __init__.py (etc)
+</pre>
+</div>
+<div class="slide" id="id9">
+<h1>Anatomy of an Egg</h1>
+<p>An Egg installed:</p>
+<pre class="literal-block">
+site-packages/
+  MyPackage-1.0-py2.4.egg/
+    EGG-INFO/
+      requires.txt (etc)
+    mypackage/
+      __init__.py  (etc)
+</pre>
+</div>
+<div class="slide" id="importing">
+<h1>Importing</h1>
+<p>Your package is only importable when the Egg directory is on
+<tt class="docutils literal"><span class="pre">sys.path</span></tt>...</p>
+<pre class="literal-block">
+site-packages/
+  MyPackage-1.0-py2.4.egg/
+    mypackage/
+      __init__.py  (etc)
+</pre>
+</div>
+<div class="slide" id="id10">
+<h1>Importing</h1>
+<p><tt class="docutils literal"><span class="pre">site-packages/easy-install.pth</span></tt> adds entries to <tt class="docutils literal"><span class="pre">sys.path</span></tt> -- a
+list of installed Eggs that are activated by default:</p>
+<pre class="literal-block">
+/Users/ianb/co/Paste
+/Library/Frameworks/Python.framework/Versions/2.4/lib/
+...python2.4/site-packages/RuleDispatch-0.5a0.dev-
+...py2.4-macosx-10.3-ppc.egg
+/Library/Frameworks/Python.framework/Versions/2.4/lib/
+...python2.4/site-packages/PyProtocols-1.0a0-py2.4-
+...macosx-10.3-ppc.egg
+</pre>
+</div>
+<div class="slide" id="distributions">
+<h1>Distributions</h1>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">MyPackage</span></tt> is the distribution, <tt class="docutils literal"><span class="pre">mypackage</span></tt> is the Python
+package</li>
+<li>One distribution can have multiple Python packages</li>
+<li>But usually one distro/one package: I use mixed case to keep track
+of the distinction</li>
+<li>Distributions build Eggs</li>
+<li>&quot;Eggs&quot; and &quot;Distributions&quot; are kind of the same (you'll seldom see
+the term &quot;egg&quot; in the Setuptools code)</li>
+</ul>
+</div>
+<div class="slide" id="metadata">
+<h1>Metadata</h1>
+<p>Metadata files in <tt class="docutils literal"><span class="pre">.egg-info</span></tt> (or <tt class="docutils literal"><span class="pre">EGG-INFO</span></tt>):</p>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">PKG-INFO</span></tt>:</dt>
+<dd>Readable package name, description, etc (what gets uploaded to the Cheese
+Shop/PyPI)</dd>
+<dt><tt class="docutils literal"><span class="pre">requires.txt</span></tt>:</dt>
+<dd>Other distributions/packages that are required</dd>
+<dt><tt class="docutils literal"><span class="pre">top_level.txt</span></tt>:</dt>
+<dd>The top-level Python packages</dd>
+<dt><tt class="docutils literal"><span class="pre">entry_points.txt</span></tt>:</dt>
+<dd>A list of &quot;entry points&quot; (more later)</dd>
+</dl>
+<p>Users can add more metadata in <tt class="docutils literal"><span class="pre">.egg-info</span></tt></p>
+</div>
+<div class="slide" id="id11">
+<h1>Plugins</h1>
+<p><em>Back to the topic of plugins...</em></p>
+</div>
+<div class="slide" id="id12">
+<h1>Plugins</h1>
+<p>Models:</p>
+<ol class="arabic simple">
+<li>Extend an application:<ul>
+<li>The plugin is dependent on the application</li>
+<li>The application owns the process/environment</li>
+</ul>
+</li>
+<li><strong>Cooperative packages</strong>:<ul>
+<li>Packages provide things to each other</li>
+<li>Plugin system as neutral ground</li>
+</ul>
+</li>
+</ol>
+</div>
+<div class="slide" id="entry-points">
+<h1>Entry Points</h1>
+<p>A list of public objects in a distribution/Egg; example <tt class="docutils literal"><span class="pre">setup.py</span></tt>:</p>
+<pre class="literal-block">
+setup(...
+    entry_points=&quot;&quot;&quot;
+    [console_scripts]
+    paster = paste.script.command:run
+
+    [paste.app_factory]
+    test = paste.script.testapp:TestApplication
+    &quot;&quot;&quot;)
+</pre>
+</div>
+<div class="slide" id="id13">
+<h1>Entry Points</h1>
+<p>Objects sorted into &quot;groups&quot;:</p>
+<ul>
+<li><p class="first"><tt class="docutils literal"><span class="pre">[console_scripts]</span></tt> are command-line scripts</p>
+</li>
+<li><dl class="first docutils">
+<dt><tt class="docutils literal"><span class="pre">[paste.app_factory]</span></tt> points to a function that builds a WSGI</dt>
+<dd><p class="first last">application</p>
+</dd>
+</dl>
+</li>
+<li><p class="first"><tt class="docutils literal"><span class="pre">[distutils.commands]</span></tt> points to a disutils command like <tt class="docutils literal"><span class="pre">python</span>
+<span class="pre">setup.py</span> <span class="pre">sdist</span></tt></p>
+</li>
+<li><p class="first"><tt class="docutils literal"><span class="pre">[python.template.plugin]</span></tt> is a class that represents a
+templating language</p>
+</li>
+</ul>
+</div>
+<div class="slide" id="id14">
+<h1>Entry Points</h1>
+<ul>
+<li><p class="first">Entry points have &quot;names&quot;: <tt class="docutils literal"><span class="pre">paster</span></tt>, <tt class="docutils literal"><span class="pre">sdist</span></tt>, <tt class="docutils literal"><span class="pre">cheetah</span></tt></p>
+</li>
+<li><p class="first">Names point to actual Python objects:</p>
+<pre class="literal-block">
+paster = paste.script.command:run
+</pre>
+<p>Translates (roughly) to:</p>
+<pre class="literal-block">
+from paste.script.command import run
+</pre>
+</li>
+</ul>
+</div>
+<div class="slide" id="id15">
+<h1>Entry Points</h1>
+<p>Loading an entry point:</p>
+<pre class="literal-block">
+import pkg_resources
+ob = pkg_resources.load_entry_point(
+    'Commentary', 'paste.app_factory', 'main')
+wsgiapp = ob({}, storage='/tmp')
+</pre>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">'Commentary'</span></tt>:</dt>
+<dd>Distribution name</dd>
+<dt><tt class="docutils literal"><span class="pre">'paste.app_factory'</span></tt>:</dt>
+<dd>The entry point group (the type of object we are expecting)</dd>
+<dt><tt class="docutils literal"><span class="pre">'main'</span></tt>:</dt>
+<dd>The name of the entry point</dd>
+</dl>
+<p>There are several other functions in <tt class="docutils literal"><span class="pre">pkg_resources</span></tt> for listing and
+inspecting entry points</p>
+</div>
+<div class="slide" id="finding-plugins">
+<h1>Finding Plugins</h1>
+<p>Several strategies for finding plugins -</p>
+<p>Explicit enumeration: a list of plugins to enable; specified with:</p>
+<ul class="simple">
+<li>By distribution name (like <tt class="docutils literal"><span class="pre">MyPackage</span></tt>)</li>
+<li>Distribution name + version requirement (like <tt class="docutils literal"><span class="pre">MyPackage==0.3</span></tt>)</li>
+<li>By entry point name: (like just <tt class="docutils literal"><span class="pre">cheetah</span></tt>)</li>
+<li>Distribution + entry point name (like <tt class="docutils literal"><span class="pre">egg:Paste#http</span></tt>)</li>
+<li>By Python package: (like <tt class="docutils literal"><span class="pre">mypackage.plugin_module</span></tt>)</li>
+</ul>
+</div>
+<div class="slide" id="id16">
+<h1>Finding Plugins</h1>
+<p>Scan for plugins:</p>
+<ul>
+<li><p class="first">by entry point group -- to find commands for <tt class="docutils literal"><span class="pre">paster</span> <span class="pre">help</span></tt>:</p>
+<pre class="literal-block">
+for ep in pkg_resources.iter_entry_points(
+    'paste.global_paster_command'):
+    print ep.name
+</pre>
+</li>
+<li><p class="first">by group + name -- to find something that renders Cheetah
+templates:</p>
+<pre class="literal-block">
+for ep in pkg_resources.iter_entry_points(
+    'python.template.plugin', 'cheetah'):
+    plugin = ep.load()
+</pre>
+</li>
+</ul>
+</div>
+<div class="slide" id="scanning-for-plugins">
+<h1>Scanning for plugins</h1>
+<ul class="simple">
+<li>To scan, you have to have a database of packages</li>
+<li>The database in Setuptools the &quot;working set&quot;</li>
+<li>The database is really those <tt class="docutils literal"><span class="pre">.pth</span></tt> files</li>
+<li>This is a little too casual</li>
+<li>You can build a working set of plugins from a directory (good when
+plugins are written to extend a particular application)</li>
+</ul>
+</div>
+<div class="slide" id="entry-point-metadata">
+<h1>Entry Point Metadata</h1>
+<p>Entry points have metadata:</p>
+<ul class="simple">
+<li>The name of the entry point</li>
+<li>Name can be overloaded (like <tt class="docutils literal"><span class="pre">&quot;create</span> <span class="pre">(create</span> <span class="pre">a</span> <span class="pre">new</span> <span class="pre">project)&quot;</span></tt>)</li>
+<li>&quot;Related&quot; objects; an entry point in a different group with the same
+name; related names; additional metadata files</li>
+<li>Look at the entry point object (requires importing)</li>
+<li>Extras (the additional requirements)</li>
+</ul>
+</div>
+<div class="slide" id="avoiding-dependencies">
+<h1>Avoiding dependencies</h1>
+<ul class="simple">
+<li>Just because you have an import in your code doesn't mean that
+you've added a dependency</li>
+<li>It's only a dependency <em>when</em> you do the import</li>
+<li>The import is only run when your module is imported</li>
+<li>Not all modules in your package need to be importable</li>
+<li>This doesn't mean <tt class="docutils literal"><span class="pre">try:</span> <span class="pre">import</span> <span class="pre">foo</span> <span class="pre">except</span> <span class="pre">ImportError:</span> <span class="pre">pass</span></tt></li>
+</ul>
+</div>
+<div class="slide" id="id17">
+<h1>Avoiding Dependencies</h1>
+<ul>
+<li><p class="first">Depedencies can be conditional on the entry point:</p>
+<pre class="literal-block">
+[paste.app_factory]
+main = mypackage.wsgiapp:make_app [web]
+</pre>
+</li>
+<li><p class="first"><tt class="docutils literal"><span class="pre">[web]</span></tt> is an <em>extra</em>:</p>
+<pre class="literal-block">
+setup( ...
+    extras_require={'web': ['Wareweb']},
+    )
+</pre>
+</li>
+</ul>
+</div>
+<div class="slide" id="avoiding-fragility">
+<h1>Avoiding fragility</h1>
+<ul class="simple">
+<li>An object used as a plugin fulfills an <em>interface</em> (also might call
+this a <em>protocol</em>)</li>
+<li>Duck typed interfaces: just a set of methods</li>
+<li>Someone has implicitly asserted that the object fulfills the
+interfaces based on the entry point group</li>
+<li>Entry point groups are strings; they aren't activated; they aren't
+passed in automatically; if you need to adapt an object that should
+be done on module import</li>
+</ul>
+</div>
+<div class="slide" id="manageable-plugins">
+<h1>Manageable plugins</h1>
+<p>Plugins do not inject themselves</p>
+<p>Injection example (this is bad!):</p>
+<pre class="literal-block">
+# Activate a plugin:
+__import__(plugin_name)
+</pre>
+<p>With a bad plugin:</p>
+<pre class="literal-block">
+# install self:
+import master_application
+from plugin_name import listener
+master_application.event_listeners.append(
+    listener.Listener(master_application.app_instance))
+</pre>
+</div>
+<div class="slide" id="flexible-plugins">
+<h1>Flexible plugins</h1>
+<p>Objects loaded as entry points should <em>act</em>, they should not be <em>read</em></p>
+<p>Example:</p>
+<pre class="literal-block">
+app_installer = load_entry_point(
+    'AnApplication', 'paste.app_installer', 'main')
+app_installer.install(cmd, output_dir, vars)
+</pre>
+<p>Not:</p>
+<pre class="literal-block">
+vars = load_entry_point(...)
+copy_dir(vars.default_templates, output_dir + '/templates')
+install_database(dbname, vars.initial_db_data)
+</pre>
+</div>
+<div class="slide" id="declarative">
+<h1>Declarative</h1>
+<p>But I like declarative...</p>
+<ul class="simple">
+<li>Declarative data is easier to write</li>
+<li>Often the caller knows more about the requirements</li>
+<li>Less boilerplate</li>
+</ul>
+</div>
+<div class="slide" id="abstract-base-class">
+<h1>Abstract Base Class</h1>
+<p>Abstract base classes are one solution:</p>
+<pre class="literal-block">
+from appinstaller import AbstractInstaller
+
+class MyInstaller(AbstractInstaller):
+    default_templates = 'templates/'
+    initial_db_data = [...]
+</pre>
+</div>
+<div class="slide" id="self-referencing-entry-points">
+<h1>Self-referencing entry points</h1>
+<p>For people who are even Too Lazy To Use An ABC:</p>
+<pre class="literal-block">
+[paste.app_install]
+mypackage = paste.script.appinstall:Installer
+</pre>
+<p>Using that plugin:</p>
+<pre class="literal-block">
+ob = pkg_resources.load_entry_point(...)
+ob = Installer(MyPackageDist, 'paste.app_install',
+               'mypackage')
+</pre>
+</div>
+<div class="slide" id="not-abstract-base-class">
+<h1>Not-abstract base class</h1>
+<p>What the ABC looks like...</p>
+<pre class="literal-block">
+class Installer(object): ...
+    def config_content(self, command, vars):
+        meta_name = 'paste_deploy_config.ini_tmpl'
+        tmpl = Template(self.dist.get_metadata(meta_name),
+                        searchList=[vars])
+        return tmpl(**vars)
+</pre>
+</div>
+<div class="slide" id="another-example">
+<h1>Another example</h1>
+<p>And another ABC technique...</p>
+<pre class="literal-block">
+class Installer(object): ...
+    def packages(self):
+        for line in self.dist.get_metadata_lines('top_level.txt'):
+            line = line.strip()
+            if not line and not line.startswith('#'):
+                yield line
+    def setup_config(self, ...):
+        for package in self.packages():
+            try:
+                mod = import_module(mod_name)
+            except ImportError:
+                continue
+            mod.setup_config(...)
+</pre>
+</div>
+<div class="slide" id="configurable-pieces">
+<h1>Configurable pieces</h1>
+<p>&quot;Paste Deploy&quot; represents one pattern for creating objects, for web applications:</p>
+<pre class="literal-block">
+[app:someapp]
+use = egg:SomePackage#somepoint
+foo = bar
+</pre>
+<p>Means:</p>
+<pre class="literal-block">
+ob = pkg_resources.load_entry_point(
+    'SomePackage', 'paste.app_factory', 'somepoint')
+app = ob(global_conf, foo='bar')
+</pre>
+</div>
+<div class="slide" id="that-s-probably-it">
+<h1>That's probably it</h1>
+<p>I'm probably out of time; I didn't talk about:</p>
+<ul class="simple">
+<li>Installation and discovery of plugins (using <tt class="docutils literal"><span class="pre">easy_install</span></tt>; maybe
+Cheese Shop?)</li>
+<li>Putting plugins in a directory; drag-and-drop plugin installation</li>
+</ul>
+</div>
+<div class="slide" id="installation">
+<h1>Installation...</h1>
+<p>For your users to install plugins:</p>
+<pre class="literal-block">
+$ easy_install -f http://plugin-index... \
+  -d plugin_dir \
+  PluginName
+</pre>
+</div>
+<div class="slide" id="plugin-index">
+<h1>Plugin Index</h1>
+<p>A plugin index is:</p>
+<ul>
+<li><p class="first">Just a page with links to packages</p>
+</li>
+<li><p class="first">A wiki is insecure!</p>
+<pre class="literal-block">
+&lt;a href=&quot;.../PackageName-X.Y.tar.gz&quot;&gt;...
+&lt;a href=&quot;http://svn-repository#egg=PackageName-dev&quot;&gt;...
+</pre>
+</li>
+</ul>
+</div>
+<div class="slide" id="id18">
+<h1>Installation...</h1>
+<p>easy_install:</p>
+<ul class="simple">
+<li>Installs traditional tarballs</li>
+<li>Precompiled &quot;egg distributions&quot; (just optionally-platform-dependent
+zip files)</li>
+<li>Installs from Subversion repository</li>
+</ul>
+</div>
+<div class="slide" id="plugin-directory">
+<h1>Plugin Directory</h1>
+<ul class="simple">
+<li>Put all your eggs in a &quot;basket&quot;</li>
+<li>Haha</li>
+<li>Blame the pun on the Zope guys</li>
+<li>But I'm sure it was only a matter of time</li>
+<li>Other puns still available: scrambled, poached, goose, beaters,
+golden (taken!)</li>
+</ul>
+</div>
+<div class="slide" id="id19">
+<h1>Plugin Directory</h1>
+<ul class="simple">
+<li>Sorry, where was I?</li>
+<li>A new feature: scan a directory for plugins</li>
+<li>Works well, but only if you have containment relationship</li>
+<li>Every &quot;plugin&quot; provides something for <em>one</em> other package</li>
+<li>This is where my research is lacking...</li>
+</ul>
+</div>
+<div class="slide" id="ok">
+<h1>OK...</h1>
+<p>Now I've petered out, hopefully we didn't get this far.</p>
+</div>
+</div>
+</body>
+</html>
+<script src="ui/slides.js" type="text/javascript"></script>

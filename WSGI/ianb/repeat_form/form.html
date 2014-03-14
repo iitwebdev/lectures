@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Form repetition Javascript Library </title>
+<script type="text/javascript" src="MochiKit/MochiKit/MochiKit.js"></script>
+<script type="text/javascript" src="form.js"></script>
+</head>
+
+<body>
+<h1>Form repetition Javascript Library</h1>
+
+<p>
+
+This library roughly implements the form repetition as described in <a
+href="http://www.whatwg.org/specs/web-forms/current-work/#repeatingFormControls">WHAT-WG
+Web Forms 2.0 spec</a>.
+
+<p>
+This is an example of a repeating form.  Hit "Add a contact" to
+get started.
+
+<form validate="1">
+
+  <fieldset repeat="template" id="contact">
+  <legend>Contact</legend>
+  Name: <input type="text" style="width: 50%" name="contact-[contact]">
+  <button type="remove">Remove this contact</button><br>
+
+  <table width="100%">
+    <tr repeat="template" id="phone[contact]"
+      style="border-top: 1px solid #999">
+      <td>Phone number:
+	<input type="text"
+	name="contact-[contact].phone-[phone[contact]].number">
+      </td>
+      <td>Type:
+	<select
+	  name="contact-[contact].phone-[phone[contact]].type">
+	  <option value="home">Home</option>
+	  <option value="mobile">Mobile</option>
+	  <option value="work">Work</option>
+	</select>
+      </td>
+      <td><button type="remove">Remove number</button></td>
+    </tr>
+  </table>
+  
+  <button type="add" template="phone[contact]">Add number</button>
+    
+  </fieldset>
+
+  <button type="add" template="contact">Add a contact</button>
+
+  </form>
+
+
+<h2>To-Do</h2>
+
+<ol>
+  
+  <li>Forms are submitted with the template fields as well (which are
+  hidden, but not removed from the DOM -- should they be removed?)
+  </li>
+
+  <li>Orphaned repetition blocks?  Beats me how they should
+  work. </li>
+
+  <li>Events should be fired. </li>
+
+  <li>Maybe there's some way that <code>&lt;input
+  type="add"&gt;</code> should work (as opposed to <code>&lt;button
+  type="add"&gt;</code>, but I'm not sure how, since browsers will
+  treat these as text inputs. </li>
+
+  <li>Attributes that start with U+FEFF are not ignored with respect
+  to template attribute substitution (as described in 3.6.1, step
+  11). Also some other characters besides [] are supposed to be valid
+  for substitution (U+02D1 and U+00B7). </li>
+
+  <li>According to spec the ID for the repetition block (which
+  contains the template name) should simply be removed; I rename it
+  with an index. </li>
+
+</ol>
+
+<h2>Spec examples</h2>
+
+<p> From 3.7.1:
+
+  <form action="http://software.hixie.ch/utilities/cgi/test-tools/echo" method="post" enctype="multipart/form-data">
+   <table>
+    <thead>
+     <tr>
+      <th>Name</th>
+      <th>Number of Cats</th>
+      <th></th>
+     </tr>
+    </thead>
+    <tbody>
+     <tr repeat="0">
+      <td><input type="text" name="name_0" value="John Smith"></td>
+      <td><input type="text" name="count_0" value="2"></td>
+      <td><button type="remove">Delete Row</button></td>
+     </tr>
+     <tr repeat="template" id="row">
+      <td><input type="text" name="name_[row]" value=""></td>
+      <td><input type="text" name="count_[row]" value="1"></td>
+      <td><button type="remove">Delete Row</button></td>
+     </tr>
+    </tbody>
+   </table>
+   <p>
+    <button type="add" template="row">Add Row</button>
+    <button type="submit">Submit</button>
+   </p>
+  </form>
+
+<p>From 3.7.2:
+
+  <form>
+   <h1> Solar system </h1>
+   <p> <label> System Name: <input name="name"/> </label> </p>
+   <h2> Planets </h2>
+   <ol>
+    <li repeat="template" repeat-start="0" id="planets">
+     <label> Name: <input name="planet[planets].name" required="required"/> </label>
+     <h3> Moons </h3>
+     <ul>
+      <li repeat="template" repeat-start="0" id="planet[planets].moons">
+       <input name="planet[planets].moon[planet[planets].moons]"/>
+       <button type="remove">Delete Moon</button>
+       <button type="move-up">Moon Up</button>
+       <button type="move-down">Moon Down</button>
+      </li>
+     </ul>
+     <p><button type="add" template="planet[planets].moons">Add Moon</button></p>
+     <p><button type="remove">Delete Planet</button></p>
+    </li>
+   </ol>
+   <p><button type="add" template="planets">Add Planet</button></p>
+   <p><button type="submit">Submit</button></p>
+  </form>
+
+  
+<hr>
+<address>ianb@colorstudy.com</address>
+<!-- hhmts start -->Last modified: Wed Oct 26 00:28:22 CDT 2005 <!-- hhmts end -->
+</body> </html>

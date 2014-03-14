@@ -1,0 +1,13 @@
+{{header | html}}
+
+<ul>
+  {{for link in links:}}
+    <li>
+      <a href="{{link}}">
+        {{link.split('#')[-1].split('=', 1)[1]}}
+      </a>
+    </li>
+  {{endfor}}
+</ul>
+
+{{footer | html}}

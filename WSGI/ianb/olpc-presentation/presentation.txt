@@ -1,0 +1,272 @@
+One Laptop Per Child
+++++++++++++++++++++
+
+:author: Ian Bicking <ianb@colorstudy.com>
+:url: http://blog.ianbicking.org
+:organization: The Open Planning Project <http://openplans.org>
+
+One Laptop Per Child
+====================
+
+One Laptop Per Child: laptop.org
+
+    "It's an education project, not a laptop project."
+
+    -- Nicholas Negroponte
+
+Developing World
+================
+
+Why OLPC instead of:
+
+* Food
+* Clean water
+* Medicine
+* Electricity
+* Cell phones
+* Text books
+* Teachers
+
+Why OLPC
+========
+
+This is not happening:
+
+.. raw:: html
+
+   <fieldset>
+    <legend style="font-size: 0.5em; color: #777">save the world 2.0</legend>
+    In which way do you want to save the world?<br>
+    <input type="checkbox" style="height: 2em; width: 2em" checked> Feed all the starving people<br>
+    <input type="checkbox" style="height: 2em; width: 2em"> Give all the children laptops<br>
+    <input type="submit" style="font-size: 1em" value="Make it so!">
+   </fieldset>
+
+No one is asking us to choose between these.  No one is asking us at all.
+
+What's Really Wrong
+===================
+
+* Total production of food is enough to feed everyone.
+* Famine almost always is preceded by **war** not just *drought*.
+* The World Bank estimates that $800 billion are lost to corruption each
+  year [1]_.  $2-3 billion in Nigeria each year. [2]_
+* We cannot *save* the third world.
+* We could start by doing no harm, but no one is asking any of us
+  *that* question either.
+
+Why OLPC
+========
+
+Why?
+
+* Because **we can**
+
+* Because **someone will**
+
+* Because **now is unique time**
+
+Why
+===
+
+    "This is not just a matter of giving a laptop to each child, as if
+    bestowing on them some magical charm. The magic lies within-
+    within each child, within each scientist-, scholar-, or
+    just-plain-citizen-in-the-making. This initiative is meant to
+    bring it forth into the light of day." 
+
+    -- Kofi Annan
+
+Countries
+=========
+
+* Brazil
+* Argentina
+* Nigeria
+* Libya
+* Thailand
+* Uruguay
+* Rwanda
+
+The Hardware
+============
+
+* "XO"
+* AMD Geode 433MHz processor
+* 256 Mb RAM
+* 1 Gb internal flash drive
+* 6" x 4.5" screen
+* 1200x900 b&w resolution
+* 800x600 color resolution
+* Camera, 640x480 30FPS
+
+Power
+=====
+
+* Battery: NiMH 16.5 Watt-hours, LiFeP 22 Watt-hours, 2000 cycles
+* Average (target) 1 Watt power consumption
+* Flexible power input (10-20V, safely handles -40-39V)
+* No hand-crank :(
+
+.. image:: pocket_generator.jpg
+
+The Deployments
+===============
+
+* Teachers receive a laptop
+
+* School server:
+
+  + Internet connection (*fingers crossed*)
+
+  + 300Gb hard drive
+
+  + Multiple configurations possible
+
+  + 100% humidity in parts Brazil and Nigeria
+
+  + 105 degree F in parts of Libya
+
+Education
+=========
+
+* For 6 to 16 year olds
+* Laptop follows child (even after school)
+* "Constructivist" educational principles
+* Learning by doing
+* Peer teaching
+* Emphasis on process not outcome
+* Not copying the clerical education in US schools
+
+Economics
+=========
+
+* $150 laptop should last 5 years
+* Laptop cost goes down over time (laptop power doesn't go up)
+* Textbooks can cost $20/year (paper alone)
+
+The Software
+============
+
+* UI is called "Sugar"
+* Written in Python, C, C++
+* UI based on GTK event loop, Cairo vector graphics (hippocanvas),
+  Dbus for inter-process communication
+* "Telepathy" for communication (based on Jabber)
+* Gecko (Mozilla) based browser
+* *Not* a single-runtime environment
+* Also Smalltalk / Squeak / EToys
+
+UI Principles
+=============
+
+* Avoid words:
+
+  - Need translation
+
+  - Some countries are multilingual
+
+  - Laptops intended for pre-literate children
+
+* Still localized:
+
+  .. image:: keyboard-arabic.png
+
+
+UI Principles
+=============
+
+* "Activities" instead of "Applications"
+* Focus on the action, not the tool
+
+UI Principles
+=============
+
+* No overlapping windows
+* There's not enough room
+* Distracting
+* Except chat
+
+UI Demo
+=======
+
+(demo here)
+
+UI Principles
+=============
+
+* Collaboration in all activities
+* Multiple users working on a single document
+
+.. image:: mesh-share.jpg
+
+Security
+========
+
+* Applications run in isolated environments
+* Users do not have passwords
+
+Storage
+=======
+
+* There's still a boring filesystem
+* The filesystem is for programs, not for people
+* The filesystem is a perfectly good hashtable
+* The filesystem is not a good document storage system
+
+Storage
+=======
+
+* Documents should be versioned
+* Documents should be well indexed
+* We don't trust activities anyway, so activities don't get access to
+  files, only users get access to files
+* ... So we have to rethink some of the UI anyway
+* ... So we can change how documents are access by software and
+  intercept all changes
+
+Storage
+=======
+
+* The "Journal"
+* Shows a history of *actions*
+* Some actions have artifacts
+* The artifacts are documents
+* The *process* is educational, the documents aren't really
+  (an overstatement)
+
+Storage
+=======
+
+.. image:: journal-mockup.jpg
+
+Software Status
+===============
+
+* A lot of work yet to do
+* Core system is stabilizing
+* The web is available, acts just like normal
+* Locally-hosted web applications will work
+* Installation is hard -- use images!
+
+Chicago
+=======
+
+* I'm in the process of setting up a local group
+* Give me your email and I'll subscribe you once it is setup
+* http://laptop.org
+* http://wiki.laptop.org
+* http://chipy.org  (Python in Chicago)
+
+References
+==========
+
+These slides are in the public domain; please feel free to use or
+excerpt them in whatever way you like.  Though preferably to help
+promote OLPC, of course.  You can check out the source with ``svn co
+http://svn.colorstudy.com/home/ianb/olpc-presentation`` (the original
+source is in ``presentation.txt`` and was rendered to HTML with
+``rst2s5``).
+
+.. [1] http://www.businessdayonline.com/?c=132&a=12716
+.. [2] http://www.freeafrica.org/looting5.html

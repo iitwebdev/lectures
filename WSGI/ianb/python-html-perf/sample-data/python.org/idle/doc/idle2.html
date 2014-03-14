@@ -1,0 +1,1373 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+
+<HTML>
+	
+	<HEAD>
+		<TITLE>
+			IDLE
+		</TITLE>
+		<META NAME="GENERATOR" CONTENT="Arachnophilia 3.9">
+		<META NAME="FORMATTER" CONTENT="Arachnophilia 3.9">
+	<STYLE TYPE="text/css"> 
+		<!--
+		TABLE { font-size: x-small; color: red }
+		-->
+	</STYLE>
+
+	</HEAD>
+	
+	<BODY BACKGROUND="" BGCOLOR="#ffffff" TEXT="#000000" LINK="#0000ff" VLINK="#800080" ALINK="#ff0000">
+<A NAME="Top"><H1> Using IDLE (for Version 0.5)</H1></A>
+<ADDRESS>March 5, 2000</ADDRESS>
+
+
+<A NAME="Introduction"><H2> Introduction</H2></A>
+		<P>
+IDLE is the new Python development environment which was first released with version 1.5.2 of Python. It is  being developed by Guido van Rossum with contributions from  among others Tim Peters, Mark Hammond, Moshe Zadka and now Jeremy Hylton. 
+<P>
+
+Its name is an acronym of "<FONT COLOR=#ff0000>I</FONT>ntegrated <FONT COLOR=#ff0000>D</FONT>eve<FONT COLOR=#ff0000>L</FONT>opment <FONT COLOR=#ff0000>E</FONT>nvironment" (although it might also have been influenced by the last name of a certain British comedian from a well known British comedy show).
+It currently has been tested to work on both Unix and Windows platforms.
+<P>
+It has a <I>Python Shell Window</I>, which gives you access to the Python interactive mode. Its  <I>File Editor</I> lets you create new or browse through and edit existing Python source files. There is  a <I>Path Browser </I> for searching through the path of available module source files as well as a simple <I>Class Browser</I> for finding the methods of classes. It has a flexible search capability through its <I>Find in Files</I> dialog that lets you search through your files and/or the systems' files to find occurrences of identifiers or any other text fragments. Finally (although this is still is in the process of maturing), it has a <I>Debug Control Panel</I> which provides for the symbolic debugging of Python programs.
+
+		<A NAME="Start"><H2> Installing and Starting IDLE</H2></A>
+		
+		<P>
+		IDLE 0.4 came bundled with the Python software release. It was automatically 
+		installed when you installed Python 1.5.2. You just had to remember to
+		answer yes when asked if you wanted to install Tcl/Tk (as this is necessary for
+		IDLE to run).
+<P>
+However, the  IDLE 0.5 version will be described here (see the version of this document for IDLE 0.4 for its description).  IDLE 0.5 can be downloaded from:
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<A HREF="http://www.python.org/idle/">IDLE download page</A>
+<BR>
+This decompresses to an "idle" directory. You can use this as a direct replacement for the previous  IDLE 0.4 version. For example on Windows, you can move:
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<TT><FONT COLOR=#008040>C:\Program Files\Python\Tools\idle</FONT>
+</TT><BR>
+to:
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<TT><FONT COLOR=#008040>C:\Program Files\Python\Tools\idle4</FONT>
+</TT><BR>
+and move/copy this new idle directory in its place and it will be the IDLE
+that is fired up from your Start menu and will run with  with
+your 1.5.2 version of Python.
+
+
+
+		<H3> Starting IDLE on Windows</H3>
+		
+		<P>
+		
+		Navigate to the IDLE (Python GUI) entry of the
+		Python 1.5 submenu of the Programs folder of your Start menu and click on it.
+		You can alternatively directly find the "idle.pyw" executable (i.e.in
+		C:\Program Files\Python\Tools\idle) and double click on it. This should bring
+		up the following window:
+		</P>
+		<IMG SRC="start.png" ALT="">
+		<P>
+		If the window does not appear, Tcl/Tk may not be properly set up on your PATH.
+		To fix this in Windows 95/98, open up the file C:\autoexec.bat in NOTEPAD and
+		find the line that sets your PATH variable, i.e.:
+		</P>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+		<TT>
+				<FONT COLOR=#008040>set PATH=c:\windows;c:\windows\COMMAND</FONT>
+		</TT>
+		<P>
+		Add "<TT><FONT COLOR=#008040>;C:\PROGRA~1\Tcl\bin</FONT></TT>" to this line i.e.:
+		</P>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+		<TT>
+				<FONT COLOR=#008040>Set PATH=c:\windows;c:\windows\COMMAND;C:\PROGRA~1\Tcl\bin</FONT>
+		</TT>
+		<P>
+		Be sure to include the single semicolon between what is on the existing line
+		and this new addition. Save the file. You need to shutdown and restart your
+		computer for this to take effect.
+		<P>
+		In Windows NT, you can modify your PATH through the System Control Panel.
+<P>
+IDLE may also fail to start if you have other Tcl/Tk DLL's in the '\windows\system' directory (i.e. from   an older version of Tcl having been installed on your system). Try removing all Tcl and Tk related files from this directory. If you are still having problems see:
+<A HREF="http://www.python.org/pipermail/python-list/2000-January/020199.html">Tim Peters' Tcl/Tk installation problems post</A>.
+		<H3>
+			Starting IDLE on UNIX
+		</H3>
+		On Unix, just type "idle" at a command prompt. This should bring up a Window
+		similar to the one above.   (If it doesn't, look for
+		the "idle" script in the Tools/idle directory in the
+		Python source distribution.)
+		
+		<A NAME="Shell"><H2>Using the Python Shell Window</H2></A>
+		<P>
+		The 
+		<I>
+			Python Shell
+			 Window	</I>
+ provides access to Python's interactive mode. This window will open when you fire up IDLE.  
+<P>
+Like the direct interactive mode, you type in a Python statement at the <I><FONT COLOR=#008040>>>></FONT></I> prompt and then hit the <I>Enter</I> key to send it to the Python interpreter. Unlike the regular interactive mode, when in the middle of a multi-line compound statement, no secondary prompt (<I><FONT COLOR=#008040>...</FONT></I>) is displayed.  
+<P>
+If you ever find yourself in a situation where you seem to be hung and cannot get a new prompt, the interpreter is likely is a state where it is waiting for you to enter something specific (in its parse state). Hitting <I>Ctrl-c</I> will send a keyboard interrupt and should get you back to a prompt. It can also be used to interrupt any running command. 
+
+		
+		<A NAME="Colorization"><H3> Colorization</H3></A>
+		<P>
+		Your code is colorized as you type it in
+		based on Python syntax types.
+		</P>
+<IMG SRC="color.png" ALT="">
+		<P>
+		As shown in the above, comments are displayed in red, strings in green, definitions in blue,  Python keywords in orange and the interpreter's output in blue.
+		
+		<P>
+		That is most of what you will normally be concerned with. However, there is 		further differentiation between different types of output.
+		</P>
+<IMG SRC="color2.png" ALT="">
+		<P>
+		As seen above, console output (i.e. for tracebacks) is brown and standard error output is red.
+		
+		<A NAME="Indentation"><H3> Indentation</H3></A>
+		<P>
+		Automatic support for indentation is provided:
+		</P>
+<IMG SRC="indent.png" ALT="">
+		<P>
+		If you type in the above example you will find that when you hit <I>Enter</I> after
+		the <TT><FONT COLOR=#ff8040>def</FONT></TT>  or <TT><FONT COLOR=#ff8000>while</FONT></TT> clauses, the next line is automatically indented for you (as you
+		enter a new block).  When within a block, you will be automatically placed at the same level as the previous statement (above, this happens for the  <TT>num = num - 1</TT> statement). Finally, each press of the <I>Backspace</I> key will back you out of a level of indentation (above, it needs to be used before the <TT><FONT COLOR=#ff8000>return</FONT></TT> statement). After a <TT><FONT COLOR=#ff8000>pass</FONT></TT>, <TT><FONT COLOR=#ff8000>return</FONT></TT>, <TT><FONT COLOR=#ff8000>break</FONT></TT>, <TT><FONT COLOR=#ff8000>continue</FONT></TT> or <TT><FONT COLOR=#ff8000>raise</FONT></TT> statement you will automatically backed out of a level of indentation.
+<P>
+This is all you will normally be concerned about regarding indentation when in this <I>Shell Window</I>. It is also possible to change the indent level (which defaults here to an eight space tab), as well as indent or dedent (un-indent) a selected region. These commands are described under the <I>Edit a File</I> subsection of the <I>File Editor</I> section of this document (as they are most often used from within the <I>File Editor</I>). 
+	</P>
+		<A NAME="Move"><H3> Moving around the Buffer</H3></A>
+		<P>
+		You can move around the buffer using the following key bindings.
+		</P>
+		
+<TABLE  border="1" cellspacing="0" cellpadding="4">
+	<TR>
+		<!-- Row 1 Column 1 -->
+		<TD >
+			<B>
+				Operation
+			</B>
+		</TD>
+		<!-- Row 1 Column 2 -->
+		<TD >
+			<B>
+				Unix Key(s)
+			</B>
+		</TD>
+		<!-- Row 1 Column 3 -->
+		<TD >
+			<B>
+				Windows Key(s)
+			</B>
+		</TD>
+		<!-- Row 1 Column 4 -->
+		<TD >
+			<B>
+				<I>Menu</I>
+			</B>
+		</TD>
+	</TR>
+	<TR>
+		<!-- Row 2 Column 1 -->
+		<TD >
+			Move one space left
+		</TD>
+		<!-- Row 2 Column 2 -->
+		<TD >
+			left arrow key, Ctrl-b
+		</TD>
+		<!-- Row 2 Column 3 -->
+		<TD >
+			left arrow key , Ctrl-b
+		</TD>
+		<!-- Row 2 Column 4 -->
+		<TD >
+			-
+		</TD>
+	</TR>
+	<TR>
+		<!-- Row 3 Column 1 -->
+		<TD >
+			Move one space right
+		</TD>
+		<!-- Row 3 Column 2 -->
+		<TD >
+			right arrow key
+		</TD>
+		<!-- Row 3 Column 3 -->
+		<TD >
+			right arrow key
+		</TD>
+		<!-- Row 3 Column 4 -->
+		<TD >
+			-
+		</TD>
+	</TR>
+	<TR>
+		<!-- Row 4 Column 1 -->
+		<TD >
+			Move to start of current line
+		</TD>
+		<!-- Row 4 Column 2 -->
+		<TD >
+			Home key, Ctrl-a
+		</TD>
+		<!-- Row 4 Column 3 -->
+		<TD >
+			Home key, Ctrl-a
+		</TD>
+		<!-- Row 4 Column 4 -->
+		<TD >
+			-
+		</TD>
+	</TR>
+	<TR>
+		<!-- Row 5 Column 1 -->
+		<TD >
+			Move to the end of current line
+		</TD>
+		<!-- Row 5 Column 2 -->
+		<TD >
+			End key, Ctrl-e
+		</TD>
+		<!-- Row 5 Column 3 -->
+		<TD >
+			End key, Ctrl-e
+		</TD>
+		<!-- Row 5 Column 4 -->
+		<TD >
+			-
+		</TD>
+	</TR>
+	<TR>
+		<!-- Row 6 Column 1 -->
+		<TD >
+			Move up one line
+		</TD>
+		<!-- Row 6 Column 2 -->
+		<TD >
+			up arrow key, Ctrl-p
+		</TD>
+		<!-- Row 6 Column 3 -->
+		<TD >
+			up arrow key, Ctrl-p
+		</TD>
+		<!-- Row 6 Column 4 -->
+		<TD >
+			-
+		</TD>
+	</TR>
+	<TR>
+		<!-- Row 7 Column 1 -->
+		<TD >
+			Move down one line
+		</TD>
+		<!-- Row 7 Column 2 -->
+		<TD >
+			down arrow key
+		</TD>
+		<!-- Row 7 Column 3 -->
+		<TD >
+			down arrow key
+		</TD>
+		<!-- Row 7 Column 4 -->
+		<TD >
+			-
+		</TD>
+	</TR>
+	<TR>
+		<!-- Row 8 Column 1 -->
+		<TD >
+			Move up one page
+		</TD>
+		<!-- Row 8 Column 2 -->
+		<TD >
+			Page Up key
+		</TD>
+		<!-- Row 8 Column 3 -->
+		<TD >
+			Page Up key
+		</TD>
+		<!-- Row 8 Column 4 -->
+		<TD >
+			-
+		</TD>
+	</TR>
+	<TR>
+		<!-- Row 9 Column 1 -->
+		<TD >
+			Move down one page
+		</TD>
+		<!-- Row 9 Column 2 -->
+		<TD >
+			Page Down key
+		</TD>
+		<!-- Row 9 Column 3 -->
+		<TD >
+			Page Down key
+		</TD>
+		<!-- Row 9 Column 4 -->
+		<TD >
+			-
+		</TD>
+	</TR>
+	<TR>
+		<!-- Row 10 Column 1 -->
+		<TD >
+			Move to the top of the buffer
+		</TD>
+		<!-- Row 10 Column 2 -->
+		<TD >
+			Ctrl-Home key
+		</TD>
+		<!-- Row 10 Column 3 -->
+		<TD >
+			Ctrl-Home key
+		</TD>
+		<!-- Row 10 Column 4 -->
+		<TD >
+			-
+		</TD>
+	</TR>
+	<TR>
+		<!-- Row 11 Column 1 -->
+		<TD >
+			Move to the end of the buffer
+		</TD>
+		<!-- Row 11 Column 2 -->
+		<TD >
+			Ctrl-End key
+		</TD>
+		<!-- Row 11 Column 3 -->
+		<TD >
+			Ctrl-End key
+		</TD>
+		<!-- Row 11 Column 4 -->
+		<TD >
+			-
+		</TD>
+	</TR>
+	<TR>
+		<!-- Row 12 Column 1 -->
+		<TD >
+			Center window on selection
+		</TD>
+		<!-- Row 12 Column 2 -->
+		<TD >
+			Ctrl-l
+		</TD>
+		<!-- Row 12 Column 3 -->
+		<TD >
+			Ctrl-l
+		</TD>
+		<!-- Row 12 Column 4 -->
+		<TD >
+			-
+		</TD>
+	</TR>
+	<TR>
+		<!-- Row 13 Column 1 -->
+		<TD >
+			Find given entry
+		</TD>
+		<!-- Row 13 Column 2 -->
+		<TD >
+			Ctrl-u Ctrl-u Ctrl-s
+		</TD>
+		<!-- Row 13 Column 3 -->
+		<TD >
+			Ctrl-f
+		</TD>
+		<!-- Row 13 Column 4 -->
+		<TD >
+			<I>Edit:Find...</I>
+		</TD>
+	</TR>
+	<TR>
+		<!-- Row 14 Column 1 -->
+		<TD >
+			Find previous entry again
+		</TD>
+		<!-- Row 14 Column 2 -->
+		<TD >
+			Ctrl-u Ctrl-s
+		</TD>
+		<!-- Row 14 Column 3 -->
+		<TD >
+			Ctrl-g, F3
+		</TD>
+		<!-- Row 14 Column 4 -->
+		<TD >
+			<I>Edit:Find again</I>
+		</TD>
+	</TR>
+	<TR>
+		<!-- Row 15 Column 1 -->
+		<TD >
+			Find selection
+		</TD>
+		<!-- Row 15 Column 2 -->
+		<TD >
+			Ctrl-s
+		</TD>
+		<!-- Row 15 Column 3 -->
+		<TD >
+			Ctrl-F3
+		</TD>
+		<!-- Row 15 Column 4 -->
+		<TD >
+			<I>Edit:Find selection</I>
+		</TD>
+	</TR>
+	<TR>
+		<!-- Row 16 Column 1 -->
+		<TD >
+			Go to given line
+		</TD>
+		<!-- Row 16 Column 2 -->
+		<TD >
+			Alt-g, Esc-g
+		</TD>
+		<!-- Row 16 Column 3 -->
+		<TD >
+			Alt-g
+		</TD>
+		<!-- Row 16 Column 4 -->
+		<TD >
+			<I>Edit:Go to line</I>
+		</TD>
+	</TR>
+</TABLE>
+
+
+<P>
+
+The <I>Edit:Find</I> function is described in more detail in the Find/Replace section of this document. The <I>Edit:Go to line</I> selection will bring up a dialog prompting for a line number to move to. The rest of these are for the most part self explanatory.
+
+		<A NAME="Edit"><H3> Basic Editing</H3></A>
+<P>
+
+The following table contain key bindings that can be used for basic editing in the buffer.  
+</P>
+<TABLE  border="1" cellspacing="0" cellpadding="4">
+	<TR>
+		<!-- Row 1 Column 1 -->
+		<TD >
+			<B>
+				Operation
+			</B>
+		</TD>
+		<!-- Row 1 Column 2 -->
+		<TD >
+			<B>
+				Unix Key(s)
+			</B>
+		</TD>
+		<!-- Row 1 Column 3 -->
+		<TD >
+			<B>
+				Windows Key(s)
+			</B>
+		</TD>
+		<!-- Row 1 Column 4 -->
+		<TD >
+			<B>
+				<I>Menu</I>
+			</B>
+		</TD>
+	</TR>
+	<TR>
+		<!-- Row 2 Column 1 -->
+		<TD >
+			Delete character left of cursor
+		</TD>
+		<!-- Row 2 Column 2 -->
+		<TD >
+			Backspace key
+		</TD>
+		<!-- Row 2 Column 3 -->
+		<TD >
+			Backspace key
+		</TD>
+		<!-- Row 2 Column 4 -->
+		<TD >
+			&nbsp;
+		</TD>
+	</TR>
+	<TR>
+		<!-- Row 3 Column 1 -->
+		<TD >
+			Delete character right of cursor
+		</TD>
+		<!-- Row 3 Column 2 -->
+		<TD >
+			Delete key, Ctrl-d
+		</TD>
+		<!-- Row 3 Column 3 -->
+		<TD >
+			Delete key, Ctrl-d
+		</TD>
+		<!-- Row 3 Column 4 -->
+		<TD >
+			&nbsp;
+		</TD>
+	</TR>
+	<TR>
+		<!-- Row 4 Column 1 -->
+		<TD >
+			Cut selection
+		</TD>
+		<!-- Row 4 Column 2 -->
+		<TD >
+			Ctrl-w
+		</TD>
+		<!-- Row 4 Column 3 -->
+		<TD >
+			Ctrl-x
+		</TD>
+		<!-- Row 4 Column 4 -->
+		<TD >
+			<I>Edit:Cut</I>
+		</TD>
+	</TR>
+	<TR>
+		<!-- Row 5 Column 1 -->
+		<TD >
+			Paste into the buffer
+		</TD>
+		<!-- Row 5 Column 2 -->
+		<TD >
+			Ctrl-y
+		</TD>
+		<!-- Row 5 Column 3 -->
+		<TD >
+			Ctrl-v
+		</TD>
+		<!-- Row 5 Column 4 -->
+		<TD >
+			<I>Edit:Paste</I>
+		</TD>
+	</TR>
+	<TR>
+		<!-- Row 6 Column 1 -->
+		<TD >
+			Copy selection
+		</TD>
+		<!-- Row 6 Column 2 -->
+		<TD >
+			Alt-w, Esc-w
+		</TD>
+		<!-- Row 6 Column 3 -->
+		<TD >
+			Ctrl-c
+		</TD>
+		<!-- Row 6 Column 4 -->
+		<TD >
+			<I>Edit:Copy</I>
+		</TD>
+	</TR>
+	<TR>
+		<!-- Row 7 Column 1 -->
+		<TD >
+			Select whole buffer
+		</TD>
+		<!-- Row 7 Column 2 -->
+		<TD >
+			Alt-a, Esc-a
+		</TD>
+		<!-- Row 7 Column 3 -->
+		<TD >
+			Alt-a
+		</TD>
+		<!-- Row 7 Column 4 -->
+		<TD >
+			<I>Edit:Select All
+		</TD>
+	</TR>
+	<TR>
+		<!-- Row 8 Column 1 -->
+		<TD >
+			Replace selection
+		</TD>
+		<!-- Row 8 Column 2 -->
+		<TD >
+			Ctrl-r
+		</TD>
+		<!-- Row 8 Column 3 -->
+		<TD >
+			Ctrl-h
+		</TD>
+		<!-- Row 8 Column 4 -->
+		<TD >
+			<I>Edit:Replace...</I>
+		</TD>
+	</TR>
+	<TR>
+		<!-- Row 9 Column 1 -->
+		<TD >
+			Expand (complete) word
+		</TD>
+		<!-- Row 9 Column 2 -->
+		<TD >
+			Alt-/
+		</TD>
+		<!-- Row 9 Column 3 -->
+		<TD >
+			Alt-/
+		</TD>
+		<!-- Row 9 Column 4 -->
+		<TD >
+			<I>Edit:Expand word</I>
+		</TD>
+	</TR>
+	<TR>
+		<!-- Row 10 Column 1 -->
+		<TD >
+			Previous command in history
+		</TD>
+		<!-- Row 10 Column 2 -->
+		<TD >
+			Esc-p, Alt-p
+		</TD>
+		<!-- Row 10 Column 3 -->
+		<TD >
+			Alt-p
+		</TD>
+		<!-- Row 10 Column 4 -->
+		<TD >
+			&nbsp;
+		</TD>
+	</TR>
+	<TR>
+		<!-- Row 11 Column 1 -->
+		<TD >
+			Next command in history
+		</TD>
+		<!-- Row 11 Column 2 -->
+		<TD >
+			Esc-n, Alt-n
+		</TD>
+		<!-- Row 11 Column 3 -->
+		<TD >
+			Alt-n
+		</TD>
+		<!-- Row 11 Column 4 -->
+		<TD >
+			&nbsp;
+		</TD>
+	</TR>
+	<TR>
+		<!-- Row 12 Column 1 -->
+		<TD >
+			Undo last change
+		</TD>
+		<!-- Row 12 Column 2 -->
+		<TD >
+			Ctrl-z
+		</TD>
+		<!-- Row 12 Column 3 -->
+		<TD >
+			Ctrl-z
+		</TD>
+		<!-- Row 12 Column 4 -->
+		<TD >
+			<I>Edit:Undo</I>
+		</TD>
+	</TR>
+	<TR>
+		<!-- Row 13 Column 1 -->
+		<TD >
+			Redo last change
+		</TD>
+		<!-- Row 13 Column 2 -->
+		<TD >
+			Alt-z, Esc-z
+		</TD>
+		<!-- Row 13 Column 3 -->
+		<TD >
+			Ctrl-y
+		</TD>
+		<!-- Row 13 Column 4 -->
+		<TD >
+			<I>Edit:Redo</I>
+		</TD>
+	</TR>
+</TABLE>
+
+
+<P>
+By opening, tearing off and placing the <I>Edit</I> menu on the screen, you can display a list of the key bindings for those of these that are on the <I>Edit</I> menu.
+<P>
+There are some other operations available (i.e. for commenting out, indenting and tabifying regions). However, since these are likely to be mostly used from the <I>File Editor</I> they are introduced in that section of this document. 
+
+<P>
+Any  one line Python statement or multi-line compound statement (such as a loop or a function or class definition) can be <I>pasted</I> and entered in its entirety.  
+However, if you paste in a selection containing more than one Python statement, only the first statement will be sent to the interpreter when you press <I>Enter</I>.  
+<P>
+The <I>replace</I> functionality is described further in the <I>Find/Replace</I> section of this document
+<P>
+Successive use of the <I>undo</I> and <I>redo</I> function will toggle through undoing or redoing the changes you've made in the buffer.
+
+		<A NAME="Completion"><H4> Word Completion</H4></A>
+		<P>
+		Typing an <I>Alt-/</I> calls a word completion mechanism.
+		</P>
+<IMG SRC="complete.png" ALT="">
+	<P>
+		In the above example it is not necessary on the last line to enter in the full word <TT>divisible</TT>.  We are able to just type <TT>d</TT> followed by <I>Alt-/</I> and it is completed automatically.
+		<P>
+Completion is based on those words that have been previously entered into the buffer. The first response will be the most recently entered word which matches. Successively entering <I>Alt-/</I>	will toggle through any other possibilities.  So, in the above example entering an <TT>n</TT> followed by  <I>Alt-/</I> 	three times will   toggle through <TT>num</TT>, <TT>not</TT> and then <TT>numList</TT>. If we started with <TT>nu</TT> this would be limited to <TT>num</TT> and <TT>numList</TT>.
+<A NAME="Command History"><H4> Command History</H4></A>
+	<P>
+Another nice feature that is worth using (because of the amount of typing it can save you) is the command history mechanism.
+		</P>
+<IMG SRC="history.png" ALT="">
+	<P>
+Once you've selected a previous command and brought it to the bottom, either by toggling through them (using <I>Alt-p</I> and <I>Alt-n</I>) or directly selecting it, you can edit it as desired befor hitting the <I>Enter</I> key to have it sent to the interpreter.
+<A NAME="Tips"><H4> Function/Method Call Tips</H4></A>
+<P>
+As soon as you type in the opening bracket for a function or method call a small box will pop up below the current line giving you a "tip" with regards to the arguments that are expected.
+</P>
+<IMG SRC="tip1.png" ALT="">
+<P>
+The window stays up until you enter the closing bracket. This occurs for built-in functions, any functions or methods (including class constructors) from Python's library modules as well as for any function or methods defined by yourself. It does not, however, occur for list, tuple or dictionary methods.
+</P>
+<IMG SRC="tips2.png" ALT="">
+<P>
+For the functions or methods that you define, the tip will give the names of the parameters you define. As shown above, the first (summary) line of the function or methods document string will also be displayed. This can be used to give information on the types of the arguments and  return value.
+
+<A NAME="Issues"><H4> Special Issues</H4></A>
+	<P>
+IDLE's <I>Shell Window</I> exhibits some behavior that differs from that obtained by using the  interactive mode directly. First, as mentioned already, you can only paste a single Python statement at at time into it. Redirecting standard input and standard output will not always work in the same way. Finally, as a result of the way the Tkinter event model is set up, the use of a <I>Ctrl-c</I> will not always stop the execution of a code segment. You can always use the interactive mode directly in those situations where these differences are an issue.
+<P>
+Since IDLE is still quite new and still in the process of maturing, there may be times when using some of the other windows in IDLE that you find standard error output directed into your Shell Window. This will normally not effect you beyond having to hit the <I>Enter</I> key to get a new prompt.
+<P>
+If you are typing in a Tkinter example, omit adding the final "mainloop()" line that would be necessary if running from the command line. This can cause your  whole IDLE session to hang as IDLE is already running in a Tk event loop. 
+<P>
+Finally, if you close the Shell Window without exiting IDLE (i.e. when you have other windows open) and then open a new Shell Window up, you will need to both import and reload any module that you have already imported  to pick up changes that you've made to it on disk.  To get the behavior of an intial start up, exit IDLE entirely (using <I>Exit</I> on the <I>File</I> menu).
+
+<A NAME="File Editor"><H2> Using the File Editor</H2></A>
+<P>
+IDLE's File Editor allows you to create new or browse and/or edit existing Python source files.
+<A NAME="Open File"><H3> Open a File</H3></A>
+
+<P>
+The File Editor can be brought up in a number of different ways.
+</P>
+<TABLE  border="1" cellspacing="0" cellpadding="4">
+	<TR>
+		<!-- Row 1 Column 1 -->
+		<TD >
+			<B>
+				Operation
+			</B>
+		</TD>
+		<!-- Row 1 Column 2 -->
+		<TD >
+			<B>
+				Unix Key(s)
+			</B>
+		</TD>
+		<!-- Row 1 Column 3 -->
+		<TD >
+			<B>
+				Windows Key
+			</B>
+		</TD>
+		<!-- Row 1 Column 4 -->
+		<TD >
+			<B>
+				<I>Menu</I>
+			</B>
+		</TD>
+	</TR>
+	<TR>
+		<!-- Row 2 Column 1 -->
+		<TD >
+			Open new window
+		</TD>
+		<!-- Row 2 Column 2 -->
+		<TD >
+			Ctrl-x Ctrl-n
+		</TD>
+		<!-- Row 2 Column 3 -->
+		<TD >
+			Ctrl-n
+		</TD>
+		<!-- Row 2 Column 4 -->
+		<TD >
+			<I>File:New</I>
+		</TD>
+	</TR>
+	<TR>
+		<!-- Row 3 Column 1 -->
+		<TD >
+			Open existing file
+		</TD>
+		<!-- Row 3 Column 2 -->
+		<TD >
+			Ctrl-x Ctrl-f
+		</TD>
+		<!-- Row 3 Column 3 -->
+		<TD >
+			Ctrl-o
+		</TD>
+		<!-- Row 3 Column 4 -->
+		<TD >
+			<I>File:Open...</I>
+		</TD>
+	</TR>
+	<TR>
+		<!-- Row 4 Column 1 -->
+		<TD >
+			Open module
+		</TD>
+		<!-- Row 4 Column 2 -->
+		<TD >
+			Ctrl-x Ctrl-m
+		</TD>
+		<!-- Row 4 Column 3 -->
+		<TD >
+			Ctrl-m
+		</TD>
+		<!-- Row 4 Column 4 -->
+		<TD >
+			<I>File:Open Module...</I>
+		</TD>
+	</TR>
+</TABLE>
+<P>
+
+<I>New</I> will open an empty window (i.e. for when you want to start creating a Python source file from scratch). <I>Open</I> lets you navigate to and open any file on your hard drive while with <I>Open Module</I> you only need to enter the name of a module file (i.e. <TT>shelve</TT> or <TT>shelve.py</TT>) that is on your module search path (<TT>sys.path</TT>) and it will find and open it for you.
+<P>
+The File Editor may also be brought up from the Path Browser or when you are using the Debugger (as is described later in this document under those headings).
+<P>
+
+In all cases, a new File Editor window will be opened with the name of the file and the path to it as its title (or called <I>Untitled</I> if its a new unsaved file). 
+</P>
+<IMG SRC="edit1.png" ALT="">
+<A NAME="Edit File"><H3> Edit a File</H3></A>
+
+<P>
+You can type into this window and the code you enter will be colorized as it is in the <I>Shell Window</I>. Similarily, automatic indentation again occurs. However, here indentation levels will be at four space intervals (as that is the standard for Python source files) while the <I>Shell Window</I> indent level is a <I>tab</I>.  <B>All the operations and key bindings to move around and edit in the buffer which are described in the <I>Shell Window</I> section of this document apply here as well (including cut, copy, paste and word completion)</B>. 
+<P>
+There are also a number of editing operations available that weren't introduced in the <I>Shell Window</I> section (as they are more often used in this window).  These work on selected regions of your file: 
+</P>
+<TABLE  border="1" cellspacing="0" cellpadding="4">
+	<TR>
+		<!-- Row 1 Column 1 -->
+		<TD >
+			<B>
+				Operation
+			</B>
+		</TD>
+		<!-- Row 1 Column 2 -->
+		<TD >
+			<B>
+				Key
+			</B>
+		</TD>
+		<!-- Row 1 Column 3 -->
+		<TD >
+			<B>
+				<I>Menu</I>
+			</B>
+		</TD>
+	</TR>
+	<TR>
+		<!-- Row 2 Column 1 -->
+		<TD >
+			Indent region
+		</TD>
+		<!-- Row 2 Column 2 -->
+		<TD >
+			Ctrl-]
+		</TD>
+		<!-- Row 2 Column 3 -->
+		<TD >
+			<I>Edit:Indent Region</I>
+		</TD>
+	</TR>
+	<TR>
+		<!-- Row 3 Column 1 -->
+		<TD >
+			Dedent (unindent) region
+		</TD>
+		<!-- Row 3 Column 2 -->
+		<TD >
+			Ctrl-[
+		</TD>
+		<!-- Row 3 Column 3 -->
+		<TD >
+			<I>Edit:Dedent region</I>
+		</TD>
+	</TR>
+	<TR>
+		<!-- Row 4 Column 1 -->
+		<TD >
+			Comment out region
+		</TD>
+		<!-- Row 4 Column 2 -->
+		<TD >
+			Alt-3
+		</TD>
+		<!-- Row 4 Column 3 -->
+		<TD >
+			<I>Edit:Comment out region</I>
+		</TD>
+	</TR>
+	<TR>
+		<!-- Row 5 Column 1 -->
+		<TD >
+			Uncomment region
+		</TD>
+		<!-- Row 5 Column 2 -->
+		<TD >
+			Alt-4
+		</TD>
+		<!-- Row 5 Column 3 -->
+		<TD >
+			<I>Edit:Uncomment region</I>
+		</TD>
+	</TR>
+	<TR>
+		<!-- Row 6 Column 1 -->
+		<TD >
+			Tabify region
+		</TD>
+		<!-- Row 6 Column 2 -->
+		<TD >
+			Alt-5
+		</TD>
+		<!-- Row 6 Column 3 -->
+		<TD >
+			<I>Edit:Tabify region</I>
+		</TD>
+	</TR>
+	<TR>
+		<!-- Row 7 Column 1 -->
+		<TD >
+			Untabify region
+		</TD>
+		<!-- Row 7 Column 2 -->
+		<TD >
+			Alt-6
+		</TD>
+		<!-- Row 7 Column 3 -->
+		<TD >
+			<I>Edit:Untabify region</I>
+		</TD>
+	</TR>
+	<TR>
+		<!-- Row 8 Column 1 -->
+		<TD >
+			Format selection as a paragraph
+		</TD>
+		<!-- Row 8 Column 2 -->
+		<TD >
+			Alt-q
+		</TD>
+		<!-- Row 8 Column 3 -->
+		<TD >
+			<I>Edit:Format Paragraph</I>
+		</TD>
+	</TR>
+</TABLE>
+<P>
+The <I>indent</I> functions are obviously useful when adding or removing nested constructs from your code. The <I>Tabify region</I> function converts leading spaces in a line to tabs (8 spaces to a tab). The <I>Untabify region</I> function converts all tabs in the region to the correct number of spaces. These along with the indent functions are useful for converting to a standard format source code that has be been copied in from various sources such as documents and web pages. The <I>Format Paragraph</I> function performs the function similar to the Emacs <I>fill-region</I> command and is useful within documentation strings.
+</P>
+<P>
+It is also possible to modify the type and width of the automatic indents.
+</P>
+<TABLE  border="1" cellspacing="0" cellpadding="4">
+	<TR>
+		<!-- Row 1 Column 1 -->
+		<TD >
+			<B>
+				Operation
+			</B>
+		</TD>
+		<!-- Row 1 Column 2 -->
+		<TD >
+			<B>
+				Unix Key
+			</B>
+		</TD>
+		<!-- Row 1 Column 3 -->
+		<TD >
+			<B>
+				Windows Key
+			</B>
+		</TD>
+		<!-- Row 1 Column 4 -->
+		<TD >
+			<B>
+				<I>Menu</I>
+			</B>
+		</TD>
+	</TR>
+	<TR>
+		<!-- Row 2 Column 1 -->
+		<TD >
+			Toggle tab usage
+		</TD>
+		<!-- Row 2 Column 2 -->
+		<TD >
+			Alt-t
+		</TD>
+		<!-- Row 2 Column 3 -->
+		<TD >
+			Alt-t
+		</TD>
+		<!-- Row 2 Column 4 -->
+		<TD >
+			<I>Edit:Toggle Tabs</I>
+		</TD>
+	</TR>
+	<TR>
+		<!-- Row 3 Column 1 -->
+		<TD >
+			Change indent width
+		</TD>
+		<!-- Row 3 Column 2 -->
+		<TD >
+			Alt-u
+		</TD>
+		<!-- Row 3 Column 3 -->
+		<TD >
+			Alt-u
+		</TD>
+		<!-- Row 3 Column 4 -->
+		<TD >
+			<I>Edit:New indent width</I>
+		</TD>
+	</TR>
+</TABLE>
+<P>
+If <I>Tabs</I> is toggled on, the indentation is created using a mixture of tabs and spaces to obtain the given width.  If it's toggled off, only spaces are used. In the <I>File Editor</I> window, the default settings are for <I>Tabs</I> to be off and the <I>indent width</I> to be four spaces. In the <I>Shell</I> window <I>Tabs</I> is on and the <I>indent width</I> is eight spaces (thus the identation is obtained using a single eight character tab).
+
+<A NAME="Save File"><H3> Save a File</H3></A>
+
+<P>
+If the title of a buffer is delimited by <I>*</I>'s, this indicates it has changed since the last time it was saved to disk. There are three commands for saving a file.
+</P>
+<TABLE  border="1" cellspacing="0" cellpadding="4">
+	<TR>
+		<!-- Row 1 Column 1 -->
+		<TD >
+			<B>
+				Operation
+			</B>
+		</TD>
+		<!-- Row 1 Column 2 -->
+		<TD >
+			<B>
+				Unix Key(s)
+			</B>
+		</TD>
+		<!-- Row 1 Column 3 -->
+		<TD >
+			<B>
+				Windows Key
+			</B>
+		</TD>
+		<!-- Row 1 Column 4 -->
+		<TD >
+			<B>
+				<I>Menu</I>
+			</B>
+		</TD>
+	</TR>
+	<TR>
+		<!-- Row 2 Column 1 -->
+		<TD >
+			Save
+		</TD>
+		<!-- Row 2 Column 2 -->
+		<TD >
+			Ctrl-x Ctrl-s
+		</TD>
+		<!-- Row 2 Column 3 -->
+		<TD >
+			Ctrl-s
+		</TD>
+		<!-- Row 2 Column 4 -->
+		<TD >
+			<I>File:Save</I>
+		</TD>
+	</TR>
+	<TR>
+		<!-- Row 3 Column 1 -->
+		<TD >
+			Save as
+		</TD>
+		<!-- Row 3 Column 2 -->
+		<TD >
+			Ctrl-x Ctrl-w
+		</TD>
+		<!-- Row 3 Column 3 -->
+		<TD >
+			Alt-s
+		</TD>
+		<!-- Row 3 Column 4 -->
+		<TD >
+			<I>File:Save As...</I>
+		</TD>
+	</TR>
+	<TR>
+		<!-- Row 4 Column 1 -->
+		<TD >
+			Save Copy As
+		</TD>
+		<!-- Row 4 Column 2 -->
+		<TD >
+			Ctrl-x w
+		</TD>
+		<!-- Row 4 Column 3 -->
+		<TD >
+			Alt-Shift-s
+		</TD>
+		<!-- Row 4 Column 4 -->
+		<TD >
+			<I>File:Save Copy As...</I>
+		</TD>
+	</TR>
+</TABLE>
+
+<P>
+The first two are the standard "save to the existing name" and "save (possibly) to a new name". The third is the same as the second, except that it doesn't rename the buffer and tie it to the new file name. 
+
+<A NAME="Run File"><H3> Run a File</H3></A>
+
+<P>
+You can develop a module incrementally by first importing and then subsequently reloading it into the <I>Shell Window</I> to test it as you make changes. This can be done by using import or reload from within the <I>Shell Window</I> or by using the <I>Import module</I> command from the <I>File Editor</I> itself.
+</P>
+
+<TABLE  border="1" cellspacing="0" cellpadding="4">
+	<TR>
+		<!-- Row 1 Column 1 -->
+		<TD >
+			<B>
+				Operation
+			</B>
+		</TD>
+		<!-- Row 1 Column 2 -->
+		<TD >
+			<B>
+				Key
+			</B>
+		</TD>
+		<!-- Row 1 Column 3 -->
+		<TD >
+			<B>
+				<I>Menu</I>
+			</B>
+		</TD>
+	</TR>
+	<TR>
+		<!-- Row 2 Column 1 -->
+		<TD >
+			Import/reload module
+		</TD>
+		<!-- Row 2 Column 2 -->
+		<TD >
+			F5
+		</TD>
+		<!-- Row 2 Column 3 -->
+		<TD >
+			<I>Edit:Import module</I>
+		</TD>
+	</TR>
+	<TR>
+		<!-- Row 3 Column 1 -->
+		<TD >
+			Run as a script
+		</TD>
+		<!-- Row 3 Column 2 -->
+		<TD >
+			Ctrl-F5
+		</TD>
+		<!-- Row 3 Column 3 -->
+		<TD >
+			<I>Edit:Run script</I>
+		</TD>
+	</TR>
+</TABLE>
+<P>
+The <I>Import module</I> function will import or reload the module and send you to the <I>Shell Window</I> (opening it if necessary).  
+<P>
+Another option for development is to instrument your code with a function to perform the testing you desire and use the <I>Run script</I> command.  The output is again sent to the <I>Shell Window</I>. However, it is run as a script (i.e. with <TT>__name__</TT> set to <TT>__main__</TT> rather than the name of the module).
+</P>
+<IMG SRC="run1.png" ALT="">
+<P>
+Using the <I>Run script</I> command on this brings up the following in the <I>Shell Window</I>.
+</P>
+<IMG SRC="run2.png" ALT="">
+<P>
+This allows you to work in a tight cycle of "make changes to your code", "hit <I>Ctrl-s</I>" (to save your changes), and then "hit <I>Ctrl-F5</I>" (to view the results).
+<P>
+You can of course also test files that are being developed to actually be scripts in this way as well.  You can't currently  set command line options and parameters when you invoke the <I>Run script</I> command.  However, during development you can always  instrument your code with a simple test function that sets <TT>sys.argv</TT> to any desired value (simulating a command line invocation) before calling your regular top level script function. 
+
+
+<P>
+With the ability to incrementally develop your programs and to quickly test code segments in the <I>Shell Window</I> you may find your self making less use of a symbolic debugger than you may be used to when working in other languages.  However, there are times and situations where it can be very useful.  The symbolic debugging mechanism is described in a later section of this document.
+<P>
+Also, if you are developing a Tkinter application, remember to comment out the  "mainloop()" call while you are using it from within IDLE.
+<A NAME="Find/Replace"><H2> Using the Find/Replace Dialogs</H2></A>
+<P>
+These dialogs are fairly straightforward but worth quick introductions
+<A NAME="Find"><H3> Find</H3></A>
+<IMG SRC="find.png" ALT="">
+<P>
+The <I>Find...</I> option on the <I>Edit</I> menu brings up the above dialog box. The default settings are <I>down</I> and <I>Wrap around</I> which means the buffer is searched down from the current cursor position, and if the end is reached before the entry is found the search continues  from (wraps back up to) the top of the file. If the <I>regular expression</I> option is set your entry is read as a regular expression. The <I>Match case</I> and <I>Whole word</I> options work as you would expect.
+<A NAME="Replace"><H3> Replace</H3></A>
+<IMG SRC="replace.png" ALT="">
+<P>
+The <I>Replace...</I> option on the <I>Edit</I> menu brings up the above dialog box. This is similar to the <I>Search Dialog</I> but with the addition of the <I>Replace with</I> entry box and the four buttons at the bottom right. These are straightforward.
+<A NAME="Find in Files"><H3> Find in Files</H3></A>
+<IMG SRC="findfiles.png" ALT="">
+<P>
+The <I>Find in Files...</I> option on the <I>Edit</I> menu brings up the above dialog box. If brought up from the <I>Shell Window</I> (like this one was), the default is to search all <I>*.py</I> files in all directories on the Python search path. If started from the <I>File Editor</I>, the default will be to search the directory where the file being edited resides and all subdirectories of it.  You can set the directory manually and by clearing the <I>Recurse down subdirectories</I> option limit the search to a single directory. 
+<P>
+This function can be used to find where a function class or method is defined and/or to find examples of where it has been used in the system library or your own code. The above example finds the definition and some places where the Tkinter <I>Text</I> widget is used. The occurrences that are found are listed in an <I>Output Window</I>.
+</P>
+<IMG SRC="findfilesout.png" ALT="">
+<P>
+You can open a <I>File Edit</I> window for the file and at the location of any one of these occurrences by right clicking anywhere on its line in this window.
+<A NAME="Path Browser"><H2> Using the Path Browser</H2></A>
+<P>
+The <I>Path Browser</I> allows you to search through the directories of modules in the Python system path.
+</P> 
+<IMG SRC="path.png" ALT="">
+<P>
+
+Double clicking on a directory brings up the list of modules. Double clicking on one of these (i.e. <TT>swallow.py</TT> above) will bring up that file in a <I>File Editor</I> window as well as display the list of classes in that file. Double clicking on one of the classes (i.e. <I>Swallow</I> above) will bring up the list of methods defined for that class (as well as move you to the start of the definition of that class in the <I>File Editor</I> window). If you double click on a method, the  <I>File Editor</I> will be brought up positioned at the method's definition. You can also single click on the desired "+" at the left to open up the next level in the Path Browser without bringing up the <I>File Editor</I> window.
+
+<P>
+Note that on Windows platforms in this release of IDLE (due to a case normalization problem),  a number of the directories appear twice in the list.
+
+<A NAME="Class Browser"><H2> Using the Class Browser</H2></A>
+<P>
+In this release, the <I>Class Browser</I> is quite basic.
+</P>
+<IMG SRC="class.png" ALT="">
+<P>
+It is fired up from a <I>File Editor</I> window (either using the <I>Class browser</I> option of the <I>File</I> menu or the key binding <I>Alt-c</I>). It initially shows the classes defined in that file (i.e. <TT>Swallow</TT>, <TT>African</TT> and <TT>European</TT> above). The classes a class inherits from, if any,  are listed in brackets after the class name. Selecting a class brings up the methods defined "locally" for a class (but not the methods it  inherits).
+<A NAME="Debugger"><H2> Using the Debug Mechanism</H2></A>
+<P>
+The debugging mechanism in IDLE is still in a process of maturing. For example, in this version the set breakpoint functionality does not work on Windows platforms, limiting its use there. In this version of this document I will just walk you through a brief example introducing the use of the debugger.
+</P>
+<A NAME="Debug Example"><H3> A Simple Example</H3></A>
+
+<IMG SRC="debugmod.png" ALT="">
+<P>
+Start by creating and saving the  simple module above.
+</P>
+<IMG SRC="debugshell.png" ALT="">
+
+<UL>
+	<LI> As shown above, start with a <I>Shell Window</I>, import the example module and then define a <TT>numbers</TT> variable. 
+	<LI> Next select the <I>Debugger</I> option on the <I>Debug</I> menu. This should bring up the <I>Debug Control Panel</I> and print out <TT>[DEBUG ON]</TT> on your <I>Shell Window</I> (as shown above)
+	<LI> In the configuration area of the <I>Debug Control Panel</I> ensure that all four options are selected (<I>Stack</I>, <I>Source</I>, <I>Locals</I>, and <I>Globals</I>).
+	<LI> Now, type into the <I>Shell Window</I> the call to the <TT>divisible</TT> function (again as shown above).
+	<LI> Start single stepping through the computation (by successively pressing the <I>step</I> button on the <I>Debug Control Panel</I>). When control enters the <TT>dvtest</TT> module the File Editor will fire up with <TT>dvtest.py</TT> and the line that is about to be executed next will be highlighted in blue. This line will also be displayed in the stack area of the <I>Debug Control Panel</I>.
+	<LI> When you first reach the line "<TT>if not num % d</TT>" (i.e. it's highlighted in blue in the <I>File Editor</I> and it's displayed in the stack area of the <I>Debug Control Panel</I>), your Debug Control Panel should look like that below:
+</UL>
+<A NAME="Control Panel"><H3> The Debug Control Panel</H3></A>
+
+<IMG SRC="debugcontrol.png" ALT="">
+
+<A NAME="Debug Buttons"><H4> Control Buttons</H4></A>
+<P>
+At the top and left of the panel are the five control buttons. 
+<P>
+<UL>
+	<LI> The <I>Go</I> button will cause the computation to proceed from the current point, stopping either at the end or upon reaching a statement at which a break point has been set.
+	<LI> The <I>Step</I> button (which we have been using up to now) will cause either the next statement to be executed or a step into a nested function. 
+	<LI> The <I>Over</I> button will cause the current statement to be completely executed without stopping in any nested functions.
+	<LI> The  <I>Out</I> button will cause the computation to run through from the current point to the end and out of the current function.
+	<LI> The <I>Quit</I> button will quit the execution of the current computation.  It still leaves the system in debug mode (the next computation will cause the debugger to start up again). To exit the debug mode, toggle the Debugger option on the Debug menu on the Shell Window or hit the close button ( the "x" in the upper right) on the <I>Debug Control Panel</I>. However if you are currently still debugging a computation (as can be seen by the Debug Control Panel buttons being enabled), you must first quit the computation (i.e. hit the Quit button on the panel) before you can exit the mode.
+</UL>
+<A NAME="Debug Settings"><H4> Configuration Settings</H4></A>
+To the right of the buttons there are four configuration setting options. In this example above we have set all four.
+<P>
+Enabling the <I>Stack</I> setting causes the display of the call stack. In this example we just have two levels. The first is the call from the console to the <TT>divisible</TT> function and the second indicates the fact we are at the "<TT>if not num % d</TT>" line in the <TT>divisible</TT> function.
+<P>
+Enabling he <I>Source</I> setting, causes the display of the line we are at in the current computation (highlighted in blue) in a <I>File Editor</I> Window. It will fire up  new <I>File Editor</I> Windows as necessary when functions from new files are entered. In this example we have the single File Editor Window opened for <TT>dvtest.py</TT> with the current line highlighted.
+<P>
+Enabling the <I>Local</I> setting causes the display of a  local variable section on the <I>Debug Control Panel</I>. This display is an alphabetical list of the names and the current values of these variables at this point in the computation. In the above example we have the two parameters <TT>numList</TT> and <TT>d</TT> along with the local variable <TT>num</TT>.
+<P>
+Finally, enabling the <I>Global</I> setting causes the display of a  global variable section on the <I>Debug Control Panel</I>. This display is again an alphabetical list. In the above example we just have the four internally variables <TT>__builtins__</TT> (which is a dictionary containing such things as the built-in functions and exceptions),  <TT>__doc__</TT> (set to the module's documentation string), <TT>__file__</TT> (the current file) and <TT>__name__</TT> (the name of the current module) along with <TT>divisible</TT> (the name of the only function in this module) .  If there were any other functions or any module variables defined in this function they would appear here as well.  The <TT>numbers</TT> variable that was defined in the S<I>hell Window</I> does not appear as Python is statically scoped.
+<P>
+Each of these four settings can be enabled or disable at any time. This will cause the display or removal of the given sections on the <I>Debug Control Panel</I>. In the above example the Global variable list gives us little information, so we would probably disable it to cut down on the clutter. 
+<A NAME="Debug Status"><H4> Status Info</H4></A>
+<P>
+Below the buttons but above the Stack area is a status area that is displayed even if all the settings are disabled. In the above example it showed: <TT>dvtest.py:4: divisible()</TT>, which indicated we are on the fourth line in the file <TT>dvtest.py </TT> and in the function <TT>divisible</TT>. If an exception is encountered it will be displayed below this line and highlighted in yellow. This is seen below where we display the result of first typing <I>2/0</I> at the <I>Shell Window</I> and then starting to step through this computation under debug control.
+</P>
+<IMG SRC="debugerror1.png" ALT="">
+<BR>
+<IMG SRC="debugerror.png" ALT="">
+<P>
+At this point, if we continue stepping through, we would walk through the creation of the traceback that will end up being displayed back to the <I>Shell Window</I>.
+<A NAME="Break Points"><H4> Setting Break Points</H4></A>
+Setting a break point is a simple matter of, when in debug mode, right clicking on any line of a File Editor Window and selecting the single option "<I>Set breakpoint here</I>". The line will then be highlighted in pink. Execution will stop if this line is reached.  Note, however, that in this version of IDLE on the Windows platform this is broken as the debugger will not stop at break points.
+<A NAME="Future"><H2> Enhancements and Future Development of IDLE</H2></A>
+Guido van Rossum and Jeremy Hylton are currently actively working on IDLE.  They welcome suggestions and contributions. Discussions on its development direction can be found in the "IDLE-dev"  mailing list (
+<A HREF="http://www.python.org/mailman/listinfo/idle-dev">IDLE-dev Mail List</A>).
+<P>
+IDLE has been set up such that you can write your own extensions to it. For Guido's instructions on doing this see: 
+<A HREF="extend.txt">extend.txt</A>.
+<P>
+If you want, you can at any time obtain the latest in-progress version of IDLE. There are two options for doing this. 
+The first is you can get it (along with the latest snapshot of the rest of the Python code) through the CVS tree.  The instructions for doing this can be found at:
+<A HREF="http://www.python.org/download/cvs.html">Python CVS Info</A>.
+<P>
+Another option is to make use of the really nice service being provided by David Ascher.  He is making a snapshot of the latest version of IDLE available at:
+<A HREF="http://starship.python.net/crew/da/idledists/">IDLE snapshot</A>.
+If you are on  Windows, there can be some hitches getting this uncompressed. On my machine the
+file:
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<TT><FONT COLOR=#008040>idle_23_11_99.tar.gz</FONT></TT><BR>
+gets converted to:
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<TT><FONT COLOR=#008040>idle_23_11_99_tar.tar
+</FONT></TT><BR>
+and I have to rename it back once it is downloaded (of course the date of
+your snapshot will differ). Then you need tools to first uncompress (i.e.
+Aladdin Expander on Windows) then detar it (i.e. Winzip on Windows).
+
+
+<A NAME="New"><H2> What's New in Release 0.5</H2></A>
+
+The new features of this release are:
+<UL>
+	<LI> The <I>call tips</I> functionality in the <I>Shell</I> window.
+	<LI> The <I>Path Browser</I> and <I>Class Browser</I> now use a tree navigation model.
+	<LI> It is now possible to set the indent width and toggle between the use of tabs in the indentation.
+	<LI> Files can now be imported as modules or run as scripts by command from the <I>File Editor</I>.
+	<LI> IDLE can now be called with command line arguments like those for the basic Python interpreter (see the <I>Help</I> file for description of these and use idle.bat if you are on Windows).
+</UL>
+
+<A NAME="Feedback"><H2> Feedback</H2></A>
+<BLOCKQUOTE><I>
+There will be opportunities for changes as this document will have to be updated for new versions of IDLE. Any feedback you have as to its content or format would definitely be appreciated. I can be reached at ddharms@yahoo.com. 
+</I></BLOCKQUOTE>
+
+<ADDRESS>Daryl Harms</ADDRESS>
+	</BODY>
+	
+</HTML>

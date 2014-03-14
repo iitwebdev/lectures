@@ -1,0 +1,6 @@
+    8  For each prefix, app:
+ 9-11  If PATH_INFO starts with prefix:
+12-14    Take prefix from PATH_INFO, put it on SCRIPT_NAME
+   15    Give request to app
+       Otherwise:
+16-18    Respond with 404

@@ -1,0 +1,34 @@
+`ErrorCatcher` catches and shows tracebacks.  To test it we need a bad
+application::
+
+    >>> from simpleapp import simple_app
+    >>> def bad_app(environ, start_response):
+    ...     assert environ['REQUEST_METHOD'] == 'GET'
+    ...     return simple_app(environ, start_response)
+
+This application will raise ``AssertionError`` whenever the request
+method is not ``GET``::
+
+    >>> from testrunner import send_request
+    >>> print send_request(bad_app, '/')
+    200 OK
+    ...
+    >>> print send_request(bad_app, '/', method='POST')
+    Traceback (most recent call last):
+        ...
+    AssertionError
+
+Now lets wrap it in `ErrorCatcher` and retry those examples...
+
+::
+
+    >>> from errorcatcher import ErrorCatcher
+    >>> wrapped_app = ErrorCatcher(bad_app)
+    >>> print send_request(wrapped_app, '/')
+    200 OK
+    ...
+    >>> print send_request(wrapped_app, '/', method='POST')
+    500 Server Error
+    Content-Type: text/plain
+    Traceback (most recent call last):
+    ...

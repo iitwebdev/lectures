@@ -1,0 +1,161 @@
+All about web programming (except programming)
+==============================================
+
+:author: Ian Bicking
+:company: Imaginary Landscape
+
+who are you?
+------------
+
+* Imaginary Landscape; small web development company
+
+* ~ 2-1/2 programmers
+
+* Lots of small projects
+
+how we got here
+---------------
+
+* Zope 2 through-the-web development
+
+* Ad hoc Z SQL, DTML
+
+* No formal process
+
+* Not even an informal process
+
+where we try to improve ourselves
+---------------------------------
+
+* Moved out of Zope into Webware
+
+* Moved into Subversion
+
+* But kind of half-heartedly: never really said *this is the way it
+  will be*
+
+* Things moved from prototype to live without quite meaning it
+
+need to do more than just start
+-------------------------------
+
+* Deployment was hard and confusing
+
+* Lots of hand testing at each step, but didn't add to confidence
+
+* Always lots of complications going live
+
+* Never knew how we should be doing development and bug fixes
+
+let's just not deploy...
+------------------------
+
+* Deployment was hard and stressful for everyone
+
+* So we thought we just wouldn't deploy
+
+* Started making applications that were "multi-client"
+
+* One install and many clients
+
+well that was all wrong...
+--------------------------
+
+* Instead of developing good tools, we were building all the
+  complexities into our applications
+
+* Applications are hard, tools are easy
+
+* Dumb, dumb, dumb (but I only realize that now -- it seemed
+  *obviously* more smart at the time)
+
+the problems...
+---------------
+
+* Everyone gets the same software and features
+
+* Configuration was going into database
+
+* Databases are not very agile
+
+* Subversion doesn't hold databases
+
+now what we do
+--------------
+
+* Deployment should be easy
+
+* This is obviously good, not just smart
+
+* Once deployment is easy, multi-client installs are superfluous
+
+key concepts
+------------
+
+* Write real applications
+
+* You might only use it once, it might be totally custom for one
+  customer, but don't let that stop you from writing a real app
+
+* This might not apply to dynamic content -- intended for real web
+  applications
+
+* Our *content* is all in the database or written to static files;
+  managing that is a separate development process
+
+real apps are like real men
+---------------------------
+
+* What's a "real" application?
+
+* Keep the idea of using, deploying, and developing the application
+  separate
+
+* Even when it is the same person -- the "me" who deploys an app
+  doesn't have all the knowledge that the "me" who wrote it two months
+  ago had
+
+* Don't write code if you aren't coding
+
+more key concepts
+-----------------
+
+* You configure only the application
+
+* You never configure the framework
+
+configuring the framework
+-------------------------
+
+* The application inherits some *features* from the framework.
+
+* These features *sometimes* need to be configured.
+
+* Examples: Debug mode, how to report errors.
+
+don't configure the framework
+-----------------------------
+
+* Anti-examples: What package contains the application, where static
+  files for the application are stored, where the application is
+  mounted
+
+* Configuration is not code, and code is not configuration
+
+* But it can be pretty hard to tell that from the beginning
+
+moving configuration around
+---------------------------
+
+* "Bad" configuration slips in during development; smelly development
+  code is inevitable and okay; plan for configuration refactoring
+
+* Paste Deploy is a configuration format that maps to simple function
+  calls.
+
+* Configuration *maps* clearly to code (function invocations), to make
+  it easier to move things from one location to another
+
+* There's always application-specific code between your configuration
+  and the framework; derivative and superfluous configuration
+  parameters are expected

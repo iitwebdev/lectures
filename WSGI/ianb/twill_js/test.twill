@@ -1,0 +1,9 @@
+# Not too exciting...
+go http://localhost/twill_js/test.html
+fv 0 age 10
+fv 0 name Ian
+echo Get ready for the submit!
+submit 0
+notfind NOTHING
+follow back
+code 200

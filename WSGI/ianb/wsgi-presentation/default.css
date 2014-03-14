@@ -1,0 +1,11 @@
+pre.literal-block {
+  background-color: #dddddd;
+  color: #000000;
+  border: 1px solid black;
+  padding: 5px;
+}
+
+span.pre { 
+  color: #000066;
+  font-weight: bold;
+}

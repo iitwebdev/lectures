@@ -1,0 +1,36 @@
+`wsgify` is a decorator used to turn a function into a WSGI
+application.  The function takes a request object as the first
+argument, and may take extra named arguments that match
+``myframework.path_vars`` (`regexdispatch.RegexDispatch` can create
+these variables).  It returns the body of the response.
+It can use ``request.response`` to set headers and status, or also
+return a `caller.Response` object.
+
+Here's an example of a function::
+
+    >>> from caller import wsgify
+    >>> @wsgify
+    ... def whats_my_name(req):
+    ...     if req.method == 'POST':
+    ...         return 'Hi %s' % req.params['name']
+    ...     else:
+    ...         return '''
+    ...         <form action="%s" method="POST">
+    ...         Your name: <input type="text" name="name">
+    ...         <input type="submit"> </form>''' % req.request_url
+
+Then we test it::
+
+    >>> from testrunner import send_request
+    >>> print send_request(whats_my_name, '/')
+    200 OK
+    Content-Type: text/html; charset=utf8
+            <form action="http://localhost/" method="POST">
+            Your name: <input type="text" name="name">
+            <input type="submit"> </form>
+    >>> print send_request(whats_my_name, '/', method='POST', 
+    ...                    body={'name': 'Ian'})
+    200 OK
+    Content-Type: text/html; charset=utf8
+    Hi Ian
+

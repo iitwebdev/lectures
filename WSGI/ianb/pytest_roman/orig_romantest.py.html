@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"><html><head><title>orig_romantest.py</title>
+<!--This document created by PySourceColor ver.1.9.9 on: Thu Dec  9 17:20:30 2004-->
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1">
+<style type="text/css">
+<!--
+body {background:#FFFFFF;}
+.args {font-weight:bold;color:#000000;}
+.num {font-weight:bold;color:#000000;}
+.clsn {font-weight:bold;text-decoration:underline;color:#000000;}
+.defn {font-weight:bold;color:#000000;}
+.key {font-weight:bold;color:#000000;}
+.sq {color:#000000;}
+.sqr {color:#000000;}
+.squ {color:#000000;}
+.dq {color:#000000;}
+.dqr {color:#000000;}
+.dqu {color:#000000;}
+.tsq {color:#000000;}
+.dcom {font-weight:bold;color:#000000;}
+.tsqu {color:#000000;}
+.tdq {font-style:italic;font-family:serif;color:#000000;}
+.tdqr {font-style:italic;color:#000000;}
+.tdqu {font-style:italic;color:#000000;}
+.dec {font-weight:bold;color:#000000;}
+.decn {font-weight:bold;text-decoration:underline;color:#000000;}
+.name {color:#000000;}
+.op {font-weight:bold;color:#000000;}
+.err {border: solid 1.5pt #FF0000;color:#FF8080;}
+.comm {font-style:italic;color:#000000;}
+.tsqr {color:#000000;}
+--></style>
+</head>
+<body>
+<pre><span class="key">import</span> roman
+<span class="key">import</span> unittest
+
+<span class="key">class</span> <span class="clsn">KnownValues</span><span class="op">(</span><span class="args">unittest</span><span class="op">.</span><span class="args">TestCase</span><span class="op">)</span><span class="op">:</span>
+    knownValues <span class="op">=</span> <span class="op">(</span> <span class="op">(</span><span class="num">1</span><span class="op">,</span> 'I'<span class="op">)</span><span class="op">,</span>
+                    <span class="op">(</span><span class="num">2</span><span class="op">,</span> 'II'<span class="op">)</span><span class="op">,</span>
+                    <span class="op">(</span><span class="num">3</span><span class="op">,</span> 'III'<span class="op">)</span><span class="op">,</span>
+                    <span class="op">(</span><span class="num">4</span><span class="op">,</span> 'IV'<span class="op">)</span><span class="op">,</span>
+                    <span class="op">(</span><span class="num">5</span><span class="op">,</span> 'V'<span class="op">)</span><span class="op">,</span>
+                    <span class="op">(</span><span class="num">6</span><span class="op">,</span> 'VI'<span class="op">)</span><span class="op">,</span>
+                    <span class="op">(</span><span class="num">7</span><span class="op">,</span> 'VII'<span class="op">)</span><span class="op">,</span>
+                    <span class="op">(</span><span class="num">8</span><span class="op">,</span> 'VIII'<span class="op">)</span><span class="op">,</span>
+                    <span class="op">(</span><span class="num">9</span><span class="op">,</span> 'IX'<span class="op">)</span><span class="op">,</span>
+                    <span class="op">(</span><span class="num">10</span><span class="op">,</span> 'X'<span class="op">)</span><span class="op">,</span>
+                    <span class="op">(</span><span class="num">50</span><span class="op">,</span> 'L'<span class="op">)</span><span class="op">,</span>
+                    <span class="op">(</span><span class="num">100</span><span class="op">,</span> 'C'<span class="op">)</span><span class="op">,</span>
+                    <span class="op">(</span><span class="num">500</span><span class="op">,</span> 'D'<span class="op">)</span><span class="op">,</span>
+                    <span class="op">(</span><span class="num">1000</span><span class="op">,</span> 'M'<span class="op">)</span><span class="op">,</span>
+                    <span class="op">(</span><span class="num">31</span><span class="op">,</span> 'XXXI'<span class="op">)</span><span class="op">,</span>
+                    <span class="op">(</span><span class="num">148</span><span class="op">,</span> 'CXLVIII'<span class="op">)</span><span class="op">,</span>
+                    <span class="op">(</span><span class="num">294</span><span class="op">,</span> 'CCXCIV'<span class="op">)</span><span class="op">,</span>
+                    <span class="op">(</span><span class="num">312</span><span class="op">,</span> 'CCCXII'<span class="op">)</span><span class="op">,</span>
+                    <span class="op">(</span><span class="num">421</span><span class="op">,</span> 'CDXXI'<span class="op">)</span><span class="op">,</span>
+                    <span class="op">(</span><span class="num">528</span><span class="op">,</span> 'DXXVIII'<span class="op">)</span><span class="op">,</span>
+                    <span class="op">(</span><span class="num">621</span><span class="op">,</span> 'DCXXI'<span class="op">)</span><span class="op">,</span>
+                    <span class="op">(</span><span class="num">782</span><span class="op">,</span> 'DCCLXXXII'<span class="op">)</span><span class="op">,</span>
+                    <span class="op">(</span><span class="num">870</span><span class="op">,</span> 'DCCCLXX'<span class="op">)</span><span class="op">,</span>
+                    <span class="op">(</span><span class="num">941</span><span class="op">,</span> 'CMXLI'<span class="op">)</span><span class="op">,</span>
+                    <span class="op">(</span><span class="num">1043</span><span class="op">,</span> 'MXLIII'<span class="op">)</span><span class="op">,</span>
+                    <span class="op">(</span><span class="num">1110</span><span class="op">,</span> 'MCX'<span class="op">)</span><span class="op">,</span>
+                    <span class="op">(</span><span class="num">1226</span><span class="op">,</span> 'MCCXXVI'<span class="op">)</span><span class="op">,</span>
+                    <span class="op">(</span><span class="num">1301</span><span class="op">,</span> 'MCCCI'<span class="op">)</span><span class="op">,</span>
+                    <span class="op">(</span><span class="num">1485</span><span class="op">,</span> 'MCDLXXXV'<span class="op">)</span><span class="op">,</span>
+                    <span class="op">(</span><span class="num">1509</span><span class="op">,</span> 'MDIX'<span class="op">)</span><span class="op">,</span>
+                    <span class="op">(</span><span class="num">1607</span><span class="op">,</span> 'MDCVII'<span class="op">)</span><span class="op">,</span>
+                    <span class="op">(</span><span class="num">1754</span><span class="op">,</span> 'MDCCLIV'<span class="op">)</span><span class="op">,</span>
+                    <span class="op">(</span><span class="num">1832</span><span class="op">,</span> 'MDCCCXXXII'<span class="op">)</span><span class="op">,</span>
+                    <span class="op">(</span><span class="num">1993</span><span class="op">,</span> 'MCMXCIII'<span class="op">)</span><span class="op">,</span>
+                    <span class="op">(</span><span class="num">2074</span><span class="op">,</span> 'MMLXXIV'<span class="op">)</span><span class="op">,</span>
+                    <span class="op">(</span><span class="num">2152</span><span class="op">,</span> 'MMCLII'<span class="op">)</span><span class="op">,</span>
+                    <span class="op">(</span><span class="num">2212</span><span class="op">,</span> 'MMCCXII'<span class="op">)</span><span class="op">,</span>
+                    <span class="op">(</span><span class="num">2343</span><span class="op">,</span> 'MMCCCXLIII'<span class="op">)</span><span class="op">,</span>
+                    <span class="op">(</span><span class="num">2499</span><span class="op">,</span> 'MMCDXCIX'<span class="op">)</span><span class="op">,</span>
+                    <span class="op">(</span><span class="num">2574</span><span class="op">,</span> 'MMDLXXIV'<span class="op">)</span><span class="op">,</span>
+                    <span class="op">(</span><span class="num">2646</span><span class="op">,</span> 'MMDCXLVI'<span class="op">)</span><span class="op">,</span>
+                    <span class="op">(</span><span class="num">2723</span><span class="op">,</span> 'MMDCCXXIII'<span class="op">)</span><span class="op">,</span>
+                    <span class="op">(</span><span class="num">2892</span><span class="op">,</span> 'MMDCCCXCII'<span class="op">)</span><span class="op">,</span>
+                    <span class="op">(</span><span class="num">2975</span><span class="op">,</span> 'MMCMLXXV'<span class="op">)</span><span class="op">,</span>
+                    <span class="op">(</span><span class="num">3051</span><span class="op">,</span> 'MMMLI'<span class="op">)</span><span class="op">,</span>
+                    <span class="op">(</span><span class="num">3185</span><span class="op">,</span> 'MMMCLXXXV'<span class="op">)</span><span class="op">,</span>
+                    <span class="op">(</span><span class="num">3250</span><span class="op">,</span> 'MMMCCL'<span class="op">)</span><span class="op">,</span>
+                    <span class="op">(</span><span class="num">3313</span><span class="op">,</span> 'MMMCCCXIII'<span class="op">)</span><span class="op">,</span>
+                    <span class="op">(</span><span class="num">3408</span><span class="op">,</span> 'MMMCDVIII'<span class="op">)</span><span class="op">,</span>
+                    <span class="op">(</span><span class="num">3501</span><span class="op">,</span> 'MMMDI'<span class="op">)</span><span class="op">,</span>
+                    <span class="op">(</span><span class="num">3610</span><span class="op">,</span> 'MMMDCX'<span class="op">)</span><span class="op">,</span>
+                    <span class="op">(</span><span class="num">3743</span><span class="op">,</span> 'MMMDCCXLIII'<span class="op">)</span><span class="op">,</span>
+                    <span class="op">(</span><span class="num">3844</span><span class="op">,</span> 'MMMDCCCXLIV'<span class="op">)</span><span class="op">,</span>
+                    <span class="op">(</span><span class="num">3888</span><span class="op">,</span> 'MMMDCCCLXXXVIII'<span class="op">)</span><span class="op">,</span>
+                    <span class="op">(</span><span class="num">3940</span><span class="op">,</span> 'MMMCMXL'<span class="op">)</span><span class="op">,</span>
+                    <span class="op">(</span><span class="num">3999</span><span class="op">,</span> 'MMMCMXCIX'<span class="op">)</span><span class="op">,</span>
+                    <span class="op">(</span><span class="num">4000</span><span class="op">,</span> 'MMMM'<span class="op">)</span><span class="op">,</span>
+                    <span class="op">(</span><span class="num">4500</span><span class="op">,</span> 'MMMMD'<span class="op">)</span><span class="op">,</span>
+                    <span class="op">(</span><span class="num">4888</span><span class="op">,</span> 'MMMMDCCCLXXXVIII'<span class="op">)</span><span class="op">,</span>
+                    <span class="op">(</span><span class="num">4999</span><span class="op">,</span> 'MMMMCMXCIX'<span class="op">)</span><span class="op">)</span>
+
+    <span class="key">def</span> <span class="defn">testToRomanKnownValues</span><span class="op">(</span><span class="args">self</span><span class="op">)</span><span class="op">:</span>
+        <span class="tdq">"""toRoman should give known result with known input"""</span>
+        <span class="key">for</span> integer<span class="op">,</span> numeral <span class="key">in</span> self<span class="op">.</span>knownValues<span class="op">:</span>
+            result <span class="op">=</span> roman9<span class="op">.</span>toRoman<span class="op">(</span>integer<span class="op">)</span>
+            self<span class="op">.</span>assertEqual<span class="op">(</span>numeral<span class="op">,</span> result<span class="op">)</span>
+
+    <span class="key">def</span> <span class="defn">testFromRomanKnownValues</span><span class="op">(</span><span class="args">self</span><span class="op">)</span><span class="op">:</span>
+        <span class="tdq">"""fromRoman should give known result with known input"""</span>
+        <span class="key">for</span> integer<span class="op">,</span> numeral <span class="key">in</span> self<span class="op">.</span>knownValues<span class="op">:</span>
+            result <span class="op">=</span> roman9<span class="op">.</span>fromRoman<span class="op">(</span>numeral<span class="op">)</span>
+            self<span class="op">.</span>assertEqual<span class="op">(</span>integer<span class="op">,</span> result<span class="op">)</span>
+
+<span class="key">class</span> <span class="clsn">ToRomanBadInput</span><span class="op">(</span><span class="args">unittest</span><span class="op">.</span><span class="args">TestCase</span><span class="op">)</span><span class="op">:</span>
+    <span class="key">def</span> <span class="defn">testTooLarge</span><span class="op">(</span><span class="args">self</span><span class="op">)</span><span class="op">:</span>
+        <span class="tdq">"""toRoman should fail with large input"""</span>
+        self<span class="op">.</span>assertRaises<span class="op">(</span>roman9<span class="op">.</span>OutOfRangeError<span class="op">,</span> roman9<span class="op">.</span>toRoman<span class="op">,</span> <span class="num">5000</span><span class="op">)</span>
+
+    <span class="key">def</span> <span class="defn">testZero</span><span class="op">(</span><span class="args">self</span><span class="op">)</span><span class="op">:</span>
+        <span class="tdq">"""toRoman should fail with 0 input"""</span>
+        self<span class="op">.</span>assertRaises<span class="op">(</span>roman9<span class="op">.</span>OutOfRangeError<span class="op">,</span> roman9<span class="op">.</span>toRoman<span class="op">,</span> <span class="num">0</span><span class="op">)</span>
+
+    <span class="key">def</span> <span class="defn">testNegative</span><span class="op">(</span><span class="args">self</span><span class="op">)</span><span class="op">:</span>
+        <span class="tdq">"""toRoman should fail with negative input"""</span>
+        self<span class="op">.</span>assertRaises<span class="op">(</span>roman9<span class="op">.</span>OutOfRangeError<span class="op">,</span> roman9<span class="op">.</span>toRoman<span class="op">,</span> <span class="op">-</span><span class="num">1</span><span class="op">)</span>
+
+    <span class="key">def</span> <span class="defn">testNonInteger</span><span class="op">(</span><span class="args">self</span><span class="op">)</span><span class="op">:</span>
+        <span class="tdq">"""toRoman should fail with non-integer input"""</span>
+        self<span class="op">.</span>assertRaises<span class="op">(</span>roman9<span class="op">.</span>NotIntegerError<span class="op">,</span> roman9<span class="op">.</span>toRoman<span class="op">,</span> <span class="num">0.5</span><span class="op">)</span>
+
+<span class="key">class</span> <span class="clsn">FromRomanBadInput</span><span class="op">(</span><span class="args">unittest</span><span class="op">.</span><span class="args">TestCase</span><span class="op">)</span><span class="op">:</span>
+    <span class="key">def</span> <span class="defn">testTooManyRepeatedNumerals</span><span class="op">(</span><span class="args">self</span><span class="op">)</span><span class="op">:</span>
+        <span class="tdq">"""fromRoman should fail with too many repeated numerals"""</span>
+        <span class="key">for</span> s <span class="key">in</span> <span class="op">(</span>'MMMMM'<span class="op">,</span> 'DD'<span class="op">,</span> 'CCCC'<span class="op">,</span> 'LL'<span class="op">,</span> 'XXXX'<span class="op">,</span> 'VV'<span class="op">,</span> 'IIII'<span class="op">)</span><span class="op">:</span>
+            self<span class="op">.</span>assertRaises<span class="op">(</span>roman9<span class="op">.</span>InvalidRomanNumeralError<span class="op">,</span> roman9<span class="op">.</span>fromRoman<span class="op">,</span> s<span class="op">)</span>
+
+    <span class="key">def</span> <span class="defn">testRepeatedPairs</span><span class="op">(</span><span class="args">self</span><span class="op">)</span><span class="op">:</span>
+        <span class="tdq">"""fromRoman should fail with repeated pairs of numerals"""</span>
+        <span class="key">for</span> s <span class="key">in</span> <span class="op">(</span>'CMCM'<span class="op">,</span> 'CDCD'<span class="op">,</span> 'XCXC'<span class="op">,</span> 'XLXL'<span class="op">,</span> 'IXIX'<span class="op">,</span> 'IVIV'<span class="op">)</span><span class="op">:</span>
+            self<span class="op">.</span>assertRaises<span class="op">(</span>roman9<span class="op">.</span>InvalidRomanNumeralError<span class="op">,</span> roman9<span class="op">.</span>fromRoman<span class="op">,</span> s<span class="op">)</span>
+
+    <span class="key">def</span> <span class="defn">testMalformedAntecedent</span><span class="op">(</span><span class="args">self</span><span class="op">)</span><span class="op">:</span>
+        <span class="tdq">"""fromRoman should fail with malformed antecedents"""</span>
+        <span class="key">for</span> s <span class="key">in</span> <span class="op">(</span>'IIMXCC'<span class="op">,</span> 'VX'<span class="op">,</span> 'DCM'<span class="op">,</span> 'CMM'<span class="op">,</span> 'IXIV'<span class="op">,</span>
+                  'MCMC'<span class="op">,</span> 'XCX'<span class="op">,</span> 'IVI'<span class="op">,</span> 'LM'<span class="op">,</span> 'LD'<span class="op">,</span> 'LC'<span class="op">)</span><span class="op">:</span>
+            self<span class="op">.</span>assertRaises<span class="op">(</span>roman9<span class="op">.</span>InvalidRomanNumeralError<span class="op">,</span> roman9<span class="op">.</span>fromRoman<span class="op">,</span> s<span class="op">)</span>
+
+    <span class="key">def</span> <span class="defn">testBlank</span><span class="op">(</span><span class="args">self</span><span class="op">)</span><span class="op">:</span>
+        <span class="tdq">"""fromRoman should fail with blank string"""</span>
+        self<span class="op">.</span>assertRaises<span class="op">(</span>roman9<span class="op">.</span>InvalidRomanNumeralError<span class="op">,</span> roman9<span class="op">.</span>fromRoman<span class="op">,</span> ""<span class="op">)</span>
+
+<span class="key">class</span> <span class="clsn">SanityCheck</span><span class="op">(</span><span class="args">unittest</span><span class="op">.</span><span class="args">TestCase</span><span class="op">)</span><span class="op">:</span>
+    <span class="key">def</span> <span class="defn">testSanity</span><span class="op">(</span><span class="args">self</span><span class="op">)</span><span class="op">:</span>
+        <span class="tdq">"""fromRoman(toRoman(n))==n for all n"""</span>
+        <span class="key">for</span> integer <span class="key">in</span> range<span class="op">(</span><span class="num">1</span><span class="op">,</span> <span class="num">5000</span><span class="op">)</span><span class="op">:</span>
+            numeral <span class="op">=</span> roman9<span class="op">.</span>toRoman<span class="op">(</span>integer<span class="op">)</span>
+            result <span class="op">=</span> roman9<span class="op">.</span>fromRoman<span class="op">(</span>numeral<span class="op">)</span>
+            self<span class="op">.</span>assertEqual<span class="op">(</span>integer<span class="op">,</span> result<span class="op">)</span>
+
+<span class="key">class</span> <span class="clsn">CaseCheck</span><span class="op">(</span><span class="args">unittest</span><span class="op">.</span><span class="args">TestCase</span><span class="op">)</span><span class="op">:</span>
+    <span class="key">def</span> <span class="defn">testToRomanCase</span><span class="op">(</span><span class="args">self</span><span class="op">)</span><span class="op">:</span>
+        <span class="tdq">"""toRoman should always return uppercase"""</span>
+        <span class="key">for</span> integer <span class="key">in</span> range<span class="op">(</span><span class="num">1</span><span class="op">,</span> <span class="num">5000</span><span class="op">)</span><span class="op">:</span>
+            numeral <span class="op">=</span> roman9<span class="op">.</span>toRoman<span class="op">(</span>integer<span class="op">)</span>
+            self<span class="op">.</span>assertEqual<span class="op">(</span>numeral<span class="op">,</span> numeral<span class="op">.</span>upper<span class="op">(</span><span class="op">)</span><span class="op">)</span>
+
+    <span class="key">def</span> <span class="defn">testFromRomanCase</span><span class="op">(</span><span class="args">self</span><span class="op">)</span><span class="op">:</span>
+        <span class="tdq">"""fromRoman should only accept uppercase input"""</span>
+        <span class="key">for</span> integer <span class="key">in</span> range<span class="op">(</span><span class="num">1</span><span class="op">,</span> <span class="num">5000</span><span class="op">)</span><span class="op">:</span>
+            numeral <span class="op">=</span> roman9<span class="op">.</span>toRoman<span class="op">(</span>integer<span class="op">)</span>
+            roman9<span class="op">.</span>fromRoman<span class="op">(</span>numeral<span class="op">.</span>upper<span class="op">(</span><span class="op">)</span><span class="op">)</span>
+            self<span class="op">.</span>assertRaises<span class="op">(</span>roman9<span class="op">.</span>InvalidRomanNumeralError<span class="op">,</span>
+                              roman9<span class="op">.</span>fromRoman<span class="op">,</span> numeral<span class="op">.</span>lower<span class="op">(</span><span class="op">)</span><span class="op">)</span>
+
+<span class="key">if</span> __name__ <span class="op">==</span> "__main__"<span class="op">:</span>
+    unittest<span class="op">.</span>main<span class="op">(</span><span class="op">)</span></pre>
+</body></html>

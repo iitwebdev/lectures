@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.3.9: http://docutils.sourceforge.net/" />
+<title>Generic Functions and RuleDispatch</title>
+<link rel="stylesheet" href="default.css" type="text/css" />
+
+            <meta name="version" content="S5 1.0" />
+            <link rel="stylesheet" href="ui/slides.css" type="text/css" media="projection" id="slideProj" />
+            <link rel="stylesheet" href="ui/opera.css" type="text/css" media="projection" id="operaFix" />
+            <link rel="stylesheet" href="ui/print.css" type="text/css" media="print" id="slidePrint" />
+            <script src="ui/slides.js" type="text/javascript"></script>
+</head>
+<body>
+
+            <div class="layout">
+                <div id="currentSlide"></div>
+                <div id="header"></div>
+                <div id="footer">
+                    <h1>Generic Functions and RuleDispatch</h1> 
+                    <div id="controls"></div>
+                </div>
+            </div>
+<div class="presentation" id="generic-functions-and-ruledispatch">
+<h1 class="title">Generic Functions and RuleDispatch</h1>
+<div class="slide" id="generic-functions-ruledispatch">
+<h1><a name="generic-functions-ruledispatch">Generic Functions / RuleDispatch</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">author:</th><td class="field-body">Ian Bicking &lt;<a class="reference" href="mailto:ianb&#64;colorstudy.com">ianb&#64;colorstudy.com</a>&gt;</td>
+</tr>
+</tbody>
+</table>
+<p>A short introduction to generic functions and RuleDispatch.</p>
+</div>
+<div class="slide" id="ruledispatch">
+<h1><a name="ruledispatch">RuleDispatch</a></h1>
+<ul class="simple">
+<li>By Phillip J Eby</li>
+<li>Part of PEAK (distributed separately):
+<a class="reference" href="http://peak.telecommunity.com/">http://peak.telecommunity.com/</a></li>
+</ul>
+<pre class="literal-block">
+$ easy_install -Z \
+  -f http://peak.telecommunity.com/snapshots/ \
+  RuleDispatch
+</pre>
+</div>
+<div class="slide" id="generically">
+<h1><a name="generically">Generically</a></h1>
+<ul class="simple">
+<li>What are generic functions?<ul>
+<li>One function on the outside</li>
+<li>Multiple implementations on the inside</li>
+<li>Implementation chosen based on function arguments</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="slide" id="examples-elsewhere">
+<h1><a name="examples-elsewhere">Examples Elsewhere</a></h1>
+<p>Multiple dispatch, like in C++:</p>
+<pre class="literal-block">
+Set* join(Set* a, Set* b) {
+  ...
+}
+
+Set* join(List* a, Set* b) {
+  ...
+}
+</pre>
+<p>Implementation chosen based on the types of all the arguments.</p>
+</div>
+<div class="slide" id="other-elsewhere">
+<h1><a name="other-elsewhere">Other Elsewhere</a></h1>
+<p>Multiple dispatch (called a &quot;multimethod&quot;) in Common Lisp/CLOS:</p>
+<pre class="literal-block">
+(defmethod join ((a Set) (b Set)) ...)
+(defmethod join ((a List) (b Set)) ...)
+</pre>
+<p><tt class="docutils literal"><span class="pre">join</span></tt> is a &quot;generic function&quot;; this is how all OO works in CLOS
+(and Dylan).</p>
+</div>
+<div class="slide" id="single-dispatch">
+<h1><a name="single-dispatch">Single Dispatch</a></h1>
+<ul class="simple">
+<li>Only allows dictionaries, lists, numbers, strings.</li>
+<li>But what about other objects?</li>
+</ul>
+</div>
+<div class="slide" id="practical-example-json">
+<h1><a name="practical-example-json">Practical Example: JSON</a></h1>
+<p>Converting a SQLObject instance to something JSONable:</p>
+<pre class="literal-block">
+def jsonify(v):
+    if isinstance(v, SQLObject):
+        return json_sqlobject(v)
+    elif isinstance(v, (dict, list, tuple, 
+                        int, str, float)):
+        return v
+    else:
+        raise ValueError(&quot;Not jsonable: %r&quot; % v)
+</pre>
+<ul class="simple">
+<li>Easy to understand.</li>
+<li>But you have to edit <tt class="docutils literal"><span class="pre">jsonify</span></tt> to add another kind of object.</li>
+</ul>
+</div>
+<div class="slide" id="magic-methods">
+<h1><a name="magic-methods">Magic Methods</a></h1>
+<pre class="literal-block">
+def jsonify(v):
+    if hasattr(v, '__json__'):
+        return v.__json__()
+    elif ...
+</pre>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">jsonify</span></tt> doesn't have to be changed.</li>
+<li>You just have to attach <tt class="docutils literal"><span class="pre">__json__</span></tt> methods to other objects.</li>
+<li>Keep your dirty magic methods off my nice classes, thank you.</li>
+</ul>
+</div>
+<div class="slide" id="generic-functions">
+<h1><a name="generic-functions">Generic Functions</a></h1>
+<p>A little of both, with generic functions:</p>
+<pre class="literal-block">
+&#64;dispatch.generic()
+def jsonify(v):
+    if hasattr(v, '__json__'):
+        return v.__json__()
+
+&#64;jsonify.when('''isinstance(v, (dict, list, 
+                     tuple, int, str, float))''')
+def jsonify(v):
+    return v
+
+&#64;jsonify.when('isinstance(v, SQLObject)')
+def jsonify(v):
+    return jsonify(v.sqlmeta.asDict())
+</pre>
+</div>
+<div class="slide" id="id1">
+<h1><a name="id1">Generic Functions</a></h1>
+<p>Why is this better?</p>
+<ul class="simple">
+<li>I don't have to add a magic method to <tt class="docutils literal"><span class="pre">SQLObject</span></tt>.</li>
+<li>The person writing <tt class="docutils literal"><span class="pre">jsonify</span></tt> doesn't have to account for every
+possible kind of object.</li>
+<li>A person who controls neither <tt class="docutils literal"><span class="pre">jsonify</span></tt> nor <tt class="docutils literal"><span class="pre">SQLObject</span></tt> can
+define how the two fit together.</li>
+<li>You can put in other (important!) rules that aren't based on types.</li>
+</ul>
+</div>
+<div class="slide" id="a-predicate">
+<h1><a name="a-predicate">A Predicate</a></h1>
+<pre class="literal-block">
+&#64;jsonify.when('hasattr(v, &quot;__iter__&quot;)')
+def jsonify(v):
+    return jsonify([item for item in v])
+</pre>
+<ul class="simple">
+<li>The iterator protocol, for generic sequence objects.</li>
+<li>There is no &quot;type&quot;, this is pure Duck Typing (ducks say &quot;quack&quot;,
+sequences say &quot;__iter__&quot;).</li>
+</ul>
+</div>
+<div class="slide" id="specialization-and-next-method">
+<h1><a name="specialization-and-next-method">Specialization and next_method</a></h1>
+<p>Adding a custom serializer:</p>
+<pre class="literal-block">
+class User(SQLObject):
+    username = StringCol()
+    email = StringCol()
+    roles = MultipleJoin('Role')
+
+&#64;jsonify.when('isinstance(v, User)'):
+def jsonify(next_method, v):
+    result = next_method(v)
+    result['roles'] = [r.name for r in v.roles]
+    return result
+</pre>
+</div>
+</div>
+</body>
+</html>

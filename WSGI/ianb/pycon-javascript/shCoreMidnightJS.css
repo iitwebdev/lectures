@@ -1,0 +1,324 @@
+/**
+ * SyntaxHighlighter
+ * http://alexgorbatchev.com/SyntaxHighlighter
+ *
+ * SyntaxHighlighter is donationware. If you are using it, please donate.
+ * http://alexgorbatchev.com/SyntaxHighlighter/donate.html
+ *
+ * @version
+ * 3.0.83 (July 02 2010)
+ *
+ * @copyright
+ * Copyright (C) 2004-2010 Alex Gorbatchev.
+ *
+ * @license
+ * Dual licensed under the MIT and GPL licenses.
+ */
+.syntaxhighlighter.javascript a,
+.syntaxhighlighter.javascript div,
+.syntaxhighlighter.javascript code,
+.syntaxhighlighter.javascript table,
+.syntaxhighlighter.javascript table td,
+.syntaxhighlighter.javascript table tr,
+.syntaxhighlighter.javascript table tbody,
+.syntaxhighlighter.javascript table thead,
+.syntaxhighlighter.javascript table caption,
+.syntaxhighlighter.javascript textarea {
+  -moz-border-radius: 0 0 0 0 !important;
+  -webkit-border-radius: 0 0 0 0 !important;
+  background: none !important;
+  border: 0 !important;
+  bottom: auto !important;
+  float: none !important;
+  height: auto !important;
+  left: auto !important;
+  line-height: 1.1em !important;
+  margin: 0 !important;
+  outline: 0 !important;
+  overflow: visible !important;
+  padding: 0 !important;
+  position: static !important;
+  right: auto !important;
+  text-align: left !important;
+  top: auto !important;
+  vertical-align: baseline !important;
+  width: auto !important;
+  box-sizing: content-box !important;
+  font-family: "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace !important;
+  font-weight: normal !important;
+  font-style: normal !important;
+  font-size: 1em !important;
+  min-height: inherit !important;
+  min-height: auto !important;
+}
+
+.syntaxhighlighter.javascript {
+  width: 100% !important;
+  margin: 1em 0 1em 0 !important;
+  position: relative !important;
+  overflow: auto !important;
+  font-size: 1em !important;
+}
+.syntaxhighlighter.javascript.source {
+  overflow: hidden !important;
+}
+.syntaxhighlighter.javascript .bold {
+  font-weight: bold !important;
+}
+.syntaxhighlighter.javascript .italic {
+  font-style: italic !important;
+}
+.syntaxhighlighter.javascript .line {
+  white-space: pre !important;
+}
+.syntaxhighlighter.javascript table {
+  width: 100% !important;
+}
+.syntaxhighlighter.javascript table caption {
+  text-align: left !important;
+  padding: .5em 0 0.5em 1em !important;
+}
+.syntaxhighlighter.javascript table td.code {
+  width: 100% !important;
+}
+.syntaxhighlighter.javascript table td.code .container {
+  position: relative !important;
+}
+.syntaxhighlighter.javascript table td.code .container textarea {
+  box-sizing: border-box !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  border: none !important;
+  background: white !important;
+  padding-left: 1em !important;
+  overflow: hidden !important;
+  white-space: pre !important;
+}
+.syntaxhighlighter.javascript table td.gutter .line {
+  text-align: right !important;
+  padding: 0 0.5em 0 1em !important;
+}
+.syntaxhighlighter.javascript table td.code .line {
+  padding: 0 1em !important;
+}
+.syntaxhighlighter.javascript.nogutter td.code .container textarea, .syntaxhighlighter.javascript.nogutter td.code .line {
+  padding-left: 0em !important;
+}
+.syntaxhighlighter.javascript.show {
+  display: block !important;
+}
+.syntaxhighlighter.javascript.collapsed table {
+  display: none !important;
+}
+.syntaxhighlighter.javascript.collapsed .toolbar {
+  padding: 0.1em 0.8em 0em 0.8em !important;
+  font-size: 1em !important;
+  position: static !important;
+  width: auto !important;
+  height: auto !important;
+}
+.syntaxhighlighter.javascript.collapsed .toolbar span {
+  display: inline !important;
+  margin-right: 1em !important;
+}
+.syntaxhighlighter.javascript.collapsed .toolbar span a {
+  padding: 0 !important;
+  display: none !important;
+}
+.syntaxhighlighter.javascript.collapsed .toolbar span a.expandSource {
+  display: inline !important;
+}
+.syntaxhighlighter.javascript .toolbar {
+  position: absolute !important;
+  right: 1px !important;
+  top: 1px !important;
+  width: 11px !important;
+  height: 11px !important;
+  font-size: 10px !important;
+  z-index: 10 !important;
+}
+.syntaxhighlighter.javascript .toolbar span.title {
+  display: inline !important;
+}
+.syntaxhighlighter.javascript .toolbar a {
+  display: block !important;
+  text-align: center !important;
+  text-decoration: none !important;
+  padding-top: 1px !important;
+}
+.syntaxhighlighter.javascript .toolbar a.expandSource {
+  display: none !important;
+}
+.syntaxhighlighter.javascript.ie {
+  font-size: .9em !important;
+  padding: 1px 0 1px 0 !important;
+}
+.syntaxhighlighter.javascript.ie .toolbar {
+  line-height: 8px !important;
+}
+.syntaxhighlighter.javascript.ie .toolbar a {
+  padding-top: 0px !important;
+}
+.syntaxhighlighter.javascript.printing .line.alt1 .content,
+.syntaxhighlighter.javascript.printing .line.alt2 .content,
+.syntaxhighlighter.javascript.printing .line.highlighted .number,
+.syntaxhighlighter.javascript.printing .line.highlighted.alt1 .content,
+.syntaxhighlighter.javascript.printing .line.highlighted.alt2 .content {
+  background: none !important;
+}
+.syntaxhighlighter.javascript.printing .line .number {
+  color: #bbbbbb !important;
+}
+.syntaxhighlighter.javascript.printing .line .content {
+  color: black !important;
+}
+.syntaxhighlighter.javascript.printing .toolbar {
+  display: none !important;
+}
+.syntaxhighlighter.javascript.printing a {
+  text-decoration: none !important;
+}
+.syntaxhighlighter.javascript.printing .plain, .syntaxhighlighter.javascript.printing .plain a {
+  color: black !important;
+}
+.syntaxhighlighter.javascript.printing .comments, .syntaxhighlighter.javascript.printing .comments a {
+  color: #008200 !important;
+}
+.syntaxhighlighter.javascript.printing .string, .syntaxhighlighter.javascript.printing .string a {
+  color: blue !important;
+}
+.syntaxhighlighter.javascript.printing .keyword {
+  color: #006699 !important;
+  font-weight: bold !important;
+}
+.syntaxhighlighter.javascript.printing .preprocessor {
+  color: gray !important;
+}
+.syntaxhighlighter.javascript.printing .variable {
+  color: #aa7700 !important;
+}
+.syntaxhighlighter.javascript.printing .value {
+  color: #009900 !important;
+}
+.syntaxhighlighter.javascript.printing .functions {
+  color: #ff1493 !important;
+}
+.syntaxhighlighter.javascript.printing .constants {
+  color: #0066cc !important;
+}
+.syntaxhighlighter.javascript.printing .script {
+  font-weight: bold !important;
+}
+.syntaxhighlighter.javascript.printing .color1, .syntaxhighlighter.javascript.printing .color1 a {
+  color: gray !important;
+}
+.syntaxhighlighter.javascript.printing .color2, .syntaxhighlighter.javascript.printing .color2 a {
+  color: #ff1493 !important;
+}
+.syntaxhighlighter.javascript.printing .color3, .syntaxhighlighter.javascript.printing .color3 a {
+  color: red !important;
+}
+.syntaxhighlighter.javascript.printing .break, .syntaxhighlighter.javascript.printing .break a {
+  color: black !important;
+}
+
+.syntaxhighlighter.javascript {
+  background-color: #0f192a !important;
+}
+.syntaxhighlighter.javascript .line.alt1 {
+  background-color: #0f192a !important;
+}
+.syntaxhighlighter.javascript .line.alt2 {
+  background-color: #0f192a !important;
+}
+.syntaxhighlighter.javascript .line.highlighted.alt1, .syntaxhighlighter.javascript .line.highlighted.alt2 {
+  background-color: #253e5a !important;
+}
+.syntaxhighlighter.javascript .line.highlighted.number {
+  color: #38566f !important;
+}
+.syntaxhighlighter.javascript table caption {
+  color: #d1edff !important;
+}
+.syntaxhighlighter.javascript .gutter {
+  color: #afafaf !important;
+}
+.syntaxhighlighter.javascript .gutter .line {
+  border-right: 3px solid #435a5f !important;
+}
+.syntaxhighlighter.javascript .gutter .line.highlighted {
+  background-color: #435a5f !important;
+  color: #0f192a !important;
+}
+.syntaxhighlighter.javascript.printing .line .content {
+  border: none !important;
+}
+.syntaxhighlighter.javascript.collapsed {
+  overflow: visible !important;
+}
+.syntaxhighlighter.javascript.collapsed .toolbar {
+  color: #428bdd !important;
+  background: black !important;
+  border: 1px solid #435a5f !important;
+}
+.syntaxhighlighter.javascript.collapsed .toolbar a {
+  color: #428bdd !important;
+}
+.syntaxhighlighter.javascript.collapsed .toolbar a:hover {
+  color: #1dc116 !important;
+}
+.syntaxhighlighter.javascript .toolbar {
+  color: #d1edff !important;
+  background: #435a5f !important;
+  border: none !important;
+}
+.syntaxhighlighter.javascript .toolbar a {
+  color: #d1edff !important;
+}
+.syntaxhighlighter.javascript .toolbar a:hover {
+  color: #8aa6c1 !important;
+}
+.syntaxhighlighter.javascript .plain, .syntaxhighlighter.javascript .plain a {
+  color: #d1edff !important;
+}
+.syntaxhighlighter.javascript .comments, .syntaxhighlighter.javascript .comments a {
+  color: #428bdd !important;
+}
+.syntaxhighlighter.javascript .string, .syntaxhighlighter.javascript .string a {
+  color: #1dc116 !important;
+}
+.syntaxhighlighter.javascript .keyword {
+  color: #b43d3d !important;
+}
+.syntaxhighlighter.javascript .preprocessor {
+  color: #8aa6c1 !important;
+}
+.syntaxhighlighter.javascript .variable {
+  color: #ffaa3e !important;
+}
+.syntaxhighlighter.javascript .value {
+  color: #f7e741 !important;
+}
+.syntaxhighlighter.javascript .functions {
+  color: #ffaa3e !important;
+}
+.syntaxhighlighter.javascript .constants {
+  color: #e0e8ff !important;
+}
+.syntaxhighlighter.javascript .script {
+  font-weight: bold !important;
+  color: #b43d3d !important;
+  background-color: none !important;
+}
+.syntaxhighlighter.javascript .color1, .syntaxhighlighter.javascript .color1 a {
+  color: #f8bb00 !important;
+}
+.syntaxhighlighter.javascript .color2, .syntaxhighlighter.javascript .color2 a {
+  color: white !important;
+}
+.syntaxhighlighter.javascript .color3, .syntaxhighlighter.javascript .color3 a {
+  color: #ffaa3e !important;
+}

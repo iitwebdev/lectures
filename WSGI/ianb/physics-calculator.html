@@ -1,0 +1,174 @@
+<html>
+ <head>
+  <title>Physics Calculator</title>
+  <script type="text/javascript">
+
+units = {};
+std_units = {
+  force: 'Newton',
+  mass: 'Kg',
+  accel: 'm/s<sup>2</sup>',
+};
+units.force = {
+  'Newton': 1,
+  '1Kg of weight (down)': 10,
+  'Weight of a young child': 266, /* 60 lb */
+  'Guy doing a 150lb bench press': 667
+};
+
+units.accel = {
+  'm/s<sup>2</sup>': 1,
+  '0-60mph in 10sec': 9665,
+  'freefall': 10
+};
+
+units.mass = {
+  'Kg': 1,
+  'pound': 2.2,
+  'a young child': 27,
+  'weight of a blue whale': 108000
+};
+
+function getEl(id) {
+  return document.getElementById(id);
+}
+
+function calculate(t) {
+  if (t == 'force') {
+    set_unit('force', get_unit('mass') * get_unit('accel'));
+  } else if (t == 'mass') {
+    set_unit('mass', get_unit('force') / get_unit('accel'));
+  } else if (t == 'accel') {
+    set_unit('accel', get_unit('force') / get_unit('mass'));
+  } else {
+    throw('Unknown unit: "'+t+'"');
+  }
+}
+
+function get_unit(t) {
+  return parseFloat(getEl(t).value);
+}
+
+function set_unit(t, value) {
+  getEl(t).value = value;
+  update_unit(t, true);
+}
+
+function update_unit(t, mine) {
+  var unit = getEl(t+'_mine_unit').value;
+  if (! unit) {
+    return;
+  }
+  var conv = units[t][unit];
+  if (mine) {
+    /* updating my unit from std unit */
+    var field = t + '_mine';
+    var source = t;
+    conv = 1 / conv;
+  } else {
+    var field = t;
+    var source = t + '_mine';
+  }
+  source = parseFloat(getEl(source).value);
+  if (! source) {
+    return;
+  }
+  getEl(field).value = source * conv;
+}
+
+function choose_unit(t) {
+  var options = units[t];
+  var el = getEl(t+'_mine_unit');
+  var found = false;
+  var new_unit;
+  for (var i in options) {
+    if (! new_unit) {
+        new_unit = i;
+    }
+    if (found) {
+      new_unit = i;
+      break;
+    }
+    if (i == el.value) {
+      found = true;
+    }
+  }
+  el.value = new_unit;
+  getEl(t+'_mine_disp').innerHTML = new_unit;
+  update_unit(t, true);
+  return false;
+}
+
+
+
+  </script>
+ </head>
+ <body>
+
+<p>
+Equation: F = ma
+</p>
+
+<table>
+
+<tr>
+ <td>Force:</td>
+ <td>
+  <button onclick="return calculate('force')">calculate</button>
+ </td>
+ <td><input type="text" id="force" style="width: 4em"
+      onchange="update_unit('force', true)"> Newtons</td>
+ <td><input type="text" id="force_mine" style="width: 4em"
+      onchange="update_unit('force', false)"> 
+     <input type="hidden" id="force_mine_unit">
+      <span id="force_mine_disp">(choose unit)</span>
+ </td>
+ <td>
+  <button onclick="return choose_unit('force')">choose</button>
+ </td>
+
+</tr>
+
+
+<tr>
+ <td>Mass:</td>
+ <td>
+  <button onclick="return calculate('mass')">calculate</button>
+ </td>
+ <td><input type="text" id="mass" style="width: 4em"
+      onchange="update_unit('mass', true)"> Kg</td>
+ <td><input type="text" id="mass_mine" style="width: 4em"> 
+     <input type="hidden" id="mass_mine_unit"
+      onchange="update_unit('mass', false)">
+      <span id="mass_mine_disp">(choose unit)</span>
+ </td>
+ <td>
+  <button onclick="return choose_unit('mass')">choose</button>
+ </td>
+
+</tr>
+
+
+<tr>
+ <td>Accel:</td>
+ <td>
+  <button onclick="return calculate('accel')">calculate</button>
+ </td>
+ <td><input type="text" id="accel" style="width: 4em"
+      onchange="update_unit('accel', true)"> m/s<sup>2</sup></td>
+ <td><input type="text" id="accel_mine" style="width: 4em"> 
+     <input type="hidden" id="accel_mine_unit"
+      onchange="update_unit('force', false)">
+      <span id="accel_mine_disp">(choose unit)</span>
+ </td>
+ <td>
+  <button onclick="return choose_unit('accel')">choose</button>
+ </td>
+
+</tr>
+
+
+</table>
+
+ </body>
+</html>

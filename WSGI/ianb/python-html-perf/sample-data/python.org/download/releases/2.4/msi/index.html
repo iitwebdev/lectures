@@ -1,0 +1,370 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>Using Windows Installer</title>
+  <meta name="keywords" content="None" />
+  <meta name="description" content="None" />
+  <link rel="alternate" type="application/rss+xml" title="Community Events"
+        href="http://www.python.org/channews.rdf" />
+  <link rel="alternate" type="application/rss+xml" title="Python Recipes"
+        href="http://aspn.activestate.com/ASPN/Cookbook/Python/index_rss" />
+  <link rel="alternate" type="application/rss+xml" title="Usergroup News"
+        href="http://python-groups.blogspot.com/feeds/posts/default" />
+  <link rel="alternate" type="application/rss+xml" title="Python Screencasts"
+        href="http://www.showmedo.com/latestVideoFeed/rss2.0?tag=python" />
+  <link rel="alternate" type="application/rss+xml" title="Python Podcasts"
+        href="http://www.awaretek.com/python/index.xml" />
+  <link rel="alternate" type="application/rss+xml" title="Foundation News"
+        href="http://pyfound.blogspot.com/feeds/posts/default" />
+  <link rel="alternate" type="application/rss+xml" title="Python Enhancement Proposals"
+        href="http://www.python.org/dev/peps/peps.rss" />
+  <link rel="stylesheet" type="text/css" media="screen" id="screen-switcher-stylesheet"
+        href="/styles/screen-switcher-default.css" />
+  <link rel="stylesheet" type="text/css" media="sc&#82;een"
+        href="/styles/netscape4.css" />
+  <link rel="stylesheet" type="text/css" media="print"
+        href="/styles/print.css" />
+  <link rel="alternate stylesheet" type="text/css" media="screen"
+        href="/styles/largestyles.css" title="large text" />
+  <link rel="alternate stylesheet" type="text/css" media="screen"
+        href="/styles/defaultfonts.css" title="default fonts" />
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search under the www.python.org Domain"
+        href="/search-pysite.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within the Python Wiki"
+        href="/search-pywiki.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within Python Books at Google Book Search"
+        href="/search-pybooks.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within the Python Documentation"
+        href="/search-pydocs.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search for a Module in the Standard Library"
+        href="/search-pymodules.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search for Packages inside the Cheeseshop (PyPI)"
+        href="/search-pycheese.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search Archives of the Main Python Mailing List"
+        href="/search-pythonlist.xml"/>
+
+  <script type="text/javascript" src="/js/iotbs2-key-directors-load.js"></script>
+  <script type="text/javascript" src="/js/iotbs2-directors.js"></script>
+  <script type="text/javascript" src="/js/iotbs2-core.js"></script>
+
+</head>
+
+
+<body>
+  <!-- Logo -->
+  <h1 id="logoheader">
+    <a href="/" id="logolink" accesskey="1"><img id="logo" src="/images/python-logo.gif" alt="homepage" border="0" /></a>
+  </h1>
+  <!-- Skip to Navigation -->
+  <div class="skiptonav"><a href="#left-hand-navigation" accesskey="2"><img src="/images/trans.gif" id="skiptonav" alt="skip to navigation" border="0" /></a></div>
+  <div class="skiptonav"><a href="#content-body" accesskey="3"><img src="/images/trans.gif" id="skiptocontent" alt="skip to content" border="0" /></a></div>
+  <!-- Utility Menu -->
+  <div id="utility-menu">
+    <!-- Search Box -->
+    <div id="searchbox">
+      <form method="get" action="http://google.com/search" id="searchform" name="searchform">
+        <div id="search">
+          <input type="hidden" id="domains" name="domains" value="www.python.org" />
+          <input type="hidden" id="sitesearch" name="sitesearch" value="www.python.org" />
+          <input type="hidden" id="sourceid" name="sourceid" value="google-search" />
+          <input type="text" class="input-text" name="q" id="q" />
+          <input type="submit" value="search" class="input-button" name="submit" id="submit" />
+          <a href="/search" class="reference">Advanced Search</a>
+        </div>
+      </form>
+    </div>
+    <div id="screen-switcher"></div>
+  </div>
+
+  <div id="left-hand-navigation">
+    <!-- Main Menu -->
+    <div id="menu">
+      <ul class="level-one">
+            <li>
+          <a href="/about/" title="About The Python Language">About</a>
+        </li>
+            <li>
+          <a href="/news/" title="Major Happenings Within the Python Community">News</a>
+        </li>
+            <li>
+          <a href="/doc/" title="Tutorials, Library Reference, C API">Documentation</a>
+        </li>
+            <li class="selected">
+          <a href="/download/" title="Start Running Python Under Windows, Mac, Linux and Others" class="selected">Download</a>
+	    <ul class="level-two">
+		<li class="selected">
+	      <a href="/download/releases/" class="selected">Releases</a>
+		<ul class="level-three">
+		  <li><a href="/download/releases/3.0/">3.0a3</a></li>
+		  <li><a href="/download/releases/2.6/">2.6a1</a></li>
+		  <li><a href="/download/releases/2.5.2/">2.5.2</a></li>
+		  <li><a href="/download/releases/2.4.5/">2.4.5c1</a></li>
+		  <li><a href="/download/releases/2.4.4/">2.4.4</a></li>
+		  <li><a href="/download/releases/2.3.7/">2.3.7c1</a></li>
+		  <li><a href="/download/releases/2.3.6/">2.3.6</a></li>
+		  <li><a href="/download/releases/2.2.3/">2.2.3</a></li>
+		  <li><a href="/download/releases/2.1.3/">2.1.3</a></li>
+		  <li><a href="/download/releases/2.0.1/">2.0.1</a></li>
+		  <li><a href="/download/releases/1.6.1/">1.6.1</a></li>
+		  <li><a href="/download/releases/1.5/">1.5.2</a></li>
+		</ul>
+              </li>
+		<li>
+	      <a href="/download/windows/">Windows, DOS</a>
+              </li>
+		<li>
+	      <a href="/download/mac/">Macintosh</a>
+              </li>
+		<li>
+	      <a href="/download/linux/">Linux</a>
+              </li>
+		<li>
+	      <a href="/download/other/">Other</a>
+              </li>
+		<li>
+	      <a href="/download/source/">Source</a>
+              </li>
+		<li>
+	      <a href="/download/releases/3.0/">Python 3000</a>
+              </li>
+		<li>
+	      <a href="/download/svn/">SVN Access</a>
+              </li>
+		<li>
+	      <a href="/download/contributed/">Contributed Software</a>
+              </li>
+	    </ul>
+        </li>
+            <li>
+          <a href="/community/" title="Mailing Lists, Jobs, Conferences, SIGs, Online Chats">Community</a>
+        </li>
+            <li>
+          <a href="/psf/" title="Python Software Foundation">Foundation</a>
+        </li>
+            <li>
+          <a href="/dev/" title="Development of the Python language and website">Core Development</a>
+        </li>
+            <li>
+          <a href="/links/" title="Pointers to Useful Information">Links</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Quick Links -->
+  </div>
+
+  <div id="content-body">
+    <div id="body-main">
+      <div id="content">
+        
+          <div id="breadcrumb">
+               <a href="/download/">Download</a>
+               <span class="breadcrumb-separator">&gt;</span>
+               <a href="/download/releases/">Releases</a>
+               <span class="breadcrumb-separator">&gt;</span>
+            
+            Windows MSI Installer
+          </div>
+
+
+
+        <h2>Installer Features</h2>
+
+Python 2.4 is distributed as a Microsoft Installer (MSI) file
+on Windows. Typically, packages are installed by double-clicking
+them in the file explorer. However, with the msiexec.exe command
+line utility, additional features are available, like non-interactive 
+installation and administrative installation.
+
+<h2><a name="automated">Non-interactive Installation</a></h2>
+With the command line
+<pre>
+  msiexec /i python&lt;version&gt;.msi
+</pre>
+installation can be initiated programmatically. Additional
+parameters can be passed at the end of this command line, like
+
+<pre>
+  msiexec /i python-2.4.msi TARGETDIR=r:\python24
+</pre>
+
+<h3>Limited user interface</h3>
+
+The amount of user interface that installer displays can
+be controlled with /q options, in particular:
+<ul>
+  <li> /qn - No interface
+  <li> /qb - Basic interface - just a small progress dialog
+  <li> /qb! - Like /qb, but hide the Cancel button
+  <li> /qr - Reduced interface - display all dialogs that
+    don't require user interaction (skip all modal dialogs)
+  <li> /qn+ - Like /qn, but display "Completed" dialog at the end
+  <li> /qb+ - Like /qb, but display "Completed" dialog at the end
+</ul>
+
+<h3>Target directory</h3>
+The property TARGETDIR determines the root directory of the Python
+installation. For example, a different installation drive can
+be specified with
+<pre>
+ TARGETDIR=R:\python24
+</pre>
+The default TARGETDIR is [WindowsVolume]Python&lt;version&gt;.
+
+<p><em>Due to a bug in python-2.4.msi, installing into a target dir
+that has a space in its name causes the IDLE and pydoc shortcuts
+to <a href="../bugs">fail</a>.</em></p>
+
+<h3>Installation for All Users</h3>
+Adding
+<pre>
+  ALLUSERS=1
+</pre>
+causes an installation for all users. By default, the non-interactive
+installation install the package just for the current user, and the
+interactive installation offers a dialog which defaults to "all users"
+if the user is sufficiently privileged.
+
+<h3>Feature Selection</h3>
+A number of properties allow selection of features to be installed,
+reinstalled, or removed. The set of features for the Python installer
+is
+<ul>
+ <li>DefaultFeature - install the interpreter proper, plus the core libraries
+ <li>Extensions - register extensions (.py, .pyc, etc)
+ <li>TclTk - install Tkinter, and IDLE
+ <li>Documentation - install documentation
+ <li>Tools - install the Tools/ directory
+ <li>Testsuite - install Lib/test/
+</ul>
+In addition, ALL specifies all features. All features depend on
+DefaultFeature, so installing any feature automatically installs the
+default feature as well.
+The following properties control features to be installed or removed
+<ul>
+ <li>ADDLOCAL - list of feature to be installed on the local machine
+ <li>REMOVE - list of features to be removed
+ <li>ADDDEFAULT - list of features added in their default configuration
+ (which is local for all Python features)
+ <li>REINSTALL - list of features to be reinstalled/repaired
+ <li>ADVERTISE - list of feature for which to perform an advertise installation
+</ul>
+There are a few additional properties available; see the MSDN documentation
+for details.<p>
+With these options, adding
+<pre>
+  ADDLOCAL=Extensions
+</pre>
+installs the interpreter itself and registers the extensions, but does
+not install anything else.
+
+<h2>Uninstallation</h2>
+With
+<pre>
+  msiexec /x python&lt;version&gt;.msi
+</pre>
+python can be uninstalled. It is not necessary to have the
+MSI file available for uninstallation; alternatively, the package
+or product code can also be specified. You can find the product
+code by looking at the properties of the Uninstall shortcut that
+Python installs in the start menu.
+
+<h2>Administrative installation</h2>
+With
+<pre>
+  msiexec /a python&lt;version&gt;.msi
+</pre>
+an "administrative" (network) installation can be initiated.
+The files get unpacked into the target directory (which should
+be a network directory), but no other modification is made to
+the local system. In addition, another (smaller) msi file is
+generated in the target directory, which clients can then use
+to perform a local installation (future versions may also offer
+to keep some features on the network drive altogether).<p>
+Currently, there is no user interface for administrative installations,
+so the target directory must be passed on the command line.<p>
+There is no specific uninstall procedure for an administrative
+install - just delete the target directory if no client uses
+it anymore.
+
+<h2>Advertisement</h2>
+With
+<pre>
+  msiexec /jm python&lt;version&gt;.msi
+</pre>
+it would be possible, in principle, to "advertise" python to a
+machine (with /ju to a user). This would cause the icons to appear
+in the start menu, and the extensions to become registered, without
+the software actually being installed. The first usage of a feature
+would cause that feature to be installed.<p>
+<em style="color:brown">The Python installer currently supports
+just advertisement of start menu entries, but no advertisement
+of shortcuts.</em>
+
+<h2>Automatic Installation on a Group of Machines</h2>
+
+With Windows Group Policy, it is possible to automatically install
+Python an a group of machines. To do so, perform the following steps:
+<ol>
+ <li>Log on to the domain controller
+ <li>Copy the MSI file into a folder that is shared with access
+ granted to all target machines.
+ <li>Open the MMC snapin "Active Directory users and computers"
+ <li>Navigate to the group of computers that need Python
+ <li>Open Properties
+ <li>Open Group Policies
+ <li>Add a new polices, and edit it
+ <li>In Computer Configuration/Software Installation, chose
+     New/Package
+ <li>Select the MSI file through the network path
+ <li>Optionally, select that you want the Python to be deinstalled
+ if the computer leaves the scope of the policy.
+</ol>
+Group policy propagation typically takes some time - to reliably deploy
+the package, all machines should be rebooted.
+
+
+
+
+      </div>
+
+      
+      <div id="footer">
+	<div id="credits">
+ 	  <a href="/about/website">Website maintained by the Python community</a><br/>
+	  <a href="http://www.xs4all.com/" title="Web and email hosting provided by xs4all, Netherlands">hosting by xs4all</a> /
+	  <a href="http://www.pollenation.net/" title="Design and content management system by Pollenation Internet, Yorkshire">design by pollenation</a>
+	</div>
+	Copyright &copy; 1990-2008, <a href='/psf'>Python Software Foundation</a><br/>
+	<a href="/about/legal">Legal Statements</a>
+      </div>
+
+
+    </div>
+  </div>
+</body>
+</html>
+
+
+
+
+
+

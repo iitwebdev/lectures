@@ -1,0 +1,543 @@
+Web Development Process
+=======================
+
+:author: Ian Bicking
+:company: Imaginary Landscape
+
+Best Practices?
+---------------
+
+* This is what we're doing
+
+* As many dead ends as successes
+
+* We could go on all day talking about these issues
+
+* Maybe next year we can?
+
+Who are you?
+------------
+
+* Small web development company
+
+* 2-1/2 (ish) programmers
+
+* Lots of small projects
+
+* Willing to compromise quality for cost
+
+* Because our clients generally want that
+
+Moving on...
+------------
+
+* People pay us to start projects
+
+* People pay us to reuse old projects
+
+* People don't pay us to take care of what we make
+
+* So making crap hurts
+
+Quality?
+--------
+
+* When I say "compromise quality" ...
+
+* ... I mean use what we have
+
+* ... not exactly what the client wants
+
+* ... and make it as simple as possible
+
+Web Dev Except Dev
+------------------
+
+So what does that involve?
+
+
+
+
+
+* I like programming
+
+but...
+------
+
+* I don't like system adminstration
+
+because...
+----------
+
+* When I program I am the master of the computer
+
+but...
+------
+
+* When I do system administration the computer is my master
+
+and so too...
+-------------
+
+* And so too it can be with process
+
+* unless we find a way to master it...
+
+not surprising...
+-----------------
+
+* In open source, no one is our master
+
+* and no one is there to take care of us
+
+so...
+-----
+
+* How does a freed web developer master their process?
+
+* I'm not sure, but this is what I do
+
+* And these are the things I've done that don't work
+
+who I am
+--------
+
+* [yada yada]
+
+how we got here
+---------------
+
+* Zope through-the-web development
+
+* Ad hoc Z SQL
+
+* No formal process
+
+* Not much informal process either
+
+where we try to improve ourselves
+---------------------------------
+
+* Moved out of Zope into Webware
+
+* Moved into Subversion
+
+* But kind of half-heartedly: never really said *this is the way it
+  will be*
+
+* things moved from prototype to live without quite meaning it
+
+need to do more than just start
+-------------------------------
+
+* Deployment was hard and confusing
+
+* Lots of testing at each step, but didn't add to confidence
+
+* Always lots of complications going live
+
+* Never knew how we should be doing development and bug fixes
+
+let's just not deploy...
+------------------------
+
+* Deployment was hard and stressful for everyone
+
+* So we thought we just wouldn't deploy
+
+* Started making applications that were "multi-client"
+
+* One install and many clients
+
+well that was all wrong...
+--------------------------
+
+* Instead of developing good tools, we were building all the
+  complexities into our applications
+
+* Applications are hard, tools are easy
+
+* Dumb, dumb, dumb (but I only realize that now -- it seemed
+  *obviously* more smart at the time)
+
+the problems...
+---------------
+
+* Everyone gets the same software and features
+
+* Configuration was going into database
+
+* Databases are not very agile
+
+* Subversion doesn't hold databases
+
+now what we do
+--------------
+
+* Deployment should be easy
+
+* This is obviously good, not just smart
+
+* Once deployment is easy, multi-client installs are superfluous
+
+key concepts
+------------
+
+* Write real applications
+
+* You might only use it once, it might be totally custom for one
+  customer, but don't let that stop you from writing a real app
+
+* This might not apply to dynamic content -- intended for real web
+  applications
+
+* Our *content* is all in the database or written to static files;
+  managing that is a separate development process
+
+real apps are like real men
+---------------------------
+
+* What's a "real" application?
+
+* Keep the idea of using, deploying, and developing the application
+  separate
+
+* Even when it is the same person -- the "me" who deploys an app
+  doesn't have all the knowledge that the "me" who wrote it two months
+  ago had
+
+more key concepts
+-----------------
+
+* You configure only the application
+
+* You never configure the framework
+
+configuring the framework
+-------------------------
+
+* The application inherits some *features* from the framework.
+
+* These features *sometimes* need to be configured.
+
+* Examples: Debug mode, how to report errors.
+
+don't configure the framework
+-----------------------------
+
+* Anti-examples: What package contains the application, where static
+  files for the application are stored, where the application is
+  mounted
+
+* Configuration is not code, and code is not configuration
+
+* But it can be pretty hard to tell that from the beginning
+
+moving configuration around
+---------------------------
+
+* "Bad" configuration slips in during development; smelly development
+  code is inevitable and okay; plan for configuration refactoring
+
+* Paste Deploy is a configuration format that maps to simple function
+  calls.
+
+* Configuration *maps* clearly to code (function invocations), to make
+  it easier to move things from one location to another
+
+* There's always application-specific code between your configuration
+  and the framework; derivative and superfluous configuration
+  parameters are expected
+
+good beginnings
+---------------
+
+* If you set up the application properly, most of this doesn't happen
+
+* Everyone has to take out the trash, but it's no good if your trash
+  bag stinks before you've even thrown anything away
+
+starting the app
+----------------
+
+* Starting a new app needs to be easy
+
+* This way you can keep from inappropriately extending existing things
+  because you are too lazy to create something fully separated
+
+* This helps fight the urge to build frameworks
+
+* You *think* you want your own little framework, domain-specific
+  language, or some other smart idea; but you also know you don't want
+  that
+
+new project template
+--------------------
+
+* The new project template contains:
+
+  - Python package, distribution description (``setup.py``)
+  - Place for database setup
+  - Working test
+  - Working minimal configuration
+
+then we write
+-------------
+
+* This presentation is not about programming
+
+except for tests...
+-------------------
+
+* But we should test, so a little on that...
+
+* ``py.test`` for the tests: simple test discovery, simple to add
+  tests, no stupid superfluous classes
+
+* Unit tests are ad hoc
+
+* Some starting of support for fixture data, loaded from spreadsheets
+
+acceptance tests...
+-------------------
+
+* Acceptance tests with ``paste.fixture.TestApp``
+
+* This can be applied to any WSGI web application
+
+* Programmer written
+
+test first...
+-------------
+
+* I've written two small apps using TDD (Test Driven Development)
+
+* I don't look at the app in a browser until I think I have
+  implemented all the features
+
+* I find that I forget about big chunks of the application until I see
+  it in a browser
+
+* So: results are mixed; something more balanced would be better
+
+version control
+---------------
+
+* Nothing too unusual
+
+* Each project gets a directory with ``trunk``, ``branches``, ``tags``
+
+* We mostly just use ``trunk`` and ``tags``
+
+version control
+---------------
+
+* Application data is kept alongside code
+
+* Only the testing/development configuration goes with the application
+
+* A configuration file template is kept in
+  ``MyApp.egg-info/paste_deploy_config.ini_tmpl``
+
+* The configuration file is its only documentation currently (in
+  comments)
+
+vc layout
+---------
+
+* Client-specific data is kept in client repositories
+
+* Includes template overrides and configuration files
+
+* Currently all in one repository -- plan to move client data to
+  private repositories
+
+* Applications still stay in the same repository (easier to split and
+  combine projects)
+
+packaging & distribution
+------------------------
+
+* Every application is a Setuptools package
+
+* When we deploy, we tag (using ``buildutils``)::
+
+    python setup.py svntag --version=0.4 --next-version=0.4.1
+
+* Then we create an egg and upload using other setuptools extension
+  commands
+
+* Use ``easy_install`` to install
+
+packaging & distribution
+------------------------
+
+* The packages are annoying
+
+* We often want to edit things for hot fixes
+
+* Even the smallest changes -- like a template change -- involves a
+  lot of process
+
+* Planning to use svn checkouts everywhere (still with tags)
+
+managing checkouts
+------------------
+
+* Still planning to use checkouts
+
+* ``python setup.py develop`` activates/installs from a checkout
+
+* Only one version of any file in an environment
+
+* Everything editable and transparent -- use Subversion and
+  (non-computer-enforced) policy to track and enforce process
+
+* Except we need lots more logging
+
+python setup
+------------
+
+* We used setuptools' ability to install multiple versions of a
+  package
+
+* Everyplace we used a package, we allowed a version specification::
+
+    use = egg:FormCatcher==0.1
+
+* For very stable packages, we installed without setuptools or
+  easy_install (e.g., ``psycopg``)
+
+versions
+--------
+
+* This allows for accidental upgrading, because we didn't put in
+  explicit version numbers
+
+* Accidental upgrades are bad
+
+* Complicated to decide how any one installation would effect the
+  entire system
+
+* Didn't scale to even two sites
+
+isolation
+---------
+
+* Make every site a completely isolated entity
+
+* Identify the "current" site using an environmental variable
+  (``ACTIVE_SITE``)
+
+* Can set this variable in (non-Python) startup scripts, or on command
+  line
+
+* Lots of unintended conveniences -- simple commands for restarting
+  Apache, looking at logs, etc
+
+* Followed actual practice well (substantial context switch for the
+  brain to change the site you are working on)
+
+isolating sys.path
+------------------
+
+* ``sys.path`` kind of sucks
+
+* In ``sitecustomize`` we change the path based on ``ACTIVE_SITE``
+
+* In ``distutils.cfg`` (global config file for distutils and
+  setuptools/easy_install) we change installation options based on
+  variable (requires editing stdlib code)
+
+more isolation
+--------------
+
+* Still had a lot of crap left over from before we isolated things
+
+* Still hard to figure out what was going on
+
+* Clear out ``site-packages``, be very careful about what goes in
+  there
+
+* For non-site-specific commands, have a completely different
+  installation directory
+
+* When you set ``ACTIVE_SITE`` that "global" directory isn't added to
+  ``sys.path``
+
+actually deploying
+------------------
+
+* Special paster command ``paster deploy PackageName``
+
+* Runs ``easy_install`` if necessary
+
+* Puts config file (from template) into ``SITE/etc/python`` directory
+
+* Adds entry in ``SITE/etc/python/apps.ini`` like::
+
+    /packagename = config:packagename.ini
+
+actually deploying
+------------------
+
+* We edit Apache config by hand to map ``/packagename`` in (boo!)
+
+* ``apps.ini`` has site-wide configuration information (site name,
+  default error email recipient, etc)
+
+* Anything can be overridden per-app (but usually isn't)
+
+connecting to apache
+--------------------
+
+* ``server.ini`` has server information (typically flup+threads+SCGI)
+
+* Different sections for "live" and "devel", using Paste Deploy's
+  config overlapping
+
+* Right now just using ``cgi2scgi`` script (``mod_scgi`` in future)
+
+* Need to pass through environmental variables (FastCGI would work
+  too)
+
+updating databases
+------------------
+
+* Use ``sqlobject-admin`` to manage database versions, and apply
+  upgrade scripts
+
+* Built into ``paster deploy`` for now
+
+not just us
+-----------
+
+* ``paster deploy`` only works internally
+
+* Turning this into two commands: ``paster make-config`` and ``paster
+  setup-app``
+
+make-config
+-----------
+
+* Does easy_install, writes configuration out to fixed location
+
+* Has overrides (in Python) that can find default config file
+  locations, provide other default settings
+
+setup-app
+---------
+
+* Takes a config file
+
+* Sets up (or upgrades) databases, etc
+
+* Should be safe to apply to any application, even if already set up
+  (both installation + upgrade)
+
+* These are just *entry points* -- it is up to application to
+  implement them
+
+* Helper framework in Paste Script (should be Paste Deploy)
+
+

@@ -1,0 +1,118 @@
+<html>
+<head>
+<link rel="icon" type="image/png" href="/favicon.png">
+<title>CSS to XPath</title>
+<style type="text/css">
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  margin: 0;
+}
+div#body {
+  margin: 0 1em 1em 1em;
+}
+code {
+  color: #009;
+}
+div.notes {
+  font-size: 80%;
+}
+h1 {
+  margin-bottom: 0.5em;
+  font-size: 1.25em;
+  background-color: rgb(255, 128, 0);
+  color: #fff;
+  border-bottom: 1px solid rgb(255, 192, 128);
+  padding: 0 0 0 0.5em;
+}
+h1 a {
+  text-decoration: none;
+  color: #fff;
+}
+span.label {
+  font-size: 1.15em;
+  font-weight: bold;
+}
+div#result {
+  margin-bottom: 0.5em;
+}
+</style>
+</head>
+
+<body>
+<h1><a href="{{req.application_url|escape}}">CSS &#8658; XPath</a></h1>
+
+<div id="body">
+
+{% if css %}
+<div id="result">
+  Your CSS expression:<br>
+  <code>{{ css|escape }}</code><br>
+  {% if error %}
+  An error occurred during conversion:<br>
+  &nbsp; <b>{{ error|escape }}</b>
+  {% else %}
+  In XPath is:<br>
+  <textarea style="width: 100%" rows="3">{{ xpath|escape }}</textarea>
+  {% endif %}
+</div>
+{% endif %}
+
+<form action="{{req.application_url|escape}}" method="GET">
+<input type="hidden" name="format" value="html">
+<label for="css">
+<span class="label">CSS Selector:</span>
+<input type="text" name="css" value="{{req.GET.css|escape}}" style="width: 100%"
+ id="css"></label><br>
+<input type="submit" value="Convert to XPath">
+</form>
+
+<hr noshade>
+
+<div class="notes">
+
+<p>
+
+  This converts <a href="http://www.w3.org/TR/css3-selectors/">CSS 3
+  Selectors</a> to an <a href="http://www.w3.org/TR/xpath">XPath
+  1.0</a> expression.  Some CSS 3 Selectors (especially
+  pseudo-selectors) cannot be translated (you'll get an error if you
+  try one of these).  </p>
+
+<p>
+  
+  To access this programmatically <code>GET
+  {{req.application_url}}?css={css}</code> -- the response will be the
+  XPath expression (Content-Type: text/plain), or if there is an error
+  the response code will be 400 Bad Request and the body will be the
+  error message.
+
+</p>
+
+<p>
+
+  About this application:<br> This application was written by <a
+  href="http://blog.ianbicking.org">Ian Bicking</a>.  It is based on
+  the expression translator in the <a
+  href="http://codespeak.net/lxml/">lxml library</a> (in
+  <code>lxml.cssselect</code>).  The actual code is in <a
+  href="http://svn.colorstudy.com/home/ianb/css2xpath">an svn
+  repository</a>.  This application is provided because: why not?
+
+</p>
+</div>
+
+</div>
+<script>
+document.getElementById('css').focus();
+</script>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-6233344-1");
+pageTracker._trackPageview();
+</script>
+
+</body> </html>

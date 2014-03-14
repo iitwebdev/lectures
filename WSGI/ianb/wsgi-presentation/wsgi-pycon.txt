@@ -1,0 +1,356 @@
+WSGIKit: Utilizing WSGI as a platform for inter-framework
+cooperation
+
+    *or*
+
+WSGIKit: Decomposing a legacy framework into a decoupled stack of WSGI
+middleware
+
+
+About the Author
+================
+
+Ian Bicking has been doing web programming with Python for five years,
+and is senior developer at Imaginary Landscape.  He is a developer for
+Webware, and author of SQLObject, FormEncode, and PyLogo.  He
+frequently writes on Python and programming topics on his blog,
+http://blog.ianbicking.org
+
+Synopsis
+========
+
+WSGIKit is a reimplementation based on WSGI of the Webware For Python
+web framework.  The implementation maintains backward compatibility,
+while decomposing many of the functions of Webware into
+framework-neutral pieces of "middleware".  This provides a model for
+advancing Python web development while avoiding the partisanship that
+has typically been a drag on advancing Python in this domain.
+
+The presentation includes a description of WSGI and WSGI middleware,
+using WSGIKit as an example of WSGI's possibilities.
+
+A Note On Motivation
+====================
+
+When we ask ourselves how we want to market Python, we need to be
+reasonable about what Python has to offer, and who we can offer it to.
+Python is a language that appeals to programmers, and that should be
+the audience upon which we maintain our focus.  The advantages of
+Python aren't going to be clear to managers and other people involved
+in the decision-making process, but the increased productivity of
+using Python, and the motivational benefits of giving programmers a
+humane and encouraging environment, can be made clear to those
+decision-makers.  Python needs to get its foot in the door; from there
+we can let the language, philosophy, and culture of Python speak for
+themselves, speaking through the work of programmers who use Python.
+
+This kind of bottom-up adoption has happened in the past -- we saw it
+with Perl in the 90s, and PHP in the new millenium.  In both cases the
+conduit has been the web, and nothing has changed to make the web any
+less important now than it has been up to now.  The web offers unique
+opportunities -- as one of the easiest platforms, programmers can come
+up with real and useful applications -- applications visible to peers,
+supervisors, and the public -- in less time than any 
+
+The Order of Magnitude
+----------------------
+
+At PyCon 2003, Guido talked about marketing and growing Python.  He
+said we shouldn't be thinking about growing Python by 10%, but by
+1000%.  We should aim high.
+
+The Web and Python
+------------------
+
+Currently web programming is the most democratic and populist area of
+programming.  Unlike most other areas of programming, even very new
+programmers can create something *useful* on the web.  This isn't true
+for any other area: command-line programs are no longer mainstream;
+GUI programs are (relatively) challenging to distribute; web services
+don't *do* anything on their own; other client/server systems besides
+HTML/HTTP have limited audiences.
+
+We have evidence of the importance of web programming: PHP.  PHP has
+explosively grown in popularity.  Python should have been PHP.  Python
+*can't* be Java, it doesn't have Sun, and Java just doesn't offer a
+model that applies to Python.  But Python still *could* be PHP.  This
+is the best hope we have for 1000% growth.
+
+Right now Python lacks a truly populist web experience.  WSGI doesn't
+change that.  But it is a step towards advancing Python as a whole in
+the area of web programming, and I will show how it can be a
+foundational infrastructure for further development.
+
+Anyone who is interested or concerned about the popularity of Python
+should be concerned about the health of Python web programming,
+because that is both the area of greatest potential and the area where
+Python has been most lackluster.
+
+About WSGI
+==========
+
+WSGI was made to be as simple as it could be.  It was proposed in its
+current form in August 2004 by Phillip Eby; despite a fair amount of
+discussion, it has changed very little since it was first proposed.
+
+This is a rough sketch of WSGI, omitting some details:
+
+
+The request is represented by a dictionary.  The dictionary looks a
+lot like ``os.environ`` in a CGI request.  In addition to the normal
+CGI variables, there's an input stream (``"wsgi.input"``), a file-like
+object for error messages (``"wsgi.errors"``), and some information
+about the WSGI server.  Libraries are free to add their own keys.
+This represents the request completely.
+
+As such, WSGI doesn't define any "object" -- here or elsewhere -- but
+gives very explicit standards for how to create these basic data
+structures.  As we'll see later, WSGI doesn't provide a very
+aesthetically-pleasing interface, but focuses on making the system
+easy to reason about and manipulate, while avoiding situations that
+would cause compatibility problems.
+
+
+In WSGI we refer to a "server", and an "application".  These terms are
+useful in relation to each other -- the server calls the application
+-- but there are many use cases where the names might seem confusing
+or inappropriate.  Try not to put too much weight on the names
+themselves.  The server may not talk directly to the client's browser,
+and the application may be an umbrella for what we'd think of as
+several applications.
+
+
+The "application" is a callable; the server calls it like:
+
+    app_iter = application(environ, start_response)
+
+``environ`` is that CGI-environment-like dictionary.
+
+``start_response`` is another function; the application calls it
+like::
+
+    writer = start_response(status, headers)
+
+This sends the status and headers; the application can then push
+content out with the writer (which isn't the preferred technique), or
+it can then return ``app_iter``, which is an iterable that produces
+strings that form the body of the response.
+
+That's pretty much it.  [I'll provide some diagrams with this, as the
+higher-order functions can be confusing here]
+
+Legacy Frameworks
+-----------------
+
+For WSGI, all frameworks are legacy frameworks, because WSGI is new,
+and there's already many, many frameworks.  Because WSGI is based on
+the CGI interface, most frameworks are a close fit already, but will
+require at least some glue.
+
+The Simple Framework Approach
+-----------------------------
+
+The simple way to do this is to find the lowest-level interface
+between the "server" and the "framework".  This would mean replacing
+references to, e.g., ``cgi`` or mod_python's ``apache`` with
+interfaces based on the WSGI environment.  The result is a WSGI
+"application" that is the entire framework.
+
+With this, you've gained some server independence; you should be able
+to run under several (if not all) servers.  This can't paper over the
+differences between asynch, multithreaded, and multiprocess servers,
+but it makes it easier to handle nonetheless.
+
+WSGI also has a well-defined interface, which makes it relatively easy
+to construct WSGI requests for testing purposes.  I hope to see some
+good test fixtures written around WSGI.  This isn't a huge
+simplification over an HTTP-based test framework, but it means that
+tests can be run without setting up a test environment.
+
+The advantages of this technique are limited, even though it is still
+worth it since WSGI is fairly easy to implement.  You can list WSGI in
+your list of features, maybe installation will be easier, but the
+framework is not much more "powerful" as a result.
+
+Framework Decomposition
+-----------------------
+
+The alternate technique is to decompose the framework into several
+pieces.  This way, you may be able to nest applications or components
+written for different frameworks, or provide common services to a
+variety of frameworks.  
+
+This is the technique WSGIKit uses, utilizing several pieces of
+"middleware".
+
+Middleware
+----------
+
+While we talk about an "application" and a "server", it's possible for
+an object to be both application *and* server.  We call this
+"middleware", and it generally modifies the request or response, and
+delegates to another application.
+
+An example of middleware in WSGIKit is ``urlparser``.  For example, a
+Twisted WSGI server can be configured to pass all requests to a single
+application, regardless of URL.  Following CGI convention, the
+application gets an environment where ``SCRIPT_NAME`` is empty, and
+``PATH_INFO`` contains the entire path.
+
+Of course, typically you want multiple applications running under a
+single server, each in a different part of the URL.  Instead of
+building this functionality into the server, we can build a piece of
+middleware that delegates different parts of the URL space to
+different applications.
+
+WSGIKit's urlparser is configured to look for WSGI applications in a
+certain directory (the "document root").  The urlparser middleware
+consumes the first segment of ``PATH_INFO``, and moves it to the end
+of ``SCRIPT_NAME``.  It finds the application for that first segment
+of the path, and lets it handle the rest of the request.  If that
+first segment is a directory, it hands off to another urlparser
+middleware.  If it's a file, it converts the file to an application.
+[diagram]
+
+Alternately, instead of the urlparser being installed at the document
+root, it could be installed at any location.
+
+Additionally, you don't have to use WSGIKit's urlparser to split the
+URL between different applications.  For instance, Zope and Quixote
+use different techniques that are less file-based for mapping URLs too
+applications ("object publishing").  And because urlparser *is* an
+application, we can set it up so that one of these object publishers
+map to a urlparser application, which in turn maps into the
+filesystem.  Or conversely we could put an object publisher
+"application" in the filesystem.  [diagram]
+
+
+An example of a simpler piece of middleware is middleware for
+sessions.  This middleware intercepts both the beginning and end of
+the request.  At the beginning, it looks for a session ID.  It then
+adds a session object to the request (in ``"session.factory"``), and
+delegates to the application we give to it.  When the request is
+finished, it also checks if a new session ID has to be assigned, and
+sets a cookie by adding a header to the response.
+
+The example of the session shows the distinction between the
+*functionality* and the *framework*.  The session middleware provides
+all the functionality, but it's distinctly *not* a framework.  The
+interface is rather crude; to set a cookie you might do::
+
+    environ['session.factory']()[variable_name] = value
+
+A framework would provide attribute access, or attach the session to
+the request object, or other interface niceties.  The framework almost
+universally provides a nicer, higher-level interface on top of WSGI.
+
+This is a distinction between WSGI and Yet Another Framework.  Many
+frameworks have been created, usually with the intention of making
+application development -- "application" as in real web applications
+-- as easy as possible.  WSGI actually does very little to make
+applications easier to write; maybe making applications easier to
+install or test, but nothing else.  WSGI makes middleware, servlets,
+and frameworks easy to write, and applications are an entirely
+different layer.  In this way it is filling an empty space -- a space
+that was filled in ad hoc and incomplete ways by each framework
+(server integration).  But it also creates an entirely new space with
+this middleware, a place to provide interface-neutral functionality.
+You could have done that anyway -- framework-neutral libraries exist
+-- but this way those libraries can participate in the request cycle.
+
+The Webware Architecture of WSGIKit
+===================================
+
+WSGIKit implements a large portion of the legacy Webware interface.
+There are a lot of dark, unused corners of the API that haven't been
+implemented, and some concepts that were unnecessarily complicated and
+haven't been duplicated.
+
+The Webware-specific wrappers have been as minimal as I've been able
+to manage.  Here's the middleware stack that is used:
+
+* A server.  Currently Twisted is the preferred server.  The requests
+  are each served in a separate thread.
+
+* An exception catcher based on ``cgitb``.
+
+* An exception catcher which catches defined exceptions for different
+  HTTP responses, like ``HTTPNotFound``.  Currently this is not used
+  by the framework itself, but applications can use this technique.
+
+* A URL Parser.
+
+* A piece of middleware that allows recursive calls; this allows
+  servlets to forward and include each other.
+
+* A session handler.
+
+* A login handler.
+
+The only significant pieces of code left that are Webware-specific is
+code to parse GET and POST fields (which mostly just uses the ``cgi``
+module) and a convenience function for cookies; all the other methods
+are on the order of 1-5 lines.
+
+Webware servlets themselves are WSGI applications.  Conveniently
+``__call__`` wasn't a method Webware servlets used, so I was able to
+use it for the WSGI interface.  Other frameworks that publish objects
+where ``__call__`` is already used (e.g., functions or methods) will
+have to provide a very thin wrapper around their objects to turn them
+into WSGI applications.
+
+Setting Middleware Up
+---------------------
+
+Currently this doesn't look very pretty.  The code that sets up a
+Webware instance looks like::
+
+    document_root = '/path/to/document/root'
+    application = recursive.middleware(
+        httpexceptions.middleware(
+        session.middleware(
+        urlparser.URLParser(document_root, ''))))
+
+Each piece of middleware simply wraps the next piece of middleware,
+creating a stack.  In WSGIKit we package this stack up in a single
+function.  Some argue it should be configurable.
+
+Standardizing Middleware
+------------------------
+
+Middleware opens up the possibility to make more standards.  For
+instance, we could standardize session middleware.  To do that we
+would:
+
+* Define the keys you'll look for in the WSGI environment.
+
+* Indicate what's listed under that key, and what the interface and
+  semantics are of those objects.  E.g., for a session object we'd
+  have methods to retrieve the session, clear the session, start a new
+  session, etc.
+
+* Provide a sample implementation that frameworks could self-install
+  if the middleware was missing.  E.g., we might have sessions that
+  can be shared across the entire server; but if not, the framework
+  can install it.
+
+Some of the standards are easy to outline.  For instance, user
+authentication middleware could simply store the username in
+``SCRIPT_NAME``, and possibly provide access to actual user objects
+through other keys.
+
+It's important to note that these new standards build on WSGI, but I
+don't forsee any that would require changing WSGI -- WSGI is a
+relatively simplistic system that is easy to extend.
+
+Successes in WSGIKit
+--------------------
+
+* Webware wasn't designed with WSGI in mind, at all, yet we are still
+  able to support its API.
+
+* Webware wasn't factored in terms of middleware, but we can retrofit
+  its design as well.  In fact, one major motivation for refactoring
+  Webware in terms of middleware is to make it smaller and easier to
+  test and understand.
+

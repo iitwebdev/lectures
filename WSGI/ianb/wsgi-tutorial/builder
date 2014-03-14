@@ -1,0 +1,10 @@
+#!/bin/sh
+
+echo -n 'building...'
+rst2s5 --theme-url=ui tutorial.txt | sed 's/^<script.*>//' > tutorial.html
+echo '<script src="ui/slides.js" type="text/javascript"></script>' >> tutorial.html
+echo done.
+echo 'Opening...'
+echo firefox -remote "openURL(file://$PWD/tutorial.html,new-window)"
+firefox -remote "openURL(file://$PWD/tutorial.html,new-window)"
+

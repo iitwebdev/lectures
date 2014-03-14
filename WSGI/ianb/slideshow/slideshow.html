@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-15">
+<title>Test Slideshow</title>
+<script type="text/javascript" src="slideshow.js"></script>
+</head>
+
+<style type="text/css">
+.prevnext {
+    text-decoration: none;
+    border: thin outset black;
+    background-color: #dddddd;
+    padding: 3px;
+    color: black;
+}
+#prevLink {
+    position: fixed;
+    left: 5px;
+}
+#nextLink {
+    position: fixed;
+    right: 5px;
+}
+.slideshowProgress {
+    border: thin solid blue;
+}
+
+</style>
+
+<body>
+
+<table width="100%">
+  <tr>
+    <td width="30%" style="border-right: 2px solid black">
+      This is a sidebar.<br>
+      It might have a menu, but doesn't here.
+    </td>
+    <td width="70%">
+
+<div align=center id=image_progress>progress 1</div><br>
+
+<div align=center id=image_body style="border: medium black solid;
+background-color: #dddddd">image 1</div>
+
+<div align=left id=image_description style="background-color: #ddddff;
+font-size: large">
+description 1</div>
+
+<div id="image">
+<a href="http://murphyarts.com/emily/im/piece/3%20canisters.jpg">Three
+Canisters</a><br>
+<a href="http://murphyarts.com/emily/im/piece/1234.jpg">Sugar and
+Creamer</a><br>
+<a href="http://murphyarts.com/emily/im/piece/bottlegroup1.jpg"
+title="bottles">Tall Bottles</a>
+</div>
+
+<script language="JavaScript">
+Slideshow('image',
+  {imageHeight: '400px',
+   bindKeys: true,
+   preloadImages: true});
+</script>
+
+
+<div id="image2">
+<a href="http://murphyarts.com/emily/im/piece/3%20canisters.jpg"
+ fullsrc="http://murphyarts.com/emily/im/piece/3%20canisters.jpg"
+ thumbsrc="http://murphyarts.com/emily/im/piece/3%20canisters-tn.jpg">Three
+Canisters</a><br>
+<a href="http://murphyarts.com/emily/im/piece/1234.jpg"
+ fullsrc="http://murphyarts.com/emily/im/piece/1234.jpg"
+ thumbsrc="http://murphyarts.com/emily/im/piece/1234-tn.jpg">Sugar and
+Creamer</a><br>
+<a href="http://murphyarts.com/emily/im/piece/bottlegroup1.jpg"
+ fullsrc="http://murphyarts.com/emily/im/piece/bottlegroup1.jpg"
+ thumbsrc="http://murphyarts.com/emily/im/piece/bottlegroup1-tn.jpg"
+title="bottles">Tall Bottles</a>
+</div>
+
+      </td></tr></table>
+      
+<script language="JavaScript">
+var ops = 
+Slideshow('image2',
+  {imageHeight: '400px',
+   bindKeys: true,
+   fillStyles: true,
+   preloadImages: true,
+   linkTables: true});
+</script>
+
+
+
+</body> </html>

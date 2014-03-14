@@ -1,0 +1,46 @@
+The comments application allows us to comment on pages from another
+application.  First we make an application::
+
+    >>> from testrunner import send_request
+    >>> from simpleapp import simple_app
+
+Then we wrap the comment application around that::
+
+    >>> from comments import Comments
+    >>> wrapped_app = Comments(simple_app)
+
+When we get pages from the application, we'll see the comment form at
+the bottom::
+
+    >>> print send_request(wrapped_app, '/')
+    200 OK
+    Content-Type: text/html
+    <html><head><title>Simple App</title></head>
+    <body><h1>Simple App!</h1>
+    <form action="/_comment/" method="POST">
+    <input type="hidden" name="path_info" value="/">
+    Comment:<br>
+    <textarea name="comment"></textarea><br>
+    <input type="submit" value="Comment">
+    </form></body></html>
+
+Now we can POST a request to that form::
+
+    >>> print send_request(wrapped_app, '/_comment/', method='POST',
+    ...                    body={'path_info': '/', 'comment': 'hi'})
+    302 Found
+    Content-Type: ...
+    Location: /
+    ...
+    
+We'll get back a redirect, which will lead us back to the original
+page with our comment added::
+
+    >>> print send_request(wrapped_app, '/')
+    200 OK
+    Content-Type: text/html
+    ...
+    <div>hi</div>
+    <form...
+
+Success!

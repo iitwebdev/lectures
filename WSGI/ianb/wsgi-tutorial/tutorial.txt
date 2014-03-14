@@ -1,0 +1,133 @@
+WSGI Tutorial
+=============
+
+:Presentation: Ian Bicking
+:Organization: The Open Planning Project
+
+Why WSGI
+--------
+
+WSGI: A Series of Tubes
+-----------------------
+
+WSGI: The Spec
+--------------
+
+Simple App
+----------
+
+Simple App: WSGI Environ
+------------------------
+
+Server
+------
+
+Server: Test Framework
+----------------------
+
+Server: Creating Environ
+------------------------
+
+Server: Handling Response
+-------------------------
+
+Simple Middleware
+-----------------
+
+basicauth
+
+Dispatching Middleware
+----------------------
+
+Theory
+
+Dispatching: urldispatch
+------------------------
+
+urldispatch
+
+Output-filtering
+-----------------
+
+filter
+
+Output: Head Injection
+----------------------------
+
+headinject
+
+Output: Comments
+----------------
+
+comments
+
+Frameworks
+----------
+
+Frameworks: Generalized Dispatch
+--------------------------------
+
+regexdispatch
+
+Frameworks: Request Object
+--------------------------
+
+requestobj
+
+Frameworks: Handling Response
+-----------------------------
+
+caller
+
+Frameworks: Handling Errors
+---------------------------
+
+errorcatcher
+
+Paste
+-----
+
+Paste: Error Handling
+---------------------
+
+paste.exceptions and paste.evalexception
+
+Paste: Proxying Out
+-------------------
+
+paste.proxy and wphp.fcgi_app
+
+Paste: Testing In
+-----------------
+
+paste.fixture
+
+Paste: Dispatching
+------------------
+
+paste.urlparser and paste.urlmap
+
+Paste: Cascade
+--------------
+
+paste.cascade
+
+Paste: Error Document
+---------------------
+
+paste.errordocument
+
+Paste: httpexceptions
+---------------------
+
+paste.httpexceptions
+
+Paste: Threadlocal
+------------------
+
+paste.registry
+
+Paste: WSGIRequest, WSGIResponse
+--------------------------------
+
+paste.wsgiwrappers

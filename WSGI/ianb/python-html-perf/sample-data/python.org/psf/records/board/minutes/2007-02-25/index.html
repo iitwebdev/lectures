@@ -1,0 +1,370 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>2007-02-25 PSF Board Meeting Minutes</title>
+  <meta name="keywords" content="None" />
+  <meta name="description" content="None" />
+  <link rel="alternate" type="application/rss+xml" title="Community Events"
+        href="http://www.python.org/channews.rdf" />
+  <link rel="alternate" type="application/rss+xml" title="Python Recipes"
+        href="http://aspn.activestate.com/ASPN/Cookbook/Python/index_rss" />
+  <link rel="alternate" type="application/rss+xml" title="Usergroup News"
+        href="http://python-groups.blogspot.com/feeds/posts/default" />
+  <link rel="alternate" type="application/rss+xml" title="Python Screencasts"
+        href="http://www.showmedo.com/latestVideoFeed/rss2.0?tag=python" />
+  <link rel="alternate" type="application/rss+xml" title="Python Podcasts"
+        href="http://www.awaretek.com/python/index.xml" />
+  <link rel="alternate" type="application/rss+xml" title="Foundation News"
+        href="http://pyfound.blogspot.com/feeds/posts/default" />
+  <link rel="alternate" type="application/rss+xml" title="Python Enhancement Proposals"
+        href="http://www.python.org/dev/peps/peps.rss" />
+  <link rel="stylesheet" type="text/css" media="screen" id="screen-switcher-stylesheet"
+        href="/styles/screen-switcher-default.css" />
+  <link rel="stylesheet" type="text/css" media="sc&#82;een"
+        href="/styles/netscape4.css" />
+  <link rel="stylesheet" type="text/css" media="print"
+        href="/styles/print.css" />
+  <link rel="alternate stylesheet" type="text/css" media="screen"
+        href="/styles/largestyles.css" title="large text" />
+  <link rel="alternate stylesheet" type="text/css" media="screen"
+        href="/styles/defaultfonts.css" title="default fonts" />
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search under the www.python.org Domain"
+        href="/search-pysite.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within the Python Wiki"
+        href="/search-pywiki.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within Python Books at Google Book Search"
+        href="/search-pybooks.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within the Python Documentation"
+        href="/search-pydocs.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search for a Module in the Standard Library"
+        href="/search-pymodules.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search for Packages inside the Cheeseshop (PyPI)"
+        href="/search-pycheese.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search Archives of the Main Python Mailing List"
+        href="/search-pythonlist.xml"/>
+
+  <script type="text/javascript" src="/js/iotbs2-key-directors-load.js"></script>
+  <script type="text/javascript" src="/js/iotbs2-directors.js"></script>
+  <script type="text/javascript" src="/js/iotbs2-core.js"></script>
+
+</head>
+
+
+<body>
+  <!-- Logo -->
+  <h1 id="logoheader">
+    <a href="/" id="logolink" accesskey="1"><img id="logo" src="/images/python-logo.gif" alt="homepage" border="0" /></a>
+  </h1>
+  <!-- Skip to Navigation -->
+  <div class="skiptonav"><a href="#left-hand-navigation" accesskey="2"><img src="/images/trans.gif" id="skiptonav" alt="skip to navigation" border="0" /></a></div>
+  <div class="skiptonav"><a href="#content-body" accesskey="3"><img src="/images/trans.gif" id="skiptocontent" alt="skip to content" border="0" /></a></div>
+  <!-- Utility Menu -->
+  <div id="utility-menu">
+    <!-- Search Box -->
+    <div id="searchbox">
+      <form method="get" action="http://google.com/search" id="searchform" name="searchform">
+        <div id="search">
+          <input type="hidden" id="domains" name="domains" value="www.python.org" />
+          <input type="hidden" id="sitesearch" name="sitesearch" value="www.python.org" />
+          <input type="hidden" id="sourceid" name="sourceid" value="google-search" />
+          <input type="text" class="input-text" name="q" id="q" />
+          <input type="submit" value="search" class="input-button" name="submit" id="submit" />
+          <a href="/search" class="reference">Advanced Search</a>
+        </div>
+      </form>
+    </div>
+    <div id="screen-switcher"></div>
+  </div>
+
+  <div id="left-hand-navigation">
+    <!-- Main Menu -->
+    <div id="menu">
+      <ul class="level-one">
+            <li>
+          <a href="/about/" title="About The Python Language">About</a>
+        </li>
+            <li>
+          <a href="/news/" title="Major Happenings Within the Python Community">News</a>
+        </li>
+            <li>
+          <a href="/doc/" title="Tutorials, Library Reference, C API">Documentation</a>
+        </li>
+            <li>
+          <a href="/download/" title="Start Running Python Under Windows, Mac, Linux and Others">Download</a>
+        </li>
+            <li>
+          <a href="/community/" title="Mailing Lists, Jobs, Conferences, SIGs, Online Chats">Community</a>
+        </li>
+            <li class="selected">
+          <a href="/psf/" title="Python Software Foundation" class="selected">Foundation</a>
+	    <ul class="level-two">
+		<li>
+	      <a href="/psf/about/" title="About the Python Software Foundation">About the PSF</a>
+              </li>
+		<li>
+	      <a href="/psf/summary/" title="Executive Summary">Executive Summary</a>
+              </li>
+		<li>
+	      <a href="/psf/mission/">Mission Statement</a>
+              </li>
+		<li>
+	      <a href="/psf/donations/">Donations</a>
+              </li>
+		<li>
+	      <a href="/psf/volunteer/">Volunteer</a>
+              </li>
+		<li>
+	      <a href="/psf/membership/">Membership FAQ</a>
+              </li>
+		<li>
+	      <a href="/psf/sponsorship/">Sponsor Memberships</a>
+              </li>
+		<li>
+	      <a href="/psf/members/">Membership Roster</a>
+              </li>
+		<li class="selected">
+	      <a href="/psf/records/" class="selected">Public Records</a>
+		<ul class="level-three">
+		  <li><a href="/psf/records/board/minutes/">Board Meetings</a></li>
+		  <li><a href="/psf/records/board/resolutions/">Board Resolutions</a></li>
+		  <li><a href="/psf/records/members/">Members' Meetings</a></li>
+		</ul>
+              </li>
+		<li>
+	      <a href="/psf/committees/">Committees</a>
+              </li>
+		<li>
+	      <a href="/psf/bylaws/">Bylaws</a>
+              </li>
+		<li>
+	      <a href="/psf/trademarks/">Trademark Policy</a>
+              </li>
+		<li>
+	      <a href="/psf/grants/">Grants Program</a>
+              </li>
+		<li>
+	      <a href="http://wiki.python.org/moin/PythonSoftwareFoundation">PSF Wiki</a>
+              </li>
+		<li>
+	      <a href="http://pyfound.blogspot.com">PSF Weblog</a>
+              </li>
+		<li>
+	      <a href="/psf/weblog-policy/">Weblog Policy</a>
+              </li>
+		<li>
+	      <a href="/psf/press-release/">Press Releases</a>
+              </li>
+		<li>
+	      <a href="/psf/forms/">Membership Forms</a>
+              </li>
+		<li>
+	      <a href="/psf/contrib/">Contribution Forms</a>
+              </li>
+		<li>
+	      <a href="/psf/license/">License</a>
+              </li>
+	    </ul>
+        </li>
+            <li>
+          <a href="/dev/" title="Development of the Python language and website">Core Development</a>
+        </li>
+            <li>
+          <a href="/links/" title="Pointers to Useful Information">Links</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Quick Links -->
+  </div>
+
+  <div id="content-body">
+    <div id="body-main">
+      <div id="content">
+        
+          <div id="breadcrumb">
+               <a href="/psf/">Foundation</a>
+               <span class="breadcrumb-separator">&gt;</span>
+               <a href="/psf/records/">Public Records</a>
+               <span class="breadcrumb-separator">&gt;</span>
+            
+            2007-02-25 PSF Board Meeting Minutes
+          </div>
+
+
+
+        <!--utf-8--><!--0.4.1--><div class="minutes-title line-block">
+<div class="line">The Python Software Foundation</div>
+<div class="line">Minutes of a Special Meeting of the Board of Directors</div>
+<div class="line"><br /></div>
+<div class="line">February 25, 2007</div>
+</div>
+<p>A special meeting of the Python Software Foundation (&quot;PSF&quot;) Board of
+Directors was held at PyCon 2007 in Dallas at 12:30 CST (18:30 UTC),
+25 February 2007.  Stephan Deibel presided at the meeting.  David
+Goodger prepared these minutes.</p>
+<div class="contents topic">
+<p class="topic-title first"><a id="contents" name="contents">Contents</a></p>
+<ul class="auto-toc simple">
+<li><a class="reference" href="#attendance" id="id1" name="id1">1&nbsp;&nbsp;&nbsp;Attendance</a></li>
+<li><a class="reference" href="#election-of-officers" id="id2" name="id2">2&nbsp;&nbsp;&nbsp;Election of Officers</a></li>
+<li><a class="reference" href="#motion-to-dissolve-the-grants-committee" id="id3" name="id3">3&nbsp;&nbsp;&nbsp;Motion to Dissolve the Grants Committee</a></li>
+<li><a class="reference" href="#motion-to-dissolve-the-public-support-committee" id="id4" name="id4">4&nbsp;&nbsp;&nbsp;Motion to Dissolve the Public Support Committee</a></li>
+<li><a class="reference" href="#discussion-of-the-twisted-foundation" id="id5" name="id5">5&nbsp;&nbsp;&nbsp;Discussion of the &quot;Twisted Foundation&quot;</a></li>
+<li><a class="reference" href="#conference-committee" id="id6" name="id6">6&nbsp;&nbsp;&nbsp;Conference Committee</a></li>
+<li><a class="reference" href="#budget-action-plan" id="id7" name="id7">7&nbsp;&nbsp;&nbsp;Budget &amp; Action Plan</a></li>
+<li><a class="reference" href="#adjournment" id="id8" name="id8">8&nbsp;&nbsp;&nbsp;Adjournment</a></li>
+</ul>
+</div>
+<div class="section">
+<h2><a class="toc-backref" href="#id1" id="attendance" name="attendance">1&nbsp;&nbsp;&nbsp;Attendance</a></h2>
+<p>The following members of the Board of Directors were present at the
+meeting: Stephan Deibel, Andrew Kuchling, Brett Cannon, Steve Holden,
+and David Goodger.  Also in attendance was Guido van Rossum
+(President).</p>
+</div>
+<div class="section">
+<h2><a class="toc-backref" href="#id2" id="election-of-officers" name="election-of-officers">2&nbsp;&nbsp;&nbsp;Election of Officers</a></h2>
+<p>The following officers were elected by acclamation:</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">President:</th><td class="field-body">Guido van Rossum</td>
+</tr>
+<tr class="field"><th class="field-name">Chairman:</th><td class="field-body">Stephan Deibel</td>
+</tr>
+<tr class="field"><th class="field-name">Vice Chairman:</th><td class="field-body">Steve Holden</td>
+</tr>
+<tr class="field"><th class="field-name">Secretary:</th><td class="field-body">David Goodger</td>
+</tr>
+<tr class="field"><th class="field-name">Treasurer:</th><td class="field-body">Kurt Kaiser</td>
+</tr>
+<tr class="field"><th class="field-name" colspan="2">Assistant Treasurer:</th></tr>
+<tr><td>&nbsp;</td><td class="field-body">Neal Norwitz</td>
+</tr>
+<tr class="field"><th class="field-name" colspan="2">Executive Vice President:</th></tr>
+<tr><td>&nbsp;</td><td class="field-body">Brett Cannon</td>
+</tr>
+<tr class="field"><th class="field-name">Vice President:</th><td class="field-body">Andrew Kuchling</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section">
+<h2><a class="toc-backref" href="#id3" id="motion-to-dissolve-the-grants-committee" name="motion-to-dissolve-the-grants-committee">3&nbsp;&nbsp;&nbsp;Motion to Dissolve the Grants Committee</a></h2>
+<p>As the Grants Program begun in 2004 has concluded,</p>
+<blockquote>
+<strong>RESOLVED</strong>, that the Grants Committee is dissolved.</blockquote>
+<p>Approved by a 5-0-0 vote (<em>in favor – opposed – abstentions</em>).</p>
+<p>A new Grants Committee may be formed in the future for a new Grants
+Program.</p>
+</div>
+<div class="section">
+<h2><a class="toc-backref" href="#id4" id="motion-to-dissolve-the-public-support-committee" name="motion-to-dissolve-the-public-support-committee">4&nbsp;&nbsp;&nbsp;Motion to Dissolve the Public Support Committee</a></h2>
+<p>As the Public Support Committee (PSC) has been inactive for some time,</p>
+<blockquote>
+<strong>RESOLVED</strong>, that the Public Support Committee is dissolved.</blockquote>
+<p>Approved by a 5-0-0 vote.</p>
+</div>
+<div class="section">
+<h2><a class="toc-backref" href="#id5" id="discussion-of-the-twisted-foundation" name="discussion-of-the-twisted-foundation">5&nbsp;&nbsp;&nbsp;Discussion of the &quot;Twisted Foundation&quot;</a></h2>
+<p>The Twisted project is actively working toward establishing a
+foundation, and have informally approached the PSF for sponsorship.
+After discussion, it was decided to take no action at present.  The
+idea of the PSF as an umbrella organization was revisited.</p>
+</div>
+<div class="section">
+<h2><a class="toc-backref" href="#id6" id="conference-committee" name="conference-committee">6&nbsp;&nbsp;&nbsp;Conference Committee</a></h2>
+<p>D. Goodger summarized the PyCon 2008 bids presented at morning
+meetings during the conference (Saturday February 24 &amp; Sunday February
+25).</p>
+<p><strong>Chicago</strong>: Ted Pollari presented a bid from ChiPy (the Chicago
+Python User Group) for Chicago at the Crowne Plaza Chicago O'Hare
+hotel, with talk days on March 14-16 (Friday-Sunday), a tutorial day
+before, and sprints after.  The hotel's meeting space is much larger
+than that of the Marriott in Dallas: a ballroom almost triple the
+size, and many more rooms for tutorials and break-out sessions.  The
+hotel has more sleeping rooms as well.  The hotel's room rate is
+$99/night (+ tax), with a 10% commission to PyCon.  The Chicago bid
+includes provision for hiring the meeting planner they have been
+working with; the meeting planner will handle hotel negotiations and
+many logistical tasks.</p>
+<p><strong>San Francisco Bay Area</strong>: Alvin Wang presented a bid for PyCon 2008
+&amp; 2009 at the San Mateo Marriott, with talk days February 22-24 2008
+and February 20-23 2009, a tutorial day before, and sprints after.
+The attraction of the Bay area is the proximity to so many high-tech
+companies, and the warmer weather.  The room rate is $119 (+ tax),
+non-commissionable.  The meeting space is comparable to that of the
+Dallas Marriott, with more small &amp; medium-sized rooms but a slightly
+smaller main ballroom.</p>
+<p>After some discussion, considering the potential for growth of PyCon
+in 2008 and considering the room rate,</p>
+<blockquote>
+<strong>RESOLVED</strong>, that the Chicago bid be accepted for PyCon 2008.</blockquote>
+<p>Approved by a 5-0-0 vote.</p>
+<p>The San Francisco Bay Area may be revisited for a future PyCon.  The
+Board thanks Alvin Wang for his efforts.</p>
+<p>The Conference Committee should decide on venues with a lead time of
+at least 18 months.  The venue for PyCon 2009 should be decided well
+before PyCon 2008 is underway.</p>
+<p>Regarding PyCon 2007, the experiment of piping sound into the hall for
+the lunchtime presentations was deemed less than successful.  Perhaps
+presentations during lunch should be rethought.</p>
+</div>
+<div class="section">
+<h2><a class="toc-backref" href="#id7" id="budget-action-plan" name="budget-action-plan">7&nbsp;&nbsp;&nbsp;Budget &amp; Action Plan</a></h2>
+<p>S. Holden suggested that a focus on travel grants and sprints may be
+the most effective use of our funds.</p>
+<p>The concept of a target asset balance or reserve, and the $150,000
+figure for a target asset balance, were both approved informally.</p>
+<p>Idea: establish funding guidelines (bright-line rules) and/or a
+funding FAQ.</p>
+</div>
+<div class="section">
+<h2><a class="toc-backref" href="#id8" id="adjournment" name="adjournment">8&nbsp;&nbsp;&nbsp;Adjournment</a></h2>
+<p>S.&nbsp;Deibel adjourned the meeting at 13:45 CST (19:45 UTC).</p>
+</div>
+
+
+      </div>
+
+      
+      <div id="footer">
+	<div id="credits">
+ 	  <a href="/about/website">Website maintained by the Python community</a><br/>
+	  <a href="http://www.xs4all.com/" title="Web and email hosting provided by xs4all, Netherlands">hosting by xs4all</a> /
+	  <a href="http://www.pollenation.net/" title="Design and content management system by Pollenation Internet, Yorkshire">design by pollenation</a>
+	</div>
+	Copyright &copy; 1990-2008, <a href='/psf'>Python Software Foundation</a><br/>
+	<a href="/about/legal">Legal Statements</a>
+      </div>
+
+
+    </div>
+  </div>
+</body>
+</html>
+
+
+
+
+
+

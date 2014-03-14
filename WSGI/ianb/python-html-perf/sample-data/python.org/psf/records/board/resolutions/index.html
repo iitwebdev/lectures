@@ -1,0 +1,1186 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>Python Software Foundation Resolutions</title>
+  <meta name="keywords" content="None" />
+  <meta name="description" content="None" />
+  <link rel="alternate" type="application/rss+xml" title="Community Events"
+        href="http://www.python.org/channews.rdf" />
+  <link rel="alternate" type="application/rss+xml" title="Python Recipes"
+        href="http://aspn.activestate.com/ASPN/Cookbook/Python/index_rss" />
+  <link rel="alternate" type="application/rss+xml" title="Usergroup News"
+        href="http://python-groups.blogspot.com/feeds/posts/default" />
+  <link rel="alternate" type="application/rss+xml" title="Python Screencasts"
+        href="http://www.showmedo.com/latestVideoFeed/rss2.0?tag=python" />
+  <link rel="alternate" type="application/rss+xml" title="Python Podcasts"
+        href="http://www.awaretek.com/python/index.xml" />
+  <link rel="alternate" type="application/rss+xml" title="Foundation News"
+        href="http://pyfound.blogspot.com/feeds/posts/default" />
+  <link rel="alternate" type="application/rss+xml" title="Python Enhancement Proposals"
+        href="http://www.python.org/dev/peps/peps.rss" />
+  <link rel="stylesheet" type="text/css" media="screen" id="screen-switcher-stylesheet"
+        href="/styles/screen-switcher-default.css" />
+  <link rel="stylesheet" type="text/css" media="sc&#82;een"
+        href="/styles/netscape4.css" />
+  <link rel="stylesheet" type="text/css" media="print"
+        href="/styles/print.css" />
+  <link rel="alternate stylesheet" type="text/css" media="screen"
+        href="/styles/largestyles.css" title="large text" />
+  <link rel="alternate stylesheet" type="text/css" media="screen"
+        href="/styles/defaultfonts.css" title="default fonts" />
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search under the www.python.org Domain"
+        href="/search-pysite.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within the Python Wiki"
+        href="/search-pywiki.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within Python Books at Google Book Search"
+        href="/search-pybooks.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within the Python Documentation"
+        href="/search-pydocs.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search for a Module in the Standard Library"
+        href="/search-pymodules.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search for Packages inside the Cheeseshop (PyPI)"
+        href="/search-pycheese.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search Archives of the Main Python Mailing List"
+        href="/search-pythonlist.xml"/>
+
+  <script type="text/javascript" src="/js/iotbs2-key-directors-load.js"></script>
+  <script type="text/javascript" src="/js/iotbs2-directors.js"></script>
+  <script type="text/javascript" src="/js/iotbs2-core.js"></script>
+
+</head>
+
+
+<body>
+  <!-- Logo -->
+  <h1 id="logoheader">
+    <a href="/" id="logolink" accesskey="1"><img id="logo" src="/images/python-logo.gif" alt="homepage" border="0" /></a>
+  </h1>
+  <!-- Skip to Navigation -->
+  <div class="skiptonav"><a href="#left-hand-navigation" accesskey="2"><img src="/images/trans.gif" id="skiptonav" alt="skip to navigation" border="0" /></a></div>
+  <div class="skiptonav"><a href="#content-body" accesskey="3"><img src="/images/trans.gif" id="skiptocontent" alt="skip to content" border="0" /></a></div>
+  <!-- Utility Menu -->
+  <div id="utility-menu">
+    <!-- Search Box -->
+    <div id="searchbox">
+      <form method="get" action="http://google.com/search" id="searchform" name="searchform">
+        <div id="search">
+          <input type="hidden" id="domains" name="domains" value="www.python.org" />
+          <input type="hidden" id="sitesearch" name="sitesearch" value="www.python.org" />
+          <input type="hidden" id="sourceid" name="sourceid" value="google-search" />
+          <input type="text" class="input-text" name="q" id="q" />
+          <input type="submit" value="search" class="input-button" name="submit" id="submit" />
+          <a href="/search" class="reference">Advanced Search</a>
+        </div>
+      </form>
+    </div>
+    <div id="screen-switcher"></div>
+  </div>
+
+  <div id="left-hand-navigation">
+    <!-- Main Menu -->
+    <div id="menu">
+      <ul class="level-one">
+            <li>
+          <a href="/about/" title="About The Python Language">About</a>
+        </li>
+            <li>
+          <a href="/news/" title="Major Happenings Within the Python Community">News</a>
+        </li>
+            <li>
+          <a href="/doc/" title="Tutorials, Library Reference, C API">Documentation</a>
+        </li>
+            <li>
+          <a href="/download/" title="Start Running Python Under Windows, Mac, Linux and Others">Download</a>
+        </li>
+            <li>
+          <a href="/community/" title="Mailing Lists, Jobs, Conferences, SIGs, Online Chats">Community</a>
+        </li>
+            <li class="selected">
+          <a href="/psf/" title="Python Software Foundation" class="selected">Foundation</a>
+	    <ul class="level-two">
+		<li>
+	      <a href="/psf/about/" title="About the Python Software Foundation">About the PSF</a>
+              </li>
+		<li>
+	      <a href="/psf/summary/" title="Executive Summary">Executive Summary</a>
+              </li>
+		<li>
+	      <a href="/psf/mission/">Mission Statement</a>
+              </li>
+		<li>
+	      <a href="/psf/donations/">Donations</a>
+              </li>
+		<li>
+	      <a href="/psf/volunteer/">Volunteer</a>
+              </li>
+		<li>
+	      <a href="/psf/membership/">Membership FAQ</a>
+              </li>
+		<li>
+	      <a href="/psf/sponsorship/">Sponsor Memberships</a>
+              </li>
+		<li>
+	      <a href="/psf/members/">Membership Roster</a>
+              </li>
+		<li class="selected">
+	      <a href="/psf/records/" class="selected">Public Records</a>
+		<ul class="level-three">
+		  <li><a href="/psf/records/board/minutes/">Board Meetings</a></li>
+		  <li><a href="/psf/records/board/resolutions/">Board Resolutions</a></li>
+		  <li><a href="/psf/records/members/">Members' Meetings</a></li>
+		</ul>
+              </li>
+		<li>
+	      <a href="/psf/committees/">Committees</a>
+              </li>
+		<li>
+	      <a href="/psf/bylaws/">Bylaws</a>
+              </li>
+		<li>
+	      <a href="/psf/trademarks/">Trademark Policy</a>
+              </li>
+		<li>
+	      <a href="/psf/grants/">Grants Program</a>
+              </li>
+		<li>
+	      <a href="http://wiki.python.org/moin/PythonSoftwareFoundation">PSF Wiki</a>
+              </li>
+		<li>
+	      <a href="http://pyfound.blogspot.com">PSF Weblog</a>
+              </li>
+		<li>
+	      <a href="/psf/weblog-policy/">Weblog Policy</a>
+              </li>
+		<li>
+	      <a href="/psf/press-release/">Press Releases</a>
+              </li>
+		<li>
+	      <a href="/psf/forms/">Membership Forms</a>
+              </li>
+		<li>
+	      <a href="/psf/contrib/">Contribution Forms</a>
+              </li>
+		<li>
+	      <a href="/psf/license/">License</a>
+              </li>
+	    </ul>
+        </li>
+            <li>
+          <a href="/dev/" title="Development of the Python language and website">Core Development</a>
+        </li>
+            <li>
+          <a href="/links/" title="Pointers to Useful Information">Links</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Quick Links -->
+  </div>
+
+  <div id="content-body">
+    <div id="body-main">
+      <div id="content">
+        
+          <div id="breadcrumb">
+               <a href="/psf/">Foundation</a>
+               <span class="breadcrumb-separator">&gt;</span>
+               <a href="/psf/records/">Public Records</a>
+               <span class="breadcrumb-separator">&gt;</span>
+            
+            Python Software Foundation Resolutions
+          </div>
+
+
+
+        <center>
+<h3>
+The Python Software Foundation
+<br>Resolutions of the Board of Directors
+</h3>
+</center>
+
+<p>Vote counts are of the form "4-2-1"
+(<i>4 in favor &ndash; 2 opposed &ndash; 1 abstention</i>).</p>
+
+<dl>
+
+<!-- Template
+<dt><hr>
+<dt><p><b>RESOLVED</b>, 
+<dd><i>Approved by IRC vote </i>
+-->
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>,  that Steve Holden may spend up to US$1000 to buy swag
+    items for GHOP participants.
+<dd><i>Approved by IRC vote 7-0-0, February 11, 2008.</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that the board of directors recommends HitFlip to the
+    membership, as a future sponsor member of the PSF.
+<dd><i>Approved by IRC vote 5-2-0, January 14, 2008.</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that the Board approves the PyCon 2008 budget as
+    recorded in the PSF's CVS repository at pycon/2008/budget.pdf and
+    on the web at
+    <a href="http://spreadsheets.google.com/pub?key=pyx4TeJX2JDoKnFsixLn9bw"
+    >http://spreadsheets.google.com/pub?key=pyx4TeJX2JDoKnFsixLn9bw</a>.
+    The PyCon Chair, David Goodger, is directed to inform the Board of
+    actual or expected variances from the budget of $5,000 or more.
+<dd><i>Approved by IRC vote 7-0-0, October 8, 2007.</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that the mailing address of the PSF shall be:
+<blockquote>P.O. Box 848<br />
+Hampton, NH 03843<br />
+USA</blockquote>
+<dd><i>Approved by IRC vote 7-0-0, October 8, 2007.</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that the PSF will extend the current six month
+    Advocacy Coordinator contract one additional month under the terms
+    in <a href="http://python.org/psf/grants/advocacy/advocacy-renewal.pdf"
+    >http://python.org/psf/grants/advocacy/advocacy-renewal.pdf</a> for
+    the completion of the remaining tasks outlined in
+    <a href="http://python.org/psf/grants/advocacy/revised-tasks.pdf"
+    >http://python.org/psf/grants/advocacy/revised-tasks.pdf</a> and for
+    the development of a final report of lessons learned and best
+    practices found in the course of the previous 12 months.
+<dd><i>Approved by unanimous email vote, September 17, 2007.</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that the board of directors recommends
+    EarnMyDegree.com to the membership, as a future sponsor member of
+    the PSF.
+<dd><i>Approved by IRC vote 6-0-0, August 13, 2007.</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that the PSF will become a sponsor of PyCon UK
+    2007 and will donate US $2,500 to The PyCon UK Society for its use
+    in running the conference.
+<dd><i>Approved by IRC vote 6-0-0, August 13, 2007.</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that David Goodger is authorized to negotiate a contract
+    for PyCon 2008 network bandwith, up to $3000.
+<dd><i>Approved by IRC vote 5-0-0, July 9, 2007.</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that the PSF will pay 1500 Euros for a gold sponsorship
+    of PyConUno (Italy) 2007.
+<dd><i>Approved by IRC vote 6-0-0, May 14, 2007.</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that the PSF will provide up to US $5000 as a sponsor of
+    EuroPython 2007.
+<dd><i>Approved by IRC vote 6-0-0, May 14, 2007.</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that the PSF will provide a US $500 one-time
+    grant to assist in funding the Python en Santa Fe (Argentina)
+    meeting Jun 9th, 2007
+<dd><i>Approved by IRC vote 6-0-0, May 14, 2007.</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that Kurt Kaiser and David Goodger are
+    authorized to obligate the PSF under the previously emailed
+    contract for PyCon 2008 to be held at the Crowne Plaza Chicago
+    O'Hare in Rosemont, Illinois. The contract may be changed before
+    signing but any changes will be reported to the PSF board and may
+    not increase the financial obligation assumed by the PSF.
+<dd><i>Approved by IRC vote 7-0-0, March 12, 2007.</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that the mailing address of the PSF shall be:
+<pre>
+   Python Software Foundation
+   c/o Kurt Kaiser
+   P.O. Box 653
+   8 Bayview Road
+   Ipswich, MA 01938
+   USA
+</pre>
+<dd><i>Approved by IRC vote 7-0-0, March 12, 2007.</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that the org.python.* Java package name be
+    reserved for use by the Jython project.
+<dd><i>Approved by IRC vote 7-0-0, March 12, 2007.</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that the Chicago bid be accepted for PyCon 2008.
+<dd><i>Approved 5-0-0, February 25, 2007.</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that the Public Support Committee is dissolved.
+<dd><i>Approved 5-0-0, February 25, 2007.</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that the Grants Committee is dissolved.
+<dd><i>Approved 5-0-0, February 25, 2007.</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that the PSF update the trademark policy available at
+    <a href="http://python.org/psf/trademarks">http://python.org/psf/trademarks</a>
+    to version 1.3, as posted to the Board's mailing list.
+<dd><i>Approved by IRC vote 8-0-0, January 8, 2007.</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that the Conference Committee chair be authorized to
+    appoint and dismiss committee members, subject to prompt reporting
+    to the Board.
+<dd><i>Approved by IRC vote 5-0-3, January 8, 2007.</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that the board recommends Canonical as a new sponsor
+    member, for future approval by the membership.
+<dd><i>Approved by IRC vote 8-0-0, January 8, 2007.</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that the Board approves the PyCon 2007 budget
+    as recorded in the PSF's CVS repository at
+    pycon/2007/draft-budget.xls and on the web at <a
+    href="http://spreadsheets.google.com/pub?key=pYkW9LgX8G5PlAlkm5iANLA">http://spreadsheets.google.com/pub?key=pYkW9LgX8G5PlAlkm5iANLA</a>.
+    The Conference Committee chairs are directed to inform the Board
+    of actual or expected variances from the budget of $5,000 or more.
+
+<dd><i>Approved by unanimous email vote, January 3, 2007.</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that catering will be provided at the annual members
+    meeting at PyCon 2007 with a budget of up to $20 per expected
+    member attending the meeting in person.
+<dd><i>Approved by IRC vote 7-0-0, December 11, 2006.</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that the PSF adopt the trademark policy version 1.2.2,
+    available at <a href="http://python.org/psf/trademarks"
+    >http://python.org/psf/trademarks</a>.  Any updates
+    require prior approval of the PSF board.
+<dd><i>Approved by IRC vote 4-0-1, November 13, 2006.</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that the Treasurer is authorized to select a payroll
+    processing service for payment of PSF employees with a budget of
+    up to $500 per year.
+<dd><i>Approved by IRC vote 5-0-0, November 13, 2006.</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that the PSF will fund Jeff Rush as Advocacy
+Coordinator for a period of 6 months effective August 15th, 2006
+for the work outlined in his proposal at:
+
+<p><a href="http://python.org/psf/grants/advocacy/orig-proposal.pdf">http://python.org/psf/grants/advocacy/orig-proposal.pdf</a>
+
+<p>The work will take place under supervision of a group of at least
+two Directors or Officers of the PSF (initially Stephan Deibel
+and Neal Norwitz) and under a contract that is acceptible to both
+parties.  The contract will, among other things, limit the term
+to 6 months at a rate of $3000/month, specify that work will be
+full time (40 hours per week), and will include a provision that
+either party may terminate the contract with one month's
+notice.
+
+<dd><i>Approved by unanimous email vote, August 26, 2006.</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that the PSF will pay expenses of up to
+$1000 for Anna Ravenscroft to represent the Python Software
+Foundation at Python Argentina.
+<dd><i>Approved by IRC vote 5-1-1, August 14, 2006.</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that the PSF mission statement approved by
+unanimous written consent on March 2, 2002, and published on the web
+at <a
+href="http://python.org/psf/mission">http://python.org/psf/mission</a>,
+be revised as follows, to take effect on August 31, 2006.
+
+<ol>
+<li><p>Revise the first paragraph, replacing:
+
+<blockquote>
+       It intends to qualify under the US Internal Revenue Code as
+       a tax-exempt 501(c)(3) scientific and educational public
+       charity, and will conduct its business according to the
+       rules for such organizations.
+</blockquote>
+
+<p>with:
+<blockquote>
+       It qualifies under the US Internal Revenue Code as a
+       tax-exempt 501(c)(3) scientific and educational public
+       charity, and conducts its business according to the rules
+       for such organizations.
+</blockquote></li>
+
+<li><p>Remove the paragraph that reads:
+
+<blockquote>
+       By "open source" we mean freely available technology
+       licensed under terms compatible with Version 1.9 (or later)
+       of the Open Source Definition, as established by the Open
+       Source Initiative (see http://www.opensource.org/).
+</blockquote></li>
+
+<li><p>Add the following paragraph to the end of the mission statement
+   (after "Encourages and facilitates Python-related research in
+   the public interest."):
+
+<blockquote>
+       "Open source" is defined as: freely available technology
+       licensed under terms compatible with Version 1.9 (or later)
+       of the Open Source Definition, as established by the Open
+       Source Initiative (see http://www.opensource.org/).
+</blockquote></li>
+</ol>
+
+<dd><i>Approved by IRC vote 7-0-0, August 14, 2006 (date correction
+approved unanimously via email vote on August 15, 2006).</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that the Directors accept Microsoft as a Pending Sponsor.
+<dd><i>Approved by IRC vote 7-0-0, August 14, 2006.</i>
+
+<dt><hr>
+<dt><p><b>WHEREAS</b> some of the offices held by officers of the PSF
+    require substantial time commitment, on the order of hundreds of
+    hours per year,
+
+    <p><b>WHEREAS</b> the ongoing and timely performance of these officers
+    is critical to the continued existence of the PSF, be it
+
+    <p><b>RESOLVED</b>, that effective July 1st, 2006, the following
+    officers of the corporation will receive compensation, paid
+    quarterly: Treasurer: $10K/yr; Secretary: $5K/yr.
+<dd><i>Approved by IRC vote 6-0-0, July 10, 2006.</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that the board approves purchase of $750 of Amazon
+    gift cards to thank some of the volunteers who assisted with
+    PyCon.
+<dd><i>Approved by IRC vote 6-0-0, July 10, 2006.</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that the PSF Board accepts EWT as a pending sponsor
+    member.
+<dd><i>Approved by IRC vote 6-0-0, July 10, 2006.</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that until further notice, the Officers of the
+    Corporation may spend up to USD 500 per expense without prior
+    Board approval, but subject to prompt reporting to the Board, and
+    consistent with the mission statement and requirements of
+    maintaining our status as a 501(c)3 non-profit.
+<dd><i>Approved by IRC vote 5-0-0, June 12, 2006</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that the board repeals the previously passed
+    resolution of October 8, 2002 which states "until further notice,
+    the Officers of the Board can spend up to USD 500 per expense
+    without prior board approval, but subject to prompt reporting to
+    the Board."
+<dd><i>Approved by IRC vote 5-0-0, June 12, 2006</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that the board recommends cPacket Networks as
+    a new sponsor member, for future approval by the membership.
+<dd><i>Approved by IRC vote 5-0-0, June 12, 2006</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that the board recommends Tabblo as a new
+    sponsor member, for future approval by the membership.
+<dd><i>Approved by IRC vote 7-0-0, April 10, 2006</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that Steve Holden is appointed to the office of Vice
+    Chairman.
+<dd><i>Approved by IRC vote 4-1-2, April 10, 2006</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that the PSF adopt the policies contained in version
+1.03 of the draft weblog policy [1] for managing access and
+editorial content for the PSF weblog [2].
+<p>[1] Policy available on the web at
+       <a href="http://www.python.org/psf/weblog-policy/"
+       >http://www.python.org/psf/weblog-policy/</a>
+<p>[2] Available at <a href="http://pyfound.blogspot.com"
+       >http://pyfound.blogspot.com</a> .
+<dd><i>Approved by IRC vote 7-0-0, March 13, 2006</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that the total amount previously authorized by
+the Board to be paid to Brian Zimmer as part of his Jython grant be
+split between Brian Zimmer and Frank Wierzbicki, in proportion to be
+decided by the Grants Committee.
+<dd><i>Approved by IRC vote 5-0-0, January 10, 2006</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that the Python Conference Committee is given
+additional funds of up to $6000 to pay attendance costs for
+individuals attending PyCon 2006, at the discretion of the Conference
+Committee.
+<dd><i>Approved by IRC vote 7-0-0, December 13, 2005</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that the Board appoints Kurt B. Kaiser as
+Treasurer and Neal Norwitz as Assistant Treasurer.
+<dd><i>Approved by email vote 7-0-0, October 18, 2005</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that the Board of Directors recommends CCP Games as a new
+Sponsor of the PSF.
+<dd><i>Approved by IRC vote 4-0-0, September 14, 2005</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that Kurt Kaiser and Andrew Kuchling are authorized to obligate the
+PSF under the previously emailed 2-year contract for PyCon 2006/2007 to be
+held at the Marriot Quorum in Dallas, Texas. The contract may be changed
+before signing but any changes will be reported to the PSF board and may not
+increase the financial obligation assumed by the PSF.
+
+<dd><i>Approved by IRC vote 5-0-0, August 9, 2005</i>
+
+<dt><hr> <dt><p><b>RESOLVED</b>: To allocate up to $260 to compensate Barry
+Warsaw for purchasing 5 SSL certificates for python.org hosts. ($260, not
+$245, to allow for sales tax.)
+
+<dd><i>Approved by IRC vote 5-0-0, July 12, 2005</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that a budget of $1,000 will be made available for banner,
+posters, brochures, and any food, drink, and venue costs for a PSF
+sponsored social event at EuroPython. Reimbursement will require
+receipts from the recipient of the funds.
+<dd><i>Approved by IRC vote 5-0-1, June 14 2005</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that Andrew Kuchling, Martin von Loewis, and David
+Ascher are Vice Presidents of the corporation, and that David
+Ascher is further designated as Executive Vice President.
+
+<dd><i>Approved by unanimous email vote May 31 2005</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that Andrew Kuchling be appointed a member of the Python
+Conference Committee, and that he be appointed the new chair of this
+Committee.  By this resolution, the membership of the Committee will
+be David Ascher, Steve Holden (secretary), Jeremy Hylton, Andrew
+Kuchling (chair).
+
+<dd><i>Approved by unanimous email vote May 06 2005</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>,
+that David Goodger is Assistant Secretary  
+
+<dd><i>Approved by unanimous email vote Apr 04 2005</i>
+
+<dt><hr>
+<dt><p><b>  RESOLVED</b>,
+that the Public Relations Committee is dissolved.
+  
+<dd><i>Approved 6-0-0 at Apr 12 2005 IRC meeting</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, 
+that the board of directors appoints Kurt Kaiser to be 
+assistant treasurer.
+
+<dd><i>Approved 5-0-0 at Feb 8, 2005 IRC meeting</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, 
+that subscribers to the psf-board mailing list be officers
+or directors of the corporation or the corporation counsel.
+
+<dd><i>Approved 5-0-0 at Feb 8, 2005 IRC meeting</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, 
+that ActiveGrid is recommended by the Board as a new Sponsor
+Member for approval by the PSF Membership at the next PSF member meeting
+in March 2005.
+
+<dd><i>Approved 7-0-0 at Jan 11, 2005 IRC meeting</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, 
+that the PSF will pay for Guido van Rossum's expenses to attend
+PyCon 2005, up to $2500 total.
+
+<dd><i>Approved 6-0-1 at Jan 11, 2005 IRC meeting</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, 
+that the Python Conference Committee is given additional funds
+of up to $3000 to pay attendance costs for individuals attending PyCon
+2005, at the discretion of the Conference Committee.
+
+<dd><i>Approved 7-0-0 at Jan 11, 2005 IRC meeting</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, 
+that the board approves payment of a total of 4,000 GBP to Tim
+Parkin for redevelopment of the python.org website as described in <a
+href="http://www.python.org/moin/WebsiteRedesignProposal">his
+proposal</a>. Payment will take place in two installments of 2,000 GBP, at
+the prevailing exchange rate of up to US $2/GBP, one payment before the
+work commences and one after the deliverables described in the proposal
+have been provided.
+
+<dd><i>Approved 6-1-0 at Jan 11, 2005 IRC meeting</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, 
+that the PSF accepts the recommendation of the grants 
+committee to execute the following three projects in 2005:
+
+<ol>
+<li> Brian Zimmer, Moving Jython Forward, US$10,000
+<li> Ilya Etingof, implementation of SNMPv3 as a Python library module, US$1,500
+<li> Greg Wilson, Software Engineering with Python for Scientists and Engineers, US$27,000
+</ol>
+<p>
+
+<dd><i>Approved 5-0-1 by IRC vote Dec 14, 2004</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, 
+that the PSF asks past and future contributors of
+Python to fill out and send in the contributor form currently
+shown at:<p>
+
+http://www.python.org/psf/contrib-draft.html<p>
+
+that contributors will be advised to chose between the
+" Apache License, Version 2" and the "Academic Free License v.
+2.1" as the Initial License, and that the PSF will relicense all
+such contributions under the "PYTHON SOFTWARE FOUNDATION LICENSE
+VERSION 2".<p>
+
+(See <a href="/psf/contrib">contribution forms</a> page for the accepted form
+and more information)<p>
+
+<dd><i>Approved unanimously via email vote on December 10, 2004</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, 
+that all future releases of Python 2.4 will be released under       
+<a href="http://www.python.org/moin/PythonSoftwareFoundationLicenseV2Easy">the Python Software Foundation License Version 2</a>.
+<dd><i>Approved unanimously via email vote on October 22, 2004</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, 
+that the conference committee is authorized to spend no more than
+$30,000 on fixed costs for PyCon 2005 and that per-delegate expenses
+should be held below $85 per head. If sponsorship income exceeds $10,000
+then up to 25% of the surplus can be allocated to per-delegate expenses
+and a further 25% of the surplus can be allocated to fixed costs.
+<dd><i>Approved unanimously via email vote on Sept. 22, 2004</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that the treasurer is authorized to pay up to $750 per year
+for insurance.
+<dd><i>Approved unanimously by IRC vote August 10, 2004</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that the conference committee is authorized to spend $3000
+for room reservations for PyCon 2005.
+<dd><i>Approved unanimously by IRC vote August 10, 2004</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that we give Neal a budget for $2k for expenses as a
+treasurer.
+<dd><i>Approved unanimously by IRC vote June 15, 2004.</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that the principal office and official headquarters of the PSF
+shall be:
+<pre>
+   Python Software Foundation
+   1209 Orange Street
+   Wilmington DE 19801
+   USA
+</pre>
+<p>The mailing address will remain:
+<pre>
+   Python Software Foundation
+   c/o Neal Norwitz
+   1707 Sinclair Lane
+   Crownsville, MD 21032-1925
+   USA
+</pre>
+<dd><i>Approved unanimously by IRC vote May 11, 2004.</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that the treasurer is authorized to pay an accountant
+$800 for preparing IRS Form 990 for 2003.
+<dd><i>Approved unanimously by IRC vote May 11, 2004.</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that David Ascher is designated Executive Vice President
+of the Python Software Foundation.
+<dd><i>Approved unanimously by IRC vote April 13th, 2004.</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that a Grants Committee is formed, with Michael
+McLay, Paul Dubois, Jeremy Hylton, and Martin v. L&ouml;wis as
+initial members, and Martin v. L&ouml;wis as the initial chairman
+and Vice President of Grants, that the Grant Committee drafts
+for approval by the Board the rules for soliciting grant-funded
+development proposals designed to further the PSF mission, that
+the committee selects among proposals and oversees the completion
+of those that are accepted by the Board, and that members of
+the committee cannot apply for grants until one (1) year after
+they leave the committee.
+<dd><i>Approved unanimously by IRC vote April 13th, 2004.</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that a Public Relations (PR) Committee is formed,
+with Tim Parkin, Kevin Altis, Aahz, Barry Warsaw, Andrew
+Kuchling, and Steve Holden as initial members, and Steve Holden
+as the initial chairman and Vice President of Public Relations,
+that the PR Committee replaces and subsumes the activities of
+the previously disbanded Web Committee, and that the PR Committee
+shall:
+<ol>
+  <li> Facilitate and oversee the development and maintenance of the
+official informational, marketing, and advocacy materials for the
+Python programming language, including but not limited to those
+appearing on python.org, brochures, and press releases.
+  <li> Ensure that content and design for such materials is consistent
+and appropriate with the mission and requirements of the Python
+Software Foundation and the needs and ideals of the Python open
+source community.
+
+  <li> Develop and manage brand identities associated with the Python
+Software Foundation and Python.
+
+  <li> Actively promote Python in commercial, governmental and
+educational contexts, in order to facilitate the recruitment of
+new users and contributors to Python.
+</ol>
+<dd><i>Approved unanimously by IRC vote April 13th, 2004.</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that the Public Support Committee formed in August
+2002 shall continue under current membership and leadership,
+and that the committee's activities shall now be constrained
+to all aspects of fund raising for the PSF, including but not
+limited to (1) creation of fund raising messages, ads,
+and materials, (2) soliciting of donations from private
+and company contributors, and (3) management of fund raising
+infrastructure.
+<dd><i>Approved unanimously by IRC vote April 13th, 2004.</i>
+
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that at most USD 5000 be used for the remaining legal
+       review of the proposed contribution agreements and that the
+       second round will be led by Marc-Andre Lemburg and Martin von
+       Loewis using a budget of USD 3,000 with an option to spend an
+       additional USD 2,000, if required to complete the review.
+<dd><i>Approved unanimously by email vote on February 4, 2004.</i>
+
+<dt><hr>
+<dt><p>WHEREAS the PSF Treasurer has identified the following expenses
+       related to PyCon 2004:
+    <ul>
+    <li>up to $    600 to The Hartford for insurance
+    <li>up to $ 17,000 to GWU for PyCon rooms
+    <li>up to $ 19,000 to Aramark (?) for PyCon food costs
+    <li>up to $  2,000 to ? for PyCon tote bags
+    <li>up to $  3,500 to ? for PyCon t-shirts
+    <li>up to $    500 miscellaneous PyCon charges
+    </ul>
+
+    <p>Be it hereby
+
+    <p><b>RESOLVED</b>, that the Board establishes a budget of $45,000.00 for
+    PyCon 2004,which the Treasurer is authorized to spend for the
+    purposes enumerated above.
+<dd><i>Approved unanimously by email vote on February 4, 2004.</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that monies from the silver sponsorships be allocated to help defray
+costs associated with sponsor-selected sprints, up to a maximum of $500. Each
+silver sponsor can choose what sprint to allocate the funds to. The sprint
+leader and the sprint chair must agree on how the monies are to be disbursed.
+Any reimbursement for travel or other expenses must be made based on
+submission of receipts.
+<dd><i>Approved with 4/2/0 by IRC vote Jan 13, 2004</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that sprint leaders who organize and run sprints with at least two
+other full-time attendants get waived admission to the conference if they want
+it.
+<dd><i>Approved unanimously by IRC vote Jan 13, 2004.</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that students at accredited institutions can apply for a "gopher"
+position, which grants them free admission to the conference in exchange for
+administrative assistance of the conference, under the direction of the
+organizing committee. The board grants the conference chair the authority to
+approve these requests according to the needs of the conference.
+<dd><i>Approved unanimously by IRC vote Jan 13, 2004.</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that the Foundation accepts Industrial Light & Magic as a pending
+sponsor member.
+<dd><i>Approved unanimously by IRC vote Dec 9, 2003.</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that the Foundation establish a Project Management Committee,
+the Python Conference Committee, responsible for organizing and sponsoring
+conferences that advance the Foundation's mission. The committee is
+authorized to incur expenses up to a limit establish by the board for a
+specific conference. The chairman of the committee shall be Vice President
+of the Corporation. The initial members of the committee shall be David
+Ascher, Steve Holden, and Jeremy Hylton. Ascher will be its initial
+chairman.
+<dd><i>Approved unanimously by IRC vote Oct 14, 2003.</i>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that the Board can collect sponsor fees and add a Pending
+Sponsor Member to the website prior to being elected by the members if the
+Board decides it is likely the full membership will approve the Sponsor
+Member. If Sponsor Membership status is not approved, the funds will be
+converted to a donation.
+<dd><i>Approved unanimously by IRC vote Oct 14, 2003.</i>
+
+
+
+<dt><hr><dt><p><b>RESOLVED</b>, that the Board accepts Array BioPharma as a Pending Sponsor
+Member.
+
+<dd><i>Approved unanimously by IRC vote Oct 14, 2003.</i>
+
+<dt><hr><dt><p><b>RESOLVED</b>, that the PSF secretary, Jeremy Hylton, registers the term
+"PYTHON SOFTWARE FOUNDATION" on behalf of the Python Software Foundation
+under the service class 042 with US PTO.
+
+<dd><i>Approved unanimously by IRC vote Oct 14, 2003.</i>
+
+<dt><hr><dt><p><b>RESOLVED</b>, that the Public Support Committee, represented by its
+chairman and officer Marc-Andre Lemburg, may signup for bookshop affiliate
+programs on behalf of the Python Software Foundation for fund-raising
+purposes.
+
+<dd><i>Approved unanimously by IRC vote Oct 14, 2003.</i>
+
+<dt><hr><dt><p><b>RESOLVED</b>, to let the treasurer immediately write a check to George
+Washington University for up to $2500 to reserve the space for PyCon
+2004 (the actual amount to be 10% of the estimated total price).
+
+<dd><i>Approved unanimously by IRC vote Sep 9, 2003.</i>
+
+<dt><hr><dt><p><b>RESOLVED</b>, That the Public Support Committee and Python Website Committee,
+created earlier by resolution of the board, are Project Management
+Committees according to Section 6.3 of the Bylaws and that the chairmen
+of these committees, Marc-Andre Lemburg and Thomas Wouters, respectively, are
+hereby appointed Vice Presidents of the corporation.
+
+<dd><i>Approved unanimously by IRC vote Sep 9, 2003.</i>
+
+<dt><hr><dt><p><b>RESOLVED</b>, That the officers of the Corporation may, at their discretion,
+recognize certain donors as pending sponsor members of the corporation,
+when it is expected that the donor will be admitted as a sponsor member
+at the next meeting of the members. A pending sponsor member may participate
+in all activities and be listed as a pending sponsor member, but may not
+vote at meetings.
+
+<dd><i>Approved unanimously by IRC vote Sep 9, 2003.</i>
+
+<dt><hr><dt><p><b>RESOLVED</b>, that the treasurer contact Archaeopteryx and suggest that they
+either pay their sponsorship fee or volunteer to become emeritus
+members.
+
+<dd><i>Approved unanimously by IRC vote Aug 12, 2003.</i>
+
+<dt><hr><dt><p><b>RESOLVED</b>, that the PSF approves a $500/year budget for the Public
+Support Committee to pay for distribution of press releases.
+
+<dd><i>Approved by 4/0/2 by IRC vote Aug 12, 2003.</i>
+
+<dt><hr><dt><p><b>RESOLVED</b>, That a Project Management Committee, designated Python
+Website Committee, be formed to be responsible for the content and
+management of the Python Website (www.python.org), that its initial
+members be Thomas Wouters, Kevin Altis, Just van Rossum, Aahz and Fred
+L. Drake Jr., that it follows rules analog to those set for in the PSF
+bylaws for the PSF board with respect to voting and meetings, and that
+Thomas Wouters will be its initial chairman.
+
+<dd><i>Approved unanimously by IRC vote Aug 12, 2003.</i>
+
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that the officers can spend PSF funds for the
+furtherance of the Python Conference, 2003, in an amount not to exceed
+projected conference revenue by more than US$3000.00.
+<dd><i>Approved unanimously at the board meeting on March 11, 2003.</i>
+
+<dt><hr>
+<dt><p>   <b>RESOLVED</b>, that the foundation will pay up to $1,000 for legal
+   review of the contributor agreement.
+<dd><i>Approved unanimously at the board meeting on February 11, 2003.</i>
+
+<dt><hr>
+<dt><p>	<b>RESOLVED</b>, that until further notice, the Officers of the Board
+	can spend up to USD 500 per expense without prior board
+	approval, but subject to prompt reporting to the Board.
+
+<dd><i>Approved unanimously at the board meeting on October 8, 2002.</i>
+    <p><i>Repealed and replaced on June 12, 2006.</i></p>
+
+<dt><hr>
+<dt><p><b>RESOLVED</b>, that Guido van Rossum can offer Adam Turoff that
+the PSF will take full financial responsibility for the conference if
+YAS is unwilling to run the conference at a $125/attendee fee.
+<dd><i>Approved by a 4-0-1 vote at the board meeting on September 10, 2002.</i>
+
+<dt><hr>
+
+<dt><p><b>RESOLVED</b>, That the Public Support Committee (PSC) be made up of the
+following initial members: Stephan Deibel, Jeremy Hylton, Marc-Andre
+Lemburg, Tim Peters, Aahz, Alex Martelli, Neil Norwitz and Greg Ward,
+that the committee follows rules analog to those set forth in the PSF
+bylaws for the PSF board with respect to voting and meetings, and that
+Marc-Andre Lemburg will be the initial chairman of the PSC.  I move to
+approve this motion.
+
+<dd><i>Approved unanimously at the board meeting on August 13, 2002.</i>
+
+<dt><hr>
+
+<dt>
+
+In order to
+
+<ol>
+<li> Clarify the purpose of the PSF to current and potential members
+   and donors, and to the general public;
+
+<li> Aid in soliciting donations, by affirming the charitable nature
+   of the PSF's goals;
+
+<li> Help guide the Board in its deliberations;
+
+<li> Get a start on possible changes needed in the PSF's bylaws; and,
+
+<li> Justify further work on applying for public charity status,
+</ol>
+
+be it hereby
+
+<P>    <b>RESOLVED</b>, that the PSF adopts the following mission statement.
+
+<p>The Python Software Foundation (PSF) is a non-profit membership
+organization devoted to advancing open source technology related to the
+Python programming language.  It intends to qualify under the US
+Internal Revenue Code as a tax-exempt 501(c)(3) scientific and
+educational public charity, and will conduct its business according to
+the rules for such organizations.
+
+<p>By "open source" we mean freely available technology licensed under
+terms compatible with Version 1.9 (or later) of the Open Source
+Definition, as established by the Open Source Initiative (see
+http://www.opensource.org/).
+
+<p>The PSF:
+
+<ul>
+<li> Produces the core Python distribution, made available to the public
+  free of charge.  This includes the Python language itself, its
+  standard libraries and documentation, installers, source code,
+  educational materials, and assorted tools and applications.
+
+<li> Establishes PSF licenses, ensuring the rights of the public to freely
+  obtain, use, redistribute, and modify intellectual property held by
+  the PSF.
+
+<li> Works with the Open Source Initiative to ensure that PSF licenses
+  conform to the Open Source Definition.
+
+<li> Holds Python's intellectual property rights for releases 2.1 and
+  following.
+
+<li> Seeks to obtain the intellectual property rights for Python releases
+  prior to 2.1, for relicensing under the PSF Python license, to relieve
+  the legal burden on Python's users.  The PSF may also seek rights
+  to other Python-related software for relicensing under a PSF license.
+
+<li> Protects the Python name, and the names, service marks and trademarks
+  associated with all other intellectual property held by the PSF.
+
+<li> Solicits and manages contributions to the Python codebase, and may
+  perform these services on behalf of other open source Python-related
+  codebases.
+
+<li> Raises funds to support PSF programs and services.  The regulations
+  for public charity funding are complex.  Some consequences are that
+  the vast bulk of funding must come from private contributions
+  (including sponsoring memberships) and public grants, must come from
+  a broad base, and that no single private donor can supply a
+  substantial percentage of the PSF's total funding.  Additional
+  revenue may be pursued in ways consistent with then-current rules for
+  public charities and with Python's standing as an open source project.
+  For example, the PSF may offer to sell conference proceedings, special
+  Python distributions, or merchandise with distinctive insignia.
+
+<li> Publicizes, promotes the adoption of, and facilitates the ongoing
+  development of Python-related technology and educational resources.
+  This includes, but is not limited to, maintaining a public web site,
+  planning Python conferences, and offering grants to Python-related
+  open source projects.
+
+<li> Encourages and facilitates Python-related research in the public
+  interest.
+</ul>
+
+<dd><i>Approved by unanimous written consent on March 2, 2002.</i>
+
+
+<dt><hr>
+
+<dt><p>    <b>RESOLVED</b>, that Guido van Rossum is the President of the PSF for
+    the year 2002.
+
+<dd><i>Approved by unanimous written consent on February 19, 2002.</i>
+
+<dt><hr>
+
+<dt><p>    <b>RESOLVED</b>, that PSF accepts the membership application forms, as shown
+    in the attachment (one form for nominated members, and a second form
+    for sponsor members).
+
+<p>[Attachments were <a href="/psf/forms/application/">regular
+application</A> and <a href="/psf/forms/sponsor-application/">sponsor
+application</A>.]
+
+<dd><i>Approved by unanimous written consent on February 18, 2002.</i>
+
+<dt><p><B>RESOLVED</b>, the the principal office of the PSF shall be
+
+<p><br>The Python Software Foundation
+<br>c/o Zope Corp.
+<br>Lafayette Technology Center
+<br>513 Prince Edward St.
+<br>Fredericksburg VA 22401
+<br>USA
+
+<dd><i>The motion was passed by white ballot at the Feb. 7, 2002
+board meeting.</i>
+
+
+<dt><hr>
+
+<dt><p>      <b>RESOLVED</b>, that in connection with discharging their respective
+      duties as officers of the Corporation, including, without
+      limitation, in connection with the maintenance, preparation and
+      filing of books, records, reports and returns, the officers of the
+      Corporation hereby are authorized and directed to procure, in
+      their discretion, such legal, accounting and other professional
+      services and assistance as they may reasonably require in order
+      to properly discharge the duties of said offices, and that the
+      reasonable expenses therefor shall be charged to and paid for
+      by the Corporation.
+
+<dd><i>Approved by unanimous written consent on September 14, 2001.</i>
+
+
+<dt><hr>
+
+<dt><p>      <b>RESOLVED</b>, that the officers of the Corporation hereby are
+      authorized and directed to pay and discharge all taxes, fees and
+      other expenses heretofore incurred or hereafter to be incurred
+      as a result of and in connection with the organization of the
+      Corporation, and to reimburse the incorporator, the officers and
+      all other persons for all expenditures heretofore made by them
+      in such connection.
+
+<dd><i>Approved by unanimous written consent on September 14, 2001.</i>
+
+<dt><hr>
+
+<dt><P>      <b>RESOLVED</b>, that the officers of the Corporation hereby are authorized
+      and directed to procure and maintain the necessary corporate books
+      and records and to open and maintain share transfer records in
+      accordance with the Bylaws of the Corporation and the laws of the
+      State of Delaware, as well as the laws of any other applicable
+      jurisdiction.
+
+<dd><i>Approved by unanimous written consent on September 14, 2001.</i>
+
+<dt><hr>
+
+<dt><p>      <b>RESOLVED</b>, that the fiscal year of the Corporation shall end on
+      Dec. 31 of each calendar year.
+
+<dd><i>Approved by unanimous written consent on September 14, 2001.</i>
+
+<dt><hr>
+
+<dt><p>
+      <b>RESOLVED</b>, that Jeremy Hylton is appointed secretary and
+      treasurer of the PSF.
+<dd><i>Approved by unanimous written consent on April 14, 2001.</i>
+
+<dt><hr>
+
+<dt><p><b>RESOLVED</b>, that the principal office of the Corporation shall be
+<br>         The Python Software Foundation
+<br>         7700 Leesburg Pike, Suite 208
+<br>         Falls Church, VA 22043
+<br>         U.S.A.
+
+<dd><i>Approved by unanimous written consent on September 14, 2001.</i>
+
+<dt><hr>
+
+</dl>
+
+
+      </div>
+
+      
+      <div id="footer">
+	<div id="credits">
+ 	  <a href="/about/website">Website maintained by the Python community</a><br/>
+	  <a href="http://www.xs4all.com/" title="Web and email hosting provided by xs4all, Netherlands">hosting by xs4all</a> /
+	  <a href="http://www.pollenation.net/" title="Design and content management system by Pollenation Internet, Yorkshire">design by pollenation</a>
+	</div>
+	Copyright &copy; 1990-2008, <a href='/psf'>Python Software Foundation</a><br/>
+	<a href="/about/legal">Legal Statements</a>
+      </div>
+
+
+    </div>
+  </div>
+</body>
+</html>
+
+
+
+
+
+

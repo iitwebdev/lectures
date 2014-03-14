@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta name="version" content="S5 1.0" />
+    <link rel="stylesheet" href="ui/slides.css" type="text/css" media="projection" id="slideProj" />
+    <link rel="stylesheet" href="ui/opera.css" type="text/css" media="projection" id="operaFix" />
+    <link rel="stylesheet" href="ui/print.css" type="text/css" media="print" id="slidePrint" />
+    <script src="ui/slides.js" type="text/javascript"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.3.8: http://docutils.sourceforge.net/" />
+<title>Python Packaging with Setuptools</title>
+<link rel="stylesheet" href="default.css" type="text/css" />
+</head>
+<body>
+    <div class="layout">
+    <div id="currentSlide"></div>
+    <div id="header"></div>
+    <div id="footer">
+    
+
+
+    <h1>Python Packaging with Setuptools</h1>
+    <div id="controls"></div>
+    </div>
+    <div class="presentation">
+    
+<div class="slide"><h1><a name="id1">Python Packaging with Setuptools</a></h1>
+<p><em>Using and creating Python packages</em></p>
+<p><a class="reference" href="http://ianbicking.org/docs/setuptools-presentation">http://ianbicking.org/docs/setuptools-presentation</a></p>
+<pre class="literal-block">
+Ian Bicking
+http://blog.ianbicking.org
+</pre>
+</div>
+<div class="slide"><h1><a name="distutils">Distutils</a></h1>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">distutils</span></tt> in the standard library.</li>
+<li>Standard way of packaging and installing packages.</li>
+</ul>
+</div>
+<div class="slide"><h1><a name="installing-with-distutils">Installing with Distutils</a></h1>
+<pre class="literal-block">
+$ sudo python setup.py install
+</pre>
+<p>Global installation; for local installation (or if you don't have
+root):</p>
+<pre class="literal-block">
+$ python setup.py --install-lib=./app-packages
+</pre>
+<p>Make sure you update <tt class="docutils literal"><span class="pre">$PYTHONPATH</span></tt>!  Other <tt class="docutils literal"><span class="pre">--install-*</span></tt> options
+control location of scripts, headers, etc.</p>
+</div>
+<div class="slide"><h1><a name="part-1-easy-install-py">Part 1: easy_install.py</a></h1>
+<ul class="simple">
+<li>Part of <tt class="docutils literal"><span class="pre">setuptools</span></tt></li>
+<li>Installs any distutil-based package</li>
+<li>Can find packages on PyPI (now the &quot;Cheese Shop&quot;)</li>
+<li>But many (most?) packages in PyPI don't include the necessary information</li>
+</ul>
+</div>
+<div class="slide"><h1><a name="installation-normal">Installation: Normal</a></h1>
+<p>Normal installation</p>
+<pre class="literal-block">
+$ easy_install.py Package
+$ easy_install.py http://sample.host/Package-X.Y.tar.gz
+$ easy_install.py http://svn.sample.host/Package/trunk
+</pre>
+</div>
+<div class="slide"><h1><a name="installation-development">Installation: Development</a></h1>
+<p>Development installation</p>
+<pre class="literal-block">
+$ easy_install.py --editable --build &lt;DIR&gt; Package
+$ # or just download and unpack the package
+$ cd &lt;DIR&gt;/Package
+$ sudo python setup.py develop
+</pre>
+</div>
+<div class="slide"><h1><a name="installation-isolated">Installation: Isolated</a></h1>
+<p>Isolated (version-specific) installation</p>
+<pre class="literal-block">
+$ easy_install.py -m Package==X.Y
+$ python
+&gt;&gt;&gt; import pkg_resources
+&gt;&gt;&gt; require('Package==X.Y')
+</pre>
+</div>
+<div class="slide"><h1><a name="using-easy-install-py">Using easy_install.py</a></h1>
+<!-- comment:
+damn, it was surprisingly hard to find a package that would work -->
+<pre class="literal-block">
+$ easy_install.py kid
+Searching for kid
+Reading http://www.python.org/pypi/kid/
+Reading http://lesscode.org/projects/kid/
+Best match: kid 0.6.3
+Downloading http://lesscode.org/dist/kid/kid-0.6.3.tar.gz
+Running kid-0.6.3/setup.py -q bdist_egg --dist-dir /tmp/easy_install-gsePfU/kid-0.6.3/egg-dist-tmp-WojETA
+zip_safe flag not set; analyzing archive contents...
+kid.importer: module references __file__
+kid.test.__init__: module references __file__
+Adding kid 0.6.3 to easy-install.pth file
+Installing kid script to /usr/bin
+Installing kidc script to /usr/bin
+
+Installed /usr/lib/python2.4/site-packages/kid-0.6.3-py2.4.egg
+Processing dependencies for kid
+</pre>
+</div>
+<div class="slide"><h1><a name="development">Development</a></h1>
+<pre class="literal-block">
+$ easy_install.py --editable \
+  --build-directory ~/co \
+  --find-links=http://pythonpaste.org/package_index.html \
+  Paste
+Reading http://pythonpaste.org/package_index.html
+Searching for Paste
+Best match: Paste [unknown version]
+Downloading http://svn.pythonpaste.org/Paste/trunk#egg=Paste
+Doing subversion checkout from http://svn.pythonpaste.org/Paste/trunk to /tmp/easy_install-d75rz8/trunk
+Processing trunk
+
+Extracted editable version of Paste to /home/ianb/co/paste
+
+If it uses setuptools in its setup script, you can activate it in
+&quot;development&quot; mode by going to that directory and running::
+
+    /usr/bin/python2.4 setup.py --develop
+
+See the setuptools documentation for the &quot;develop&quot; command for more info.
+</pre>
+</div>
+<div class="slide"><h1><a name="development-notes">Development notes</a></h1>
+<p>Things to note:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">--find-links</span></tt> points to a page where you list distributions</li>
+<li>A packages index is just a list of links</li>
+<li><tt class="docutils literal"><span class="pre">--build-directory</span></tt> and <tt class="docutils literal"><span class="pre">--editable</span></tt> keep the files around, and
+don't do anything with them...</li>
+</ul>
+</div>
+<div class="slide"><h1><a name="development-installation">Development installation</a></h1>
+<pre class="literal-block">
+$ cd ~/co/paste
+$ sudo python setup.py develop
+running develop
+running egg_info
+writing requirements to ./Paste.egg-info/requires.txt
+writing ./Paste.egg-info/PKG-INFO
+writing top-level names to ./Paste.egg-info/top_level.txt
+running build_ext
+Creating /usr/lib/python2.3/site-packages/Paste.egg-link (link to .)
+Adding Paste 0.0 to easy-install.pth file
+Installing paster script to /usr/bin
+
+Installed /home/ianb/co/paste
+</pre>
+</div>
+<div class="slide"><h1><a name="id2">Development notes</a></h1>
+<p>More things to note:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">develop</span></tt> installs a package without moving it into
+<tt class="docutils literal"><span class="pre">site-packages/</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">Paste.egg-link</span></tt> is the poor man's symlink to <tt class="docutils literal"><span class="pre">~/co/paste</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">easy-install.pth</span></tt> also points to <tt class="docutils literal"><span class="pre">~/co/paste</span></tt></li>
+<li>Python finds <tt class="docutils literal"><span class="pre">.pth</span></tt> files in <tt class="docutils literal"><span class="pre">site-packages</span></tt> and adds their
+contents to <tt class="docutils literal"><span class="pre">sys.path</span></tt></li>
+</ul>
+</div>
+<div class="slide"><h1><a name="installing-in-isolation">Installing in Isolation</a></h1>
+<ul class="simple">
+<li>Libraries aren't always backward- or forward-compatible</li>
+<li>When dependencies are automatically installed, there's greater
+chance of conflict</li>
+</ul>
+</div>
+<div class="slide"><h1><a name="id3">Installing in Isolation</a></h1>
+<p>Use &quot;multi-version&quot;:</p>
+<pre class="literal-block">
+$ sudo python setup.py easy_install --multi-version
+</pre>
+<ul class="simple">
+<li><strong>Does not</strong> add the package to <tt class="docutils literal"><span class="pre">sys.path</span></tt></li>
+<li>You must <tt class="docutils literal"><span class="pre">require</span></tt> the specific version; more on that later</li>
+<li>Doesn't effect anyone else on the machine (as long as you are using
+good version numbers)</li>
+</ul>
+</div>
+<div class="slide"><h1><a name="isolated-checkouts">Isolated Checkouts</a></h1>
+<p>From a repository:</p>
+<pre class="literal-block">
+$ svn co http://svn.saddi.com/flup/trunk flup
+$ cd flup
+$ # fix setup.py to use setuptools
+$ sudo python setup.py egg_info --tag-svn-revision \
+  develop -m
+                         .....
+Because this distribution was installed --multi-version or --install-dir,
+before you can import modules from this package in an application, you
+will need to 'import pkg_resources' and then use a 'require()' call
+similar to one of these examples, in order to select the desired version:
+
+    pkg_resources.require(&quot;flup&quot;)  # latest installed version
+    pkg_resources.require(&quot;flup==0.5-r1802&quot;)  # this exact version
+    pkg_resources.require(&quot;flup&gt;=0.5-r1802&quot;)  # this version or higher
+</pre>
+</div>
+<div class="slide"><h1><a name="part-2-creating-packages">Part 2: creating packages</a></h1>
+<p>Distutils features:</p>
+<ul class="simple">
+<li>Packages include standard installation script (<tt class="docutils literal"><span class="pre">setup.py</span></tt>)</li>
+<li>Installation script also builds archives for distribution</li>
+<li>Script can be registered and uploaded to PyPI automatically</li>
+<li>Included with Python; good and bad</li>
+</ul>
+</div>
+<div class="slide"><h1><a name="setuptools">Setuptools</a></h1>
+<p>Setuptools' extra features:</p>
+<ul class="simple">
+<li>It's just like <tt class="docutils literal"><span class="pre">distutils</span></tt></li>
+<li>That <tt class="docutils literal"><span class="pre">develop</span></tt> command we saw</li>
+<li>Creates eggs: better because &quot;Eggs&quot; are a better visual than a
+&quot;distutil package&quot;</li>
+</ul>
+</div>
+<div class="slide"><h1><a name="id4">Setuptools</a></h1>
+<p>Setuptools' extra features:</p>
+<ul class="simple">
+<li>Everything <tt class="docutils literal"><span class="pre">easy_install.py</span></tt> does, it does by tricking a package
+into using setuptools instead of distutils</li>
+<li>Dependencies!</li>
+</ul>
+</div>
+<div class="slide"><h1><a name="creating-a-package">Creating a Package</a></h1>
+<p>Nevermind features...</p>
+<p>Lay your files out like this:</p>
+<pre class="literal-block">
+MyPackage/
+    setup.py
+    ez_setup.py
+    mypackage/
+        __init__.py
+        other_stuff.py
+        data/
+            mydata.xml
+    tests/
+    docs/
+</pre>
+</div>
+<div class="slide"><h1><a name="package-layout">Package Layout</a></h1>
+<ul class="simple">
+<li>Your &quot;distribution&quot; has a name: <tt class="docutils literal"><span class="pre">MyPackage</span></tt></li>
+<li>Not to be confused with your &quot;package&quot;: <tt class="docutils literal"><span class="pre">mypackage</span></tt> (of course, 
+probably will be confused)</li>
+<li>Packages (and modules) all lower-case by convention</li>
+</ul>
+</div>
+<div class="slide"><h1><a name="id5">Package Layout</a></h1>
+<ul class="simple">
+<li>Documentation and (usually) tests go outside the package</li>
+<li><tt class="docutils literal"><span class="pre">mypackage/</span></tt> is all that really gets &quot;installed&quot;</li>
+<li><tt class="docutils literal"><span class="pre">setup.py</span></tt> describes the package</li>
+</ul>
+</div>
+<div class="slide"><h1><a name="setup-py">setup.py</a></h1>
+<p>A typical <tt class="docutils literal"><span class="pre">setup.py</span></tt>:</p>
+<pre class="literal-block">
+from ez_setup import use_setuptools
+use_setuptools()
+from setuptools import setup, find_packages
+
+setup(name=&quot;MyPackage&quot;,
+      version=&quot;0.1dev&quot;,
+      description=&quot;My Package, now featuring 10% more packaging!&quot;,
+      long_description=&quot;&quot;&quot;\
+This is a boxy package...
+&quot;&quot;&quot;,
+      author=&quot;Ian Bicking&quot;,
+      author_email=&quot;ianb&#64;colorstudy.com&quot;,
+      url=&quot;http://sample.host/mypackage.html&quot;,
+...
+</pre>
+</div>
+<div class="slide"><h1><a name="id6">setup.py</a></h1>
+<p>More arguments:</p>
+<pre class="literal-block">
+...
+      packages=find_packages(exclude='tests'),
+      package_data={'': '*.xml'},
+      install_requires=['Paper&gt;=1.0', 'UPSCode'],
+      )
+</pre>
+</div>
+<div class="slide"><h1><a name="setup-py-ez-setup">setup.py: ez_setup</a></h1>
+<p>This boilerplate installs setuptools when the user (who is running
+<tt class="docutils literal"><span class="pre">setup.py</span></tt>) hasn't installed setuptools:</p>
+<pre class="literal-block">
+from ez_setup import use_setuptools
+use_setuptools()
+</pre>
+<p><tt class="docutils literal"><span class="pre">ez_setup.py</span></tt> comes with setuptools, you include it directly in your
+archive.</p>
+</div>
+<div class="slide"><h1><a name="setup-py-an-explanation">setup.py: an explanation</a></h1>
+<ul class="simple">
+<li>All the metadata goes in <tt class="docutils literal"><span class="pre">setup()</span></tt></li>
+<li>Some of this is used to install the package</li>
+<li>Some is used to create an archive of the package</li>
+<li>Some is used for dependencies</li>
+<li>Some is used for PyPI</li>
+</ul>
+</div>
+<div class="slide"><h1><a name="setup-py-the-arguments">setup.py: the arguments</a></h1>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">name</span></tt>:</dt>
+<dd>The name of your distribution.  Don't put spaces in it.  Becomes
+the name of your archive.</dd>
+<dt><tt class="docutils literal"><span class="pre">version</span></tt>:</dt>
+<dd>The version.  Suffixes like <tt class="docutils literal"><span class="pre">a1</span></tt> and <tt class="docutils literal"><span class="pre">pre5</span></tt> are sorted as
+you'd expect.</dd>
+<dt><tt class="docutils literal"><span class="pre">description</span></tt>, <tt class="docutils literal"><span class="pre">long_description</span></tt>:</dt>
+<dd>For use by PyPI.  <tt class="docutils literal"><span class="pre">long_description</span></tt> is in restructured-text
+format.</dd>
+<dt><tt class="docutils literal"><span class="pre">author</span></tt>, <tt class="docutils literal"><span class="pre">author_email</span></tt>, <tt class="docutils literal"><span class="pre">url</span></tt>:</dt>
+<dd>Also used by PyPI.</dd>
+</dl>
+</div>
+<div class="slide"><h1><a name="id7">setup.py: the arguments</a></h1>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">download_url</span></tt>:</dt>
+<dd>Important if you aren't uploading to PyPI; the location where 
+you'll upload your package.</dd>
+</dl>
+<p>These values can be edited through PyPI, if you need to correct the
+information on a released version.</p>
+</div>
+<div class="slide"><h1><a name="setup-py-more-arguments">setup.py: more arguments</a></h1>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">packages</span></tt>:</dt>
+<dd><p class="first">You list <em>all</em> the packages that should be installed, including
+subpackages, like <tt class="docutils literal"><span class="pre">['mypackage',</span> <span class="pre">...]</span></tt>.</p>
+<p class="last"><tt class="docutils literal"><span class="pre">find_packages()</span></tt> does this for you.  The <tt class="docutils literal"><span class="pre">exclude</span></tt> argument
+keeps it from auto-detecting things that look like packages.</p>
+</dd>
+<dt><tt class="docutils literal"><span class="pre">package_data</span></tt>:</dt>
+<dd>For non-<tt class="docutils literal"><span class="pre">.py</span></tt> files you want included.  This is a
+dictionary of package-name (<tt class="docutils literal"><span class="pre">&quot;&quot;</span></tt> for all packages) to globs
+(e.g., <tt class="docutils literal"><span class="pre">&quot;*.txt&quot;</span></tt>).</dd>
+</dl>
+</div>
+<div class="slide"><h1><a name="setup-py-requirements">setup.py: requirements</a></h1>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">install_requires</span></tt>:</dt>
+<dd>This is a list of requirements for this package.  Each is a
+package a string like you would give to <tt class="docutils literal"><span class="pre">easy_install.py</span></tt>.</dd>
+</dl>
+<p>If you have optional requirements, you can use &quot;features&quot;, which are
+not explained here.</p>
+</div>
+<div class="slide"><h1><a name="your-new-package">Your New Package</a></h1>
+<p>What fun you and your new package will have!</p>
+<pre class="literal-block">
+$ python setup.py --help-commands
+Standard commands:
+  build            build everything needed to install
+  build_py         &quot;build&quot; pure Python modules (copy to build directory)
+  build_ext        build C/C++ extensions (compile/link to build directory)
+  build_clib       build C/C++ libraries used by Python extensions
+  build_scripts    &quot;build&quot; scripts (copy and fixup #! line)
+  clean            clean up output of 'build' command
+  ...
+</pre>
+</div>
+<div class="slide"><h1><a name="commands-build">Commands: build*</a></h1>
+<p>The <tt class="docutils literal"><span class="pre">build*</span></tt> commands build C code.  C is not Python.  These are not
+the codes you are looking for.</p>
+<p>Or really: I write Python, and building C code isn't broken, and
+<tt class="docutils literal"><span class="pre">install</span></tt> runs these commands for you, so I know nothing of this.</p>
+</div>
+<div class="slide"><h1><a name="id8">Your New Package</a></h1>
+<pre class="literal-block">
+$ python setup.py --help-commands
+Standard commands:
+  ...
+  install          install everything from build directory
+  install_lib      install all Python modules (extensions and pure Python)
+  install_headers  install C/C++ header files
+  install_scripts  install scripts (Python or otherwise)
+  install_data     install data files
+  ...
+</pre>
+<p>Install the library; more on that later.  The other <tt class="docutils literal"><span class="pre">install*</span></tt>
+commands are for installing just pieces of the package, which is used
+in intermediate steps you are unlikely to use independently.</p>
+</div>
+<div class="slide"><h1><a name="id9">Your New Package</a></h1>
+<pre class="literal-block">
+$ python setup.py --help-commands
+Standard commands:
+  ...
+  sdist            create a source distribution (tarball, zip file, etc.)
+  register         register the distribution with the Python package index
+  bdist            create a built (binary) distribution
+  bdist_dumb       create a &quot;dumb&quot; built distribution
+  bdist_rpm        create an RPM distribution
+  bdist_wininst    create an executable installer for MS Windows
+...
+</pre>
+</div>
+<div class="slide"><h1><a name="commands-distributing">Commands: distributing</a></h1>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">sdist</span></tt>:</dt>
+<dd>Creates a <tt class="docutils literal"><span class="pre">.tar.gz</span></tt> or <tt class="docutils literal"><span class="pre">.zip</span></tt> file that contains your package.
+This is what you give other people.</dd>
+<dt><tt class="docutils literal"><span class="pre">register</span></tt>:</dt>
+<dd>Takes your package information and uploads it to PyPI (aka Cheese 
+Shop).</dd>
+<dt><tt class="docutils literal"><span class="pre">bdist</span></tt>, <tt class="docutils literal"><span class="pre">bdist_dumb</span></tt>, <tt class="docutils literal"><span class="pre">bdist_rpm</span></tt>, <tt class="docutils literal"><span class="pre">bdist_wininst</span></tt>:</dt>
+<dd>I've never seen <tt class="docutils literal"><span class="pre">bdist</span></tt> or <tt class="docutils literal"><span class="pre">bdist_dumb</span></tt> packages.  These might 
+be nice for Windows or RPM users.  But <tt class="docutils literal"><span class="pre">sdist</span></tt> packages can be 
+turned into <tt class="docutils literal"><span class="pre">bdist*</span></tt> packages by the user (you need a compiler
+if there's C code; for this reason a Windows installer is nice,
+but it's not as important for other users).</dd>
+</dl>
+</div>
+<div class="slide"><h1><a name="id10">Your New Package</a></h1>
+<pre class="literal-block">
+$ python setup.py --help-commands
+...
+Extra commands:
+  rotate           delete older distributions, keeping N newest files
+  develop          install package in 'development mode'
+  setopt           set an option in setup.cfg or another config file
+  saveopts         save supplied options to setup.cfg or other config file
+  egg_info         create a distribution's .egg-info directory
+  upload           upload binary package to PyPI
+  alias            define a shortcut to invoke one or more commands
+  bdist_egg        create an &quot;egg&quot; distribution
+  test             run unit tests after in-place build
+  easy_install     Find/get/install Python packages
+</pre>
+</div>
+<div class="slide"><h1><a name="commands-setuptools">Commands: setuptools</a></h1>
+<p>All these commands come from setuptools.</p>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">rotate</span></tt>:</dt>
+<dd>Use this to keep a limited number of nightly snapshots around.</dd>
+<dt><tt class="docutils literal"><span class="pre">develop</span></tt>:</dt>
+<dd>Talked about this earlier; installs a package without copying it 
+into <tt class="docutils literal"><span class="pre">site-packages</span></tt>.</dd>
+</dl>
+</div>
+<div class="slide"><h1><a name="commands-options">Commands: options</a></h1>
+<p>Command-line options to <tt class="docutils literal"><span class="pre">setup.py</span></tt> can also go in <tt class="docutils literal"><span class="pre">setup.cfg</span></tt>,
+<tt class="docutils literal"><span class="pre">distutils.cfg</span></tt>, and other locations.</p>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">setopt</span></tt>:</dt>
+<dd>Save options, without finding the file or translating the 
+command-line options to the configuration options.</dd>
+<dt><tt class="docutils literal"><span class="pre">saveopts</span></tt>:</dt>
+<dd>Same idea, slightly different interface.</dd>
+<dt><tt class="docutils literal"><span class="pre">alias</span></tt>:</dt>
+<dd>Take a bunch of commands and options, and give it one name.</dd>
+</dl>
+</div>
+<div class="slide"><h1><a name="commands-eggs">Commands: eggs</a></h1>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">egg_info</span></tt>:</dt>
+<dd>Eggs put metadata in <tt class="docutils literal"><span class="pre">MyPackage.egg-info</span></tt> directory.  This 
+metadata is used from the outside.  You can modify the version 
+string from outside with this (like adding a Subversion 
+revision).</dd>
+<dt><tt class="docutils literal"><span class="pre">bdist_egg</span></tt>:</dt>
+<dd>Creates a <tt class="docutils literal"><span class="pre">.egg</span></tt> file.  This is a zip file you can put right 
+in <tt class="docutils literal"><span class="pre">site-packages</span></tt>, amongst other things.  Good for plugins,
+used for <tt class="docutils literal"><span class="pre">install</span></tt>, but mostly you can ignore these.</dd>
+</dl>
+</div>
+<div class="slide"><h1><a name="commands-manage">Commands: manage</a></h1>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">upload</span></tt>:</dt>
+<dd>PyPI Is CPAN: upload your package(s) directly to PyPI.</dd>
+<dt><tt class="docutils literal"><span class="pre">easy_install</span></tt>:</dt>
+<dd>Two frontends to the Same Thing</dd>
+<dt><tt class="docutils literal"><span class="pre">test</span></tt>:</dt>
+<dd>Run unit tests.  Limited to <tt class="docutils literal"><span class="pre">unittest</span></tt> currently.</dd>
+</dl>
+</div>
+</div>
+</div></body>
+</html>

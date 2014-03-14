@@ -1,0 +1,52 @@
+`RegexDispatch` is a little like `urldispatch.URLDispatch`, but allows
+for more complex patterns and captured variables.  It works together
+well with `caller.wsgify`.  First, we'll create an application with
+`wsgify`::
+
+    >>> from caller import wsgify
+    >>> import calendar
+    >>> @wsgify
+    ... def calendar_year(req, year):
+    ...     req.response.set_header('content-type', 'text/plain')
+    ...     cal = calendar.calendar(int(year))
+    ...     return str(cal)
+    >>> @wsgify
+    ... def calendar_month(req, year, month):
+    ...     req.response.set_header('content-type', 'text/plain')
+    ...     cal = calendar.month(int(year), int(month))
+    ...     return str(cal)
+
+Now we need to plug those applications together with some regular
+expressions::
+
+    >>> year_regex = r'^/cal/(?P<year>\d\d\d\d)/$'
+    >>> month_regex = r'^/cal/(?P<year>\d\d\d\d)/(?P<month>\d\d)$'
+    >>> from regexdispatch import RegexDispatch
+    >>> dispatch = RegexDispatch([
+    ...     (year_regex, calendar_year), 
+    ...     (month_regex, calendar_month)])
+
+Now, to test::
+
+    >>> from testrunner import send_request
+    >>> print send_request(dispatch, '/cal/1950/')
+    200 OK
+    Content-Type: text/plain
+                                      1950
+          January                   February                   March
+    ...
+    >>> print send_request(dispatch, '/cal/1950/02')
+    200 OK
+    Content-Type: text/plain
+       February 1950
+    Mo Tu We Th Fr Sa Su
+           1  2  3  4  5
+     6  7  8  9 10 11 12
+    ...
+    >>> print send_request(dispatch, '/')
+    404 Not Found
+    ...
+    >>> print send_request(dispatch, '/cal/77/')
+    404 Not Found
+    ...
+

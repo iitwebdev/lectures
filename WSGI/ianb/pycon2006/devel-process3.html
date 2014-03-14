@@ -1,0 +1,806 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.4: http://docutils.sourceforge.net/" />
+<meta name="version" content="S5 1.1" />
+<title>All about web programming (except programming)</title>
+<meta name="author" content="Ian Bicking" />
+<style type="text/css">
+
+/*
+:Author: David Goodger
+:Contact: goodger@users.sourceforge.net
+:Date: $Date: 2005-12-18 01:56:14 +0100 (Sun, 18 Dec 2005) $
+:Revision: $Revision: 4224 $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin-left: 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left {
+  clear: left }
+
+img.align-right {
+  clear: right }
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font-family: serif ;
+  font-size: 100% }
+
+pre.literal-block, pre.doctest-block {
+  margin-left: 2em ;
+  margin-right: 2em ;
+  background-color: #eeeeee }
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+tt.docutils {
+  background-color: #eeeeee }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+<!-- configuration parameters -->
+<meta name="defaultView" content="slideshow" />
+<meta name="controlVis" content="hidden" />
+<!-- style sheet links -->
+
+<link rel="stylesheet" href="ui/slides.css"
+      type="text/css" media="projection" id="slideProj" />
+<link rel="stylesheet" href="ui/outline.css"
+      type="text/css" media="screen" id="outlineStyle" />
+<link rel="stylesheet" href="ui/print.css"
+      type="text/css" media="print" id="slidePrint" />
+<link rel="stylesheet" href="ui/opera.css"
+      type="text/css" media="projection" id="operaFix" />
+
+<style type="text/css">
+#currentSlide {display: none;}
+</style>
+</head>
+<body>
+<div class="layout">
+<div id="controls"></div>
+<div id="currentSlide"></div>
+<div id="header">
+
+</div>
+<div id="footer">
+<h1>All about web programming (except programming)</h1>
+
+</div>
+</div>
+<div class="presentation">
+<div class="slide" id="slide0">
+<h1 class="title">All about web programming (except programming)</h1>
+<table class="docinfo" frame="void" rules="none">
+<col class="docinfo-name" />
+<col class="docinfo-content" />
+<tbody valign="top">
+<tr><th class="docinfo-name">Author:</th>
+<td>Ian Bicking</td></tr>
+<tr class="field"><th class="docinfo-name">company:</th><td class="field-body">Imaginary Landscape</td>
+</tr>
+</tbody>
+</table>
+<center>
+Or, Programmer v. Sysadmin: Fight!
+</center>
+</div>
+<div class="slide" id="what-i-m-gonna-talk-about">
+<h1>what I'm gonna talk about</h1>
+<p>Web development process:</p>
+<ul class="simple">
+<li>Project layout</li>
+<li>What an application should look like from the outside</li>
+<li>Deployment</li>
+<li>Not programming</li>
+</ul>
+</div>
+<div class="slide" id="the-eternal-battle">
+<h1>the eternal battle</h1>
+<br><br>
+<center>
+<b>System administrator</b>
+VS
+<b>Application programmer</b>
+</center></div>
+<div class="slide" id="id1">
+<h1>the eternal battle</h1>
+<p>Fight!</p>
+<center>
+<img src="fight-images/bofh.gif"> VS
+<img src="fight-images/stallman.jpg">
+</center></div>
+<div class="slide" id="id2">
+<h1>the eternal battle</h1>
+<table border="1" class="docutils">
+<colgroup>
+<col width="48%" />
+<col width="52%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Programmer</th>
+<th class="head">Sysadmin</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>Get it running</td>
+<td>Keep it running</td>
+</tr>
+<tr><td>Receive praise</td>
+<td>Avoid blame</td>
+</tr>
+<tr><td>Emacs</td>
+<td>vi</td>
+</tr>
+<tr><td>Working code</td>
+<td>Documentation</td>
+</tr>
+<tr><td>Self-documenting code</td>
+<td>Why do I care about your code?</td>
+</tr>
+<tr><td>Write new stuff</td>
+<td>Maintain old stuff</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="slide" id="dark-side-vs-light-side">
+<h1>dark side vs. light side</h1>
+<br><br><div align="center" class="align-center"><img alt="fight-images/drawning-vader-vs-luke-in-dagobah.jpg" class="align-center" src="fight-images/drawning-vader-vs-luke-in-dagobah.jpg" style="height: 390px;" /></div>
+</div>
+<div class="slide" id="like-in-the-movies">
+<h1>like in the movies</h1>
+<p>Then I realized... the man I was battling was...</p>
+</div>
+<div class="slide" id="da-da-dum">
+<h1>da-da-dum!</h1>
+<br><br>
+<center style="font-size: 3em; font-weight: bold">MYSELF
+</center></div>
+<div class="slide" id="so-what-this-will-be-about">
+<h1>so what this will be about</h1>
+<p>Apparently I am going to talk about:</p>
+<ul class="simple">
+<li>Accepting my inner sysadmin</li>
+<li>The soul-searching process of dealing with deployment</li>
+<li>... when I really would rather be writing code</li>
+</ul>
+</div>
+<div class="slide" id="who-i-am">
+<h1>who I am</h1>
+<p>Imaginary Landscape:</p>
+<ul class="simple">
+<li>Small web development company</li>
+<li>2 to 2-1/2 programmers</li>
+<li>0 to 1 system administrators</li>
+<li>Vague division of roles</li>
+</ul>
+</div>
+<div class="slide" id="why-that-is-good">
+<h1>why that is good</h1>
+<center><p>Ian</p>
+<p>-v-</p>
+<p>Ian</p>
+</center><p>Q: Who will prevail?</p>
+</div>
+<div class="slide" id="id3">
+<h1>why that is good</h1>
+<!-- raw::html
+
+<center><br><br><b>Ian always wins</b></center><br><br> -->
+<p>(please ignore Ian's inevitable loss)</p>
+</div>
+<div class="slide" id="my-two-hats">
+<h1>my two hats</h1>
+<ul class="simple">
+<li>Ian the programmer likes to write new things</li>
+<li>Ian the sysadmin would rather redeploy well-understood software</li>
+<li>Ian the programmer likes to make frameworks to handle tricky
+situations</li>
+<li>Ian the sysadmin likes to hook things together using reliable
+intermediaries (files, databases)</li>
+</ul>
+</div>
+<div class="slide" id="id4">
+<h1>my two hats</h1>
+<ul class="simple">
+<li>Ian the programmer likes to work on his own machine</li>
+<li>Ian the sysadmin likes consistent environments</li>
+<li>Ian the programmer wants access to all the newest libraries</li>
+<li>Ian the sysadmin wants to use a stable set of software</li>
+</ul>
+</div>
+<div class="slide" id="organizations">
+<h1>organizations</h1>
+<p>Conway's law:</p>
+<blockquote>
+Organizations which design systems are constrained to produce
+designs which are copies of the communication structures of these
+organizations.</blockquote>
+</div>
+<div class="slide" id="how-we-got-here">
+<h1>how we got here</h1>
+<ul class="simple">
+<li>Zope 2 through-the-web development</li>
+<li>Ad hoc Z SQL, DTML</li>
+<li>No formal process</li>
+<li>Not even an informal process</li>
+</ul>
+</div>
+<div class="slide" id="where-we-try-to-improve-ourselves">
+<h1>where we try to improve ourselves</h1>
+<ul class="simple">
+<li>Moved out of Zope into Webware</li>
+<li>Moved into Subversion</li>
+<li>But kind of half-heartedly: never really said <em>this is the way it
+will be</em></li>
+<li>Things moved from prototype to live without quite meaning it</li>
+<li>Ian the sysadmin was being a slacker</li>
+</ul>
+</div>
+<div class="slide" id="need-to-do-more-than-just-start">
+<h1>need to do more than just start</h1>
+<ul class="simple">
+<li>Deployment was hard and confusing</li>
+<li>Hand testing; but testing didn't lead to confidence</li>
+<li>Going live was stressful</li>
+<li>Asking the same questions about development and deployment over and
+over</li>
+<li>(Ian the programmer and Ian the sysadmin sometimes work together to
+ignore Ian the project manager)</li>
+</ul>
+</div>
+<div class="slide" id="let-s-just-not-deploy">
+<h1>let's just not deploy...</h1>
+<ul>
+<li><p class="first">Deployment was hard and stressful for everyone</p>
+<img align="right" alt="fight-images/many-clients.png" class="align-right" src="fight-images/many-clients.png" />
+</li>
+<li><p class="first">So we thought we just wouldn't deploy</p>
+</li>
+<li><p class="first">Started making applications that were &quot;multi-client&quot;</p>
+</li>
+<li><p class="first">One install and many clients</p>
+</li>
+</ul>
+</div>
+<div class="slide" id="well-that-was-all-wrong">
+<h1>well that was all wrong...</h1>
+<ul class="simple">
+<li>Instead of developing good tools, we were building all the
+complexities into our applications</li>
+<li>Applications are hard, tools are easy</li>
+<li>Dumb, dumb, dumb (but I only realize that now -- it seemed
+<em>obviously</em> more smart at the time)</li>
+</ul>
+</div>
+<div class="slide" id="the-problems">
+<h1>the problems...</h1>
+<ul class="simple">
+<li>Everyone gets the same software and features</li>
+<li>Configuration was going into database</li>
+<li>Databases are not very agile</li>
+<li>Subversion doesn't hold databases</li>
+</ul>
+</div>
+<div class="slide" id="now-what-we-do">
+<h1>now what we do</h1>
+<ul>
+<li><p class="first">Deployment should be easy</p>
+<img align="right" alt="fight-images/one-per-client.png" class="align-right" src="fight-images/one-per-client.png" />
+</li>
+<li><p class="first">Easy deployment is obviously good, not just smart</p>
+</li>
+<li><p class="first">Once deployment is easy, multi-client installs are superfluous</p>
+</li>
+</ul>
+</div>
+<div class="slide" id="the-result">
+<h1>the result</h1>
+<p>What does it look like?</p>
+<p>Start a new project:</p>
+<pre class="literal-block">
+paster create --template=iscape \
+  --svn-repository=http://our-repository \
+  NewApp
+</pre>
+<p>Now we have:</p>
+<ul class="simple">
+<li>Standard Subversion layout (<tt class="docutils literal"><span class="pre">NewApp/trunk/</span></tt>, <tt class="docutils literal"><span class="pre">branches/</span></tt>, <tt class="docutils literal"><span class="pre">tags/</span></tt>)</li>
+<li><tt class="docutils literal"><span class="pre">setup.py</span></tt> file; ready to build a package</li>
+<li><tt class="docutils literal"><span class="pre">newapp.db</span></tt>; model, empty initialization routing</li>
+<li>Basic framework layout, templates, internally-used metadata</li>
+<li>Working functional test</li>
+<li>Working (and minimal!) configuration file</li>
+</ul>
+</div>
+<div class="slide" id="testing">
+<h1>testing</h1>
+<p>This is what our tests start out like:</p>
+<pre class="literal-block">
+from fixture import *
+
+def test_root():
+    app.get('/')
+</pre>
+<ul class="simple">
+<li><em>Any</em> functional test is a good functional test</li>
+<li>Sometimes the best functional tests are just exercise</li>
+</ul>
+</div>
+<div class="slide" id="test-driven-development">
+<h1>test-driven development</h1>
+<p>Test driven development:</p>
+<ul class="simple">
+<li>Read the spec given to me, write a complete test</li>
+<li>Never open a browser until I think I'm done with the app</li>
+<li>Too extreme</li>
+</ul>
+</div>
+<div class="slide" id="configuration">
+<h1>configuration</h1>
+<p>Configuration surprising central to deployment design</p>
+<ul>
+<li><p class="first">Starts out like:</p>
+<pre class="literal-block">
+[app:devel]
+use = egg:NewProj
+database = postgres://pgsql&#64;/testproj
+debug = true
+</pre>
+</li>
+<li><p class="first">No mention of framework, internal layout</p>
+</li>
+<li><p class="first">Also create a configuration file template, self-documenting fresh
+file for new installs</p>
+</li>
+</ul>
+</div>
+<div class="slide" id="vc-layout">
+<h1>vc layout</h1>
+<ul class="simple">
+<li>Only the testing/development configuration goes in application
+repository</li>
+<li>Client data is kept in client repositories, not in app</li>
+<li>No <tt class="docutils literal"><span class="pre">conf/</span></tt> directory in app</li>
+<li>(We use Subversion+SSH (<tt class="docutils literal"><span class="pre">svn+ssh://...</span></tt>) which works poorly)</li>
+</ul>
+</div>
+<div class="slide" id="then-we-code">
+<h1>then we code</h1>
+<p>The next step is writing the application...</p>
+<blockquote>
+This presentation is not about programming</blockquote>
+</div>
+<div class="slide" id="then-we-deploy">
+<h1>then we deploy</h1>
+<p>The deployment process looks like:</p>
+<pre class="literal-block">
+$ paster setup.py svntag --version=1.1 --next-version=1.1.1
+$ cd ../NewProj-1.1/
+$ python setup.py iscape_dist
+</pre>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">svntag</span></tt> is part of the buildutils project</li>
+<li>tagging by hand while managing distutils metadata was too hard for
+me</li>
+<li><tt class="docutils literal"><span class="pre">iscape_dist</span></tt> is an internal distutils/setuptools extension;
+packages and uploads</li>
+</ul>
+</div>
+<div class="slide" id="then-we-install">
+<h1>then we install</h1>
+<p>Installation:</p>
+<pre class="literal-block">
+paster deploy NewProj
+</pre>
+<ul class="simple">
+<li>Invokes <tt class="docutils literal"><span class="pre">easy_install</span> <span class="pre">NewProj</span></tt></li>
+<li>Writes new configuration from template file</li>
+<li>Uses all of our internal conventions</li>
+<li>Mounts application to path</li>
+</ul>
+</div>
+<div class="slide" id="installation-steps">
+<h1>installation steps</h1>
+<ul>
+<li><p class="first">One step process isn't granular enough</p>
+</li>
+<li><p class="first">Database setup and other steps not interactive enough</p>
+</li>
+<li><p class="first">We're moving towards:</p>
+<pre class="literal-block">
+paster make-config --edit NewProj
+paster setup-app config_file.ini
+</pre>
+</li>
+<li><p class="first">Programmers and sysadmins agree: the best interactive UI is the text
+editor</p>
+</li>
+</ul>
+</div>
+<div class="slide" id="other-problems">
+<h1>other problems</h1>
+<ul class="simple">
+<li>Installing from tarballs isn't a good idea</li>
+<li>Installing from Subversion is a good idea</li>
+<li>Even on live site -- development sometimes moves from live to devel
+(Ian the sysadmin bites his tongue)</li>
+<li><tt class="docutils literal"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">develop</span></tt> <em>activates</em> a checkout (instead of
+copying files)</li>
+</ul>
+</div>
+<div class="slide" id="versioned-installation">
+<h1>versioned installation</h1>
+<ul>
+<li><p class="first">We first used setuptools' ability to install multiple versions of a
+package</p>
+</li>
+<li><p class="first">Everyplace we used a package, we allowed a version specification:</p>
+<pre class="literal-block">
+use = egg:FormCatcher==0.1
+</pre>
+</li>
+<li><p class="first">This worked fine on first project (of course)</p>
+</li>
+<li><p class="first">Fell apart about 30 minutes into second project on same machine</p>
+</li>
+</ul>
+</div>
+<div class="slide" id="versions">
+<h1>versions</h1>
+<ul class="simple">
+<li>This allows for accidental upgrading, because we didn't put in
+explicit version numbers</li>
+<li>Accidental upgrades are bad</li>
+<li>Complicated to decide how any one installation would effect the
+entire system</li>
+<li>Maintaining requirements too hard; changing requirements on
+installed software not feasible</li>
+</ul>
+</div>
+<div class="slide" id="python-setup">
+<h1>Python setup</h1>
+<ul class="simple">
+<li>A <em>lot</em> of struggling to handle versions, requirements, isolation</li>
+<li>We are still struggling</li>
+<li>The very idea of global installation now seems dumb to me</li>
+<li>Global installation is an adaptation to compensate for a poor
+package installation process</li>
+<li>The box is not a useful scope for installation</li>
+</ul>
+</div>
+<div class="slide" id="id5">
+<h1>Python setup</h1>
+<ul class="simple">
+<li>Programmer and sysadmin agree: <tt class="docutils literal"><span class="pre">site-packages</span></tt> is dangerous</li>
+<li>It's bad for production situations</li>
+<li>It's bad for serious programmers</li>
+<li>It's bad for development situations</li>
+<li>It's bad for shared hosts</li>
+<li>It's bad for Python newbies</li>
+</ul>
+</div>
+<div class="slide" id="isolating-environments">
+<h1>isolating environments</h1>
+<ul>
+<li><p class="first">Each site gets its own Python environment</p>
+</li>
+<li><p class="first">You set the site by setting <tt class="docutils literal"><span class="pre">$ACTIVE_SITE</span></tt> (lots of unintended
+conveniences)</p>
+</li>
+<li><p class="first">In <tt class="docutils literal"><span class="pre">sitecustomize.py</span></tt>:</p>
+<pre class="literal-block">
+if os.environ.get('ACTIVE_SITE'):
+  site.addsitedir('/iscape/web/%s/lib/python2.4'
+                  % os.environ['ACTIVE_SITE'])
+else:
+  site.addsitedir('/iscape/lib/python2.4')
+</pre>
+</li>
+</ul>
+</div>
+<div class="slide" id="isolating-distutils">
+<h1>isolating distutils</h1>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">lib/python2.4/distutils/distutils.cfg</span></tt> can control global
+installation options</li>
+<li>Using it, <tt class="docutils literal"><span class="pre">easy_install</span></tt> works right by default (with <em>no</em>
+command-line options)</li>
+</ul>
+</div>
+<div class="slide" id="disutils-cfg">
+<h1>disutils.cfg</h1>
+<p>Sample distutils.cfg:</p>
+<pre class="literal-block">
+[install]
+prefix = /iscape/web/SITE
+
+[easy_install]
+install_dir = /iscape/web/SITE/lib/python2.4/
+site_dirs = /iscape/web/SITE/lib/python2.4/
+script_dir = /iscape/web/SITE/bin/
+find_links = http://internal-repository
+zip_ok = false
+</pre>
+</div>
+<div class="slide" id="isolation-problems">
+<h1>isolation problems</h1>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">distutils.cfg</span></tt> can't read <tt class="docutils literal"><span class="pre">$ACTIVE_SITE</span></tt>; not that flexible,
+needs to be monkeypatched to work</li>
+<li>Should be controllable by Python code (like <tt class="docutils literal"><span class="pre">sitecustomize</span></tt>), not
+configuration file</li>
+<li>Maybe I just need to be more creative with setuptools</li>
+<li>Not enough logging</li>
+</ul>
+</div>
+<div class="slide" id="future-tools">
+<h1>future tools</h1>
+<ul class="simple">
+<li>Rock-solid application server (<tt class="docutils literal"><span class="pre">supervisor</span></tt> or <tt class="docutils literal"><span class="pre">zdaemon</span></tt>)</li>
+<li>Automate operational tests; act on hung servers</li>
+<li>Better remote installation -- one step install</li>
+<li>Better Subversion integration -- always check that there are no
+pending updates</li>
+<li>Centralized logging and management</li>
+<li>Automated test running</li>
+<li>Better workflow with designers, customers</li>
+</ul>
+</div>
+</div>
+</body>
+</html>
+<script src="ui/slides.js" type="text/javascript"></script>

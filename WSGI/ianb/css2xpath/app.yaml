@@ -1,0 +1,29 @@
+application: css2xpath
+version: 1
+runtime: python
+api_version: 1
+
+handlers:
+- url: /favicon\.(png|ico)
+  static_files: favicon.\1
+  upload: favicon.(png|ico)
+
+
+- url: .*
+  script: cssselectapp.py
+
+
+#skip_files: |
+# ^bin/.*$|
+# ^lib/python2.5/[^/]+$|
+# ^(.*/)?(
+# (app\.yaml)|
+# (app\.yml)|
+# (index\.yaml)|
+# (index\.yml)|
+# (#.*#)|
+# (.*~)|
+# (.*\.py[co])|
+# (.*/RCS/.*)|
+# (\..*)|
+# )$

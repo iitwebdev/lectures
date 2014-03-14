@@ -1,0 +1,180 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"><html><head><title>test_roman.py</title>
+<!--This document created by PySourceColor ver.1.9.9 on: Thu Dec  9 17:20:38 2004-->
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1">
+<style type="text/css">
+<!--
+body {background:#FFFFFF;}
+.args {font-weight:bold;color:#000000;}
+.num {font-weight:bold;color:#000000;}
+.clsn {font-weight:bold;text-decoration:underline;color:#000000;}
+.defn {font-weight:bold;color:#000000;}
+.key {font-weight:bold;color:#000000;}
+.sq {color:#000000;}
+.sqr {color:#000000;}
+.squ {color:#000000;}
+.dq {color:#000000;}
+.dqr {color:#000000;}
+.dqu {color:#000000;}
+.tsq {color:#000000;}
+.dcom {font-weight:bold;color:#000000;}
+.tsqu {color:#000000;}
+.tdq {font-style:italic;font-family:serif;color:#000000;}
+.tdqr {font-style:italic;color:#000000;}
+.tdqu {font-style:italic;color:#000000;}
+.dec {font-weight:bold;color:#000000;}
+.decn {font-weight:bold;text-decoration:underline;color:#000000;}
+.name {color:#000000;}
+.op {font-weight:bold;color:#000000;}
+.err {border: solid 1.5pt #FF0000;color:#FF8080;}
+.comm {font-style:italic;color:#000000;}
+.tsqr {color:#000000;}
+--></style>
+</head>
+<body>
+<pre><span class="key">import</span> roman
+<span class="key">from</span> py<span class="op">.</span>test <span class="key">import</span> raises
+
+known_values <span class="op">=</span> <span class="tdq">"""
+1 I
+2 II
+3 III
+4 IV
+5 V
+6 VI
+7 VII
+8 VIII
+9 IX
+10 X
+50 L
+100 C
+500 D
+1000 M
+31 XXXI
+148 CXLVIII
+294 CCXCIV
+312 CCCXII
+421 CDXXI
+528 DXXVIII
+621 DCXXI
+782 DCCLXXXII
+870 DCCCLXX
+941 CMXLI
+1043 MXLIII
+1110 MCX
+1226 MCCXXVI
+1301 MCCCI
+1485 MCDLXXXV
+1509 MDIX
+1607 MDCVII
+1754 MDCCLIV
+1832 MDCCCXXXII
+1993 MCMXCIII
+2074 MMLXXIV
+2152 MMCLII
+2212 MMCCXII
+2343 MMCCCXLIII
+2499 MMCDXCIX
+2574 MMDLXXIV
+2646 MMDCXLVI
+2723 MMDCCXXIII
+2892 MMDCCCXCII
+2975 MMCMLXXV
+3051 MMMLI
+3185 MMMCLXXXV
+3250 MMMCCL
+3313 MMMCCCXIII
+3408 MMMCDVIII
+3501 MMMDI
+3610 MMMDCX
+3743 MMMDCCXLIII
+3844 MMMDCCCXLIV
+3888 MMMDCCCLXXXVIII
+3940 MMMCMX
+3999 MMMCMXCIX
+"""</span>
+known_values <span class="op">=</span> <span class="op">[</span>tuple<span class="op">(</span>line<span class="op">.</span>split<span class="op">(</span><span class="op">)</span><span class="op">)</span>
+                <span class="key">for</span> line <span class="key">in</span> known_values<span class="op">.</span>splitlines<span class="op">(</span><span class="op">)</span>
+                <span class="key">if</span> line<span class="op">]</span>
+
+<span class="key">def</span> <span class="defn">param</span><span class="op">(</span><span class="args">param_list</span><span class="op">,</span> <span class="args">expand</span><span class="op">=</span><span class="args">True</span><span class="op">)</span><span class="op">:</span>
+    <span class="key">def</span> <span class="defn">make_param_func</span><span class="op">(</span><span class="args">func</span><span class="op">)</span><span class="op">:</span>
+        <span class="key">def</span> <span class="defn">yielder</span><span class="op">(</span><span class="op">)</span><span class="op">:</span>
+            <span class="key">for</span> items <span class="key">in</span> param_list<span class="op">:</span>
+                <span class="key">if</span> <span class="key">not</span> isinstance<span class="op">(</span>items<span class="op">,</span> tuple<span class="op">)</span><span class="op">:</span>
+                    all <span class="op">=</span> <span class="op">(</span>func<span class="op">,</span> items<span class="op">)</span>
+                <span class="key">else</span><span class="op">:</span>
+                    all <span class="op">=</span> <span class="op">(</span>func<span class="op">,</span><span class="op">)</span> <span class="op">+</span> items
+                <span class="key">yield</span> all
+        <span class="key">if</span> expand<span class="op">:</span>
+            <span class="key">return</span> yielder
+        <span class="key">else</span><span class="op">:</span>
+            <span class="key">def</span> <span class="defn">runner</span><span class="op">(</span><span class="op">)</span><span class="op">:</span>
+                <span class="key">for</span> runner <span class="key">in</span> yielder<span class="op">(</span><span class="op">)</span><span class="op">:</span>
+                    runner<span class="op">[</span><span class="num">0</span><span class="op">]</span><span class="op">(</span><span class="op">*</span>runner<span class="op">[</span><span class="num">1</span><span class="op">:</span><span class="op">]</span><span class="op">)</span>
+            <span class="key">return</span> runner
+    <span class="key">return</span> make_param_func
+
+<span class="dec">@</span><span class="decn">param</span><span class="op">(</span><span class="args">known_values</span><span class="op">)</span>
+<span class="key">def</span> <span class="defn">testToRomanKnownValues</span><span class="op">(</span><span class="args">integer</span><span class="op">,</span> <span class="args">numeral</span><span class="op">)</span><span class="op">:</span>
+    <span class="tdq">"""toRoman should give known result with known input"""</span>
+    <span class="key">print</span> "Trying %s -&gt; %s" <span class="op">%</span> <span class="op">(</span>integer<span class="op">,</span> numeral<span class="op">)</span>
+    <span class="key">assert</span> numeral <span class="op">==</span> roman<span class="op">.</span>toRoman<span class="op">(</span>integer<span class="op">)</span>
+
+<span class="dec">@</span><span class="decn">param</span><span class="op">(</span><span class="args">known_values</span><span class="op">)</span>
+<span class="key">def</span> <span class="defn">testFromRomanKnownValues</span><span class="op">(</span><span class="args">integer</span><span class="op">,</span> <span class="args">numeral</span><span class="op">)</span><span class="op">:</span>
+    <span class="tdq">"""fromRoman should give known result with known input"""</span>
+    <span class="key">assert</span> roman<span class="op">.</span>fromRoman<span class="op">(</span>numeral<span class="op">)</span> <span class="op">==</span> integer
+
+<span class="key">def</span> <span class="defn">testTooLarge</span><span class="op">(</span><span class="op">)</span><span class="op">:</span>
+    <span class="tdq">"""toRoman should fail with large input"""</span>
+    raises<span class="op">(</span>roman<span class="op">.</span>OutOfRangeError<span class="op">,</span> roman<span class="op">.</span>toRoman<span class="op">,</span> <span class="num">5000</span><span class="op">)</span>
+
+<span class="key">def</span> <span class="defn">testZero</span><span class="op">(</span><span class="op">)</span><span class="op">:</span>
+    <span class="tdq">"""toRoman should fail with 0 input"""</span>
+    raises<span class="op">(</span>roman<span class="op">.</span>OutOfRangeError<span class="op">,</span> roman<span class="op">.</span>toRoman<span class="op">,</span> <span class="num">0</span><span class="op">)</span>
+
+<span class="key">def</span> <span class="defn">testNegative</span><span class="op">(</span><span class="op">)</span><span class="op">:</span>
+    <span class="tdq">"""toRoman should fail with negative input"""</span>
+    raises<span class="op">(</span>roman<span class="op">.</span>OutOfRangeError<span class="op">,</span> roman<span class="op">.</span>toRoman<span class="op">,</span> <span class="op">-</span><span class="num">1</span><span class="op">)</span>
+
+<span class="key">def</span> <span class="defn">testNonInteger</span><span class="op">(</span><span class="op">)</span><span class="op">:</span>
+    <span class="tdq">"""toRoman should fail with non-integer input"""</span>
+    raises<span class="op">(</span>roman<span class="op">.</span>NotIntegerError<span class="op">,</span> roman<span class="op">.</span>toRoman<span class="op">,</span> <span class="num">0.5</span><span class="op">)</span>
+
+<span class="dec">@</span><span class="decn">param</span><span class="op">(</span><span class="op">(</span>'MMMM'<span class="op">,</span> 'DD'<span class="op">,</span> 'CCCC'<span class="op">,</span> 'LL'<span class="op">,</span> 'XXXX'<span class="op">,</span> 'VV'<span class="op">,</span> 'IIII'<span class="op">)</span><span class="op">)</span>
+<span class="key">def</span> <span class="defn">testTooManyRepeatedNumerals</span><span class="op">(</span><span class="args">s</span><span class="op">)</span><span class="op">:</span>
+    <span class="tdq">"""fromRoman should fail with too many repeated numerals"""</span>
+    raises<span class="op">(</span>roman<span class="op">.</span>InvalidRomanNumeralError<span class="op">,</span> roman<span class="op">.</span>fromRoman<span class="op">,</span> s<span class="op">)</span>
+
+<span class="dec">@</span><span class="decn">param</span><span class="op">(</span><span class="op">(</span>'CMCM'<span class="op">,</span> 'CDCD'<span class="op">,</span> 'XCXC'<span class="op">,</span> 'XLXL'<span class="op">,</span> 'IXIX'<span class="op">,</span> 'IVIV'<span class="op">)</span><span class="op">)</span>
+<span class="key">def</span> <span class="defn">testRepeatedPairs</span><span class="op">(</span><span class="args">s</span><span class="op">)</span><span class="op">:</span>
+    <span class="tdq">"""fromRoman should fail with repeated pairs of numerals"""</span>
+    raises<span class="op">(</span>roman<span class="op">.</span>InvalidRomanNumeralError<span class="op">,</span> roman<span class="op">.</span>fromRoman<span class="op">,</span> s<span class="op">)</span>
+
+<span class="dec">@</span><span class="decn">param</span><span class="op">(</span><span class="op">(</span>'IIMXCC'<span class="op">,</span> 'VX'<span class="op">,</span> 'DCM'<span class="op">,</span> 'CMM'<span class="op">,</span> 'IXIV'<span class="op">,</span>
+        'MCMC'<span class="op">,</span> 'XCX'<span class="op">,</span> 'IVI'<span class="op">,</span> 'LM'<span class="op">,</span> 'LD'<span class="op">,</span> 'LC'<span class="op">)</span><span class="op">)</span>
+<span class="key">def</span> <span class="defn">testMalformedAntecedent</span><span class="op">(</span><span class="args">s</span><span class="op">)</span><span class="op">:</span>
+    <span class="tdq">"""fromRoman should fail with malformed antecedents"""</span>
+    raises<span class="op">(</span>roman<span class="op">.</span>InvalidRomanNumeralError<span class="op">,</span> roman<span class="op">.</span>fromRoman<span class="op">,</span> s<span class="op">)</span>
+
+<span class="dec">@</span><span class="decn">param</span><span class="op">(</span><span class="args">range</span><span class="op">(</span><span class="num">1</span><span class="op">,</span> <span class="num">4000</span><span class="op">)</span><span class="op">,</span> <span class="args">False</span><span class="op">)</span>
+<span class="key">def</span> <span class="defn">testSanity</span><span class="op">(</span><span class="args">integer</span><span class="op">)</span><span class="op">:</span>
+    <span class="tdq">"""fromRoman(toRoman(n))==n for all n"""</span>
+    numeral <span class="op">=</span> roman<span class="op">.</span>toRoman<span class="op">(</span>integer<span class="op">)</span>
+    result <span class="op">=</span> roman<span class="op">.</span>fromRoman<span class="op">(</span>numeral<span class="op">)</span>
+    <span class="key">assert</span> integer <span class="op">==</span> result
+
+<span class="dec">@</span><span class="decn">param</span><span class="op">(</span><span class="args">range</span><span class="op">(</span><span class="num">1</span><span class="op">,</span> <span class="num">4000</span><span class="op">)</span><span class="op">,</span> <span class="args">False</span><span class="op">)</span>
+<span class="key">def</span> <span class="defn">testToRomanCase</span><span class="op">(</span><span class="args">integer</span><span class="op">)</span><span class="op">:</span>
+    <span class="tdq">"""toRoman should always return uppercase"""</span>
+    numeral <span class="op">=</span> roman<span class="op">.</span>toRoman<span class="op">(</span>integer<span class="op">)</span>
+    <span class="key">assert</span> numeral <span class="op">==</span> numeral<span class="op">.</span>upper<span class="op">(</span><span class="op">)</span>
+
+<span class="dec">@</span><span class="decn">param</span><span class="op">(</span><span class="args">range</span><span class="op">(</span><span class="num">1</span><span class="op">,</span> <span class="num">4000</span><span class="op">)</span><span class="op">,</span> <span class="args">False</span><span class="op">)</span>
+<span class="key">def</span> <span class="defn">testFromRomanCase</span><span class="op">(</span><span class="args">integer</span><span class="op">)</span><span class="op">:</span>
+    <span class="tdq">"""fromRoman should only accept uppercase input"""</span>
+    numeral <span class="op">=</span> roman<span class="op">.</span>toRoman<span class="op">(</span>integer<span class="op">)</span>
+    roman<span class="op">.</span>fromRoman<span class="op">(</span>numeral<span class="op">.</span>upper<span class="op">(</span><span class="op">)</span><span class="op">)</span>
+    raises<span class="op">(</span>roman<span class="op">.</span>InvalidRomanNumeralError<span class="op">,</span>
+           roman<span class="op">.</span>fromRoman<span class="op">,</span> numeral<span class="op">.</span>lower<span class="op">(</span><span class="op">)</span><span class="op">)</span></pre>
+</body></html>

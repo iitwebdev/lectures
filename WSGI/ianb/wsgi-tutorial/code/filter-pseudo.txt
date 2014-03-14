@@ -1,0 +1,17 @@
+ 9-10  Keep track of the original SCRIPT_NAME/PATH_INFO
+   19  Send the request to the application
+11-18  Capture the status and the headers
+   14  Are we interested in filtering this?
+         No:
+   15      Pass response up unmodified
+         Otherwise:
+   17      Capture the status and headers
+   20  If the status and headers were not captured:
+   21    Pass the response body up unmodified
+24-25  Collect all the response body
+27-28  Call app_iter.close() if possible    
+30-31  Filter that output and send that filtered response
+32-33  Generate the response
+
+   41  HTMLFilter:
+43-49  We are interested in all OK responses that are text/html

@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta name="version" content="S5 1.0" />
+    <link rel="stylesheet" href="ui/slides.css" type="text/css" media="projection" id="slideProj" />
+    <link rel="stylesheet" href="ui/opera.css" type="text/css" media="projection" id="operaFix" />
+    <link rel="stylesheet" href="ui/print.css" type="text/css" media="print" id="slidePrint" />
+    <script src="ui/slides.js" type="text/javascript"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.3.0: http://docutils.sourceforge.net/" />
+<title>WSGI Middleware and WSGIKit</title>
+<link rel="stylesheet" href="default.css" type="text/css" />
+</head>
+<body>
+    <div class="layout">
+    <div id="currentSlide"></div>
+    <div id="header"></div>
+    <div id="footer">
+    
+
+
+    <h1>WSGI Middleware and WSGIKit</h1>
+    <div id="controls"></div>
+    </div>
+    <div class="presentation">
+    
+<!-- future:
+*techniques for advancing the state of the art in Python web
+programming*
+
+Ian Bicking
+Imaginary Landscape LLC
+www.imagescape.com -->
+<div class="slide"><h1><a name="id1">WSGI Middleware and WSGIKit</a></h1>
+<img src="whiskey-cup.jpg" align="right" /><p>Using WSGI Middleware to build a foundation for Python web programming.</p>
+<p><a class="reference" href="http://ianbicking.org/docs/pycon2005">http://ianbicking.org/docs/pycon2005</a></p>
+<p>WSGI Open Space, Wednesday 5:30-6:00, Room 310</p>
+<pre class="literal-block">
+Ian Bicking
+Imaginary Landscape Web Development
+imagescape.com
+</pre>
+</div>
+<div class="slide"><h1><a name="the-problem">The Problem</a></h1>
+<center><img src="logos.jpg"></center></div>
+<div class="slide"><h1><a name="solutions">Solutions</a></h1>
+<div class="section" id="solution-1">
+<h2><a name="solution-1">Solution 1</a></h2>
+<ul class="simple">
+<li>We all realize that there is One True Framework</li>
+<li>We ostrasize everyone who doesn't agree</li>
+<li>The peer pressure / totalitarian solution</li>
+</ul>
+</div>
+</div>
+<div class="slide"><h1><a name="id2">Solutions</a></h1>
+<div class="section" id="solution-2">
+<h2><a name="solution-2">Solution 2</a></h2>
+<ul class="simple">
+<li>Write a book <em>Choosing Your Python Web Framework</em></li>
+<li>The &quot;document your crap and it will start to smell good&quot; solution</li>
+</ul>
+</div>
+</div>
+<div class="slide"><h1><a name="id3">Solutions</a></h1>
+<div class="section" id="solution-3">
+<h2><a name="solution-3">Solution 3</a></h2>
+<p><img align="right" alt="./longhorn_logo.jpg" src="./longhorn_logo.jpg" /></p>
+<ul class="simple">
+<li>We give up on the web, (after all, it's just based on primitive
+1970's technology), and focus on the future: Avalon</li>
+<li>The &quot;when all you have is a hammer, screws are stupid&quot; solution</li>
+</ul>
+</div>
+</div>
+<div class="slide"><h1><a name="the-solution">The Solution</a></h1>
+<div class="section" id="restrictions-of-a-practical-solution">
+<h2><a name="restrictions-of-a-practical-solution">Restrictions of a Practical Solution</a></h2>
+<ul class="simple">
+<li>We can't make code go away</li>
+<li>We can't suppress the diversity of aesthetic and structural opinions</li>
+<li>We can't abandon current developers</li>
+<li>We can't continue with the present course</li>
+</ul>
+</div>
+</div>
+<div class="slide"><h1><a name="id4">The Solution</a></h1>
+<div class="section" id="directions-for-a-practical-solution">
+<h2><a name="directions-for-a-practical-solution">Directions for a Practical Solution</a></h2>
+<ul class="simple">
+<li>We must support legacy interfaces</li>
+<li>We must support future new frameworks</li>
+<li>We must mitigate the cost of diversity</li>
+<li>Aesthetic opinions should not require functional compromises</li>
+</ul>
+</div>
+</div>
+<div class="slide"><h1><a name="id5">The Solution</a></h1>
+<div class="section" id="strategy-for-a-practical-solution">
+<h2><a name="strategy-for-a-practical-solution">Strategy for a Practical Solution</a></h2>
+<ul class="simple">
+<li>Stop building from the top down</li>
+<li>Stop focusing on points which separate us (aesthetics, application
+structure, application modeling)</li>
+<li>If not stop, at least pause for a little while...</li>
+</ul>
+</div>
+</div>
+<div class="slide"><h1><a name="id6">The Solution</a></h1>
+<div class="section" id="positive-steps-for-a-practical-solution">
+<h2><a name="positive-steps-for-a-practical-solution">Positive Steps for a Practical Solution</a></h2>
+<ul class="simple">
+<li>Build from the bottom up</li>
+<li>Start at the lowest layer: the server</li>
+<li>Move upward with robust and aesthetically neutral libraries</li>
+<li>Each step, look for low hanging fruit</li>
+</ul>
+</div>
+</div>
+<div class="slide"><h1><a name="on-wsgikit">On WSGIKit</a></h1>
+<p>My Experience With WSGIKit...</p>
+</div>
+<div class="slide"><h1><a name="alternate-titles">Alternate Titles</a></h1>
+<div class="section" id="wsgikit-deconstructing-a-legacy-framework-into-wsgi-middleware">
+<h2><a name="wsgikit-deconstructing-a-legacy-framework-into-wsgi-middleware">WSGIKit: Deconstructing a legacy framework into WSGI middleware</a></h2>
+<ul class="simple">
+<li>Starting with a legacy API (Webware)...</li>
+<li>And a codebase with lots of coupling...</li>
+<li>Recreated the API as a set of independent components with thin 
+WSGI-based glue</li>
+</ul>
+</div>
+</div>
+<div class="slide"><h1><a name="id7">Alternate Titles</a></h1>
+<div class="section" id="wsgikit-creating-a-framework-from-a-wsgi-middleware-stack">
+<h2><a name="wsgikit-creating-a-framework-from-a-wsgi-middleware-stack">WSGIKit: Creating a framework from a WSGI middleware stack</a></h2>
+<ul class="simple">
+<li>WSGIKit is a full-featured framework from scratch</li>
+<li>&quot;Framework&quot; is a facade; the &quot;middleware&quot; does all the heavy lifting</li>
+<li>Using Webware API just a way to ignore API design</li>
+</ul>
+</div>
+</div>
+<div class="slide"><h1><a name="id8">Alternate Titles</a></h1>
+<div class="section" id="wsgikit-utilizing-wsgi-as-a-platform-for-inter-framework-cooperation">
+<h2><a name="wsgikit-utilizing-wsgi-as-a-platform-for-inter-framework-cooperation">WSGIKit: Utilizing WSGI as a platform for inter-framework cooperation</a></h2>
+<ul class="simple">
+<li>Deconstucting any and all frameworks into WSGI components</li>
+<li>Allowing applications to live beside other applications written for 
+other APIs</li>
+<li>WSGI as container and a communication medium</li>
+</ul>
+</div>
+</div>
+<div class="slide"><h1><a name="python-web-programming">Python web programming</a></h1>
+<div class="section" id="wsgi-and-wsgikit">
+<h2><a name="wsgi-and-wsgikit">WSGI, and WSGIKit</a></h2>
+<p><em>A strategy to make Python a compelling web development language</em></p>
+</div>
+</div>
+<div class="slide"><h1><a name="foundation">Foundation</a></h1>
+<div class="section" id="what-is-a-foundation">
+<h2><a name="what-is-a-foundation">What is a Foundation</a></h2>
+<ul class="simple">
+<li>Decoupled libraries (few dependencies)</li>
+<li>Stable Dependencies Principle</li>
+<li>Testable libraries</li>
+<li>Thoroughly documented</li>
+</ul>
+</div>
+</div>
+<div class="slide"><h1><a name="id9">Foundation</a></h1>
+<ul class="simple">
+<li>Libraries that can be &quot;complete&quot;</li>
+<li>Limited and well-defined scope</li>
+<li>Not easy, just possible</li>
+<li>Avoids points of disagreement (like specific templating languages or
+threading vs. processes)</li>
+</ul>
+</div>
+<div class="slide"><h1><a name="id10">Foundation</a></h1>
+<div class="section" id="what-isn-t-a-foundation">
+<h2><a name="what-isn-t-a-foundation">What isn't a Foundation</a></h2>
+<ul class="simple">
+<li>Not a particular server</li>
+<li>Minimal, not convenient</li>
+<li>Robust, not pleasing</li>
+<li>Concrete where possible</li>
+<li>Explicit, not necessarily concise</li>
+</ul>
+</div>
+</div>
+<div class="slide"><h1><a name="part-ii-wsgi">Part II: WSGI</a></h1>
+<div class="section" id="what-is-wsgi">
+<h2><a name="what-is-wsgi">What Is WSGI?</a></h2>
+<ul class="simple">
+<li>Web Server Gateway Interface</li>
+<li>PEP 333, written by Phillip Eby</li>
+<li>About 1 year old</li>
+</ul>
+</div>
+</div>
+<div class="slide"><h1><a name="wsgi">WSGI</a></h1>
+<div class="section" id="wsgi-as-a-foundation">
+<h2><a name="wsgi-as-a-foundation">WSGI as a Foundation</a></h2>
+<ul class="simple">
+<li>It connects &quot;servers&quot; to &quot;applications&quot;, e.g., Apache to Zope, or
+Twisted to Webware</li>
+<li>WSGI is already a foundational API</li>
+<li>This presentation shows how it is a framework for other foundational
+elements</li>
+</ul>
+</div>
+</div>
+<div class="slide"><h1><a name="id11">WSGI</a></h1>
+<div class="section" id="wsgi-a-brief-explanation">
+<h2><a name="wsgi-a-brief-explanation">WSGI: a brief explanation</a></h2>
+<p>The one-minute introduction to WSGI, using WSGIKit and
+<tt class="literal"><span class="pre">wsgikit.webkit</span></tt> as an example...</p>
+<p>(these slides abbreviate the standard)</p>
+</div>
+</div>
+<div class="slide"><h1><a name="the-application">The Application</a></h1>
+<pre class="literal-block">
+from wsgikit.webkit.wsgiwebkit import webkit
+my_application = webkit('/path/to/webkit/root')
+</pre>
+<ul class="simple">
+<li><tt class="literal"><span class="pre">webkit</span></tt> creates a WSGI application</li>
+<li>The standard applies only to that application, not its construction</li>
+</ul>
+</div>
+<div class="slide"><h1><a name="the-server">The Server</a></h1>
+<pre class="literal-block">
+from wsgikit.cgiserver import run_with_cgi
+run_with_cgi(my_application)
+</pre>
+<ul class="simple">
+<li><tt class="literal"><span class="pre">run_with_cgi</span></tt> just a gateway to turn any WSGI application into a
+CGI application</li>
+<li>Other &quot;servers&quot; may need different information, like a port or host</li>
+<li>The standard applies to what <tt class="literal"><span class="pre">run_with_cgi</span></tt> does with
+<tt class="literal"><span class="pre">my_application</span></tt></li>
+</ul>
+</div>
+<div class="slide"><h1><a name="id12">The Application</a></h1>
+<ul>
+<li><p class="first">Application objects are called:</p>
+<pre class="literal-block">
+def run_with_cgi(app):
+    ....
+    app_iter = app(environ, start_response)
+    ...
+</pre>
+</li>
+<li><p class="first">The application returns an iterator that produces the body of the
+response</p>
+</li>
+</ul>
+</div>
+<div class="slide"><h1><a name="environ">environ</a></h1>
+<div class="section" id="id13">
+<h2><a name="id13"><tt class="literal"><span class="pre">environ</span></tt></a></h2>
+<pre class="literal-block">
+app(environ, start_response)
+</pre>
+<ul class="simple">
+<li>A dictionary</li>
+<li>Most keys are like CGI environmental variables
+- <tt class="literal"><span class="pre">&quot;SCRIPT_NAME&quot;</span></tt>
+- <tt class="literal"><span class="pre">&quot;PATH_INFO&quot;</span></tt>
+- <tt class="literal"><span class="pre">&quot;QUERY_STRING&quot;</span></tt>, etc.</li>
+<li>Some additional keys...</li>
+</ul>
+</div>
+</div>
+<div class="slide"><h1><a name="id14">environ</a></h1>
+<pre class="literal-block">
+app(environ, start_response)
+</pre>
+<ul class="simple">
+<li><tt class="literal"><span class="pre">&quot;wsgi.input&quot;</span></tt>: a file-like object, the body of the request
+- under CGI: <tt class="literal"><span class="pre">sys.stdin</span></tt></li>
+<li>Metadata about the request (e.g., if the environment is threaded),
+a file for simple error logging</li>
+</ul>
+</div>
+<div class="slide"><h1><a name="id15">environ</a></h1>
+<pre class="literal-block">
+app(environ, start_response)
+</pre>
+<ul class="simple">
+<li>Extensions can add new keys to the dictionary,
+e.g. <tt class="literal"><span class="pre">&quot;wsgikit.session&quot;</span></tt></li>
+<li>There's no standard for what goes in those keys</li>
+</ul>
+</div>
+<div class="slide"><h1><a name="start-response">start_response</a></h1>
+<div class="section" id="id16">
+<h2><a name="id16"><tt class="literal"><span class="pre">start_response</span></tt></a></h2>
+<pre class="literal-block">
+app(environ, start_response)
+</pre>
+<ul>
+<li><p class="first"><em>Another</em> callable.  The application calls <tt class="literal"><span class="pre">start_response</span></tt>:</p>
+<pre class="literal-block">
+def my_app(environ, start_response):
+    ...
+    start_response('200 OK', [('Content-type', 'text/html')])
+    return ['&lt;html&gt;...']
+</pre>
+</li>
+</ul>
+</div>
+</div>
+<div class="slide"><h1><a name="wsgi-as-a-framework">WSGI as a Framework</a></h1>
+<ul class="simple">
+<li>WSGI is a well-specified</li>
+<li>All the state is in <tt class="literal"><span class="pre">environ</span></tt> or passed between functions</li>
+<li>The process serves as a pipeline</li>
+<li>No classes, no inheritance, everything explicit and transparent</li>
+</ul>
+</div>
+<div class="slide"><h1><a name="wsgi-middleware">WSGI Middleware</a></h1>
+<p>A simple example:</p>
+<p><img align="center" alt="simple-middleware.png" src="simple-middleware.png" /></p>
+</div>
+<div class="slide"><h1><a name="id17">WSGI Middleware</a></h1>
+<p><img align="center" alt="full-middleware.png" src="full-middleware.png" /></p>
+</div>
+<div class="slide"><h1><a name="id18">WSGI Middleware</a></h1>
+<div class="section" id="middleware">
+<h2><a name="middleware">Middleware</a></h2>
+<ul class="simple">
+<li>Object that is a WSGI application</li>
+<li>Delegates to another WSGI application</li>
+<li>Acts as a server to that application</li>
+</ul>
+</div>
+</div>
+<div class="slide"><h1><a name="id19">WSGI Middleware</a></h1>
+<div class="section" id="session">
+<h2><a name="session"><tt class="literal"><span class="pre">session</span></tt></a></h2>
+<ul class="simple">
+<li>Fetches a session for each request</li>
+<li>Saves session when request completes</li>
+<li>Sets session ID (using a cookie)</li>
+</ul>
+</div>
+</div>
+<div class="slide"><h1><a name="id20">WSGI Middleware</a></h1>
+<div class="section" id="session-psuedocode">
+<h2><a name="session-psuedocode"><tt class="literal"><span class="pre">session</span></tt> psuedocode</a></h2>
+<pre class="literal-block">
+def session_middleware(wrapped_app):
+    def replacement_app(environ, start_response):
+        session_obj = Session(environ)
+        environ['wsgikit.session'] = session_obj
+        def replacement_start_response(status, headers):
+            if session_obj.session_created:
+                headers.append(
+                    ('Set-Cookie', 'SID=' + session_obj.sid))
+            return start_response(status, headers)
+        return wrapped_app(environ, replacement_start_response)
+    return replacement_app
+</pre>
+</div>
+</div>
+<div class="slide"><h1><a name="id21">WSGI Middleware</a></h1>
+<div class="section" id="using-session">
+<h2><a name="using-session">Using <tt class="literal"><span class="pre">session</span></tt></a></h2>
+<pre class="literal-block">
+def my_app(environ, start_response):
+    ...
+    session = environ['wsgikit.session']
+    session.save_value('username', 'bob')
+    ...
+</pre>
+</div>
+</div>
+<div class="slide"><h1><a name="id22">WSGI Middleware</a></h1>
+<div class="section" id="urlparser">
+<h2><a name="urlparser"><tt class="literal"><span class="pre">urlparser</span></tt></a></h2>
+<ul class="simple">
+<li><tt class="literal"><span class="pre">urlparser</span></tt> uses <tt class="literal"><span class="pre">PATH_INFO</span></tt> to find the a WSGI application on
+disk</li>
+<li>This one WSGI application delegates to many applications</li>
+<li>When an application is found <tt class="literal"><span class="pre">SCRIPT_NAME</span></tt> and <tt class="literal"><span class="pre">PATH_INFO</span></tt> are 
+rewritten to reflect the new context</li>
+</ul>
+</div>
+</div>
+<div class="slide"><h1><a name="id23">Middleware</a></h1>
+<div class="section" id="who-uses-middleware">
+<h2><a name="who-uses-middleware">Who Uses Middleware?</a></h2>
+<ul class="simple">
+<li>Framework programmers</li>
+<li>The current WSGIKit middleware was created because the Webware API
+(and featureset) required it</li>
+<li>All access to the middleware is hidden in the Webware API</li>
+<li>Other framework authors can wrap the functionality with their native
+conventions</li>
+</ul>
+</div>
+</div>
+<div class="slide"><h1><a name="presentation">Presentation</a></h1>
+<div class="section" id="separating-logic-from-presentation">
+<h2><a name="separating-logic-from-presentation">Separating Logic From Presentation</a></h2>
+<ul class="simple">
+<li>APIs are the way frameworks present themselves</li>
+<li>APIs are a user interface for programmers</li>
+<li>Features are the logic underlying those APIs</li>
+</ul>
+</div>
+</div>
+<div class="slide"><h1><a name="id24">Presentation</a></h1>
+<div class="section" id="wsgi-as-logic-without-presentation">
+<h2><a name="wsgi-as-logic-without-presentation">WSGI As Logic Without Presentation</a></h2>
+<ul class="simple">
+<li>WSGI isn't pretty</li>
+<li>WSGI doesn't have rounded corners</li>
+<li>WSGI isn't exposed to &quot;end users&quot; (the majority of developers)</li>
+</ul>
+</div>
+</div>
+<div class="slide"><h1><a name="why">Why?</a></h1>
+<div class="section" id="why-is-this-interesting">
+<h2><a name="why-is-this-interesting">Why Is This Interesting?</a></h2>
+<ul class="simple">
+<li>These components are hard to write in a cross-framework manner</li>
+<li>They rely on the request and response</li>
+<li>We have no standard request and response objects</li>
+<li>Different frameworks can live side by side</li>
+</ul>
+</div>
+</div>
+<div class="slide"><h1><a name="id25">Why?</a></h1>
+<ul class="simple">
+<li>Components can only communicate through the <tt class="literal"><span class="pre">environ</span></tt> and other
+well-defined channels</li>
+<li>Components must be decoupled</li>
+<li>Components can be tackled separately</li>
+<li>We can finally share work</li>
+</ul>
+</div>
+<div class="slide"><h1><a name="future">Future</a></h1>
+<ul class="simple">
+<li>New standards, e.g., standardize an API for
+<tt class="literal"><span class="pre">environ[&quot;session_v1.factory&quot;]</span></tt></li>
+<li>More frameworks presented as WSGI components</li>
+<li>Leading to more intimate inter-framework cooperation</li>
+<li>WSGI servers that address commercial hosting needs</li>
+<li>Solutions can finally stick</li>
+</ul>
+</div>
+<div class="slide"><h1><a name="id26">.</a></h1>
+<div class="section" id="id27">
+<h2><a name="id27">WSGI Middleware and WSGIKit</a></h2>
+<p>Using WSGI Middleware to build a foundation for Python web programming.</p>
+<pre class="literal-block">
+Ian Bicking
+Imaginary Landscape Web Development
+imagescape.com
+</pre>
+</div>
+</div>
+</div>
+</div></body>
+</html>

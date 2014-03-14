@@ -1,0 +1,43 @@
+`URLDispatch` sends incoming requests to applications based on
+prefixes.  First, lets create an application that tells us about what
+its ``SCRIPT_NAME`` and ``PATH_INFO`` are::
+
+    >>> def path_app(environ, start_response):
+    ...     start_response('200 OK', [('Content-type', 'text/plain')])
+    ...     return [environ.get('SCRIPT_NAME', ''), ':',
+    ...             environ.get('PATH_INFO', '')]
+
+Then we create a list of these applications and create the
+dispatcher::
+
+    >>> from urldispatch import URLDispatch
+    >>> app_list = [('/foo', path_app), ('/bar', path_app)]
+    >>> dispatch = URLDispatch(app_list)
+
+We should see the proper values, plus 404 Not Found when no prefix
+matches::
+
+    >>> from testrunner import send_request
+    >>> print send_request(dispatch, '/foo/bar')
+    200 OK
+    ...
+    /foo:/bar
+    >>> print send_request(dispatch, '/bar/XXX')
+    200 OK
+    ...
+    /bar:/XXX
+    >>> print send_request(dispatch, '/baz')
+    404 Not Found
+    ...
+
+If we want a default application we can use the empty string::
+
+    >>> from simpleapp import simple_app
+    >>> app_list.append(('', simple_app))
+    >>> dispatch = URLDispatch(app_list)
+    >>> print send_request(dispatch, '/baz')
+    200 OK
+    ...
+    ...Simple App...
+    ...
+

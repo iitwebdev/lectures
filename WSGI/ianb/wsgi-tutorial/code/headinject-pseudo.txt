@@ -1,0 +1,6 @@
+    4  Use HTMLFilter
+ 6- 8  The middleware is instantiated/configured with some text
+         that goes into the <head> of the page
+   10  To filter:
+12-16  Find </head>
+17-19  Put any extra_head there

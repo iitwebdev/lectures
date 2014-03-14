@@ -1,0 +1,10 @@
+ 3- 6  Pass in a dictionary of users:passwords
+ 9-10  If HTTP_AUTHORIZATION not in environ:
+21-27    Give 401 response
+12-14  Decode username and password
+   16  Check username/password:
+         Not OK:
+21-27      Give 401 response
+         OK:
+   18      Set REMOTE_USER=username
+   19      Send request to app

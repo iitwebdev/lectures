@@ -1,0 +1,16 @@
+CLASS:,Piece,,,,
+[name],title,link,description,price,inventory:int
+bowl,Bowl,bowl,"This is a bowl",[null],0
+plate,Plate,plate,"This is a plate",10,1
+,,,,,
+CLASS:,PieceTags,,,,
+,piece:ref,tag,,,
+,bowl,bowl,,,
+,bowl,ceramics,,,
+,plate,plate,,,
+,plate,flatish,,,
+,,,,,
+CLASS:,Section,,,,
+[name],title,link,description,tag,
+bowls,Bowls,bowls,"These are bowls",bowl,
+plates,Plates,plates,"These are plates",plate,

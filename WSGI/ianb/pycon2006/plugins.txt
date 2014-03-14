@@ -1,0 +1,613 @@
+Plugins using Eggs
+==================
+
+.. image:: SnakeEgg.GIF
+   :alt: Snake with egg
+   :align: right
+
+:Presentation: Ian Bicking
+
+Eggs
+----
+
+Q: What are Eggs?
+
+Eggs
+----
+
+Q: What are Eggs?
+
+A: They are a kind of package you download
+
+Eggs
+----
+
+Q: What are Eggs?
+
+A: No, I mean they are format for installation that ``pkg_resources``
+knows how to read
+
+So...
+-----
+
+Q: What's this ``pkg_resources`` ?
+
+So...
+-----
+
+Q: What's this ``pkg_resources`` ?
+
+A: It's a module for working with Eggs
+
+So...
+-----
+
+Q: What's this ``pkg_resources`` ?
+
+A: It's in ``setuptools``.
+
+Getting to the point
+--------------------
+
+Q: What's this ``setuptools`` ?
+
+Getting to the point
+--------------------
+
+Q: What's this ``setuptools`` ?
+
+A: It builds Eggs.
+
+Now you are annoying me
+-----------------------
+
+Q: What's this ``setuptools`` ?
+
+A: It's really the package that does all of "this"
+
+Almost there...
+---------------
+
+Q: What is "this"?
+
+Almost there...
+---------------
+
+Q: What is "this"?
+
+A: Plugins
+
+Plugins
+-------
+
+Q: What's a plugin?
+
+Plugins
+-------
+
+Q: What's a plugin?
+
+A: Ok, let's stop now
+
+So Many Names!
+--------------
+
+.. image:: python-viewing.jpg
+   :align: right
+   :alt: Scary snake
+
+Some of the concepts:
+
+* Eggs: a distribution format
+
+* Eggs: an installation format
+
+* pkg_resources: the module that implements runtime Egg support
+
+* easy_install: the script that finds and installs packages
+
+
+More Names!
+-----------
+
+.. image:: Sept035a.jpg
+   :align: right
+   :alt: Less scary snake
+   :height: 280
+
+* Setuptools: the project that provides all these features...
+
+* by Phillip J. Eby
+
+* Extension of distutils (also backport of some features)
+
+* Builds Eggs
+
+* Developer tools
+
+...
+---
+
+But really it's not that bad.  We Love Egg!
+
+.. image:: wall_03_1024.gif
+   :alt: happy eggs
+   :align: center
+   :height: 450
+
+Anatomy of an Egg
+-----------------
+
+From a source distribution:::
+
+    MyPackage/
+      MyPackage.egg-info/
+        requires.txt
+        top_level.txt
+        entry_points.txt
+      mypackage/
+        __init__.py (etc)
+
+Anatomy of an Egg
+-----------------
+
+An Egg installed::
+
+    site-packages/
+      MyPackage-1.0-py2.4.egg/
+        EGG-INFO/
+          requires.txt (etc)
+        mypackage/
+          __init__.py  (etc)
+
+Importing
+---------
+
+Your package is only importable when the Egg directory is on
+``sys.path``...
+
+::
+
+    site-packages/
+      MyPackage-1.0-py2.4.egg/
+        mypackage/
+          __init__.py  (etc)
+
+Importing
+---------
+
+``site-packages/easy-install.pth`` adds entries to ``sys.path`` -- a
+list of installed Eggs that are activated by default::
+
+    /Users/ianb/co/Paste
+    /Library/Frameworks/Python.framework/Versions/2.4/lib/
+    ...python2.4/site-packages/RuleDispatch-0.5a0.dev-
+    ...py2.4-macosx-10.3-ppc.egg
+    /Library/Frameworks/Python.framework/Versions/2.4/lib/
+    ...python2.4/site-packages/PyProtocols-1.0a0-py2.4-
+    ...macosx-10.3-ppc.egg
+
+Distributions
+-------------
+
+* ``MyPackage`` is the distribution, ``mypackage`` is the Python
+  package
+
+* One distribution can have multiple Python packages
+
+* But usually one distro/one package: I use mixed case to keep track
+  of the distinction
+
+* Distributions build Eggs
+
+* "Eggs" and "Distributions" are kind of the same (you'll seldom see
+  the term "egg" in the Setuptools code)
+
+Metadata
+--------
+
+Metadata files in ``.egg-info`` (or ``EGG-INFO``):
+
+``PKG-INFO``:
+    Readable package name, description, etc (what gets uploaded to the Cheese
+    Shop/PyPI)
+
+``requires.txt``:
+    Other distributions/packages that are required
+
+``top_level.txt``:
+    The top-level Python packages
+
+``entry_points.txt``:
+    A list of "entry points" (more later)
+
+Users can add more metadata in ``.egg-info``
+
+Plugins
+-------
+
+*Back to the topic of plugins...*
+
+Plugins
+-------
+
+Models:
+
+1. Extend an application:
+
+   - The plugin is dependent on the application
+
+   - The application owns the process/environment
+
+2. **Cooperative packages**:
+
+   - Packages provide things to each other
+
+   - Plugin system as neutral ground
+
+Entry Points
+------------
+
+A list of public objects in a distribution/Egg; example ``setup.py``::
+
+    setup(...
+        entry_points="""
+        [console_scripts]
+        paster = paste.script.command:run
+
+        [paste.app_factory]
+        test = paste.script.testapp:TestApplication
+        """)
+
+Entry Points
+------------
+
+Objects sorted into "groups":
+
+* ``[console_scripts]`` are command-line scripts
+
+* ``[paste.app_factory]`` points to a function that builds a WSGI
+    application
+
+* ``[distutils.commands]`` points to a disutils command like ``python
+  setup.py sdist``
+
+* ``[python.template.plugin]`` is a class that represents a
+  templating language
+
+Entry Points
+------------
+
+* Entry points have "names": ``paster``, ``sdist``, ``cheetah``
+
+* Names point to actual Python objects::
+
+    paster = paste.script.command:run
+
+  Translates (roughly) to::
+
+    from paste.script.command import run
+
+Entry Points
+------------
+
+Loading an entry point::
+
+    import pkg_resources
+    ob = pkg_resources.load_entry_point(
+        'Commentary', 'paste.app_factory', 'main')
+    wsgiapp = ob({}, storage='/tmp')
+
+``'Commentary'``:
+    Distribution name
+``'paste.app_factory'``:
+    The entry point group (the type of object we are expecting)
+``'main'``:
+    The name of the entry point
+
+There are several other functions in ``pkg_resources`` for listing and
+inspecting entry points
+
+Finding Plugins
+---------------
+
+Several strategies for finding plugins -
+
+Explicit enumeration: a list of plugins to enable; specified with:
+
+- By distribution name (like ``MyPackage``)
+
+- Distribution name + version requirement (like ``MyPackage==0.3``)
+
+- By entry point name: (like just ``cheetah``)
+
+- Distribution + entry point name (like ``egg:Paste#http``)
+
+- By Python package: (like ``mypackage.plugin_module``)
+
+Finding Plugins
+---------------
+
+Scan for plugins:
+
+- by entry point group -- to find commands for ``paster help``::
+
+      for ep in pkg_resources.iter_entry_points(
+          'paste.global_paster_command'):
+          print ep.name
+
+- by group + name -- to find something that renders Cheetah
+  templates::
+
+      for ep in pkg_resources.iter_entry_points(
+          'python.template.plugin', 'cheetah'):
+          plugin = ep.load()
+
+Scanning for plugins
+--------------------
+
+- To scan, you have to have a database of packages
+
+- The database in Setuptools the "working set"
+
+- The database is really those ``.pth`` files
+
+- This is a little too casual
+
+- You can build a working set of plugins from a directory (good when
+  plugins are written to extend a particular application)
+
+Entry Point Metadata
+--------------------
+
+Entry points have metadata:
+
+* The name of the entry point
+
+* Name can be overloaded (like ``"create (create a new project)"``)
+
+* "Related" objects; an entry point in a different group with the same
+  name; related names; additional metadata files
+
+* Look at the entry point object (requires importing)
+
+* Extras (the additional requirements)
+
+Avoiding dependencies
+---------------------
+
+* Just because you have an import in your code doesn't mean that
+  you've added a dependency
+
+* It's only a dependency *when* you do the import
+
+* The import is only run when your module is imported
+
+* Not all modules in your package need to be importable
+
+* This doesn't mean ``try: import foo except ImportError: pass``
+
+Avoiding Dependencies
+---------------------
+
+* Depedencies can be conditional on the entry point::
+
+    [paste.app_factory]
+    main = mypackage.wsgiapp:make_app [web]
+
+* ``[web]`` is an *extra*::
+
+    setup( ...
+        extras_require={'web': ['Wareweb']},
+        )
+
+Avoiding fragility
+------------------
+
+* An object used as a plugin fulfills an *interface* (also might call
+  this a *protocol*)
+
+* Duck typed interfaces: just a set of methods
+
+* Someone has implicitly asserted that the object fulfills the
+  interfaces based on the entry point group
+
+* Entry point groups are strings; they aren't activated; they aren't
+  passed in automatically; if you need to adapt an object that should
+  be done on module import
+
+Manageable plugins
+------------------
+
+Plugins do not inject themselves
+
+Injection example (this is bad!)::
+
+    # Activate a plugin:
+    __import__(plugin_name)
+
+With a bad plugin::
+
+    # install self:
+    import master_application
+    from plugin_name import listener
+    master_application.event_listeners.append(
+        listener.Listener(master_application.app_instance))
+
+Flexible plugins
+----------------
+
+Objects loaded as entry points should *act*, they should not be *read*
+
+Example::
+
+    app_installer = load_entry_point(
+        'AnApplication', 'paste.app_installer', 'main')
+    app_installer.install(cmd, output_dir, vars)
+
+Not::
+
+    vars = load_entry_point(...)
+    copy_dir(vars.default_templates, output_dir + '/templates')
+    install_database(dbname, vars.initial_db_data)
+
+Declarative
+-----------
+
+But I like declarative...
+
+* Declarative data is easier to write
+
+* Often the caller knows more about the requirements
+
+* Less boilerplate
+
+Abstract Base Class
+-------------------
+
+Abstract base classes are one solution::
+
+    from appinstaller import AbstractInstaller
+
+    class MyInstaller(AbstractInstaller):
+        default_templates = 'templates/'
+        initial_db_data = [...]
+
+Self-referencing entry points
+-----------------------------
+
+For people who are even Too Lazy To Use An ABC::
+
+    [paste.app_install]
+    mypackage = paste.script.appinstall:Installer
+
+Using that plugin::
+
+    ob = pkg_resources.load_entry_point(...)
+    ob = Installer(MyPackageDist, 'paste.app_install',
+                   'mypackage')
+
+Not-abstract base class
+-----------------------
+
+What the ABC looks like...
+
+::
+
+    class Installer(object): ...
+        def config_content(self, command, vars):
+            meta_name = 'paste_deploy_config.ini_tmpl'
+            tmpl = Template(self.dist.get_metadata(meta_name),
+                            searchList=[vars])
+            return tmpl(**vars)
+
+Another example
+---------------
+
+And another ABC technique...
+
+::
+
+    class Installer(object): ...
+        def packages(self):
+            for line in self.dist.get_metadata_lines('top_level.txt'):
+                line = line.strip()
+                if not line and not line.startswith('#'):
+                    yield line
+        def setup_config(self, ...):
+            for package in self.packages():
+                try:
+                    mod = import_module(mod_name)
+                except ImportError:
+                    continue
+                mod.setup_config(...)
+
+Configurable pieces
+-------------------
+
+"Paste Deploy" represents one pattern for creating objects, for web applications::
+
+    [app:someapp]
+    use = egg:SomePackage#somepoint
+    foo = bar
+
+Means::
+
+    ob = pkg_resources.load_entry_point(
+        'SomePackage', 'paste.app_factory', 'somepoint')
+    app = ob(global_conf, foo='bar')
+
+That's probably it
+-------------------
+
+I'm probably out of time; I didn't talk about:
+
+* Installation and discovery of plugins (using ``easy_install``; maybe
+  Cheese Shop?)
+
+* Putting plugins in a directory; drag-and-drop plugin installation
+
+Installation...
+---------------
+
+For your users to install plugins::
+
+    $ easy_install -f http://plugin-index... \
+      -d plugin_dir \
+      PluginName
+
+Plugin Index
+------------
+
+A plugin index is:
+
+* Just a page with links to packages
+
+* A wiki is insecure! ::
+
+    <a href=".../PackageName-X.Y.tar.gz">...
+    <a href="http://svn-repository#egg=PackageName-dev">...
+
+Installation...
+---------------
+
+easy_install:
+
+* Installs traditional tarballs
+
+* Precompiled "egg distributions" (just optionally-platform-dependent
+  zip files)
+
+* Installs from Subversion repository
+
+Plugin Directory
+----------------
+
+* Put all your eggs in a "basket"
+
+* Haha
+
+* Blame the pun on the Zope guys
+
+* But I'm sure it was only a matter of time
+
+* Other puns still available: scrambled, poached, goose, beaters,
+  golden (taken!)
+
+Plugin Directory
+----------------
+
+* Sorry, where was I?
+
+* A new feature: scan a directory for plugins
+
+* Works well, but only if you have containment relationship
+
+* Every "plugin" provides something for *one* other package
+
+* This is where my research is lacking...
+
+OK...
+-----
+
+Now I've petered out, hopefully we didn't get this far.

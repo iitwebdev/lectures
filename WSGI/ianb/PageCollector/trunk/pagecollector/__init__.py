@@ -1,0 +1,1 @@
+from pagecollector.model import *

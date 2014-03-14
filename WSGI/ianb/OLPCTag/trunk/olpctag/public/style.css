@@ -1,0 +1,21 @@
+body {
+  font-family: Helvetica, sans-serif;
+}
+
+ul.menu li {
+  list-style: none;
+}
+
+ul.menu {
+  padding: 0;
+}
+
+td#sidebar-container {
+  width: 100px;
+  border-right: 2px solid #ccc;
+  padding-right: 1em;
+}
+
+td#content-container {
+  padding-left: 1em;
+}

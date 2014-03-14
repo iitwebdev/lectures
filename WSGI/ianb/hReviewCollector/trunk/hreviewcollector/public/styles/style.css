@@ -1,0 +1,41 @@
+body {
+  font-family: Helvetica, sans-serif;
+}
+
+.header {
+  width: 100%;
+  border-bottom: 2px solid #000;
+  padding-bottom: 0.25em;
+}
+
+ul.review-list {
+  padding: 0;
+}
+
+li.hreview-li {
+  list-style: none;
+  margin-bottom: 0.5em;
+  padding-left: 0;
+  border: 1px solid #999;
+}
+
+.best-rating {
+  color: #0a0;
+}
+
+.good-rating {
+  color: #060;
+}
+
+.worst-rating {
+  color: #a00;
+}
+
+.bad-rating {
+  color: #600;
+}
+
+div.flash {
+  border: 2px solid #000;
+  background-color: #99a;
+}

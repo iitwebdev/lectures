@@ -1,0 +1,3 @@
+#!/bin/bash
+
+rst2s5 --theme-url=./ui/olpc presentation.txt > presentation.html

@@ -1,0 +1,443 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>2006-11-13 PSF Board Meeting Minutes</title>
+  <meta name="keywords" content="None" />
+  <meta name="description" content="None" />
+  <link rel="alternate" type="application/rss+xml" title="Community Events"
+        href="http://www.python.org/channews.rdf" />
+  <link rel="alternate" type="application/rss+xml" title="Python Recipes"
+        href="http://aspn.activestate.com/ASPN/Cookbook/Python/index_rss" />
+  <link rel="alternate" type="application/rss+xml" title="Usergroup News"
+        href="http://python-groups.blogspot.com/feeds/posts/default" />
+  <link rel="alternate" type="application/rss+xml" title="Python Screencasts"
+        href="http://www.showmedo.com/latestVideoFeed/rss2.0?tag=python" />
+  <link rel="alternate" type="application/rss+xml" title="Python Podcasts"
+        href="http://www.awaretek.com/python/index.xml" />
+  <link rel="alternate" type="application/rss+xml" title="Foundation News"
+        href="http://pyfound.blogspot.com/feeds/posts/default" />
+  <link rel="alternate" type="application/rss+xml" title="Python Enhancement Proposals"
+        href="http://www.python.org/dev/peps/peps.rss" />
+  <link rel="stylesheet" type="text/css" media="screen" id="screen-switcher-stylesheet"
+        href="/styles/screen-switcher-default.css" />
+  <link rel="stylesheet" type="text/css" media="sc&#82;een"
+        href="/styles/netscape4.css" />
+  <link rel="stylesheet" type="text/css" media="print"
+        href="/styles/print.css" />
+  <link rel="alternate stylesheet" type="text/css" media="screen"
+        href="/styles/largestyles.css" title="large text" />
+  <link rel="alternate stylesheet" type="text/css" media="screen"
+        href="/styles/defaultfonts.css" title="default fonts" />
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search under the www.python.org Domain"
+        href="/search-pysite.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within the Python Wiki"
+        href="/search-pywiki.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within Python Books at Google Book Search"
+        href="/search-pybooks.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within the Python Documentation"
+        href="/search-pydocs.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search for a Module in the Standard Library"
+        href="/search-pymodules.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search for Packages inside the Cheeseshop (PyPI)"
+        href="/search-pycheese.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search Archives of the Main Python Mailing List"
+        href="/search-pythonlist.xml"/>
+
+  <script type="text/javascript" src="/js/iotbs2-key-directors-load.js"></script>
+  <script type="text/javascript" src="/js/iotbs2-directors.js"></script>
+  <script type="text/javascript" src="/js/iotbs2-core.js"></script>
+
+</head>
+
+
+<body>
+  <!-- Logo -->
+  <h1 id="logoheader">
+    <a href="/" id="logolink" accesskey="1"><img id="logo" src="/images/python-logo.gif" alt="homepage" border="0" /></a>
+  </h1>
+  <!-- Skip to Navigation -->
+  <div class="skiptonav"><a href="#left-hand-navigation" accesskey="2"><img src="/images/trans.gif" id="skiptonav" alt="skip to navigation" border="0" /></a></div>
+  <div class="skiptonav"><a href="#content-body" accesskey="3"><img src="/images/trans.gif" id="skiptocontent" alt="skip to content" border="0" /></a></div>
+  <!-- Utility Menu -->
+  <div id="utility-menu">
+    <!-- Search Box -->
+    <div id="searchbox">
+      <form method="get" action="http://google.com/search" id="searchform" name="searchform">
+        <div id="search">
+          <input type="hidden" id="domains" name="domains" value="www.python.org" />
+          <input type="hidden" id="sitesearch" name="sitesearch" value="www.python.org" />
+          <input type="hidden" id="sourceid" name="sourceid" value="google-search" />
+          <input type="text" class="input-text" name="q" id="q" />
+          <input type="submit" value="search" class="input-button" name="submit" id="submit" />
+          <a href="/search" class="reference">Advanced Search</a>
+        </div>
+      </form>
+    </div>
+    <div id="screen-switcher"></div>
+  </div>
+
+  <div id="left-hand-navigation">
+    <!-- Main Menu -->
+    <div id="menu">
+      <ul class="level-one">
+            <li>
+          <a href="/about/" title="About The Python Language">About</a>
+        </li>
+            <li>
+          <a href="/news/" title="Major Happenings Within the Python Community">News</a>
+        </li>
+            <li>
+          <a href="/doc/" title="Tutorials, Library Reference, C API">Documentation</a>
+        </li>
+            <li>
+          <a href="/download/" title="Start Running Python Under Windows, Mac, Linux and Others">Download</a>
+        </li>
+            <li>
+          <a href="/community/" title="Mailing Lists, Jobs, Conferences, SIGs, Online Chats">Community</a>
+        </li>
+            <li class="selected">
+          <a href="/psf/" title="Python Software Foundation" class="selected">Foundation</a>
+	    <ul class="level-two">
+		<li>
+	      <a href="/psf/about/" title="About the Python Software Foundation">About the PSF</a>
+              </li>
+		<li>
+	      <a href="/psf/summary/" title="Executive Summary">Executive Summary</a>
+              </li>
+		<li>
+	      <a href="/psf/mission/">Mission Statement</a>
+              </li>
+		<li>
+	      <a href="/psf/donations/">Donations</a>
+              </li>
+		<li>
+	      <a href="/psf/volunteer/">Volunteer</a>
+              </li>
+		<li>
+	      <a href="/psf/membership/">Membership FAQ</a>
+              </li>
+		<li>
+	      <a href="/psf/sponsorship/">Sponsor Memberships</a>
+              </li>
+		<li>
+	      <a href="/psf/members/">Membership Roster</a>
+              </li>
+		<li class="selected">
+	      <a href="/psf/records/" class="selected">Public Records</a>
+		<ul class="level-three">
+		  <li><a href="/psf/records/board/minutes/">Board Meetings</a></li>
+		  <li><a href="/psf/records/board/resolutions/">Board Resolutions</a></li>
+		  <li><a href="/psf/records/members/">Members' Meetings</a></li>
+		</ul>
+              </li>
+		<li>
+	      <a href="/psf/committees/">Committees</a>
+              </li>
+		<li>
+	      <a href="/psf/bylaws/">Bylaws</a>
+              </li>
+		<li>
+	      <a href="/psf/trademarks/">Trademark Policy</a>
+              </li>
+		<li>
+	      <a href="/psf/grants/">Grants Program</a>
+              </li>
+		<li>
+	      <a href="http://wiki.python.org/moin/PythonSoftwareFoundation">PSF Wiki</a>
+              </li>
+		<li>
+	      <a href="http://pyfound.blogspot.com">PSF Weblog</a>
+              </li>
+		<li>
+	      <a href="/psf/weblog-policy/">Weblog Policy</a>
+              </li>
+		<li>
+	      <a href="/psf/press-release/">Press Releases</a>
+              </li>
+		<li>
+	      <a href="/psf/forms/">Membership Forms</a>
+              </li>
+		<li>
+	      <a href="/psf/contrib/">Contribution Forms</a>
+              </li>
+		<li>
+	      <a href="/psf/license/">License</a>
+              </li>
+	    </ul>
+        </li>
+            <li>
+          <a href="/dev/" title="Development of the Python language and website">Core Development</a>
+        </li>
+            <li>
+          <a href="/links/" title="Pointers to Useful Information">Links</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Quick Links -->
+  </div>
+
+  <div id="content-body">
+    <div id="body-main">
+      <div id="content">
+        
+          <div id="breadcrumb">
+               <a href="/psf/">Foundation</a>
+               <span class="breadcrumb-separator">&gt;</span>
+               <a href="/psf/records/">Public Records</a>
+               <span class="breadcrumb-separator">&gt;</span>
+            
+            2006-11-13 PSF Board Meeting Minutes
+          </div>
+
+
+
+        <!--utf-8--><!--0.4.1--><div class="minutes-title line-block">
+<div class="line">The Python Software Foundation</div>
+<div class="line">Minutes of a Regular Meeting of the Board of Directors</div>
+<div class="line"><br /></div>
+<div class="line">November 13, 2006</div>
+</div>
+<p>A regular meeting of the Python Software Foundation (&quot;PSF&quot;) Board of
+Directors was held over Internet Relay Chat beginning at 18:02 UTC, 13
+November 2006.  Stephan Deibel presided at the meeting.  David Goodger
+prepared these minutes.</p>
+<div class="contents topic">
+<p class="topic-title first"><a id="contents" name="contents">Contents</a></p>
+<ul class="auto-toc simple">
+<li><a class="reference" href="#attendance" id="id1" name="id1">1&nbsp;&nbsp;&nbsp;Attendance</a></li>
+<li><a class="reference" href="#minutes-of-past-meetings" id="id2" name="id2">2&nbsp;&nbsp;&nbsp;Minutes of Past Meetings</a></li>
+<li><a class="reference" href="#status-of-past-action-items" id="id3" name="id3">3&nbsp;&nbsp;&nbsp;Status of Past Action Items</a><ul class="auto-toc">
+<li><a class="reference" href="#carried-forward" id="id4" name="id4">3.1&nbsp;&nbsp;&nbsp;Carried Forward</a></li>
+<li><a class="reference" href="#new-in-october" id="id5" name="id5">3.2&nbsp;&nbsp;&nbsp;New in October</a></li>
+</ul>
+</li>
+<li><a class="reference" href="#grants-committee" id="id6" name="id6">4&nbsp;&nbsp;&nbsp;Grants Committee</a></li>
+<li><a class="reference" href="#payroll-service" id="id7" name="id7">5&nbsp;&nbsp;&nbsp;Payroll Service</a></li>
+<li><a class="reference" href="#trademark-policy" id="id8" name="id8">6&nbsp;&nbsp;&nbsp;Trademark Policy</a></li>
+<li><a class="reference" href="#pycon" id="id9" name="id9">7&nbsp;&nbsp;&nbsp;PyCon</a></li>
+<li><a class="reference" href="#advocacy-coordinator-status" id="id10" name="id10">8&nbsp;&nbsp;&nbsp;Advocacy Coordinator Status</a></li>
+<li><a class="reference" href="#adjournment" id="id11" name="id11">9&nbsp;&nbsp;&nbsp;Adjournment</a></li>
+</ul>
+</div>
+<div class="section">
+<h2><a class="toc-backref" href="#id1" id="attendance" name="attendance">1&nbsp;&nbsp;&nbsp;Attendance</a></h2>
+<p>The following members of the Board of Directors were present at the
+meeting: Tim Peters, Stephan Deibel, Martin von Löwis, David Goodger,
+and Andrew Kuchling.  Also in attendance were Kurt Kaiser (Treasurer)
+and Neal Norwitz (Assistant Treasurer).</p>
+</div>
+<div class="section">
+<h2><a class="toc-backref" href="#id2" id="minutes-of-past-meetings" name="minutes-of-past-meetings">2&nbsp;&nbsp;&nbsp;Minutes of Past Meetings</a></h2>
+<p>The 9 October 2006 minutes were approved by a 5-0-0 vote.</p>
+</div>
+<div class="section">
+<h2><a class="toc-backref" href="#id3" id="status-of-past-action-items" name="status-of-past-action-items">3&nbsp;&nbsp;&nbsp;Status of Past Action Items</a></h2>
+<p>(Pending action items <span class="action">appear like this</span>.)</p>
+<div class="section">
+<h3><a class="toc-backref" href="#id4" id="carried-forward" name="carried-forward">3.1&nbsp;&nbsp;&nbsp;Carried Forward</a></h3>
+<p>The following are action items carried forward from the 9 October 2006
+meeting, as highlighted in the minutes (Section 3, Status of Past
+Action Items):</p>
+<ol class="arabic">
+<li><p class="first">Originally from October 2005, Section 4, Public Support Committee:
+<span class="action">D. Goodger will pursue web page and installer donation
+link ideas.</span></p>
+<p>Status: carried forward.</p>
+</li>
+<li><p class="first">Originally from October 2005, Section 5, Ubuntu Development
+Meeting: <span class="action">Add &quot;swag for events&quot; to future agenda
+[D. Goodger].</span></p>
+<p>Status: carried forward.</p>
+</li>
+<li><p class="first">Originally from November 2005, follow-up from December 2005:
+<span class="action">D. Goodger is to contact a potential PSF sponsor/donor.</span></p>
+<p>Status: in progress.</p>
+</li>
+<li><p class="first">Originally from November 2005, follow-up from December 2005:
+S. Holden is to contact a potential PSF sponsor/donor.</p>
+<p>S.&nbsp;Holden reported by email that there has been no response to his
+email or snailmail enquiries.</p>
+<p>Status: <strong>dropped</strong>.</p>
+</li>
+<li><p class="first">Originally from November 2005, Section 8, Trademark Policy:
+S. Deibel to work on the PSF trademark policy, and discuss with
+Heather Meeker.</p>
+<p>See <a class="reference" href="#trademark-policy">Trademark Policy</a> below.</p>
+<p>Status: <strong>done</strong>.</p>
+</li>
+<li><p class="first">Originally from March 2006, Section 4, Grants Committee:
+M. von Löwis agreed to draft a report on the PSF grants.</p>
+<p>M.&nbsp;von Löwis posted a report to the PSF-members mailing list.  See
+<a class="reference" href="#grants-committee">Grants Committee</a> below.</p>
+<p>Status: <strong>done</strong>.</p>
+</li>
+<li><p class="first">Originally from June 2006, Section 6, PSF Records: <span class="action">The
+Board agreed to assemble the existing records in one place, have
+them scanned, and enter them into the PSF data repository.
+D. Goodger will coordinate this work and maintain the records.</span></p>
+<p>Status: in progress.</p>
+</li>
+<li><p class="first">Originally from July 2006, Section 3.2, item 3: <span class="action">D. Goodger
+will update &amp; confirm email &amp; snail mail addresses when he receives
+the PSF records, with the help of M. von Löwis.</span></p>
+<p>Status: carried forward.</p>
+</li>
+<li><p class="first">Originally from July 2006, Section 9, 2006 Budget &amp; Action Plan:
+<span class="action">D. Goodger will develop the 2006 Budget &amp; Action Plan
+further and take it to the PSF membership for feedback.</span></p>
+<p>Status: carried forward.</p>
+</li>
+<li><p class="first">Originally from August 2006, Section 10: <span class="action">T. Peters will
+ask the advice of Larry Rosen regarding concerns with the
+contributor agreement.</span></p>
+<p>Status: carried forward.</p>
+</li>
+<li><p class="first">Originally from September 2006, Section 3.1, item 7:
+<span class="action">D. Goodger will telephone Jeremy Hylton to ask for PSF
+records to be sent.</span></p>
+<p>Status: carried forward.</p>
+</li>
+<li><p class="first">Originally from September 2006, Section 3.2, item 1: S. Holden
+will forward the contributor agreements from the &quot;Need for Speed&quot;
+sprint to D. Goodger, who will scan them.</p>
+<p>D.&nbsp;Goodger reported that the &quot;Need for Speed&quot; contributor
+agreements were received from S. Holden.</p>
+<p>Status: <strong>done</strong>.</p>
+</li>
+<li><p class="first">Originally from September 2006, Section 3.2, item 7:
+<span class="action">S. Deibel and B. Cannon will follow up regarding further
+discussion with Mark Shuttleworth.</span></p>
+<p>Status: carried forward.</p>
+</li>
+</ol>
+</div>
+<div class="section">
+<h3><a class="toc-backref" href="#id5" id="new-in-october" name="new-in-october">3.2&nbsp;&nbsp;&nbsp;New in October</a></h3>
+<p>No new action items originated in the 9 October 2006 board meeting on
+IRC.</p>
+</div>
+</div>
+<div class="section">
+<h2><a class="toc-backref" href="#id6" id="grants-committee" name="grants-committee">4&nbsp;&nbsp;&nbsp;Grants Committee</a></h2>
+<p><span class="action">D. Goodger will add MvL's Grants Committee report to the web
+site.</span></p>
+<p><span class="action">M. von Löwis will clarify the status of the Jython grant and
+provide a new figure for the outstanding grants commitment.</span></p>
+</div>
+<div class="section">
+<h2><a class="toc-backref" href="#id7" id="payroll-service" name="payroll-service">5&nbsp;&nbsp;&nbsp;Payroll Service</a></h2>
+<p>K. Kaiser investigated using a payroll service to handle the two PSF
+employees (as an alternative to becoming a payroll tax expert).  The
+best solution he found was PayChex.  They will do all the processing
+for us: write the employee checks, make withholding deposits to the
+state and federal revenue services (debiting our account), file all
+the necessary registrations, send out W-2s, and send us periodic
+reports and copies of the various filings.  They are a well-known
+national organization and are bonded to do this service.</p>
+<p>The cost is $380 per year, based on quarterly payments.  Adding
+additional employees at a future date would not add significant cost,
+should the PSF find the need.</p>
+<blockquote>
+RESOLVED that the Treasurer is authorized to select a payroll
+processing service for payment of PSF employees with a budget of
+up to $500 per year.</blockquote>
+<p>Approved 5-0-0.</p>
+</div>
+<div class="section">
+<h2><a class="toc-backref" href="#id8" id="trademark-policy" name="trademark-policy">6&nbsp;&nbsp;&nbsp;Trademark Policy</a></h2>
+<blockquote>
+RESOLVED, that the PSF adopt the trademark policy version 1.2.2,
+available at <a class="reference" href="http://python.org/psf/trademarks">http://python.org/psf/trademarks</a>.  Any updates
+require prior approval of the PSF board.</blockquote>
+<p>Approved 4-0-1.</p>
+<p><span class="action">D. Goodger will add a note to the trademark policy page with
+the board resolution details.</span></p>
+<p><span class="action">A. Kuchling will post a PSF weblog entry about the trademark
+policy.</span></p>
+</div>
+<div class="section">
+<h2><a class="toc-backref" href="#id9" id="pycon" name="pycon">7&nbsp;&nbsp;&nbsp;PyCon</a></h2>
+<p>A.&nbsp;Kuchling provided a PyCon status report:</p>
+<blockquote>
+<p>104 talk proposals were submitted.  This is a significant increase
+over last year; for 2006 we received ~80 proposals.  The final
+accept/reject decisions still need to be made; we'll try to do
+that this week.  A lot of the proposals look really interesting;
+I'm quite pleased and think the refereed tracks will be very good.
+The schedule has enough space to accept 50-60 proposals, so we'll
+have about 50% acceptance; sadly, we'll have to reject some good
+ones.</p>
+<p>Confirmed keynote: Ivan Krstic of the One Laptop Per Child
+Project.  Probable keynote: Adele Goldberg (I don't know her topic
+yet).</p>
+<p>A PSF members' meeting is still scheduled for the Friday; we should
+begin preparing for that.  (Post a call for new member nominees,
+business from members, etc.)</p>
+</blockquote>
+<p>The board discussed allocating funds for attendance costs for
+individuals attending PyCon, but decided to include this into an
+overall PyCon budget, to be prepared.  <span class="action">A. Kuchling will
+prepare a budget for PyCon to be discussed by email or at the next
+meeting.</span></p>
+<p><span class="action">D. Goodger will prepare for the PSF members' meeting at
+PyCon.</span></p>
+</div>
+<div class="section">
+<h2><a class="toc-backref" href="#id10" id="advocacy-coordinator-status" name="advocacy-coordinator-status">8&nbsp;&nbsp;&nbsp;Advocacy Coordinator Status</a></h2>
+<p>S.&nbsp;Deibel reported on the status of the Advocacy Coordinator grant.
+The board discussed the progress so far and the direction for the
+future.  <span class="action">S. Deibel will summarize the board's discussion and
+communicate it with the Advocacy Coordinator.</span></p>
+<p>The Advocacy Coordinator has a wiki page
+(<a class="reference" href="http://wiki.python.org/moin/PythonAdvocacyCoordinator">http://wiki.python.org/moin/PythonAdvocacyCoordinator</a>) and a blog
+(<a class="reference" href="http://python-advocacy.blogspot.com/">http://python-advocacy.blogspot.com/</a>).</p>
+</div>
+<div class="section">
+<h2><a class="toc-backref" href="#id11" id="adjournment" name="adjournment">9&nbsp;&nbsp;&nbsp;Adjournment</a></h2>
+<p>S.&nbsp;Deibel adjourned the meeting at 18:57 UTC.</p>
+</div>
+
+
+      </div>
+
+      
+      <div id="footer">
+	<div id="credits">
+ 	  <a href="/about/website">Website maintained by the Python community</a><br/>
+	  <a href="http://www.xs4all.com/" title="Web and email hosting provided by xs4all, Netherlands">hosting by xs4all</a> /
+	  <a href="http://www.pollenation.net/" title="Design and content management system by Pollenation Internet, Yorkshire">design by pollenation</a>
+	</div>
+	Copyright &copy; 1990-2008, <a href='/psf'>Python Software Foundation</a><br/>
+	<a href="/about/legal">Legal Statements</a>
+      </div>
+
+
+    </div>
+  </div>
+</body>
+</html>
+
+
+
+
+
+

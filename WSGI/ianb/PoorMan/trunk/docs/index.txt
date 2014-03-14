@@ -1,0 +1,13 @@
+Poor Man
+--------
+
+PoorMan is an experiment in making a More Decoupled Framework.  It
+uses `Routes <http://routes.groovie.org/>`_ to map URL paths to
+object.  It uses decorators to make simple functions into WSGIish
+objects.  
+
+It tries to be clean and small, so you don't import from any
+subframeworks (even from PoorMan except for one import); it integrates
+other projects, but without letting them leak into your application or
+making you understand each piece.  Well, at least that's what it tries
+to do.

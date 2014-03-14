@@ -1,0 +1,111 @@
+Python Marketing And The Web
+++++++++++++++++++++++++++++
+
+Python Marketing And The Web
+============================
+
+*Why web programming matters most*
+
+http://ianbicking.org/docs/pycon2005/
+
+::
+
+    Ian Bicking
+    Imaginary Landscape LLC
+    www.imagescape.com
+
+Marketing
+=========
+
+Marketing Python
+----------------
+
+* Python has appeal for programmers
+* Python's appeal isn't interesting to managers and other decision
+  makers
+* What a programmer creates with Python is interesting to these
+  people 
+
+Marketing
+=========
+
+Python's Appeal To Managers
+---------------------------
+
+* Programs developed more quickly
+* Programs developed more reliably
+* Happy, responsive, friendly programmers
+
+Marketing
+=========
+
+Marketing
+---------
+
+* We just need to get our foot in the door
+
+Why Web
+=======
+
+Why Is The Web Most Important
+-----------------------------
+
+* The easiest programming environment
+* The most public platform
+* Less liability from heterogeneous environments
+* Standards do the heavy lifting: HTTP, HTML, CSS
+
+The Potential
+=============
+
+PHP growth figures:
+
+.. image:: ./phpstats-200501.png
+   :align: center
+
+Why We're Not Java
+==================
+
+Python isn't a better Java
+--------------------------
+
+* The PSF isn't Sun
+* Zope 3 and PEAK aren't J2EE
+* Static typing isn't dynamic typing
+* These aren't just technical differences
+
+Why We're Not Smalltalk
+=======================
+
+Python isn't the next Smalltalk
+-------------------------------
+
+* At least I really really hope it isn't
+
+Why We Are a P* Language
+========================
+
+Perl, PHP, ...
+--------------
+
+* Yeah, yeah, we don't like Perl
+* Sure, PHP 5 is a poor attempt to catch up with 1995 Python
+* But the marketing should be the same
+
+Perl, PHP
+=========
+
+Perl, PHP, ...
+--------------
+
+* No corporate backing
+* Not appealing to managers
+* Dynamically typed
+* Bursts of growth attached to the web
+
+We're Missing Out
+=================
+
+* The state of Python web programming is embarrassing
+* Python web programmers become Python programmers, Python advocates,
+  Python contributors

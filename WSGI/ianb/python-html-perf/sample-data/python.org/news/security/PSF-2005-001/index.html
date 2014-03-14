@@ -1,0 +1,255 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>PSF-2005-001 - SimpleXMLRPCServer.py allows unrestricted traversal</title>
+  <meta name="keywords" content="None" />
+  <meta name="description" content="None" />
+  <link rel="alternate" type="application/rss+xml" title="Community Events"
+        href="http://www.python.org/channews.rdf" />
+  <link rel="alternate" type="application/rss+xml" title="Python Recipes"
+        href="http://aspn.activestate.com/ASPN/Cookbook/Python/index_rss" />
+  <link rel="alternate" type="application/rss+xml" title="Usergroup News"
+        href="http://python-groups.blogspot.com/feeds/posts/default" />
+  <link rel="alternate" type="application/rss+xml" title="Python Screencasts"
+        href="http://www.showmedo.com/latestVideoFeed/rss2.0?tag=python" />
+  <link rel="alternate" type="application/rss+xml" title="Python Podcasts"
+        href="http://www.awaretek.com/python/index.xml" />
+  <link rel="alternate" type="application/rss+xml" title="Foundation News"
+        href="http://pyfound.blogspot.com/feeds/posts/default" />
+  <link rel="alternate" type="application/rss+xml" title="Python Enhancement Proposals"
+        href="http://www.python.org/dev/peps/peps.rss" />
+  <link rel="stylesheet" type="text/css" media="screen" id="screen-switcher-stylesheet"
+        href="/styles/screen-switcher-default.css" />
+  <link rel="stylesheet" type="text/css" media="sc&#82;een"
+        href="/styles/netscape4.css" />
+  <link rel="stylesheet" type="text/css" media="print"
+        href="/styles/print.css" />
+  <link rel="alternate stylesheet" type="text/css" media="screen"
+        href="/styles/largestyles.css" title="large text" />
+  <link rel="alternate stylesheet" type="text/css" media="screen"
+        href="/styles/defaultfonts.css" title="default fonts" />
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search under the www.python.org Domain"
+        href="/search-pysite.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within the Python Wiki"
+        href="/search-pywiki.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within Python Books at Google Book Search"
+        href="/search-pybooks.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within the Python Documentation"
+        href="/search-pydocs.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search for a Module in the Standard Library"
+        href="/search-pymodules.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search for Packages inside the Cheeseshop (PyPI)"
+        href="/search-pycheese.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search Archives of the Main Python Mailing List"
+        href="/search-pythonlist.xml"/>
+
+  <script type="text/javascript" src="/js/iotbs2-key-directors-load.js"></script>
+  <script type="text/javascript" src="/js/iotbs2-directors.js"></script>
+  <script type="text/javascript" src="/js/iotbs2-core.js"></script>
+
+</head>
+
+
+<body>
+  <!-- Logo -->
+  <h1 id="logoheader">
+    <a href="/" id="logolink" accesskey="1"><img id="logo" src="/images/python-logo.gif" alt="homepage" border="0" /></a>
+  </h1>
+  <!-- Skip to Navigation -->
+  <div class="skiptonav"><a href="#left-hand-navigation" accesskey="2"><img src="/images/trans.gif" id="skiptonav" alt="skip to navigation" border="0" /></a></div>
+  <div class="skiptonav"><a href="#content-body" accesskey="3"><img src="/images/trans.gif" id="skiptocontent" alt="skip to content" border="0" /></a></div>
+  <!-- Utility Menu -->
+  <div id="utility-menu">
+    <!-- Search Box -->
+    <div id="searchbox">
+      <form method="get" action="http://google.com/search" id="searchform" name="searchform">
+        <div id="search">
+          <input type="hidden" id="domains" name="domains" value="www.python.org" />
+          <input type="hidden" id="sitesearch" name="sitesearch" value="www.python.org" />
+          <input type="hidden" id="sourceid" name="sourceid" value="google-search" />
+          <input type="text" class="input-text" name="q" id="q" />
+          <input type="submit" value="search" class="input-button" name="submit" id="submit" />
+          <a href="/search" class="reference">Advanced Search</a>
+        </div>
+      </form>
+    </div>
+    <div id="screen-switcher"></div>
+  </div>
+
+  <div id="left-hand-navigation">
+    <!-- Main Menu -->
+    <div id="menu">
+      <ul class="level-one">
+            <li>
+          <a href="/about/" title="About The Python Language">About</a>
+        </li>
+            <li class="selected">
+          <a href="/news/" title="Major Happenings Within the Python Community" class="selected">News</a>
+	    <ul class="level-two">
+		<li class="selected">
+	      <a href="/news/security/" class="selected">Security Advisories</a>
+              </li>
+	    </ul>
+        </li>
+            <li>
+          <a href="/doc/" title="Tutorials, Library Reference, C API">Documentation</a>
+        </li>
+            <li>
+          <a href="/download/" title="Start Running Python Under Windows, Mac, Linux and Others">Download</a>
+        </li>
+            <li>
+          <a href="/community/" title="Mailing Lists, Jobs, Conferences, SIGs, Online Chats">Community</a>
+        </li>
+            <li>
+          <a href="/psf/" title="Python Software Foundation">Foundation</a>
+        </li>
+            <li>
+          <a href="/dev/" title="Development of the Python language and website">Core Development</a>
+        </li>
+            <li>
+          <a href="/links/" title="Pointers to Useful Information">Links</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Quick Links -->
+  </div>
+
+  <div id="content-body">
+    <div id="body-main">
+      <div id="content">
+        
+          <div id="breadcrumb">
+               <a href="/news/">News</a>
+               <span class="breadcrumb-separator">&gt;</span>
+               <a href="/news/security/">Security Advisories</a>
+               <span class="breadcrumb-separator">&gt;</span>
+            
+            PSF-2005-001 - SimpleXMLRPCServer.py allows unrestricted traversal
+          </div>
+
+
+
+        <h2>PSF-2005-001 - SimpleXMLRPCServer.py allows unrestricted traversal</h2>
+
+<hr>
+
+<h3>Python Security Advisory</h3>
+
+<pre><b>
+Advisory ID:  <a href="/files/news/security/PSF-2005-001/PSF-2005-001.txt">PSF-2005-001</a>
+Issue Date:   February 3, 2005
+Product:      Python
+Versions:     2.2 all versions, 2.3 prior to 2.3.5, 2.4
+CVE Names:    CAN-2005-0089
+</b></pre>
+
+<hr>
+
+<p>Python is an interpreted, interactive, object-oriented programming
+language. It is often compared to Tcl, Perl, Scheme or Java.</p>
+
+<p>The Python development team has discovered a flaw in the
+SimpleXMLRPCServer library module which can give remote attackers
+access to internals of the registered object or its module or possibly
+other modules.  The flaw only affects Python XML-RPC servers that use
+the register_instance() method to register an object without a
+_dispatch() method.  Servers using only register_function() are not
+affected.</p>
+
+<p>On vulnerable XML-RPC servers, a remote attacker may be able to
+view or modify globals of the module(s) containing the registered
+instance's class(es), potentially leading to data loss or arbitrary
+code execution.  If the registered object is a module, the danger is
+particularly serious.  For example, if the registered module imports
+the os module, an attacker could invoke the os.system() function.</p>
+
+<p>But the attack is not limited to registered object modules; for
+example, the code in the Python cookbook recipe at <a
+href="http://aspn.activestate.com/ASPN/Cookbook/Python/Recipe/165375"
+>http://aspn.activestate.com/ASPN/Cookbook/Python/Recipe/165375</a> is
+vulnerable to an attack using im_func.func_globals.update which allows
+reading or modifying the global variable accessList.
+
+<p>The Common Vulnerabilities and Exposures project (<a
+href="http://cve.mitre.org">cve.mitre.org</a>) has assigned the name
+CAN-2005-0089 to this issue.</p>
+
+<p>Python 2.3.5 will be released from <a href="http://www.python.org"
+>www.python.org</a> within a few days containing a fix for this issue.
+Python 2.4.1 will be released later this month containing the same
+fix.  Patches for Python 2.2, 2.3 and
+2.4 are also immediately available:</p>
+
+<ul>
+
+<li> <a href="/files/news/security/PSF-2005-001/patch-2.2.txt"
+>http://python.org/files/news/security/PSF-2005-001/patch-2.2.txt</a> (Python
+2.2)
+
+<li> <a href="/files/news/security/PSF-2005-001/patch.txt"
+>http://python.org/files/news/security/PSF-2005-001/patch.txt</a> (Python 2.3,
+2.4)
+
+</ul>
+
+<p>Note that these patches disable recursive traversal, potentially
+resulting in reduced functionality of XML-RPC applications depending
+on this feature.</p>
+
+<p><b>Acknowledgement:</b> thanks to Graham Dumpleton for reporting
+this issue.</p>
+
+<hr>
+
+<h3>Postscripts</h3>
+
+<p>The fix for this problem has been incorporated into <a
+href="/download/releases/2.3.5/"
+>Python 2.3.5</a>, which was released on Feb 8th, 2005, and 
+into <a href="/download/releases/2.4.1/">Python 2.4.1</a>, which was released 
+March 30th, 2005.
+
+
+      </div>
+
+      
+      <div id="footer">
+	<div id="credits">
+ 	  <a href="/about/website">Website maintained by the Python community</a><br/>
+	  <a href="http://www.xs4all.com/" title="Web and email hosting provided by xs4all, Netherlands">hosting by xs4all</a> /
+	  <a href="http://www.pollenation.net/" title="Design and content management system by Pollenation Internet, Yorkshire">design by pollenation</a>
+	</div>
+	Copyright &copy; 1990-2008, <a href='/psf'>Python Software Foundation</a><br/>
+	<a href="/about/legal">Legal Statements</a>
+      </div>
+
+
+    </div>
+  </div>
+</body>
+</html>
+
+
+
+
+
+

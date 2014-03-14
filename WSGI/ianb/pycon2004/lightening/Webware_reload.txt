@@ -1,0 +1,107 @@
++++++++++++++++++++++++++++++++++++++++++++++++++
+Dealing with stale code in long-running processes
++++++++++++++++++++++++++++++++++++++++++++++++++
+
+*Webware's Shotgun Approach*
+
+The problem
+-----------
+
+* Developers update code.
+* In a long-running process, old modules stay in memory after
+  their source file has been updated.
+* Code has various dependencies -- modules import each other --
+  so changes may need to propagate to many areas of a system.
+* Stale code causes crazy behavior (who among us has not
+  pulled out hair as their code has resisted change?)
+* Start/restart cycles are a bit like compile cycles -- it's better
+  when everything just works.  
+* Manual restarts are just an inconvenience, but inconveniences
+  distract programmers from programming.
+
+Clever hacks don't work
+-----------------------
+
+* If you reload modules when changes are detected, old references
+  persist
+
+  * Most easily noticed, old references to modules (which means any
+    module that imports another module won't see the module reloads)
+  * Also references to old classes -- and every instance of an object
+    has a reference to its class, which means using old class
+    definitions.
+  * Which might mean just *some* instances have stale class references
+    (even worse than if they are all out of date!) 
+  * And the new class definition might require different
+    initialization procedures, so you can't just point the instance to
+    the new class when the instance was created with the old
+    ``__init__``.
+
+* You can't just check modules when they are used through certain
+  mechanisms.  Because those modules depend on other modules, and so
+  on...
+* And sometimes there's non-Python files out there as well (e.g.,
+  configuration files), and other initialization procedures.
+* You can fix these, but there's too many corner cases.
+* Worse, every corner case causes hair-pulling bugs
+
+(Itamar Shtull-Trauring told me after this talk that when a class uses
+``__slots__`` even the clever hacks won't work)
+    
+
+Webware's shotgun approach
+--------------------------
+
+* Implemented by Jason Hildebrand (http://peaceworks.ca)
+* Puts in an import hook to keep track of files being used.
+  (you can also manually add files to be checked)
+* Polls all files regularly (like every second).
+* Or uses libfam to receive change events instead of polling.
+* When any file has changed, restart the system
+* Look in ``Webware.WebKit.ImportSpy`` (from viewcvs_)
+* Doesn't have any Webware dependencies
+
+.. _viewcvs: http://cvs.sourceforge.net/viewcvs.py/webware/Webware/WebKit/ImportSpy.py?view=markup
+
+Webware's shotgun restart
+-------------------------
+
+The application server is started with a shell script::
+
+    retcode=3
+    while test $retcode -eq 3; do
+        /usr/bin/env python $OPTIONS Launch.py ThreadedAppServer $*
+        retcode=$?
+    done
+
+Or in Windows::
+
+    :restart
+    python Launch.py ThreadedAppServer %1 %2 %3 %4 %5 %6 %7 %8 %9
+    if errorlevel 3 goto restart
+
+* We exit with error code 3 when we want to restart
+* Restarts are fast, so by the time you've saved your file and
+  returned to the browser, you're all ready.
+* We generally save anything persistent to disk when shutting the
+  AppServer down, so restarts are safe to do.
+* No corner cases, no cleverness, It Just Works, every time.
+
+Problems
+--------
+
+We don't keep track of files that, if they existed, would effect the
+execution.  For instance, when you import a file that doesn't exist
+(which usually causes an error) -- the server should really be
+restarted once that file comes back into existance.  Or a
+configuration file that doesn't exist but could.  Still, it might
+become hard to track this sort of thing.
+
+If you are editing a file that's automatically loaded up when the
+system is loaded up, then everytime you save that file (even though
+you may not be done with your edits) you will cause the AppServer to
+restart.  In Webware, most code you'll be editing is loaded only on
+demand, so it's not usually a problem.
+
+We check many files that probably don't need to be checked, like files
+in the standard library.

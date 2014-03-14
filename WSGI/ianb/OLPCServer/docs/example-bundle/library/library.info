@@ -1,0 +1,7 @@
+[Library]
+name = "Sample Library"
+library_version = 1
+host_version = 1
+i10n = false
+locale = en-US
+

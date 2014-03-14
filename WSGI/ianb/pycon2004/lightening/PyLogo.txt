@@ -1,0 +1,131 @@
++++++++++++++++++++++++++++++++++++++++++++++++
+PyLogo: the Logo Language implemented in Python
++++++++++++++++++++++++++++++++++++++++++++++++
+
+Website: http://pylogo.org
+
+* Logo is an educational language targeted at young children.
+* Logo isn't about teaching programming, but about teaching
+  mathematical ideas using programming.  (Not necessarily just
+  mathematical, but generally *not* focused on programming, but the
+  skills learned *while* programming)
+* PyLogo is a Logo interpreter written in Python.
+
+Why Logo?
+---------
+
+*Or, why Logo instead of Python?*
+
+* Most people don't need the skills to become professional
+  programmers.
+* Especially when they are 9 years old
+* We shouldn't confuse our ideas about programming with the education
+  goals of programming.  This includes many of the programming
+  practices we use for software: thoughtful naming, object-oriented
+  programming, modularity, etc.
+* People who think we should teach children assembly language are
+  just crazy.
+    
+How Logo is different from Python
+---------------------------------
+
+* It doesn't put effort into code reuse.
+* Commands can be abbreviated, and can be very short (like ``FD`` for
+  forward) because children type very, very slowly.
+* Very little punctuation.
+* Structure is casual with respect to command separation and
+  whitespace.  Also case-insensitive.
+* It uses dynamic scoping.
+
+Examples
+--------
+
+In Logo::
+
+    ? REPEAT 4 [FD 100 RT 90]
+    ? PR [Hello world!]
+    Hello world!
+
+The Python equivalent::
+
+    >>> from turtle import *
+    >>> for i in range(4):
+    ...     forward(100)
+    ...     right(90)
+    >>> print 'Hello world!'
+    Hello world!
+
+
+What's neat about PyLogo
+------------------------
+
+* It's free, of course (and cross-platform and everything else you get
+  from implementing it in Python -- the only other decent
+  implementations of Logo on Linux are UCBLogo and TurtleTracks)
+* It's traditional Logo (lots of naive non-traditional implementations
+  of logo exist, but they often just implement turtle graphics and
+  ignore the rest)
+* It integrates well with Python.
+
+    
+Python Integration
+------------------
+
+* All Python functions are made easily available.
+* Procedures can be easily annotated with function attributes,
+  allowing renaming, or allowing access to the Logo interpreter
+  object.
+
+Making a procedure available is easy::
+
+    # in turtle.py...
+    from turtle import forward
+    forward.aliases = ['fd']
+
+    ; In logo...
+    ? import "turtle
+    ? FD 100
+    
+Even control structures are easy::
+
+    def logoWhile(interp, test, block):
+        lastVal = None
+        try:
+            while logoEval(interp, test):
+                try:
+                    lastVal = logoEval(interp, block)
+                except LogoContinue:
+                    pass
+        except LogoBreak:
+            lastVal = None
+            pass
+        return lastVal
+    logoWhile.logoAware = 1
+    logoWhile.logoName = 'while'
+
+This is the actual implementation of ``WHILE`` in Logo.
+
+Why you might want to work on PyLogo
+------------------------------------
+
+* Python has a bunch of libraries that would be nice to make available
+  to a Logo user, either directly or indirectly.
+* The PyLogo interpreter is really easy to play with (Logo is a
+  *very* simple language).
+* Logo is a real Lisp language.  It's simple and regular, and perhaps
+  a bit antiquated (particularly dynamic scoping), but it's still a
+  real language.
+* Unfortunately, I get really distracted with different projects, so I
+  haven't been able to keep moving it forward.
+* Also, I'm not very experienced with GUI programming, and a Logo
+  environment should have a good interface.  PyLogo doesn't have one.
+* But PyLogo has almost no professional potential, so it's just plain
+  fun, and you can ignore all other aspects.
+* Writing languages is fun.  But hard.  Playing around with a toy
+  language is educational, but ultimately not useful for anyone else.
+* But Logo is a toy language that isn't just a toy.
+* Reminder: http://pylogo.org
+* If you want to look at it, please drop me a note -- the code in the
+  repository may not be in the best shape at the moment.
+
+

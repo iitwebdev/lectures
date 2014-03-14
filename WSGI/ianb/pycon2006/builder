@@ -1,0 +1,5 @@
+#!/bin/sh
+
+rst2s5.py --theme-url=ui devel-process3.txt | sed 's/^<script.*>//' > devel-process3.html
+echo '<script src="ui/slides.js" type="text/javascript"></script>' >> devel-process3.html
+open devel-process3.html

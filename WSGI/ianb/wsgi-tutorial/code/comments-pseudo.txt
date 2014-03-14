@@ -1,0 +1,11 @@
+    6  Use HTMLFilter
+13-14  Any incoming request to /_comment/ we handle internally
+   16  Request other than /_comment/:
+   16  Let the request be filtered by HTMLFilter
+20-24    Before </body>:
+   26    Add any comments associated with the PATH_INFO
+31-38    Add in a form that submits to /_comment/ with path_info=PATH_INFO
+   40  Requests to /_comment/ go to comment_app():
+41-43    Get the variables "comment" and "path_info"
+44-45    Save the comment into a dictionary keyed by path_info
+46-49    Redirect them back to where they came from

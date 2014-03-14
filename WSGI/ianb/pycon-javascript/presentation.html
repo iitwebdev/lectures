@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf8" />
+  <title>Javascript for Pythonistas</title>
+  <!-- <meta name="copyright"
+        content="Copyright &#169; 2011 Ian Bicking, but do whatever with it" />
+-->
+  <meta name="duration" content="25" />
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+   href="slidy.css" />
+  <link rel="stylesheet" href="ians-blue.css" type="text/css" />
+  <link rel="stylesheet" href="shCoreDefaultPython.css" type="text/css" />
+  <link rel="stylesheet" href="shCoreMidnightJS.css" type="text/css" />
+  <script src="slidy.js"
+   charset="utf-8" type="text/javascript">
+w3c_slide.mouse_click_enabled = false;
+</script>
+  <!-- Code highlighting: -->
+  <script src="syntaxhighlighter/scripts/shCore.js" type="text/javascript"></script>
+  <script src="syntaxhighlighter/scripts/shBrushJScript.js" type="text/javascript"></script>
+  <script src="syntaxhighlighter/scripts/shBrushPython.js" type="text/javascript"></script>
+  <script>
+    SyntaxHighlighter.defaults.toolbar = false;
+    SyntaxHighlighter.defaults.gutter = false;
+    SyntaxHighlighter.all();
+  </script>
+
+  <style type="text/css">
+.slide {
+  padding-left: 1em;
+}
+
+div.nogutter {
+  padding-left: 2em;
+}
+
+div.python {
+  background: url(python.png) no-repeat;
+}
+
+div.javascript {
+  background: url(javascript.png) no-repeat;
+}
+
+code {
+  color: #009;
+}
+
+table.comparison {
+  width: 100%;
+}
+
+table.comparison td {
+  width: 50%;
+  vertical-align: top;
+}
+
+i, em {
+  font-family: Lucida, Times, serif;
+  font-size: 112%;
+}
+
+  </style>
+</head>
+<body>
+
+<div class="background">
+  <img id="head-icon" src="mozilla-star-logo.png" />
+</div>
+
+
+<div class="slide cover">
+ <img src="default-header.png" />
+ <br clear="all" />
+ <h1>Javascript for Pythonistas</h1>
+ <p><a href="http://blog.ianbicking.org">Ian Bicking,</a>
+ <a href="http://mozillalabs.com">Mozilla Labs</a></p>
+</div>
+
+<div class="slide">
+  <h1>Why Javascript?</h1>
+
+  <ul>
+   <li>Javascript is available everywhere</li>
+   <li>The dynamic language platform deployed everywhere</li>
+   <li>Access to a great rendering system</li>
+   <li>AJAX</li>
+   <li>Progressive enhancement is yesteryear</li>
+ </ul>
+
+</div>
+
+<div class="slide">
+  <h1>Why Javascript?</h1>
+
+  <ul>
+    <li>The people have spoken, braces are the future</li>
+    <li>The <i>Java</i> in Javascript means it's enterprise-ready</li>
+    <li>Standard libraries are distracting</li>
+    <li>Big fish in a big, but shallow, pond</li>
+  </ul>
+
+</div>
+
+<!--
+<div class="slide">
+  <h1>EXTREME code translation</h1>
+
+  <pre>
+s/def/function/g
+s/:/{/g
+s/\n/;\n/g
+</pre>
+</div>
+-->
+
+<div class="slide">
+  <h1>Using your Python Knowledge</h1>
+
+  <p class="incremental">Easy translations...
+  </p>
+
+  <div class="incremental">
+    <pre class="brush:python">
+a = ['cat', 'window', 'defenestrate']
+for x in a:
+    print(x)
+    </pre>
+  </div>
+
+  <div class="incremental">
+    <pre class="brush:javascript">
+a = ['cat', 'window', 'defenestrate'];
+for (var i=0; i &lt; a.length; i++) {
+    x = a[i];
+    console.log(x);
+}
+    </pre>
+  </div>
+
+</div>
+
+<div class="slide">
+  <h1>Syntax is easy</h1>
+
+  <ul>
+    <li>Add <code>;</code></li>
+    <li>Add <code>{...}</code></li>
+    <li>Replace <code>def</code> with <code>function</code></li>
+  </ul>
+
+  <div class="incremental">
+
+  <p>Keeping:</p>
+
+  <ul>
+    <li><code>while</code>, <code>break</code>, <code>continue</code></li>
+    <li><code>for</code> (kind of)</li>
+    <li><code>return</code></li>
+  </ul>
+
+  </div>
+
+</div>
+
+<div class="slide">
+  <h1>Literals are also easy</h1>
+
+  <table class="comparison">
+    <tr>
+<td>
+<pre class="brush:python">
+True
+False
+None
+1
+'string'
+"string"
+</pre>
+
+</td><td>
+
+<pre class="brush:javascript">
+true
+false
+null
+1
+'string'
+"string"
+</pre>
+
+</td></tr></table>
+
+  <ul>
+    <li>No <code>"""..."""</code></li>
+    <li>No <code>r"..."</code> (but there are regular expression literals)</li>
+  </ul>
+
+</div>
+
+<div class="slide">
+  <h1>Data structures are not easy</h1>
+
+  <p>Two data structures:</p>
+
+  <ul>
+    <li><code>Array</code>, like Python's <code>list</code></li>
+    <li>Objects (objects are everywhere!), kind of like Python's <code>dict</code></li>
+  </ul>
+
+</div>
+
+<div class="slide">
+  <h1>Objects are fun!  And annoying!</h1>
+
+  <pre class="brush:python">
+counts = {
+  'apple': 10,
+  'orange': 5,
+  'rotten banana': 0,
+}
+  </pre>
+
+  <div class="incremental">
+  <pre class="brush:javascript">
+counts = {
+  apple: 10,
+  orange: 5,
+  'rotten banana': 0
+};
+    </pre>
+  </div>
+
+  <div class="incremental">
+    <ul>
+      <li>Keys are <i>always</i> strings</li>
+      <li>With the literal: quoting is optional (if the key is like an
+      identifier)</li>
+      <li>Extra commas are <i>not</i> allowed :(</li>
+    </ul>
+  </div>
+
+</div>
+
+<div class="slide">
+  <h1>Javascript objects/dicts</h1>
+
+  <p>Using JS objects:</p>
+
+  <table class="comparison">
+    <tr>
+<td>
+<pre class="brush:python">
+>>> count = {...}
+>>> count['apple']
+10
+>>> count['cherry']
+KeyError: 'cherry'
+>>> 'apple' in count
+True
+>>> count.keys()
+['apple', 'orange', 'rotten banana']
+</pre></td>
+
+<td>
+<pre class="brush:javascript">
+>>> count = {...};
+>>> count['apple'];
+10
+>>> count.apple;
+10
+>>> count['cherry'];
+undefined
+>>> 'apple' in count #!
+true
+>>> for (key in count)
+...     console.log(key); #!
+apple
+orange
+rotten banana
+</pre></td>
+
+    </tr>
+  </table>
+</div>
+
+<div class="slide">
+  <h1>Functions</h1>
+
+  <p>Simple at first glance...</p>
+
+  <table class="comparison">
+    <tr>
+
+<td><pre class="brush:python">
+def counter(step=1):
+    count = 0
+    def func():
+        nonlocal count
+        count += step
+        return count
+    return func
+</pre></td>
+
+<td><pre class="brush:javascript">
+function counter(step) {
+    var count = 0;
+    if (step === undefined) {
+        step = 1;
+    }
+    return function () {
+        count += step;
+        return count;
+    };
+}
+</pre></td>
+
+    </tr>
+  </table>
+</div>
+
+<div class="slide">
+  <h1>Variable scope</h1>
+
+  <table class="comparison">
+    <tr>
+
+<td><pre class="brush:python">
+def counter(step=1):
+    count = 0
+</pre></td>
+
+<td><pre class="brush:javascript">
+function counter(step) {
+    var count = 0;
+</pre></td>
+
+</tr><tr>
+
+<td><pre class="brush:python">
+def counter(step=1):
+    global count
+    count = 0
+</pre></td>
+
+<td><pre class="brush:javascript">
+function counter(step) {
+    count = 0;
+</pre></td>
+
+
+    </tr>
+  </table>
+
+  <ul>
+    <li><code>var</code> anchors a variable to a scope</li>
+
+    <li>Python defaults to a local scope, Javascript to a parent
+    (maybe global) scope.</li>
+  </ul>
+</div>
+
+<!--
+<div class="slide">
+  <h1>Variable scope scope</h1>
+
+  <table class="comparison">
+    <tr>
+
+<td><pre class="brush:python">
+my_list = [1, 2]
+def func():
+    for item in my_list:
+        print(item)
+    my_list = [1]
+## ==> UnboundLocalError
+</pre></td>
+
+<td><pre class="brush:javascript">
+myList = [1, 2];
+function func() {
+    for (var i=0; i&lt;myList.length; i++) {
+        console.log(myList[i]);
+    }
+    var myList = [1];
+}
+// ==> TypeError: m is undefined
+</pre></td>
+
+    </tr>
+  </table>
+</div>
+-->
+
+<div class="slide">
+  <h1>Function arguments</h1>
+
+<pre class="brush:javascript">
+>>> function foo(x, y) {
+...   console.log(x, y, arguments);
+... }
+>>> foo(1)
+1 undefined [1]
+>>> foo(1, 2, 3)
+1 2 [1, 2, 3]
+</pre>
+
+<ul>
+  <li>Everything optional, always!</li>
+  <li><code>arguments</code> always gives you all the arguments</li>
+  <li>(but be warned, <code>arguments</code> is a fake array)</li>
+</ul>
+
+</div>
+
+<div class="slide">
+  <h1><code>undefined</code></h1>
+
+  <ul>
+    <li><code>undefined</code> is different than <code>null</code></li>
+    <li><code>undefined</code> is no more magical than <code>null</code></li>
+    <li><code>undefined</code> is falsish</li>
+    <li>You never get <code>AttributeError</code></li>
+    <li>You will get <code>NameError</code>!</li>
+  </ul>
+
+<pre class="brush:javascript">
+if (someObject.attribute === undefined) {
+    someObject.attribute = defaultValue;
+}
+if (typeof someVariable == 'undefined') {
+    someVariable = defaultValue;
+}
+</pre>
+
+<ul>
+  <li><code>typeof</code> is slightly magic</li>
+</ul>
+
+</div>
+
+<div class="slide">
+  <h1>Tell me more about objects</h1>
+
+
+  <table class="comparison">
+    <tr>
+
+<td><pre class="brush:python">
+class Point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+    def magnitude(self):
+        return math.sqrt(x*x + y*y)
+
+point = Point(100, 10)
+</pre></td>
+
+<td><pre class="brush:javascript size: 95%">
+function Point(x, y) {
+    this.x = x;
+    this.y = y;
+}
+Point.prototype.magnitude = function () {
+    return Math.sqrt(x*x + y*y);
+};
+var point = new Point(100, 10);
+</pre></td>
+
+    </tr>
+  </table>
+
+</div>
+
+<div class="slide">
+  <h1>On no <code>new</code>!</h1>
+
+<pre class="brush:javascript">
+>>> point = Point(100, 10);
+>>> point.magnitude();
+TypeError: point is undefined
+</pre>
+
+<p>Python programmers should always do this:</p>
+
+<pre class="brush:javascript">
+function Point(x, y) {
+    if (this === window) {
+        throw 'You forgot new';
+    }
+    ...
+}
+</pre>
+
+<ul>
+  <li><code>window</code> only works in the browser, there's no
+  universal name for the "global" object</li>
+  <li>Except: <code>(function () {return this})()</code></li>
+</ul>
+
+</div>
+
+<div class="slide">
+  <h1>More on prototypes</h1>
+
+<pre class="brush:python">
+class Point:
+    def __init__(self, x, y)
+        self.x, self.y = x, y
+    z = 0
+    def magnitude(self):
+        return math.sqrt(self.x*self.x + self.y*self.y + self.z*self.z)
+p = Point(3, 4)
+assert p.z == 0
+p.z = 10
+</pre>
+
+<div class="incremental">
+<pre class="brush:javascript">
+function Point(x, y) {this.x = x; this.y = y;}
+Point.prototype = {
+  z: 0,
+  magnitude: function() {
+    return Math.sqrt(this.x*this.x+this.y*this.y+this.z+this.z);
+  }
+};
+p = new Point(3, 4);
+assert(p.z == 0);
+p.z = 10
+</pre>
+</div>
+</div>
+
+<div class="slide">
+  <h1>Without prototypes</h1>
+
+<pre class="brush:javascript">
+function Point(x, y) {
+    this.x = x; this.y = y
+}
+Point.prototype = {
+  z: 0,
+  magnitude: function() {
+    return Math.sqrt(this.x*this.x+this.y*this.y+this.z+this.z);
+  }
+};
+</pre>
+
+<div class="incremental">
+<pre class="brush:javascript">
+function Point(x, y) {
+    self = {
+      x: x,
+      y: y,
+      z: 0,
+      magnitude: function () {
+        return Math.sqrt(self.x*self.x+self.y*self.y+self.z*self.z);
+      }
+    };
+    return self;
+}
+</pre>
+</div>
+</div>
+
+
+<div class="slide">
+  <h1>Using <code>self</code> everywhere</h1>
+
+<pre class="brush:python">
+class OpenObject(object): pass
+
+def Point(x, y):
+    self = OpenObject()
+    self.x, self.y = x, y
+    def magnitude():
+        return math.sqrt(self.x*self.x + self.y*self.y)
+    self.magnitude = magnitude
+    return self
+</pre>
+
+</div>
+
+
+<div class="slide">
+  <h1>Prototypes</h1>
+
+  <ul>
+
+    <li><code>new</code> makes the constructors
+    <code>.prototype</code> into the objects prototype</li>
+    <li>An object inherits all of its prototype's attributes</li>
+    <li>These attributes <em>really</em> look like the object's attribute</li>
+    <li>Including <code>in</code> and <code>for (key in obj)</code></li>
+    <li>(this can be annoying)</li>
+  </ul>
+
+</div>
+
+<div class="slide">
+  <h1>Tell me more about <code>this</code>!</h1>
+
+  <ul>
+    <li><code>this</code> is almost like a secret first argument
+    just like Python's <code>self</code></li>
+    <li>Only it is <i>insane</i></li>
+  </ul>
+
+</div>
+
+<div class="slide">
+  <h1>The secret of <code>this</code></h1>
+
+  <ul>
+    <li><code>this</code> always has a value, even if it isn't useful
+    (e.g., <code>window</code>)</li>
+    <li>There is no equivalent to Python's bound methods</li>
+    <li>It only matters how you <i>call</i> a function</li>
+  </ul>
+
+<pre class="brush:javascript">
+>>> obj = {x: 3, y: 4};
+>>> obj.magnitude = Point.prototype.magnitude;
+>>> obj.magnitude();
+5   // this === obj
+>>> mag = obj.magnitude;
+>>> mag()
+NaN // this === window
+</pre>
+
+  <ul>
+    <li>The key part: <code><b>obj.magnitude</b>()</code></li>
+    <li>There are no bound methods</li>
+    <li><code>this</code> is determined <i>syntactically</i></li>
+  </ul>
+
+</div>
+
+<!--
+<div class="slide">
+  <h1>this this this</h1>
+
+<pre class="brush:javascript">
+function whatisthis() {
+  return this;
+}
+obj = {whatisthis: whatisthis};
+obj.whatisthis() === obj
+method = obj.whatisthis
+method() === window
+(function () {return obj})().whatisthis() === window
+</pre>
+
+</div>
+-->
+
+<div class="slide">
+  <h1>Hard private variables</h1>
+
+<pre class="brush:javascript">
+function Point(x, y) {
+    var self = {};
+    self.magnitude = function () {
+        return Math.sqrt(x*x + y*y);
+    };
+    self.x = function () {return x;};
+    self.y = function () {return y;};
+    return self;
+}
+</pre>
+
+  <ul>
+    <li><code>point.magnitude</code> will act like a bound function</li>
+
+    <li>But I like to code defensively, so I treat everything as
+    though it has a fragile <code>this</code></li>
+  </ul>
+
+</div>
+
+<div class="slide">
+  <h1>Private Modules</h1>
+
+<pre class="brush:javascript">
+MyModule = (function () {
+  function public() {}
+  function private() {}
+  return {
+    public: public
+  };
+})();
+</pre>
+
+<ul>
+  <li>Have fun with unit testing and debugging.</li>
+  <li>With <code>nonlocal</code> now Python can do this!</li>
+</ul>
+
+</div>
+
+<div class="slide">
+  <h1><code>this</code> and closures</h1>
+
+<pre class="brush:javascript">
+SomeObject.prototype.method = function (array) {
+  array.forEach(function (item) {
+    this.doSomething(item); #!
+  }
+};
+</pre>
+
+<ul>
+
+  <li>Everytime you start a new (nested) function you lose
+  <code>this</code></li>
+  <li>You can never be entirely sure what <code>this</code> will
+  be bound to when you have a callback</li>
+
+</ul>
+
+</div>
+
+<div class="slide">
+  <h1>Adding <code>self</code></h1>
+
+<pre class="brush:javascript">
+SomeObject.prototype.method = function (array) {
+  var self = this;
+  array.forEach(function (item) {
+    self.doSomething(item); #!
+  });
+};
+</pre>
+
+</div>
+
+<div class="slide">
+  <h1>Function.call and apply</h1>
+
+<pre class="brush:javascript">
+function loggingDecorator(func) {
+    return function () {
+        console.log('Calling', func, 'with this:', this,
+                    'and args:', arguments);
+        return func.apply(this, arguments);
+    };
+}
+
+myfunc = loggingDecorator(myfunc);
+
+</pre>
+
+<ul>
+  <li>Also there's <code>func.call(thisObject, arg1, arg2, ...)</code></li>
+</ul>
+
+</div>
+
+<div class="slide">
+  <h1>Monkeypatching</h1>
+
+  <p>You can monkeypatch everything...</p>
+
+<pre class="brush:javascript">
+>>> Object.prototype.copy = function () {
+...    var o = {};
+...    for (a in this) {
+...        o[a] = this[a];
+...    }
+...    return o;
+... };
+>>> otherObj = {};
+>>> 'copy' in otherObj;
+true
+>>> for (a in otherObj) {console.log(a)}
+copy
+>>> otherObj.hasOwnProperty('copy')
+false
+</pre>
+
+</div>
+
+<div class="slide">
+  <h1>Types</h1>
+
+  <p>Basic types:</p>
+
+<pre class="brush:javascript">
+typeof "a string" == "string";
+typeof 1 == "number";
+typeof false == "boolean";
+typeof undefined = "undefined";
+typeof [] == "object";
+typeof {} == "object";
+typeof null == "object"; // weird/unintentional
+typeof whateverElse == "object" // (object is a big bucket)
+</pre>
+</div>
+
+<div class="slide">
+  <h1>Boxing</h1>
+
+<ul>
+  <li>I mention this only because... it's weird</li>
+</ul>
+
+<pre class="brush:javascript">
+s = "hey";
+s2 = new String("hey");
+typeof s2 == "object";
+s == s2;
+s !== s2;
+s === s2.valueOf();
+</pre>
+
+<p>Just don't use <code>new String</code>.</p>
+
+<p>Lots of WTFs in Javascript come from this</p>
+
+</div>
+
+<div class="slide">
+  <h1><code>==</code> and <code>+</code></h1>
+
+  <p>The rest of the WTFs are here</p>
+
+<pre class="brush:javascript">
+"" == 0;
+[] == false;
+"" !== 0;
+[] !== false;
+false === false;
+</pre>
+
+<ul>
+
+  <li><code>===</code> is <em>kind of</em> like Python's <code>is</code></li>
+
+  <li>It does <em>identity</em> comparison for objects, and
+  <em>value</em> comparison for primitives (non-objects)</li>
+
+</ul>
+
+</div>
+
+<!--
+<div class="slide">
+  <h1>Modularity, libraries</h1>
+
+</div>
+-->
+
+<div class="slide">
+  <h1>Arrays</h1>
+
+  <p>Javascript Arrays make me sad...</p>
+
+<table class="comparison">
+  <tr><td>
+
+<pre class="brush:python">
+a = [1, 2, 3]
+a[:-1]
+a[1:]
+del a[:-1]
+for x in a:...
+</pre>
+
+  </td><td>
+
+<pre class="brush:javascript">
+a = [1, 2, 3];
+a.slice(0, a.length-1);
+a.slice(1, a.length);
+a.splice(a.length-1, a.length);
+for (var i=0; i&lt;a.length; i++) {...}
+</pre>
+
+  </td></tr></table>
+
+<ul>
+  <li><code>Array.forEach</code> just doesn't work well</li>
+  <li>There's no iterator protocol</li>
+  <li>Array-like objects are missing methods</li>
+  <li>Arrays have integer "properties" (<code>a[0]</code>) but have
+  other properties too</li>
+  <li>There is no <code>in</code> operator for Arrays!</li>
+</ul>
+
+</div>
+
+<div class="slide">
+  <h1>Arrays :(</h1>
+
+  <p>I wish there was a silver lining here somewhere...</p>
+
+  <p>Underscore.js?</p>
+
+</div>
+
+<div class="slide">
+  <h1>The DOM</h1>
+
+  <ul>
+    <li>Blame the DOM on C++, not Javascript</li>
+    <li>Ironically you cannot implement the DOM <em>in</em>Javascript</li>
+
+    <li>Also blame the Javascript specification which refers to
+    <em>many</em> features of objects exposed in implementations which
+    are hidden from the language itself itself</li>
+
+  </ul>
+</div>
+
+<div class="slide">
+  <h1>CoffeeScript</h1>
+
+  <p>If you like Python, you'll probably like CoffeeScript</p>
+
+  <p>Especially how it handles arrays!</p>
+
+</div>
+
+<div class="slide">
+  <h1>I am done.</h1>
+</div>
+
+</body>
+</html>

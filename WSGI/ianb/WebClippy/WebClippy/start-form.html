@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="./help.css">
+<title>Create a WebClippy Link</title>
+<script type="text/javascript">
+function $(id) {
+    return document.getElementById(id);
+}
+
+function getScriptLocation() {
+    var loc = location.href;
+    var parts = loc.split('/');
+    parts.length--;
+    return parts.join('/') + '/';
+};
+
+function makeLink() {
+    var help = $('help-input');
+    if (! help.value) {
+        help.className = 'error';
+        help.focus();
+        alert('You must give a help URL');
+        return false;
+    } else {
+        help.className = '';
+    }
+    var doc = $('doc-input');
+    if (! doc.value) {
+        doc.className = 'error';
+        doc.focus();
+        alert('You must give a starting page URL');
+        return false;
+    } else {
+        doc.className = '';
+    }
+    var loc = getScriptLocation() + 'frame.html';
+    loc += '?help='+escape(help.value);
+    loc += '&doc='+escape(doc.value);
+    $('output-div').style.display = '';
+    $('output').value = loc;
+    $('output').focus();
+    $('output-link').href = loc;
+    return false;
+}
+</script>
+<style type="text/css">
+  .error {
+    border: 2px solid #f00;
+  }
+  body {
+    margin: 1em;
+  }
+</style>
+</head>
+
+<body>
+<h1>Create a WebClippy Link</h1>
+
+<p>
+This form is here to help you create WebClippy links that include both
+your document, and a starting page.
+</p>
+
+<div>
+  <label for="help-input">The help page:</label><br>
+  <input type="text" style="width: 100%" id="help-input"><br>
+  <br>
+  <label for="doc-input">The starting page:</label><br>
+  <input type="text" style="width: 100%" id="doc-input"><br>
+  <button onclick="return makeLink()">Create link</button><br>
+  <div id="output-div" style="display: none; margin-top: 1em;">
+    <h2>Result:</h2>
+    <input type="text" style="width: 100%"
+    id="output"><br>
+    <a href="#" target="_blank" id="output-link">open link in new window</a>
+  </div>
+</div>
+
+</body> </html>

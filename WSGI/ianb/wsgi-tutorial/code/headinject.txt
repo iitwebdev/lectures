@@ -1,0 +1,14 @@
+`HeadInject` lets you put stuff into the HTML head of every page in
+the wrapped application::
+
+    >>> from testrunner import send_request
+    >>> from headinject import HeadInject
+    >>> from simpleapp import simple_app
+    >>> wrapped_app = HeadInject(
+    ...     simple_app, '<script type="text/javascript '
+    ...                 'src="/foo.js"></script>')
+    >>> print send_request(wrapped_app, '/')
+    200 OK
+    Content-Type: text/html
+    <html><head><title>Simple App</title><script type="text/javascript src="/foo.js"></script></head>
+    ...

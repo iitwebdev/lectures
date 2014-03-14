@@ -1,0 +1,10 @@
+    3  In the decorator:
+    9    Get any args that RegexDispatch captured
+10-11    Create request and response wrappers
+   12    Call the function with the request and args
+   13    Check the return value:
+   14      Is it a Response object?  If so, use that
+           Otherwise, treat the return value as a body
+   15    Take the status and headers from the response object
+   16    Let the response object convert any unicode in the body
+39-48      and return that converted value

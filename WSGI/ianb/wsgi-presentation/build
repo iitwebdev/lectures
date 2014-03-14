@@ -1,0 +1,21 @@
+#!/bin/sh
+
+DOT=`which dot`
+
+if [ -e "$DOT" ] ; then
+
+    for F in *.dot ; do
+	dot -Tpng -Gsize=500,300 $F > `basename $F .dot`.png
+    done
+
+else
+    echo "dot not found; not regenerating graphs"
+fi
+
+PATH=$PATH:/Users/ianb/w/docutils/tools/
+
+rst2html.py slides.txt tmpslides.html
+./rsthtml2s5.py tmpslides.html slides.html
+#rm tmpslides.html
+
+

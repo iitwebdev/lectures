@@ -1,0 +1,10 @@
+digraph A {
+    rankdir=LR;
+    ranksep=0.5;
+    center=true;
+    cgiserver [fontname=Terminal,shape=box];
+    my_application [fontname=Terminal];
+    my_application -> cgiserver [headlabel="2",color="blue",labelfontcolor="black",fontcolor="blue",label="start_response(status, headers)",fontname=Terminal,labeldistance=1.6];
+    my_application -> cgiserver [headlabel="3",color="red",labelfontcolor="black",fontcolor="red",label="return app_iter",fontname=Terminal,labeldistance=1.6];
+    cgiserver -> my_application [headlabel="1",color="dark_green",labelfontcolor="black",fontcolor="dark_green",labeldistance=1.6,label="my_application(environ, start_response)",fontname=Terminal];
+}

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rules xmlns:xi="http://www.w3.org/2001/XInclude" xmlns="http://www.plone.org/deliverance" >
+  <xi:include href="standardrules.xml" />
+
+  <copy theme="//*[@id='content']" content="//body/*" />
+  <copy theme="//*[@id='title-header']"
+   content="/html/head/title/text()" />
+  <copy theme="//*[@id='sidebar-container']" 
+   content="//*[@id='sidebar']/node()" move="1" />
+</rules>

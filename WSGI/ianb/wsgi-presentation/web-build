@@ -1,0 +1,9 @@
+#!/bin/sh
+
+PATH=$PATH:/Users/ianb/w/docutils/tools/
+
+rst2html.py web-lightening.txt tmpweb.html
+./rsthtml2s5.py tmpweb.html web-lightening.html
+#rm tmpslides.html
+
+

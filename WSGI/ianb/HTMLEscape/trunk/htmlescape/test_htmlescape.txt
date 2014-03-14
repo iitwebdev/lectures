@@ -1,0 +1,12 @@
+>>> from htmlescape import escape
+>>> x = 'abcde'
+>>> escape(x) == x
+True
+>>> escape(x) is x
+True
+>>> escape('asdf<>')
+'asdf&lt;&gt;'
+>>> escape('asdf""')
+'asdf""'
+>>> escape('asdf""', [None])
+'asdf&quot;&quot;'

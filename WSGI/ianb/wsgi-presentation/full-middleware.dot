@@ -1,0 +1,21 @@
+digraph A {
+    rankdir=LR;
+    ranksep=0.5;
+    cgiserver [fontname=Terminal,shape=box];
+    session [fontname=Terminal,shape=polygon,orientation=45,label="session\nmiddleware"];
+    urlparser [fontname=Terminal,shape=polygon,orientation=45,label="urlparser\nmiddleware"];
+    index [fontname=Terminal, label=".../index.py"];
+    view [fontname=Terminal, label=".../view.py"];
+    login [fontname=Terminal, label=".../login.py"];
+    cgiserver -> session [headlabel=1,color=green,labelfontcolor=black,labeldistance=1.2];
+    session -> urlparser [headlabel=2,color=green,labelfontcolor=black,labeldistance=1.2];
+    urlparser -> index [headlabel=3,color=green,labelfontcolor=black,labeldistance=1.2];
+    urlparser -> view [headlabel=3,color=green,labelfontcolor=black,labeldistance=1.2];
+    urlparser -> login [headlabel=3,color=green,labelfontcolor=black,labeldistance=1.2];
+
+    session -> cgiserver [headlabel=6,color=red,labelfontcolor=black,labeldistance=1.2];
+    urlparser -> session [headlabel=5,color=red,labelfontcolor=black,labeldistance=1.2];
+    index -> urlparser [headlabel=4,color=red,labelfontcolor=black,labeldistance=1.2];
+    view -> urlparser [headlabel=4,color=red,labelfontcolor=black,labeldistance=1.2];
+    login -> urlparser [headlabel=4,color=red,labelfontcolor=black,labeldistance=1.2];
+}

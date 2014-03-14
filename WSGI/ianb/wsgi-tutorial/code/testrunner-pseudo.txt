@@ -1,0 +1,21 @@
+ 4- 5 Pass in an app, the PATH_INFO, the request method
+      (GET/POST/etc), the body of the request (typically POST vars),
+      and any overrides for the WSGI environ.
+
+ 6- 7  Create the full WSGI environ:
+27-31  Encode the body if it's a dictionary
+32-33  Set wsgi.input to the body, CONTENT_LENGTH to its length
+   34  Capture wsgi.errors
+35-59  Set other standard WSGI variables
+40-45  Split QUERY_STRING from PATH_INFO
+46-49  Set other standard CGI variables
+   50  Set host to localhost
+
+   13  Run the application
+10-11  Capture status and headers
+16-17  Capture response body
+18-19  Call app_iter.close() if possible
+21-23  Put status, headers, body into a response object:
+70-82  The response object has a __str__ that shows a representation
+         suitable for doctest
+55-60  And attributes for everything else

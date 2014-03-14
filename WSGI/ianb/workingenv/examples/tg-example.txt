@@ -1,0 +1,24 @@
+# This is an example, using TurboGears 0.8.
+# Probably it should use 0.9, where it gets more interesting
+
+
+-f http://www.turbogears.org/download/index.html
+
+# Should this be Kid 0.9.x?:
+kid >= 0.8
+
+# And 2.2.1?:
+CherryPy >= 2.1.1
+
+SQLObject ==0.7bugfix,>=0.7.1dev_r1457
+
+simplejson
+
+elementtree >= 1.2.6
+
+cElementTree >= 1.0.2
+
+# Let's try making this more explicit...
+FormEncode ==0.4,==0.5.1
+
+# we'll leave out setuptools...

@@ -1,0 +1,18 @@
+ 5- 6  Instantiated/configured with a list of regexes and applications
+    9  Keep track of the original SCRIPT_NAME in myframework.base
+   12  For each regex, app:
+13-16  If the regex does not match PATH_INFO:
+   17    Try next app
+18-19  Split the PATH_INFO into the portion that was matched (prefix)
+         and the part after the match (extra_path_info)
+   20  If the extra_path_info is not valid (it must start with /):
+   21    Try next app
+   22  Append the prefix onto SCRIPT_NAME
+   23  Set PATH_INFO to extra_path_info
+   24  Save any named groups in the regex to myframework.path_vars
+   25  Send request to app
+       If nothing matches:
+26-28    Send 404 Not Found
+
+    
+    

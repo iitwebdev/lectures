@@ -1,0 +1,91 @@
+Javascript
+- The versions:
+ - Firefox/spidermonkey
+ - Rhino
+ - V8
+ - WebKit’s (name?)
+ - IE 6, 7, 8, 9
+ - Narcissus
+
+Object model
+- string, number, null, bool, undefined, object
+- new String vs string
+- What is an array?
+- Attributes
+- getters/setters
+
+Classishness
+- the “new” operator
+- the magic of “this”
+- direct and indirect calls
+
+
+
+Javascript:
+
+syntax
+
+Python:
+
+def x(a):
+    return a * 2
+
+->
+
+function x(a) {
+    return a * 2;
+}
+
+
+Lists:
+
+[1, 2, 3]
+
+->
+
+[1, 2, 3]
+
+
+Dictionaries:
+
+{'a': 1, 'b': 2}
+
+->
+
+{'a': 1, 'b': 2}
+
+{a: 1, b: 2} (dict(a=1, b=2))
+
+
+
+
+
+objects
+  the "in" operator
+  attribute lookup
+  .prototype
+  dict/attribute duality
+attribute lookup "."
+functions:
+  the "this" variable
+  the arguments variable
+exceptions
+core data structures:
+  object/dict
+  Array/list
+  String/unicode(str)
+operators
+  + coersion
+  ! precedence
+  == craziness
+    str == obj like str == obj.toString()
+    bool == obj like bool == obj.valueOf()
+control structures
+  the for loop
+  iterators
+Standard methods
+  toString: __str__
+  toSource: __repr__
+  hasOwnProperty
+  isPrototypeOf
+  valueOf

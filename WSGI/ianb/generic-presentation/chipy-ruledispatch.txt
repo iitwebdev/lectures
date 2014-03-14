@@ -1,0 +1,156 @@
+Generic Functions and RuleDispatch
+==================================
+
+Generic Functions / RuleDispatch
+--------------------------------
+
+:author: Ian Bicking <ianb@colorstudy.com>
+
+A short introduction to generic functions and RuleDispatch.
+
+RuleDispatch
+------------
+
+* By Phillip J Eby
+* Part of PEAK (distributed separately):
+  http://peak.telecommunity.com/
+
+::
+
+   $ easy_install -Z \
+     -f http://peak.telecommunity.com/snapshots/ \
+     RuleDispatch
+
+
+
+Generically
+-----------------------------
+
+* What are generic functions?
+
+  - One function from the outside
+  - Multiple implementations on the inside
+  - Implementation chosen based on function arguments
+
+Examples Elsewhere
+---------------------------
+
+Multiple dispatch, like in C++::
+
+  Set* join(Set* a, Set* b) {
+    ...
+  }
+
+  Set* join(List* a, Set* b) {
+    ...
+  }
+
+Implementation chosen based on the types of all the arguments.
+
+Other Elsewhere
+---------------------------
+
+Multiple dispatch (called a "multimethod") in Common Lisp/CLOS::
+
+  (defmethod join ((a Set) (b Set)) ...)
+  (defmethod join ((a List) (b Set)) ...)
+
+``join`` is a "generic function"; this is how all OO works in CLOS
+(and Dylan).
+
+Single Dispatch
+---------------
+* Only allows dictionaries, lists, numbers, strings.
+* But what about other objects?
+
+Practical Example: JSON
+-----------------------
+
+Converting a SQLObject instance to something JSONable::
+
+    def jsonify(v):
+        if isinstance(v, SQLObject):
+            return json_sqlobject(v)
+        elif isinstance(v, (dict, list, tuple, 
+                            int, str, float)):
+            return v
+        else:
+            raise ValueError("Not jsonable: %r" % v)
+
+* Easy to understand.
+* But you have to edit ``jsonify`` to add another kind of object.
+
+Magic Methods
+-------------
+
+::
+
+    def jsonify(v):
+        if hasattr(v, '__json__'):
+            return v.__json__()
+        elif ...
+
+* ``jsonify`` doesn't have to be changed.
+* You just have to attach ``__json__`` methods to other objects.
+* Keep your dirty magic methods off my nice classes, thank you.
+
+Generic Functions
+-----------------
+
+A little of both, with generic functions::
+
+    @dispatch.generic()
+    def jsonify(v):
+        if hasattr(v, '__json__'):
+            return v.__json__()
+    
+    @jsonify.when('''isinstance(v, (dict, list, 
+                         tuple, int, str, float))''')
+    def jsonify(v):
+        return v
+
+    @jsonify.when('isinstance(v, SQLObject)')
+    def jsonify(v):
+        return jsonify(v.sqlmeta.asDict())
+
+Generic Functions
+-----------------
+
+Why is this better?
+
+* I don't have to add a magic method to ``SQLObject``.
+* The person writing ``jsonify`` doesn't have to account for every
+  possible kind of object.
+* A person who controls neither ``jsonify`` nor ``SQLObject`` can
+  define how the two fit together.
+* You can put in other (important!) rules that aren't based on types.
+
+A Predicate
+-----------
+
+::
+
+    @jsonify.when('hasattr(v, "__iter__")')
+    def jsonify(v):
+        return jsonify([item for item in v])
+
+* The iterator protocol, for generic sequence objects.
+* There is no "type", this is pure Duck Typing (ducks say "quack",
+  sequences say "__iter__").
+
+Specialization and next_method
+------------------------------
+
+Adding a custom serializer::
+
+    class User(SQLObject):
+        username = StringCol()
+        email = StringCol()
+        roles = MultipleJoin('Role')
+
+    @jsonify.when('isinstance(v, User)'):
+    def jsonify(next_method, v):
+        result = next_method(v)
+        result['roles'] = [r.name for r in v.roles]
+        return result
+

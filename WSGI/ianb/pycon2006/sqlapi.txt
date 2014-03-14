@@ -1,0 +1,104 @@
+SQL-API
+=======
+
+Like DB-API, but better!
+
+Why is it
+---------
+
+Why?  Why:
+
+::
+
+    from pycopg import connect
+    conn = connection('dbname=test user=pgsql')
+    cur = conn.cursor()
+    cur.execute('SELECT * FROM foo WHERE x = %s', (1, ))
+
+Pythonic?
+
+I'm not a DB-API hata'
+----------------------
+
+* "not Pythonic" is like "un-American"
+
+* It is beneath me!
+
+* "Pythonic" is *wrapping* annoying interfaces, not reimplementing
+  them
+
+What SQL-API Is
+---------------
+
+* Load connections from URIs (like ``mysql://user@localhost/dbname``)
+  -- uses Eggs to locate (database backends are plugins)
+
+* "Solid" connections taken from DBUtils -- reopen connections when
+  they fail
+
+* Limited life connections -- limited number of queries or limited
+  time
+
+* Database connection handling -- per-thread, thread pooled
+
+* Query logging
+
+More What It Is
+---------------
+
+* SQL abstraction library -- like SQLObject's sqlbuilder (*syntax*
+  abstraction)
+
+* Unified exception hierarchy
+
+* Database abstraction/portability -- database types (DDL), coerce
+  literals, different parameter marker formats; hack around problems
+
+What Else It Might Be
+---------------------
+
+* Simple results wrapper (maybe like dictionary result rows)
+
+* Magic Python LINQish introspection?  (Like Robert Brewer's Deja Vu
+  and Peter Hunt's SQLComp)
+
+What Won't Go In
+----------------
+
+* Anything related to logic
+
+* No frameworks
+
+* Nothing higher level
+
+* Everything should be optional to use
+
+* Everything should be applicable to any model of database access (or
+  optional: not damaging)
+
+In Summary
+----------
+
+* SQL-API is less annoying than DB-API
+
+* SQL-API is about as boring to implement as DB-API
+
+* We should stop reimplementing boring things
+
+Queries: 2.6's killer feature
+-----------------------------
+
+* They are happening everywhere
+
+* David's sets were a query: ``or(int, None)``
+
+* SQL-API's (and SQLObject's and SQLAlchemy's) operator overloaded
+  expressions
+
+* Deja Vu and SQLComp lambda introspection implements this without
+  language support (but with that ugly ``lambda``)
+
+* RuleDispatch (generic functions) uses strings
+
+* I'm pretty sure I've forgetten at least one or two
+

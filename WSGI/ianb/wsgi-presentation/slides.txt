@@ -1,0 +1,482 @@
+WSGI Middleware and WSGIKit
++++++++++++++++++++++++++++
+
+.. future:
+    *techniques for advancing the state of the art in Python web
+    programming*
+
+    Ian Bicking
+    Imaginary Landscape LLC
+    www.imagescape.com
+
+WSGI Middleware and WSGIKit
+===========================
+
+.. raw:: html
+
+   <img src="whiskey-cup.jpg" align="right" />
+
+Using WSGI Middleware to build a foundation for Python web programming.
+
+http://ianbicking.org/docs/pycon2005
+
+WSGI Open Space, Wednesday 5:30-6:00, Room 310
+
+::
+
+    Ian Bicking
+    Imaginary Landscape Web Development
+    imagescape.com
+
+The Problem
+===========
+
+.. raw:: html
+
+    <center><img src="logos.jpg"></center>
+
+Solutions
+=========
+
+Solution 1
+----------
+
+* We all realize that there is One True Framework
+* We ostrasize everyone who doesn't agree
+* The peer pressure / totalitarian solution
+
+Solutions
+=========
+
+Solution 2
+----------
+
+* Write a book *Choosing Your Python Web Framework*
+* The "document your crap and it will start to smell good" solution
+
+Solutions
+=========
+
+Solution 3
+----------
+
+.. image:: ./longhorn_logo.jpg
+   :align: right
+
+* We give up on the web, (after all, it's just based on primitive
+  1970's technology), and focus on the future: Avalon
+* The "when all you have is a hammer, screws are stupid" solution
+
+The Solution
+============
+
+Restrictions of a Practical Solution
+------------------------------------
+
+* We can't make code go away
+* We can't suppress the diversity of aesthetic and structural opinions
+* We can't abandon current developers
+* We can't continue with the present course
+
+The Solution
+============
+
+Directions for a Practical Solution
+-----------------------------------
+
+* We must support legacy interfaces
+* We must support future new frameworks
+* We must mitigate the cost of diversity
+* Aesthetic opinions should not require functional compromises
+
+The Solution
+============
+
+Strategy for a Practical Solution
+---------------------------------
+
+* Stop building from the top down
+* Stop focusing on points which separate us (aesthetics, application
+  structure, application modeling)
+* If not stop, at least pause for a little while...
+
+The Solution
+============
+
+Positive Steps for a Practical Solution
+---------------------------------------
+
+* Build from the bottom up
+* Start at the lowest layer: the server
+* Move upward with robust and aesthetically neutral libraries
+* Each step, look for low hanging fruit
+
+On WSGIKit
+==========
+
+My Experience With WSGIKit...
+
+Alternate Titles
+================
+
+WSGIKit: Deconstructing a legacy framework into WSGI middleware
+---------------------------------------------------------------
+
+* Starting with a legacy API (Webware)...
+* And a codebase with lots of coupling...
+* Recreated the API as a set of independent components with thin 
+  WSGI-based glue
+
+Alternate Titles
+================
+
+WSGIKit: Creating a framework from a WSGI middleware stack
+----------------------------------------------------------
+
+* WSGIKit is a full-featured framework from scratch
+* "Framework" is a facade; the "middleware" does all the heavy lifting
+* Using Webware API just a way to ignore API design
+
+Alternate Titles
+================
+
+WSGIKit: Utilizing WSGI as a platform for inter-framework cooperation 
+---------------------------------------------------------------------
+
+* Deconstucting any and all frameworks into WSGI components
+* Allowing applications to live beside other applications written for 
+  other APIs
+* WSGI as container and a communication medium
+
+Python web programming
+======================
+
+WSGI, and WSGIKit
+-----------------
+
+*A strategy to make Python a compelling web development language*
+
+Foundation
+==========
+
+What is a Foundation
+--------------------
+
+* Decoupled libraries (few dependencies)
+* Stable Dependencies Principle
+* Testable libraries
+* Thoroughly documented
+
+Foundation
+==========
+
+* Libraries that can be "complete"
+* Limited and well-defined scope
+* Not easy, just possible
+* Avoids points of disagreement (like specific templating languages or
+  threading vs. processes)
+
+Foundation
+==========
+
+What isn't a Foundation
+-----------------------
+
+* Not a particular server
+* Minimal, not convenient
+* Robust, not pleasing
+* Concrete where possible
+* Explicit, not necessarily concise
+
+Part II: WSGI
+=============
+
+What Is WSGI?
+-------------
+
+* Web Server Gateway Interface
+* PEP 333, written by Phillip Eby
+* About 1 year old
+
+WSGI
+====
+
+WSGI as a Foundation
+--------------------
+
+* It connects "servers" to "applications", e.g., Apache to Zope, or
+  Twisted to Webware
+* WSGI is already a foundational API
+* This presentation shows how it is a framework for other foundational
+  elements
+
+WSGI
+====
+
+WSGI: a brief explanation
+-------------------------
+
+The one-minute introduction to WSGI, using WSGIKit and
+``wsgikit.webkit`` as an example...
+
+(these slides abbreviate the standard)
+
+The Application
+===============
+
+::
+
+    from wsgikit.webkit.wsgiwebkit import webkit
+    my_application = webkit('/path/to/webkit/root')
+
+* ``webkit`` creates a WSGI application
+* The standard applies only to that application, not its construction
+
+The Server
+==========
+
+::
+
+    from wsgikit.cgiserver import run_with_cgi
+    run_with_cgi(my_application)
+
+* ``run_with_cgi`` just a gateway to turn any WSGI application into a
+  CGI application
+* Other "servers" may need different information, like a port or host
+* The standard applies to what ``run_with_cgi`` does with
+  ``my_application``
+
+The Application
+===============
+
+* Application objects are called::
+
+    def run_with_cgi(app):
+        ....
+        app_iter = app(environ, start_response)
+        ...
+
+* The application returns an iterator that produces the body of the
+  response
+
+environ
+===========
+
+``environ``
+-----------
+
+::
+
+    app(environ, start_response)
+
+* A dictionary
+* Most keys are like CGI environmental variables
+  - ``"SCRIPT_NAME"``
+  - ``"PATH_INFO"``
+  - ``"QUERY_STRING"``, etc.
+* Some additional keys...
+
+environ
+===========
+
+::
+
+    app(environ, start_response)
+
+* ``"wsgi.input"``: a file-like object, the body of the request
+  - under CGI: ``sys.stdin``
+* Metadata about the request (e.g., if the environment is threaded),
+  a file for simple error logging
+
+environ
+===========
+
+::
+
+    app(environ, start_response)
+
+* Extensions can add new keys to the dictionary,
+  e.g. ``"wsgikit.session"``
+* There's no standard for what goes in those keys
+
+start_response
+==================
+
+``start_response``
+------------------
+
+::
+
+    app(environ, start_response)
+
+* *Another* callable.  The application calls ``start_response``::
+
+    def my_app(environ, start_response):
+        ...
+        start_response('200 OK', [('Content-type', 'text/html')])
+        return ['<html>...']
+
+WSGI as a Framework
+===================
+
+* WSGI is a well-specified
+* All the state is in ``environ`` or passed between functions
+* The process serves as a pipeline
+* No classes, no inheritance, everything explicit and transparent
+
+WSGI Middleware
+===============
+
+A simple example:
+
+.. image:: simple-middleware.png
+   :align: center
+
+WSGI Middleware
+===============
+
+.. image:: full-middleware.png
+   :align: center
+
+WSGI Middleware
+===============
+
+Middleware
+----------
+
+* Object that is a WSGI application
+* Delegates to another WSGI application
+* Acts as a server to that application
+
+WSGI Middleware
+===============
+
+``session``
+-----------
+
+* Fetches a session for each request
+* Saves session when request completes
+* Sets session ID (using a cookie)
+
+WSGI Middleware
+===============
+
+``session`` psuedocode
+----------------------
+
+::
+
+    def session_middleware(wrapped_app):
+        def replacement_app(environ, start_response):
+            session_obj = Session(environ)
+            environ['wsgikit.session'] = session_obj
+            def replacement_start_response(status, headers):
+                if session_obj.session_created:
+                    headers.append(
+                        ('Set-Cookie', 'SID=' + session_obj.sid))
+                return start_response(status, headers)
+            return wrapped_app(environ, replacement_start_response)
+        return replacement_app
+
+WSGI Middleware
+===============
+
+Using ``session``
+-----------------
+
+::
+
+    def my_app(environ, start_response):
+        ...
+        session = environ['wsgikit.session']
+        session.save_value('username', 'bob')
+        ...
+
+WSGI Middleware
+===============
+
+``urlparser``
+-------------
+
+* ``urlparser`` uses ``PATH_INFO`` to find the a WSGI application on
+  disk
+* This one WSGI application delegates to many applications
+* When an application is found ``SCRIPT_NAME`` and ``PATH_INFO`` are 
+  rewritten to reflect the new context
+
+Middleware
+==========
+
+Who Uses Middleware?
+--------------------
+
+* Framework programmers
+* The current WSGIKit middleware was created because the Webware API
+  (and featureset) required it
+* All access to the middleware is hidden in the Webware API
+* Other framework authors can wrap the functionality with their native
+  conventions
+
+Presentation
+============
+
+Separating Logic From Presentation
+----------------------------------
+
+* APIs are the way frameworks present themselves
+* APIs are a user interface for programmers
+* Features are the logic underlying those APIs
+
+Presentation
+============
+
+WSGI As Logic Without Presentation
+----------------------------------
+
+* WSGI isn't pretty
+* WSGI doesn't have rounded corners
+* WSGI isn't exposed to "end users" (the majority of developers)
+
+Why?
+====
+
+Why Is This Interesting?
+------------------------
+
+* These components are hard to write in a cross-framework manner
+* They rely on the request and response
+* We have no standard request and response objects
+* Different frameworks can live side by side
+
+Why?
+====
+
+* Components can only communicate through the ``environ`` and other
+  well-defined channels
+* Components must be decoupled
+* Components can be tackled separately
+* We can finally share work
+
+Future
+======
+
+* New standards, e.g., standardize an API for
+  ``environ["session_v1.factory"]``
+* More frameworks presented as WSGI components
+* Leading to more intimate inter-framework cooperation
+* WSGI servers that address commercial hosting needs
+* Solutions can finally stick
+
+.
+===========================
+
+WSGI Middleware and WSGIKit
+---------------------------
+
+Using WSGI Middleware to build a foundation for Python web programming.
+
+::
+
+    Ian Bicking
+    Imaginary Landscape Web Development
+    imagescape.com

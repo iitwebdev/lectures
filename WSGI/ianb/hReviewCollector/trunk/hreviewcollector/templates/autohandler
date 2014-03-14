@@ -1,0 +1,40 @@
+<html>
+ <head>
+  <title><% c.title | h %></title>
+  <link rel="stylesheet" type="text/css" 
+   href="<% c.url('/styles/style.css') | h %>">
+ </head>
+ <body>
+
+% if c.flash:
+<div class="flash">
+<% c.flash | h %>
+</div>
+% #end if
+
+% if c.bundle_url and c.self.bundle.urls:
+<div class="header">
+URLs for this session (<a href="<% c.bundle_url('set_urls') | h %>">edit</a>):
+
+<ul>
+%   for url in c.self.bundle.urls:
+  <li><a href="<% url | h %>" target="_blank"><% url %></a></li>
+%   #end for
+</ul>
+% #end if
+
+% if c.bundle_url:
+<div>
+ <a href="<% c.bundle_url('') | h %>">summarize</a>
+ | <a href="<% c.bundle_url('content') | h %>">content</a>
+ | <a href="<% c.bundle_url('download') | h %>">download</a>
+ | <a href="<% c.url() | h %>">group index</a>
+</div>
+% #end if
+
+</div>
+
+% m.call_next()
+
+ </body>
+</html>

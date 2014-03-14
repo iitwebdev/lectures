@@ -1,0 +1,28 @@
+BasicAuth requires a user to log in before viewing an application.  We
+create it with a dictionary of username:password
+
+::
+
+    >>> from basicauth import BasicAuth
+    >>> from simpleapp import simple_app
+    >>> wrapped_app = BasicAuth(simple_app, {'user': 'secret'})
+
+Now when we try to access the application we will get a 401 response::
+
+    >>> from testrunner import send_request
+    >>> print send_request(wrapped_app, '/')
+    401 Authorization Required
+    Content-Type: text/plain
+    Www-Authenticate: Basic realm="www"
+    ...
+
+But when we send the proper login information we will get through::
+
+    >>> auth = 'Basic ' + 'user:secret'.encode('base64')
+    >>> print send_request(wrapped_app, '/', 
+    ...                    environ={'HTTP_AUTHORIZATION': auth})
+    200 OK
+    ...
+
+
+

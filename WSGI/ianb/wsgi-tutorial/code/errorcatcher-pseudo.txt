@@ -1,0 +1,6 @@
+       try:
+   12    Give request to app
+       except:
+   14    Get exception
+15-17    Respond with 500 Server Error
+19-21    Show traceback

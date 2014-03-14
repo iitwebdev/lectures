@@ -1,0 +1,15 @@
+Simple app just says "Simple App!" no matter what we do::
+
+    >>> from testrunner import *
+    >>> from simpleapp import *
+    >>> res = send_request(simple_app, '/')
+    >>> print res
+    200 OK
+    Content-Type: text/html
+    <html><head><title>Simple App</title></head>
+    <body><h1>Simple App!</h1></body></html>
+    >>> res2 = send_request(simple_app, '/foo/bar')
+    >>> res.body == res2.body
+    True
+
+And that's all it does.

@@ -1,0 +1,9 @@
+#!/bin/sh
+
+PATH=$PATH:/Users/ianb/w/docutils/tools/
+
+rst2html.py metaclasses.txt tmpmeta.html
+./rsthtml2s5.py tmpmeta.html metaclasses.html
+#rm tmpslides.html
+
+

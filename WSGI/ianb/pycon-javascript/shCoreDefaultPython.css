@@ -1,0 +1,328 @@
+/**
+ * SyntaxHighlighter
+ * http://alexgorbatchev.com/SyntaxHighlighter
+ *
+ * SyntaxHighlighter is donationware. If you are using it, please donate.
+ * http://alexgorbatchev.com/SyntaxHighlighter/donate.html
+ *
+ * @version
+ * 3.0.83 (July 02 2010)
+ *
+ * @copyright
+ * Copyright (C) 2004-2010 Alex Gorbatchev.
+ *
+ * @license
+ * Dual licensed under the MIT and GPL licenses.
+ */
+.syntaxhighlighter.python a,
+.syntaxhighlighter.python div,
+.syntaxhighlighter.python code,
+.syntaxhighlighter.python table,
+.syntaxhighlighter.python table td,
+.syntaxhighlighter.python table tr,
+.syntaxhighlighter.python table tbody,
+.syntaxhighlighter.python table thead,
+.syntaxhighlighter.python table caption,
+.syntaxhighlighter.python textarea {
+  -moz-border-radius: 0 0 0 0 !important;
+  -webkit-border-radius: 0 0 0 0 !important;
+  background: none !important;
+  border: 0 !important;
+  bottom: auto !important;
+  float: none !important;
+  height: auto !important;
+  left: auto !important;
+  line-height: 1.1em !important;
+  margin: 0 !important;
+  outline: 0 !important;
+  overflow: visible !important;
+  padding: 0 !important;
+  position: static !important;
+  right: auto !important;
+  text-align: left !important;
+  top: auto !important;
+  vertical-align: baseline !important;
+  width: auto !important;
+  box-sizing: content-box !important;
+  font-family: "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace !important;
+  font-weight: normal !important;
+  font-style: normal !important;
+  font-size: 1em !important;
+  min-height: inherit !important;
+  min-height: auto !important;
+}
+
+.syntaxhighlighter.python {
+  width: 100% !important;
+  margin: 1em 0 1em 0 !important;
+  position: relative !important;
+  overflow: auto !important;
+  font-size: 1em !important;
+}
+.syntaxhighlighter.python.source {
+  overflow: hidden !important;
+}
+.syntaxhighlighter.python .bold {
+  font-weight: bold !important;
+}
+.syntaxhighlighter.python .italic {
+  font-style: italic !important;
+}
+.syntaxhighlighter.python .line {
+  white-space: pre !important;
+}
+.syntaxhighlighter.python table {
+  width: 100% !important;
+}
+.syntaxhighlighter.python table caption {
+  text-align: left !important;
+  padding: .5em 0 0.5em 1em !important;
+}
+.syntaxhighlighter.python table td.code {
+  width: 100% !important;
+}
+.syntaxhighlighter.python table td.code .container {
+  position: relative !important;
+}
+.syntaxhighlighter.python table td.code .container textarea {
+  box-sizing: border-box !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  border: none !important;
+  background: white !important;
+  padding-left: 1em !important;
+  overflow: hidden !important;
+  white-space: pre !important;
+}
+.syntaxhighlighter.python table td.gutter .line {
+  text-align: right !important;
+  padding: 0 0.5em 0 1em !important;
+}
+.syntaxhighlighter.python table td.code .line {
+  padding: 0 1em !important;
+}
+.syntaxhighlighter.python.nogutter td.code .container textarea, .syntaxhighlighter.python.nogutter td.code .line {
+  padding-left: 0em !important;
+}
+.syntaxhighlighter.python.show {
+  display: block !important;
+}
+.syntaxhighlighter.python.collapsed table {
+  display: none !important;
+}
+.syntaxhighlighter.python.collapsed .toolbar {
+  padding: 0.1em 0.8em 0em 0.8em !important;
+  font-size: 1em !important;
+  position: static !important;
+  width: auto !important;
+  height: auto !important;
+}
+.syntaxhighlighter.python.collapsed .toolbar span {
+  display: inline !important;
+  margin-right: 1em !important;
+}
+.syntaxhighlighter.python.collapsed .toolbar span a {
+  padding: 0 !important;
+  display: none !important;
+}
+.syntaxhighlighter.python.collapsed .toolbar span a.expandSource {
+  display: inline !important;
+}
+.syntaxhighlighter.python .toolbar {
+  position: absolute !important;
+  right: 1px !important;
+  top: 1px !important;
+  width: 11px !important;
+  height: 11px !important;
+  font-size: 10px !important;
+  z-index: 10 !important;
+}
+.syntaxhighlighter.python .toolbar span.title {
+  display: inline !important;
+}
+.syntaxhighlighter.python .toolbar a {
+  display: block !important;
+  text-align: center !important;
+  text-decoration: none !important;
+  padding-top: 1px !important;
+}
+.syntaxhighlighter.python .toolbar a.expandSource {
+  display: none !important;
+}
+.syntaxhighlighter.python.ie {
+  font-size: .9em !important;
+  padding: 1px 0 1px 0 !important;
+}
+.syntaxhighlighter.python.ie .toolbar {
+  line-height: 8px !important;
+}
+.syntaxhighlighter.python.ie .toolbar a {
+  padding-top: 0px !important;
+}
+.syntaxhighlighter.python.printing .line.alt1 .content,
+.syntaxhighlighter.python.printing .line.alt2 .content,
+.syntaxhighlighter.python.printing .line.highlighted .number,
+.syntaxhighlighter.python.printing .line.highlighted.alt1 .content,
+.syntaxhighlighter.python.printing .line.highlighted.alt2 .content {
+  background: none !important;
+}
+.syntaxhighlighter.python.printing .line .number {
+  color: #bbbbbb !important;
+}
+.syntaxhighlighter.python.printing .line .content {
+  color: black !important;
+}
+.syntaxhighlighter.python.printing .toolbar {
+  display: none !important;
+}
+.syntaxhighlighter.python.printing a {
+  text-decoration: none !important;
+}
+.syntaxhighlighter.python.printing .plain, .syntaxhighlighter.python.printing .plain a {
+  color: black !important;
+}
+.syntaxhighlighter.python.printing .comments, .syntaxhighlighter.python.printing .comments a {
+  color: #008200 !important;
+}
+.syntaxhighlighter.python.printing .string, .syntaxhighlighter.python.printing .string a {
+  color: blue !important;
+}
+.syntaxhighlighter.python.printing .keyword {
+  color: #006699 !important;
+  font-weight: bold !important;
+}
+.syntaxhighlighter.python.printing .preprocessor {
+  color: gray !important;
+}
+.syntaxhighlighter.python.printing .variable {
+  color: #aa7700 !important;
+}
+.syntaxhighlighter.python.printing .value {
+  color: #009900 !important;
+}
+.syntaxhighlighter.python.printing .functions {
+  color: #ff1493 !important;
+}
+.syntaxhighlighter.python.printing .constants {
+  color: #0066cc !important;
+}
+.syntaxhighlighter.python.printing .script {
+  font-weight: bold !important;
+}
+.syntaxhighlighter.python.printing .color1, .syntaxhighlighter.python.printing .color1 a {
+  color: gray !important;
+}
+.syntaxhighlighter.python.printing .color2, .syntaxhighlighter.python.printing .color2 a {
+  color: #ff1493 !important;
+}
+.syntaxhighlighter.python.printing .color3, .syntaxhighlighter.python.printing .color3 a {
+  color: red !important;
+}
+.syntaxhighlighter.python.printing .break, .syntaxhighlighter.python.printing .break a {
+  color: black !important;
+}
+
+.syntaxhighlighter.python {
+  background-color: white !important;
+}
+.syntaxhighlighter.python .line.alt1 {
+  background-color: white !important;
+}
+.syntaxhighlighter.python .line.alt2 {
+  background-color: white !important;
+}
+.syntaxhighlighter.python .line.highlighted.alt1, .syntaxhighlighter.python .line.highlighted.alt2 {
+  background-color: #e0e0e0 !important;
+}
+.syntaxhighlighter.python .line.highlighted.number {
+  color: black !important;
+}
+.syntaxhighlighter.python table caption {
+  color: black !important;
+}
+.syntaxhighlighter.python .gutter {
+  color: #afafaf !important;
+}
+.syntaxhighlighter.python .gutter .line {
+  border-right: 3px solid #6ce26c !important;
+}
+.syntaxhighlighter.python .gutter .line.highlighted {
+  background-color: #6ce26c !important;
+  color: white !important;
+}
+.syntaxhighlighter.python.printing .line .content {
+  border: none !important;
+}
+.syntaxhighlighter.python.collapsed {
+  overflow: visible !important;
+}
+.syntaxhighlighter.python.collapsed .toolbar {
+  color: blue !important;
+  background: white !important;
+  border: 1px solid #6ce26c !important;
+}
+.syntaxhighlighter.python.collapsed .toolbar a {
+  color: blue !important;
+}
+.syntaxhighlighter.python.collapsed .toolbar a:hover {
+  color: red !important;
+}
+.syntaxhighlighter.python .toolbar {
+  color: white !important;
+  background: #6ce26c !important;
+  border: none !important;
+}
+.syntaxhighlighter.python .toolbar a {
+  color: white !important;
+}
+.syntaxhighlighter.python .toolbar a:hover {
+  color: black !important;
+}
+.syntaxhighlighter.python .plain, .syntaxhighlighter.python .plain a {
+  color: black !important;
+}
+.syntaxhighlighter.python .comments, .syntaxhighlighter.python .comments a {
+  color: #008200 !important;
+}
+.syntaxhighlighter.python .string, .syntaxhighlighter.python .string a {
+  color: blue !important;
+}
+.syntaxhighlighter.python .keyword {
+  color: #006699 !important;
+}
+.syntaxhighlighter.python .preprocessor {
+  color: gray !important;
+}
+.syntaxhighlighter.python .variable {
+  color: #aa7700 !important;
+}
+.syntaxhighlighter.python .value {
+  color: #009900 !important;
+}
+.syntaxhighlighter.python .functions {
+  color: #ff1493 !important;
+}
+.syntaxhighlighter.python .constants {
+  color: #0066cc !important;
+}
+.syntaxhighlighter.python .script {
+  font-weight: bold !important;
+  color: #006699 !important;
+  background-color: none !important;
+}
+.syntaxhighlighter.python .color1, .syntaxhighlighter.python .color1 a {
+  color: gray !important;
+}
+.syntaxhighlighter.python .color2, .syntaxhighlighter.python .color2 a {
+  color: #ff1493 !important;
+}
+.syntaxhighlighter.python .color3, .syntaxhighlighter.python .color3 a {
+  color: red !important;
+}
+
+.syntaxhighlighter.python .keyword {
+  font-weight: bold !important;
+}

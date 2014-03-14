@@ -1,0 +1,300 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>py.test; unittest alternative</title>
+<meta name="version" content="S5 1.0" />
+<link rel="stylesheet" href="ui/slides.css" type="text/css" media="projection" id="slideProj" />
+<link rel="stylesheet" href="ui/opera.css" type="text/css" media="projection" id="operaFix" />
+<link rel="stylesheet" href="ui/print.css" type="text/css" media="print" id="slidePrint" />
+<link rel="stylesheet" href="ui/custom.css" type="text/css" media="projection" id="slideProj" />
+<script src="ui/slides.js" type="text/javascript"></script>
+</head>
+<body>
+
+<div class="layout">
+
+<div id="currentSlide"></div>
+<div id="header"></div>
+<div id="footer">
+<h1>ChiPy, 9 Dec 2004</h1>
+<h2>py.test; unittest alternative</h2>
+<div id="controls"></div>
+</div>
+
+</div>
+
+
+<div class="presentation">
+
+<div class="slide">
+<h1>py.test; unittest alternative</h1>
+<h3>Ian Bicking</h3>
+<h4>Imaginary Landscape</h4>
+</div>
+
+
+<div class="slide">
+<h1>What is it?</h1>
+<ul>
+<li>Finds tests</li>
+<li>Runs tests</li>
+<li>Gives feedback on tests</li>
+</ul>
+
+</div>
+
+<div class="slide">
+<h1>What is a test?</h1>
+
+A test is a runnable thing:
+<ul>
+<li>Modules that start with <code>test_</code></li>
+<li>Functions that start with <code>test_</code></li>
+<li>Classes that start with <code>Test</code></li>
+</ul>
+
+</div>
+
+<div class="slide">
+<h1>Functions</h1>
+
+<pre>
+def test_addition():
+    assert 1 + 1 == 2
+    assert 1 + -1 == 0
+</pre>
+
+<div class="slide">
+<h1>Classes</h1>
+
+<pre>
+class TestStuff:
+    numbers = [(1, 1, 2)]
+    def test_me(self):
+        for n1, n2, addition in self.numbers:
+            assert n1 + n2 == addition
+</pre>
+
+</div>
+
+<!-- ========== SLIDE ========== -->
+<div class="slide">
+<h1>Tests with parameters</h1>
+
+<pre>
+def test_lots():
+    numbers = [(1, 1, 2), (2, 2, 4), (5, 5, 9)]
+    for args in numbers:
+        yield (adder,) + args
+def adder(n1, n2, addition):
+    assert n1 + n2 == addition
+</pre>
+
+</div>
+
+<!-- ========== SLIDE ========== -->
+<div class="slide">
+<h1>Running</h1>
+
+<ul>
+<li>Use <code>py.test</code>; finds all tests under current 
+directory</li>
+<li>Use <code>--session</code> and it tracks modified date of all
+test files it finds, does constant updates</li>
+</ul>
+
+</div>
+
+<!-- ========== SLIDE ========== -->
+<div class="slide">
+<h1>Reporting</h1>
+
+<ul>
+<li>Shows tracebacks for each failed test</li>
+<li>Re-evaluates assertions (no need for <code>assertEqual</code>)</li>
+<li>Can show local variables in each frame</li>
+<li>Can enter debugger on exception</li>
+</ul>
+
+</div>
+
+<!-- ========== SLIDE ========== -->
+<div class="slide">
+<h1>Why not unittest?</h1>
+
+<ul>
+<li>There's lots of extensions to unittest, but they are all mutually 
+incompatible and usually fragile.  They all enforce a specific code 
+layout (among other things).  None of them are well documented. </li>
+<li>It's surprisingly hard to collect <code>unittest</code> tests from a 
+large project.</li>
+<li>Lots of boilerplate in unittest.</li>
+<li>Really hard to do data-based testing.</li>
+<li>Smells of Java.</li>
+</ul>
+
+</div>
+
+
+<!-- ========== SLIDE ========== -->
+<div class="slide">
+<h1>Why change to py.test?</h1>
+
+<ul>
+<li>It's (relatively) easy to change test systems: your unit tests are 
+self-testing.</li> 
+<li>Your tests contain very few py.test-related idioms; it's just
+bare code.<li>
+<li>Still under development; will keep getting better.</li>
+<li>Lots of debugging aids.</li>
+<li>Smells of Python.</li>
+</ul>
+
+
+</div>
+
+
+
+<!-- ========== SLIDE ========== -->
+<div class="slide">
+<h1>Test fixtures</h1>
+
+<ul>
+<li><code>unittest</code> provides a fixture (<code>TestCase</code>)</li>
+<li>With py.test you must provide your own fixtures</li>
+<li>You don't need to use inheritance</li>
+</ul>
+
+</div>
+
+<!-- ========== SLIDE ========== -->
+<div class="slide">
+<h1>Decorator fixtures</h1>
+
+<ul>
+<li>Decorators wrap functions; that's all they do</li>
+<li>Easy to add more decorators and compose decorators</li>
+</ul>
+
+</div>
+
+<!-- ========== SLIDE ========== -->
+<div class="slide">
+<h1>Decorator fixtures</h1>
+
+Setup, teardown, can be achieved with decorators:
+
+<pre>
+def setup(func):
+    setup_stuff()
+    func(value_that_was_set_up)
+    teardown_stuff()
+
+@setup
+def test_here(some_value): ...
+</pre>
+
+<!-- ========== SLIDE ========== -->
+<div class="slide">
+<h1>param</h1>
+
+Dissecting the <code>param</code> decorator; here's the original:
+
+<pre>
+def test_to_roman():
+    for integer, numeral in known_values:
+        assert roman.toRoman(integer) == numeral
+</pre>
+
+</div>
+
+<!-- ========== SLIDE ========== -->
+<div class="slide">
+<h1>param: generators</h1>
+
+<pre>
+def test_to_roman():
+    for integer, numeral in known_values:
+        yield inner_test_to_roman, integer, numeral
+def inner_test_to_roman(integer, numeral):
+    assert roman.toRoman(integer) == numeral
+</pre>
+
+</div>
+
+<!-- ========== SLIDE ========== -->
+<div class="slide">
+<h1>param: decorator</h1>
+
+<pre>
+def param(param_list):
+    def make_param_func(func):
+        def yielder():
+            for args in param_list:
+                yield (func,) + args
+        return yielder
+    return decorator
+
+@param(known_values)
+def test_to_roman(integer, numeral):
+    assert roman.toRoman(integer) == numeral
+</div>
+
+<!-- ========== SLIDE ========== -->
+<div class="slide">
+<h1>param: decorator 2</h1>
+
+You must pass in a <code>param_list</code> like <code>[(arg1, arg2),
+(arg1, arg2)]</code>.  We might want to be able to pass in <code>[arg,
+arg, arg]</code> for functions that take one argument:
+
+<pre>
+    def yielder():
+        for args in param_list:
+            if not isinstance(args, tuple):
+                yield (func, args)
+            else:
+                yield (func,) + args
+</pre>
+
+</div>
+
+
+<!-- ========== SLIDE ========== -->
+<div class="slide">
+<h1>param: decorator 3</h1>
+
+Sometimes we don't want to unpack list of arguments into multiple
+tests.
+
+<pre>
+    if expand:
+        return yielder
+    else:
+        def runner():
+            for args in yielder():
+                args[0](*args[1:])
+        return runner
+</pre>
+
+</div>
+
+<!-- ========== SLIDE ========== -->
+<div class="slide">
+<h1>py.test</h1>
+
+Find it at <code>http://codespeak.net/py</code><br>
+Find this at <code>http://svn.colorstudy.com/home/ianb/pytest_roman</code>
+
+</div>
+
+
+
+
+</div>
+
+</body>
+</html>

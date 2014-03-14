@@ -1,0 +1,49 @@
+[
+  {
+    "summary": "Cafe Borrone",
+    "item": {
+      "vcard": {
+        "fn": "Cafe Borrone",
+        "orgs": [{"organization-name": "Cafe Borrone"}],
+        "adrs": [
+          {"street-address": "1010 El Camino Real", "locality": "Menlo Park", "region": "CA", "postal-code": "94025"}
+        ],
+        "tels": [{"value": "+1-650-327-0830"}],
+        "url": ["http://cafeborrone.com"]
+      }
+    },
+    "all_tags": [
+      {"url": "http://en.wikipedia.org/wiki/Food", "rating": 18, "best": 30},
+      {"url": "http://flickr.com/photos/tags/Ambience", "rating": 19, "best": 30},
+      {"url": "http://en.wikipedia.org/wiki/Service", "rating": 15, "best": 30},
+      {"url": "http://en.wikipedia.org/wiki/Price", "rating": 2},
+      {"url": "http://en.wikipedia.org/wiki/cafe"},
+      {"url": "http://en.wikipedia.org/wiki/coffee"},
+      {"url": "http://technorati.com/tag/soup"},
+      {"url": "http://technorati.com/tag/sandwich"},
+      {"url": "http://flickr.com/photos/tags/espresso"},
+      {"url": "http://en.wikipedia.org/wiki/Illy"},
+      {"url": "http://en.wikipedia.org/wiki/jazz"}
+    ],
+    "unrated_tags": [
+      {"url": "http://en.wikipedia.org/wiki/cafe"},
+      {"url": "http://en.wikipedia.org/wiki/coffee"},
+      {"url": "http://technorati.com/tag/soup"},
+      {"url": "http://technorati.com/tag/sandwich"},
+      {"url": "http://flickr.com/photos/tags/espresso"},
+      {"url": "http://en.wikipedia.org/wiki/Illy"},
+      {"url": "http://en.wikipedia.org/wiki/jazz"}
+    ],
+    "rated_tags": [
+      {"url": "http://en.wikipedia.org/wiki/Food", "rating": 18, "best": 30},
+      {"url": "http://flickr.com/photos/tags/Ambience", "rating": 19, "best": 30},
+      {"url": "http://en.wikipedia.org/wiki/Service", "rating": 15, "best": 30},
+      {"url": "http://en.wikipedia.org/wiki/Price", "rating": 2}
+    ],
+    "description": "<p>This <abbr class=\"type\" title=\"business\"> <a href=\"http://en.wikipedia.org/wiki/cafe\" rel=\"tag\">cafe</a></abbr> is a welcoming oasis on the Peninsula. It even has a fountain outside which nearly eliminates the sounds of El Camino traffic. Next door to a superb indy bookstore, Cafe Borrone is an ideal spot to grab a <a href=\"http://en.wikipedia.org/wiki/coffee\" rel=\"tag\">coffee</a> or a meal to accompany a newly purchased book or imported periodical. <a href=\"http://technorati.com/tag/soup\" rel=\"tag\">Soups</a> and <a href=\"http://technorati.com/tag/sandwich\" rel=\"tag\">sandwich</a> specials rotate daily. The corn chowder with croutons and big chunks of cheese goes especially well with a freshly toasted mini-baguette. Evenings are often crowded and may require sharing a table with a perfect stranger. <a href=\"http://flickr.com/photos/tags/espresso\" rel=\"tag\">Espresso</a> afficionados will appreciate the <a href=\"http://en.wikipedia.org/wiki/Illy\" rel=\"tag\">Illy</a> coffee. Noise levels can vary from peaceful in the late mornings to nearly overwhelming on <a href=\"http://en.wikipedia.org/wiki/jazz\" rel=\"tag\">jazz</a> band nights.</p>",
+    "version": "0.3",
+    "type": "business",
+    "reviewer": {"vcard": { "fn": "anonymous"}},
+    "dtreviewed": "20050428T2130-0700"
+  }
+]

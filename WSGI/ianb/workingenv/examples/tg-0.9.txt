@@ -1,0 +1,18 @@
+# This is an example, using TurboGears 0.9
+
+-f http://www.turbogears.org/preview/download/index.html
+-f http://peak.telecommunity.com/snapshots
+
+TurboJson >= 0.9.1
+TurboKid >= 0.9.3
+CherryPy >= 2.2.0
+simplejson >= 1.1
+SQLObject >= 0.7.1dev_r1457
+elementtree >= 1.2.6
+cElementTree >= 1.0.5
+PasteScript >= 0.5
+FormEncode >= 0.4
+setuptools >= 0.6a11
+RuleDispatch
+nose >= 0.8
+

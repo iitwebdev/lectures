@@ -1,0 +1,18 @@
+[
+  {
+    "item": {
+      "urls": ["http://www.amazon.com/exec/obidos/ASIN/B000089CJI/"],
+      "fn": "The Postal Service: Give Up",
+      "photos": ["http://images.amazon.com/images/P/B000089CJI.01._SCTHUMBZZZ_.jpg"]
+    },
+    "description": "<p>\"The people thought they were just being rewarded for treating others as they like to be treated, for obeying stop signs and curing diseases, for mailing letters with the address of the sender... Don't wake me, I plan on sleeping in...\" </p><p> \"Nothing Better\" is a great track on this album, too... </p>",
+    "rating": {"value": 5},
+    "reviewer": {
+      "vcard": {
+        "url": "http://ifindkarma.com/blog/",
+        "fn":   "Adam Rifkin"
+      }
+    },
+    "dtreviewed": "200502"
+  }
+]
