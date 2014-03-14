@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <meta charset="utf-8" />
+		<title>{{ name }}</title>
+	</head>
+	<body>
+		<h1>{{ name }}</h1>
+		{% for i in range(10) %}
+			{{ i }}
+		{% endfor %}
+		<br />
+		<a href="/users/">Auth app</a><br />
+		<a href="/year/cal/">Year app</a><br />
+		<a href="/year/cal/1723/">Year app -> 1723</a><br />
+		<a href="/year/cal/1111/09">Year app -> 1111-09</a><br />
+		<a href="/bad/">Exception</a><br />
+		<a href="/bad2/">Interactive Exception</a><br />
+		<a href="/simple/">Simple app</a><br />
+		<a href="/">Home</a><br />
+	</body>
+</html>

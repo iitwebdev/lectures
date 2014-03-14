@@ -1,5 +1,6 @@
 from requestobj import Request
 
+
 class wsgify(object):
 
     def __init__(self, func):
@@ -14,6 +15,7 @@ class wsgify(object):
             response, res_body = res_body, None
         start_response(response.status, response.headers)
         return response.make_body(res_body)
+
 
 class Response(object):
 
