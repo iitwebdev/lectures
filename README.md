@@ -25,11 +25,19 @@ WSGI
 
 [Ian Bicking examples](http://svn.colorstudy.com/home/ianb/)
 
+![ScreenShot](https://raw.github.com/iitwebdev/lectures/master/WSGI/ianb/wsgi-tutorial/diagram.png)
+
 [WSGI](http://wsgi.readthedocs.org/en/latest/)
 
 [Примеры как запустить WSGI приложение](http://flask.pocoo.org/docs/deploying/wsgi-standalone/)
 
 [PEP 333](http://legacy.python.org/dev/peps/pep-0333/)
+
+[WSGI middleware example](http://ivory.idyll.org/articles/wsgi-intro/what-is-wsgi.html)
+
+[Getting Started with WSGI](http://lucumr.pocoo.org/2007/5/21/getting-started-with-wsgi/)
+
+[WSGI tutorial](http://webpython.codepoint.net/wsgi_tutorial)
 
 [WSGI citforum](http://citforum.ru/programming/python/wsgi/):
 
