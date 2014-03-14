@@ -11,6 +11,7 @@ WSGI web app example
 """
 from view import (
     index,
+    models_view,
     calendar_year,
     calendar_month,
 )
@@ -39,6 +40,7 @@ app_list = [('/users', auth_app),
             ('/bad', ErrorCatcher(bad_app)),
             ('/bad2', bad_app),
             ('/simple', simple_app),
+            ('/models', models_view),
             ('', index),
             ]
 dispatch = URLDispatch(app_list)

@@ -1,0 +1,12 @@
+{% extends "/base.html" %}
+
+{% block content %}
+	{% for key, values in fraimworks.iteritems() %}
+		<h1/>{{ key }}</h1>
+        {% for value in values %}
+			<div style="background: {{ loop.cycle('lime', 'lightgray') }};width: 100px;">
+				{{ value }}
+			</div>
+        {% endfor %}
+    {% endfor %}
+{% endblock %}	

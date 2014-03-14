@@ -11,7 +11,16 @@ Any views there.
 """
 import calendar
 from caller import wsgify
-from jinja2 import Template
+from models import fraimworks
+from jinja2 import (
+    Template,
+    Environment,
+    #PackageLoader,
+    FileSystemLoader
+)
+
+#env = Environment(loader=PackageLoader('fullexample', 'templates'))
+env = Environment(loader=FileSystemLoader('templates'))
 
 
 @wsgify
@@ -30,8 +39,15 @@ def calendar_month(request, year, month):
 
 @wsgify
 def index(request):
-    with open('index.html', 'r') as template_file:
+    with open('templates/index.html', 'r') as template_file:
         template = template_file.read()
     t = Template(str(template))
     response = t.render(name="WSGI examples")
+    return response
+
+
+@wsgify
+def models_view(request):
+    template = env.get_template('fraimworks_list.html')
+    response = template.render(fraimworks=fraimworks, name="Fraimworks list")
     return response
