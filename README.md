@@ -23,6 +23,8 @@ CGI и WSGI
 WSGI
 ----
 
+[Ian Bicking examples](http://svn.colorstudy.com/home/ianb/)
+
 [WSGI](http://wsgi.readthedocs.org/en/latest/)
 
 [Примеры как запустить WSGI приложение](http://flask.pocoo.org/docs/deploying/wsgi-standalone/)
