@@ -1,3 +1,8 @@
+HTML & CSS
+==========
+
+
+
 CGI и WSGI
 ==========
 
@@ -88,3 +93,58 @@ WSGI - стандарт обмена данными между веб-серве
                 # Call upstream start_response
                 start_response(status, headers, exc_info)
             return callback
+            
+Шаблоны
+=======
+
+[Jinja](http://jinja.pocoo.org/)
+
+[Jinja Flask example](http://www.realpython.com/blog/python/primer-on-jinja-templating/)
+
+[Chameleon](http://chameleon.readthedocs.org/en/latest//)
+
+[Mako](http://www.makotemplates.org/)
+
+
+Модели
+======
+
+[psycopg2](http://pythonhosted.org//psycopg2/)
+
+[psycopg2](http://initd.org/psycopg/)
+
+
+[sqlite3](http://docs.python.org/2/library/sqlite3.html)
+
+[sqlite3](http://zetcode.com/db/sqlitepythontutorial/)
+
+[sqlite](http://www.tutorialspoint.com/sqlite/sqlite_python.htm)
+
+[SQLAlchemy](http://www.sqlalchemy.org/)
+
+[ZODB](http://www.zodb.org/en/latest/)
+
+[Redis](http://redis.io/)
+
+[memcached](http://memcached.org/)
+
+[mongodb](https://www.mongodb.org/)
+
+[couchdb](http://couchdb.apache.org/)
+
+Тесты
+=====
+
+nose
+selenium
+behave
+lettuce
+
+jenkins
+buildbot
+travis-ci
+StriderCD
+
+Fabric
+Docker
+Vagrant
