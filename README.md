@@ -1,6 +1,20 @@
 HTML & CSS
 ==========
+[bootstrap](http://getbootstrap.com/components/)
 
+[lesscss](http://lesscss.org/)
+
+[lesscss](http://lesscss.ru/)
+
+[sass](http://sass-lang.com/)
+
+[БЭМ](http://ru.bem.info/)
+
+[haml](http://haml.info/)
+
+[haml-jinja](https://github.com/Pitmairen/hamlish-jinja)
+
+[Jade для python](https://github.com/SyrusAkbary/pyjade)
 
 
 Синхронный Веб (request&response)
@@ -172,13 +186,17 @@ tornado
 
 python>=3.4
 
+tulip
+
 socketio
+
+AJAX
 
 go websocket
 
 go gorilla websocket
 
-tulip
+nodejs
 
 Фреймворки
 ==========
