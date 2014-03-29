@@ -2,6 +2,8 @@ HTML & CSS
 ==========
 [bootstrap](http://getbootstrap.com/components/)
 
+[kube](http://imperavi.com/kube/typography/)
+
 [lesscss](http://lesscss.org/)
 
 [lesscss](http://lesscss.ru/)
@@ -182,22 +184,25 @@ def app(environ, start_response):
 ===============
 
 websocket
+---------
 
-gevent
+[RFC6455](http://tools.ietf.org/html/rfc6455)
 
-tornado
+[gevent](https://bitbucket.org/Jeffrey/gevent-websocket)
 
-python>=3.4
+[tornado](http://www.tornadoweb.org/en/stable/)
+
+[python>=3.4](http://docs.python.org/dev/library/asyncio.html)
 
 tulip
 
-socketio
+[socketio](http://socket.io/)
 
 AJAX
 
-go websocket
+[go websocket](http://godoc.org/code.google.com/p/go.net/websocket)
 
-go gorilla websocket
+[go gorilla websocket](http://www.gorillatoolkit.org/pkg/websocket)
 
 nodejs
 
@@ -222,3 +227,33 @@ Go
 Revel
 
 Gorilla
+
+Pyramid
+=======
+
+WYSIWYG
+-------
+
+[TinyMCE4](http://www.tinymce.com/)
+
+[RedactorJS](http://imperavi.com/redactor/)
+
+Filebrowser
+-----------
+
+[Elfinder](http://elfinder.org/)
+
+[pyramid_elfinder](https://github.com/uralbash/pyramid_elfinder)
+
+
+CRUD
+----
+
+[pyramid_formalchemy](http://docs.formalchemy.org/pyramid_formalchemy/)
+
+[sacrud](https://github.com/uralbash/sacrud)
+
+email
+-----
+
+[pyramid_mailer](http://docs.pylonsproject.org/projects/pyramid_mailer/en/latest/)
