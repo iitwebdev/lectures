@@ -192,6 +192,8 @@ websocket
 
 [tornado](http://www.tornadoweb.org/en/stable/)
 
+[Twisted](http://twistedmatrix.com/)
+
 [python>=3.4](http://docs.python.org/dev/library/asyncio.html)
 
 tulip
