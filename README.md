@@ -64,9 +64,11 @@ WSGI
 
 WSGI - стандарт обмена данными между веб-сервером (backend) и веб-приложением (frontend). Под это определение попадают многие вещи, тот же самый CGI.
 
-    def app(environ, start_response):
-        start_response('200 OK', [('Content-type', 'text/plain')])
-        return ['Hello here']
+```python
+def app(environ, start_response):
+    start_response('200 OK', [('Content-type', 'text/plain')])
+    return ['Hello here']
+```
         
 приложение принимает в качестве аргументов словарь переменных окружения (**environ**) и исполняемый объект выполнения запроса (**start_response**). Далее, посылаем начало ответа серверу и возвращаем сам ответ в виде итератора (в данном случае - в виде обычного списка).
 
@@ -82,7 +84,7 @@ WSGI - стандарт обмена данными между веб-серве
 
 [WSGI tutorial](http://archimedeanco.com/wsgi-tutorial/#)
 
-
+```python
     class Filter(object):
         def __init__(self, application):
             self.application = application
@@ -109,6 +111,7 @@ WSGI - стандарт обмена данными между веб-серве
                 # Call upstream start_response
                 start_response(status, headers, exc_info)
             return callback
+```
             
 Шаблоны
 =======
