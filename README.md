@@ -3,6 +3,8 @@ HTML & CSS
 
 
 
+Синхронный Веб (request&response)
+=================================
 CGI и WSGI
 ==========
 
@@ -135,16 +137,45 @@ WSGI - стандарт обмена данными между веб-серве
 Тесты
 =====
 
-nose
-selenium
-behave
-lettuce
+[nose](https://nose.readthedocs.org/en/latest/)
 
-jenkins
-buildbot
-travis-ci
-StriderCD
+[selenium](http://docs.seleniumhq.org/)
 
-Fabric
-Docker
-Vagrant
+[behave](https://github.com/behave/behave)
+
+[lettuce](https://github.com/gabrielfalcao/lettuce)
+
+[jenkins](http://jenkins-ci.org/)
+
+[buildbot](http://buildbot.net/)
+
+[travis-ci](https://travis-ci.org/)
+
+[StriderCD](http://stridercd.com/)
+
+[Fabric](http://docs.fabfile.org/en/1.8/)
+
+[Docker](https://www.docker.io/)
+
+[Vagrant](http://www.vagrantup.com/)
+
+[drone](https://github.com/drone/drone)
+
+Асинхронный Веб
+===============
+
+websocket
+
+gevent
+
+tornado
+
+python>=3.4
+
+socketio
+
+go websocket
+
+go gorilla websocket
+
+tulip
