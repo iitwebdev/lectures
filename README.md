@@ -143,6 +143,8 @@ def app(environ, start_response):
 
 [SQLAlchemy](http://www.sqlalchemy.org/)
 
+[SQLAlchemy TUTORIAL](http://www.sqlalchemy.org/library.html#tutorials)
+
 [ZODB](http://www.zodb.org/en/latest/)
 
 [Redis](http://redis.io/)
