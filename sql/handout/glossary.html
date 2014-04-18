@@ -1,0 +1,1639 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Glossary &mdash; PyCon 2013 - Introduction to SQLAlchemy</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/print.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/theme_extras.js"></script>
+    <link rel="top" title="PyCon 2013 - Introduction to SQLAlchemy" href="index.html" />
+    <link rel="next" title="Further Reading" href="reading.html" />
+    <link rel="prev" title="Relational Database Review" href="relational.html" /> 
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="index.html">
+          <span>PyCon 2013 - Introduction to SQLAlchemy</span></a></h1>
+        <h2 class="heading"><span>Glossary</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        «&#160;&#160;<a href="relational.html">Relational Database Review</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="reading.html">Further Reading</a>&#160;&#160;»
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <div class="section" id="glossary">
+<span id="id1"></span><h1>Glossary<a class="headerlink" href="#glossary" title="Permalink to this headline">¶</a></h1>
+<p>The glossary is broken into two distinct areas of terminology, for those who
+want to read the whole thing.</p>
+<p><a class="reference internal" href="#glossary-relational"><em>Relational Terms</em></a></p>
+<p><a class="reference internal" href="#glossary-sqlalchemy"><em>SQLAlchemy Core / Object Relational Terms</em></a></p>
+<div class="section" id="relational-terms">
+<span id="glossary-relational"></span><h2>Relational Terms<a class="headerlink" href="#relational-terms" title="Permalink to this headline">¶</a></h2>
+<dl class="glossary docutils">
+<dt id="term-acid"><span id="term-acid-model"></span>ACID<br />ACID model</dt>
+<dd><p class="first">An acronym for &#8220;Atomicity, Consistency, Isolation,
+Durability&#8221;; a set of properties that guarantee that
+database transactions are processed reliably.
+(via Wikipedia)</p>
+<div class="admonition-see-also last admonition seealso">
+<p class="first admonition-title">See also</p>
+<p><a class="reference internal" href="relational.html#acid-model"><em>ACID Model</em></a></p>
+<p class="last"><a class="reference external" href="http://en.wikipedia.org/wiki/ACID_Model">http://en.wikipedia.org/wiki/ACID_Model</a></p>
+</div>
+</dd>
+<dt id="term-atomicity">atomicity</dt>
+<dd><p class="first">Atomicity is one of the components of the <a class="reference internal" href="#term-acid"><em class="xref std std-term">ACID</em></a> model,
+and requires that each transaction is &#8220;all or nothing&#8221;:
+if one part of the transaction fails, the entire transaction
+fails, and the database state is left unchanged. An atomic
+system must guarantee atomicity in each and every situation,
+including power failures, errors, and crashes.
+(via Wikipedia)</p>
+<div class="admonition-see-also last admonition seealso">
+<p class="first admonition-title">See also</p>
+<p><a class="reference internal" href="relational.html#atomicity"><em>Atomicity</em></a></p>
+<p class="last"><a class="reference external" href="http://en.wikipedia.org/wiki/Atomicity_(database_systems">http://en.wikipedia.org/wiki/Atomicity_(database_systems</a>)</p>
+</div>
+</dd>
+<dt id="term-candidate-key">candidate key</dt>
+<dd><p class="first">A <a class="reference internal" href="#term-relational-algebra"><em class="xref std std-term">relational algebra</em></a> term referring to an attribute or set
+of attributes that form a uniquely identifying key for a
+row.  A row may have more than one candidate key, each of which
+is suitable for use as the primary key of that row.
+The primary key of a table is always a candidate key.</p>
+<div class="admonition-see-also last admonition seealso">
+<p class="first admonition-title">See also</p>
+<p><a class="reference internal" href="relational.html#primary-key"><em>Primary Keys</em></a></p>
+<p class="last"><a class="reference external" href="http://en.wikipedia.org/wiki/Candidate_key">http://en.wikipedia.org/wiki/Candidate_key</a></p>
+</div>
+</dd>
+<dt id="term-cartesian-product">cartesian product</dt>
+<dd><p class="first">A mathematical operation which returns a set (or product set) from multiple sets.
+The Cartesian product is the result of crossing members of each set with one another.
+(via Wikipedia)</p>
+<div class="admonition-see-also last admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference external" href="http://en.wikipedia.org/wiki/Cartesian_product">http://en.wikipedia.org/wiki/Cartesian_product</a></p>
+</div>
+</dd>
+<dt id="term-check-constraint">check constraint</dt>
+<dd><p class="first">A check constraint is a
+condition that defines valid data when adding or updating an
+entry in a table of a relational database. A check constraint
+is applied to each row in the table.</p>
+<p>(via Wikipedia)</p>
+<p>A check constraint can be added to a table in standard
+SQL using <a class="reference internal" href="#term-ddl"><em class="xref std std-term">DDL</em></a> like the following:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">distributors</span> <span class="k">ADD</span> <span class="k">CONSTRAINT</span> <span class="n">zipchk</span> <span class="k">CHECK</span> <span class="p">(</span><span class="k">char_length</span><span class="p">(</span><span class="n">zipcode</span><span class="p">)</span> <span class="o">=</span> <span class="mi">5</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition-see-also last admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference external" href="http://en.wikipedia.org/wiki/Check_constraint">http://en.wikipedia.org/wiki/Check_constraint</a></p>
+</div>
+</dd>
+<dt id="term-column"><span id="term-columns"></span>column<br />columns</dt>
+<dd>A vertical unit of storage in a <a class="reference internal" href="#term-table"><em class="xref std std-term">table</em></a>.   The table
+defines one or more columns as fixed types of data to
+be stored within rows.</dd>
+<dt id="term-columns-clause">columns clause</dt>
+<dd><p class="first">The portion of a <tt class="docutils literal"><span class="pre">SELECT</span></tt> statement that enumerates a series of SQL
+expressions to be evaulated as the returned result set.  Typically,
+these expressions refer directly to table columns.  The columns
+clause follows the <tt class="docutils literal"><span class="pre">SELECT</span></tt> keyword and precedes the <tt class="docutils literal"><span class="pre">FROM</span></tt>
+keyword.</p>
+<p>In the following <tt class="docutils literal"><span class="pre">SELECT</span></tt> statement, the &#8220;id&#8221; and &#8220;name&#8221; columns
+will be returned for each row, and this enumeration of columns
+forms the &#8220;columns clause&#8221;:</p>
+<div class="last highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="n">id</span><span class="p">,</span> <span class="n">name</span> <span class="k">FROM</span> <span class="n">user_account</span>
+</pre></div>
+</div>
+</dd>
+<dt id="term-commit">commit</dt>
+<dd><p class="first">Denotes the successful completion of a <a class="reference internal" href="#term-transaction"><em class="xref std std-term">transaction</em></a>.
+In SQL, we normally denote the commit using the <tt class="docutils literal"><span class="pre">COMMIT</span></tt> statement:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">BEGIN</span> <span class="n">TRANSACTION</span>
+
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">employee</span> <span class="p">(</span><span class="n">emp_id</span><span class="p">,</span> <span class="n">emp_name</span><span class="p">,</span> <span class="n">dep_id</span><span class="p">)</span>
+            <span class="k">VALUES</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;dilbert&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">employee</span> <span class="p">(</span><span class="n">emp_id</span><span class="p">,</span> <span class="n">emp_name</span><span class="p">,</span> <span class="n">dep_id</span><span class="p">)</span>
+            <span class="k">VALUES</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;wally&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+
+<span class="k">COMMIT</span>
+</pre></div>
+</div>
+<p class="last">Above, the <tt class="docutils literal"><span class="pre">employee</span></tt> rows for <tt class="docutils literal"><span class="pre">dilbert</span></tt> and <tt class="docutils literal"><span class="pre">wally</span></tt>
+will be permanently available following the <tt class="docutils literal"><span class="pre">COMMIT</span></tt> statement.</p>
+</dd>
+<dt id="term-consistency">consistency</dt>
+<dd><p class="first">Consistency is one of the compoments of the <a class="reference internal" href="#term-acid"><em class="xref std std-term">ACID</em></a> model,
+and ensures that any transaction will
+bring the database from one valid state to another. Any data
+written to the database must be valid according to all defined
+rules, including but not limited to <a class="reference internal" href="#term-constraints"><em class="xref std std-term">constraints</em></a>, cascades,
+triggers, and any combination thereof.
+(via Wikipedia)</p>
+<div class="admonition-see-also last admonition seealso">
+<p class="first admonition-title">See also</p>
+<p><a class="reference internal" href="relational.html#consistency"><em>Consistency</em></a></p>
+<p class="last"><a class="reference external" href="http://en.wikipedia.org/wiki/Consistency_(database_systems">http://en.wikipedia.org/wiki/Consistency_(database_systems</a>)</p>
+</div>
+</dd>
+<dt id="term-constraint"><span id="term-constraints"></span>constraint<br />constraints</dt>
+<dd><p class="first">Rules established within a relational database that ensure
+the validity and consistency of data.   Common forms
+of constraint include <a class="reference internal" href="#term-primary-key-constraint"><em class="xref std std-term">primary key constraint</em></a>,
+<a class="reference internal" href="#term-foreign-key-constraint"><em class="xref std std-term">foreign key constraint</em></a>, and <a class="reference internal" href="#term-check-constraint"><em class="xref std std-term">check constraint</em></a>.</p>
+<div class="admonition-see-also last admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="relational.html#consistency"><em>Consistency</em></a></p>
+</div>
+</dd>
+<dt id="term-correlated-subquery"><span id="term-correlated-subqueries"></span>correlated subquery<br />correlated subqueries</dt>
+<dd><p class="first">A <a class="reference internal" href="#term-subquery"><em class="xref std std-term">subquery</em></a> is correlated if it depends on data in the
+enclosing <tt class="docutils literal"><span class="pre">SELECT</span></tt>.</p>
+<p>Below, a subquery selects the aggregate value <tt class="docutils literal"><span class="pre">MIN(a.id)</span></tt>
+from the <tt class="docutils literal"><span class="pre">email_address</span></tt> table, such that
+it will be invoked for each value of <tt class="docutils literal"><span class="pre">user_account.id</span></tt>, correlating
+the value of this column against the <tt class="docutils literal"><span class="pre">email_address.user_account_id</span></tt>
+column:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="n">user_account</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">email_address</span><span class="p">.</span><span class="n">email</span>
+ <span class="k">FROM</span> <span class="n">user_account</span>
+ <span class="k">JOIN</span> <span class="n">email_address</span> <span class="k">ON</span> <span class="n">user_account</span><span class="p">.</span><span class="n">id</span><span class="o">=</span><span class="n">email_address</span><span class="p">.</span><span class="n">user_account_id</span>
+ <span class="k">WHERE</span> <span class="n">email_address</span><span class="p">.</span><span class="n">id</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="k">SELECT</span> <span class="k">MIN</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">id</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">email_address</span> <span class="k">AS</span> <span class="n">a</span>
+    <span class="k">WHERE</span> <span class="n">a</span><span class="p">.</span><span class="n">user_account_id</span><span class="o">=</span><span class="n">user_account</span><span class="p">.</span><span class="n">id</span>
+ <span class="p">)</span>
+</pre></div>
+</div>
+<p>The above subquery refers to the <tt class="docutils literal"><span class="pre">user_account</span></tt> table, which is not itself
+in the <tt class="docutils literal"><span class="pre">FROM</span></tt> clause of this nested query.   Instead, the <tt class="docutils literal"><span class="pre">user_account</span></tt>
+table is recieved from the enclosing query, where each row selected from
+<tt class="docutils literal"><span class="pre">user_account</span></tt> results in a distinct execution of the subquery.</p>
+<p class="last">A correlated subquery is nearly always present in the <a class="reference internal" href="#term-where-clause"><em class="xref std std-term">WHERE clause</em></a>
+or <a class="reference internal" href="#term-columns-clause"><em class="xref std std-term">columns clause</em></a> of the enclosing <tt class="docutils literal"><span class="pre">SELECT</span></tt> statement, and never
+in the <a class="reference internal" href="#term-from-clause"><em class="xref std std-term">FROM clause</em></a>; this is because
+the correlation can only proceed once the original source rows from the enclosing
+statement&#8217;s FROM clause are available.</p>
+</dd>
+<dt id="term-data-definition-language"><span id="term-ddl"></span>data definition language<br />DDL</dt>
+<dd><p class="first">The SQL commands that define a schema.
+For example, <tt class="docutils literal"><span class="pre">CREATE</span> <span class="pre">TABLE</span></tt>, <tt class="docutils literal"><span class="pre">DROP</span> <span class="pre">TABLE</span></tt>, <tt class="docutils literal"><span class="pre">ALTER</span> <span class="pre">TABLE</span></tt>.</p>
+<div class="admonition-see-also last admonition seealso">
+<p class="first admonition-title">See also</p>
+<p><a class="reference internal" href="relational.html#ddl"><em>Relational Schemas</em></a></p>
+<p class="last"><a class="reference external" href="http://en.wikipedia.org/wiki/Data_Definition_Language">http://en.wikipedia.org/wiki/Data_Definition_Language</a></p>
+</div>
+</dd>
+<dt id="term-data-manipulation-language"><span id="term-dml"></span>data manipulation language<br />DML</dt>
+<dd><p class="first">The SQL commands that manipulate data.
+For example, <tt class="docutils literal"><span class="pre">SELECT</span></tt>, <tt class="docutils literal"><span class="pre">INSERT</span></tt>, <tt class="docutils literal"><span class="pre">UPDATE</span></tt> and <tt class="docutils literal"><span class="pre">DELETE</span></tt>.</p>
+<div class="admonition-see-also last admonition seealso">
+<p class="first admonition-title">See also</p>
+<p><a class="reference internal" href="relational.html#dml"><em>Data Manipulation Language (DML)</em></a></p>
+<p class="last"><a class="reference external" href="http://en.wikipedia.org/wiki/Data_Manipulation_Language">http://en.wikipedia.org/wiki/Data_Manipulation_Language</a></p>
+</div>
+</dd>
+<dt id="term-durability">durability</dt>
+<dd><p class="first">Durability is a property of the <a class="reference internal" href="#term-acid"><em class="xref std std-term">ACID</em></a> model
+which means that once a transaction has been committed,
+it will remain so, even in the event of power loss, crashes,
+or errors. In a relational database, for instance, once a
+group of SQL statements execute, the results need to be stored
+permanently (even if the database crashes immediately
+thereafter).
+(via Wikipedia)</p>
+<div class="admonition-see-also last admonition seealso">
+<p class="first admonition-title">See also</p>
+<p><a class="reference internal" href="relational.html#durability"><em>Durability</em></a></p>
+<p class="last"><a class="reference external" href="http://en.wikipedia.org/wiki/Durability_(database_systems">http://en.wikipedia.org/wiki/Durability_(database_systems</a>)</p>
+</div>
+</dd>
+<dt id="term-edgar-codd"><span id="term-edgar-f-codd"></span>Edgar Codd<br />Edgar F. Codd</dt>
+<dd><p class="first">Creator of the <a class="reference internal" href="#term-relational-model"><em class="xref std std-term">relational model</em></a>.</p>
+<div class="admonition-see-also last admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference external" href="http://en.wikipedia.org/wiki/Edgar_F._Codd">http://en.wikipedia.org/wiki/Edgar_F._Codd</a></p>
+</div>
+</dd>
+<dt id="term-exists"><span id="term-exists-operator"></span>EXISTS<br />EXISTS operator</dt>
+<dd><p class="first">The EXISTS operator tests a subquery and returns true if the
+subquery returns any rows:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="n">name</span> <span class="k">FROM</span> <span class="n">user_account</span>
+ <span class="k">WHERE</span> <span class="k">EXISTS</span>
+ <span class="p">(</span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">email_address</span>
+    <span class="k">WHERE</span> <span class="n">email_address</span><span class="p">.</span><span class="n">user_account_id</span><span class="o">=</span><span class="n">user_account</span><span class="p">.</span><span class="n">id</span><span class="p">)</span>
+
+ <span class="n">name</span>
+<span class="c1">-------</span>
+ <span class="n">jack</span>
+ <span class="n">ed</span>
+ <span class="n">wendy</span>
+</pre></div>
+</div>
+<p>The columns selected by the subquery are ignored.  Only the
+number of rows are considered: no rows or at least one.
+<tt class="docutils literal"><span class="pre">EXISTS</span> <span class="pre">&lt;subquery&gt;</span></tt> is a <a class="reference internal" href="#term-scalar"><em class="xref std std-term">scalar</em></a>, boolean expresion
+and can be used like any other boolean value in a WHERE clause:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="n">name</span> <span class="k">FROM</span> <span class="n">user_account</span>
+  <span class="k">WHERE</span> <span class="k">EXISTS</span> <span class="p">(</span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">email_address</span> <span class="k">WHERE</span> <span class="n">email_address</span><span class="p">.</span><span class="n">user_account_id</span><span class="o">=</span><span class="n">user_account</span><span class="p">.</span><span class="n">id</span><span class="p">)</span>
+  <span class="k">AND</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;ed&#39;</span>
+
+ <span class="n">name</span>
+<span class="c1">------</span>
+  <span class="n">ed</span>
+</pre></div>
+</div>
+<p class="last">The subquery used within an <tt class="docutils literal"><span class="pre">EXISTS</span></tt> expression is nearly always
+a <a class="reference internal" href="#term-correlated-subquery"><em class="xref std std-term">correlated subquery</em></a>.</p>
+</dd>
+<dt id="term-foreign-key-constraint">foreign key constraint</dt>
+<dd><p class="first">A referential constraint between two tables.  A foreign key is a field or set of fields in a
+relational table that matches a <a class="reference internal" href="#term-candidate-key"><em class="xref std std-term">candidate key</em></a> of another table.
+The foreign key can be used to cross-reference tables.
+(via Wikipedia)</p>
+<p>A foreign key constraint can be added to a table in standard
+SQL using <a class="reference internal" href="#term-ddl"><em class="xref std std-term">DDL</em></a> like the following:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">employee</span> <span class="k">ADD</span> <span class="k">CONSTRAINT</span> <span class="n">dep_id_fk</span>
+<span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">employee</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="n">department</span> <span class="p">(</span><span class="n">dep_id</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition-see-also last admonition seealso">
+<p class="first admonition-title">See also</p>
+<p><a class="reference internal" href="relational.html#foreign-key"><em>Foreign Keys</em></a></p>
+<p class="last"><a class="reference external" href="http://en.wikipedia.org/wiki/Foreign_key_constraint">http://en.wikipedia.org/wiki/Foreign_key_constraint</a></p>
+</div>
+</dd>
+<dt id="term-from-clause">FROM clause</dt>
+<dd><p class="first">A component of the <tt class="docutils literal"><span class="pre">SELECT</span></tt> statement which specifies the source
+tables or subqueries from which rows are to be selected.  The <tt class="docutils literal"><span class="pre">FROM</span></tt>
+clause follows the <a class="reference internal" href="#term-columns-clause"><em class="xref std std-term">columns clause</em></a> and may contain a comma-separated
+list of tables and subqueries, as well as <a class="reference internal" href="#term-join"><em class="xref std std-term">join</em></a> expressions:</p>
+<div class="last highlight-sql"><div class="highlight"><pre><span class="c1">-- FROM clause illustrating an explicit join</span>
+
+<span class="k">SELECT</span> <span class="n">id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">email_address</span>
+ <span class="k">FROM</span> <span class="n">user_account</span>
+ <span class="k">JOIN</span> <span class="n">email_address</span> <span class="k">ON</span> <span class="n">user_account</span><span class="p">.</span><span class="n">id</span><span class="o">=</span><span class="n">email_address</span><span class="p">.</span><span class="n">user_account_id</span>
+
+<span class="c1">-- FROM clause illustrating an implicit join</span>
+
+<span class="k">SELECT</span> <span class="n">id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">email_address</span>
+ <span class="k">FROM</span> <span class="n">user_account</span><span class="p">,</span> <span class="n">email_address</span>
+ <span class="k">WHERE</span> <span class="n">user_account</span><span class="p">.</span><span class="n">id</span><span class="o">=</span><span class="n">email_address</span><span class="p">.</span><span class="n">user_account_id</span>
+</pre></div>
+</div>
+</dd>
+<dt id="term-in"><span id="term-in-operator"></span>IN<br />IN operator</dt>
+<dd><p class="first">A comparison operator.  Compares an expression against a list of
+values, and is true if it matches at least one of them.</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="n">email</span> <span class="k">FROM</span> <span class="n">email_address</span>
+<span class="k">WHERE</span> <span class="n">user_account_id</span> <span class="k">IN</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>A <a class="reference internal" href="#term-subquery"><em class="xref std std-term">subquery</em></a> can be used in place of a literal list of values:</p>
+<div class="last highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="n">email</span> <span class="k">FROM</span> <span class="n">email_address</span>
+<span class="k">WHERE</span> <span class="n">user_account_id</span> <span class="k">IN</span>
+<span class="p">(</span><span class="k">SELECT</span> <span class="n">id</span> <span class="k">FROM</span> <span class="n">user_account</span> <span class="k">WHERE</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;jack&#39;</span> <span class="k">OR</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;ed&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+<dt id="term-isolation"><span id="term-isolated"></span>isolation<br />isolated</dt>
+<dd><p class="first">The isolation property of the <a class="reference internal" href="#term-acid"><em class="xref std std-term">ACID</em></a> model
+ensures that the concurrent execution
+of transactions results in a system state that would be
+obtained if transactions were executed serially, i.e. one
+after the other. Each transaction must execute in total
+isolation i.e. if T1 and T2 execute concurrently then each
+should remain independent of the other.[citation needed]
+(via Wikipedia)</p>
+<div class="admonition-see-also last admonition seealso">
+<p class="first admonition-title">See also</p>
+<p><a class="reference internal" href="relational.html#isolation"><em>Isolation</em></a></p>
+<p class="last"><a class="reference external" href="http://en.wikipedia.org/wiki/Isolation_(database_systems">http://en.wikipedia.org/wiki/Isolation_(database_systems</a>)</p>
+</div>
+</dd>
+<dt id="term-join"><span id="term-inner-join"></span>join<br />inner join</dt>
+<dd><p class="first">Combines the rows of two tables.  Considers each pair of rows
+in turn, and returns one combined row for each pair that
+matches an ON criteria.</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="n">ua</span><span class="p">.</span><span class="n">id</span><span class="p">,</span> <span class="n">ua</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">ea</span><span class="p">.</span><span class="n">email</span><span class="p">,</span> <span class="n">ea</span><span class="p">.</span><span class="n">user_account_id</span>
+ <span class="k">FROM</span> <span class="n">user_account</span> <span class="k">AS</span> <span class="n">ua</span>
+  <span class="k">JOIN</span> <span class="n">email_address</span> <span class="k">AS</span> <span class="n">ea</span>
+  <span class="k">ON</span> <span class="n">ua</span><span class="p">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">ea</span><span class="p">.</span><span class="n">user_account_id</span>
+
+ <span class="n">id</span> <span class="o">|</span> <span class="n">name</span>  <span class="o">|</span>      <span class="n">email</span>     <span class="o">|</span> <span class="n">user_account_id</span>
+<span class="c1">----+-------+----------------+----------------</span>
+  <span class="mi">1</span> <span class="o">|</span> <span class="n">jack</span>  <span class="o">|</span>  <span class="n">jack</span><span class="o">@</span><span class="n">jack</span><span class="p">.</span><span class="n">com</span> <span class="o">|</span>       <span class="mi">1</span>
+  <span class="mi">2</span> <span class="o">|</span> <span class="n">ed</span>    <span class="o">|</span>  <span class="n">ed</span><span class="o">@</span><span class="n">yahoo</span><span class="p">.</span><span class="n">com</span>  <span class="o">|</span>       <span class="mi">2</span>
+  <span class="mi">2</span> <span class="o">|</span> <span class="n">ed</span>    <span class="o">|</span>  <span class="n">ed</span><span class="o">@</span><span class="n">msn</span><span class="p">.</span><span class="n">com</span>    <span class="o">|</span>       <span class="mi">2</span>
+  <span class="mi">3</span> <span class="o">|</span> <span class="n">wendy</span> <span class="o">|</span>  <span class="n">wendy</span><span class="o">@</span><span class="n">nyt</span><span class="p">.</span><span class="n">com</span> <span class="o">|</span>       <span class="mi">3</span>
+</pre></div>
+</div>
+<p>The result of the join can be defined in a logical
+sense by first
+determining the <a class="reference internal" href="#term-cartesian-product"><em class="xref std std-term">cartesian product</em></a> of the left and
+right side tables; then, for each row within this product,
+evaluating <tt class="docutils literal"><span class="pre">ON</span></tt> clause for each row, selecting only those
+rows for which the clause evaluates to &#8220;true&#8221;.
+In practice, relational database systems
+use more efficient approaches internally in order to evaluate
+the result of a join.</p>
+<p>Usage of the <tt class="docutils literal"><span class="pre">JOIN</span></tt> or <tt class="docutils literal"><span class="pre">INNER</span> <span class="pre">JOIN</span></tt> keyword is logically
+equivalent to a so-called <em>implicit join</em>, where the <tt class="docutils literal"><span class="pre">JOIN</span></tt>
+keyword is not present, and instead the left and right side
+expressions are delivered to the <a class="reference internal" href="#term-from-clause"><em class="xref std std-term">FROM clause</em></a> as a comma
+separated list, with the ON criteria stated instead in
+the <tt class="docutils literal"><span class="pre">WHERE</span></tt> clause:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="n">ua</span><span class="p">.</span><span class="n">id</span><span class="p">,</span> <span class="n">ua</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">ea</span><span class="p">.</span><span class="n">email</span><span class="p">,</span> <span class="n">ea</span><span class="p">.</span><span class="n">user_account_id</span>
+ <span class="k">FROM</span> <span class="n">user_account</span> <span class="k">AS</span> <span class="n">ua</span><span class="p">,</span> <span class="n">email_address</span><span class="p">.</span><span class="n">ea</span>
+ <span class="k">WHERE</span> <span class="n">ua</span><span class="p">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">ea</span><span class="p">.</span><span class="n">user_account_id</span>
+</pre></div>
+</div>
+<div class="admonition-see-also last admonition seealso">
+<p class="first admonition-title">See also</p>
+<p><a class="reference internal" href="#term-left-outer-join"><em class="xref std std-term">left outer join</em></a></p>
+<p class="last"><a class="reference external" href="http://en.wikipedia.org/wiki/Sql_join">http://en.wikipedia.org/wiki/Sql_join</a></p>
+</div>
+</dd>
+<dt id="term-left-outer-join">left outer join</dt>
+<dd><p class="first">A variant of the <a class="reference internal" href="#term-join"><em class="xref std std-term">join</em></a> whereby the criteria for
+including rows from the &#8220;left&#8221; side is relaxed, such that
+not only left-side rows which correspond to the right side
+are returned, but also left-side rows for which no right
+side row corresponds.   In the case where no right
+side row corresponds, all columns from the right side
+are returned as NULL.</p>
+<p>Below, we illustrate selecting all user names from the
+<tt class="docutils literal"><span class="pre">user_account</span></tt> table, in addition to all the <tt class="docutils literal"><span class="pre">email_address</span></tt>
+rows for each <tt class="docutils literal"><span class="pre">user_account</span></tt> row, but also including
+rows from <tt class="docutils literal"><span class="pre">user_account</span></tt> for which no row in <tt class="docutils literal"><span class="pre">email_address</span></tt>
+is present:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="n">ua</span><span class="p">.</span><span class="n">id</span><span class="p">,</span> <span class="n">ua</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">ea</span><span class="p">.</span><span class="n">email</span><span class="p">,</span> <span class="n">ea</span><span class="p">.</span><span class="n">user_account_id</span>
+ <span class="k">FROM</span> <span class="n">user_account</span> <span class="k">AS</span> <span class="n">ua</span>
+  <span class="k">JOIN</span> <span class="n">email_address</span> <span class="k">AS</span> <span class="n">ea</span>
+  <span class="k">ON</span> <span class="n">ua</span><span class="p">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">ea</span><span class="p">.</span><span class="n">user_account_id</span>
+
+ <span class="n">id</span> <span class="o">|</span> <span class="n">name</span>  <span class="o">|</span>      <span class="n">email</span>     <span class="o">|</span> <span class="n">user_account_id</span>
+<span class="c1">----+-------+----------------+----------------</span>
+  <span class="mi">1</span> <span class="o">|</span> <span class="n">jack</span>  <span class="o">|</span>  <span class="n">jack</span><span class="o">@</span><span class="n">jack</span><span class="p">.</span><span class="n">com</span> <span class="o">|</span>       <span class="mi">1</span>
+  <span class="mi">2</span> <span class="o">|</span> <span class="n">ed</span>    <span class="o">|</span>  <span class="n">ed</span><span class="o">@</span><span class="n">yahoo</span><span class="p">.</span><span class="n">com</span>  <span class="o">|</span>       <span class="mi">2</span>
+  <span class="mi">2</span> <span class="o">|</span> <span class="n">ed</span>    <span class="o">|</span>  <span class="n">ed</span><span class="o">@</span><span class="n">msn</span><span class="p">.</span><span class="n">com</span>    <span class="o">|</span>       <span class="mi">2</span>
+  <span class="mi">3</span> <span class="o">|</span> <span class="n">wendy</span> <span class="o">|</span>  <span class="n">wendy</span><span class="o">@</span><span class="n">nyt</span><span class="p">.</span><span class="n">com</span> <span class="o">|</span>       <span class="mi">3</span>
+  <span class="mi">4</span> <span class="o">|</span> <span class="n">mary</span>  <span class="o">|</span>     <span class="p">(</span><span class="k">null</span><span class="p">)</span>     <span class="o">|</span>     <span class="p">(</span><span class="k">null</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The left outer join is a key technique used in object relational
+systems in order to resolve a <a class="reference internal" href="#term-one-to-many"><em class="xref std std-term">one to many</em></a> collection,
+that is a series of objects that contain zero or more related objects.</p>
+<div class="admonition-see-also last admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="#term-join"><em class="xref std std-term">join</em></a></p>
+</div>
+</dd>
+<dt id="term-multi-version-concurrency-control"><span id="term-mvcc"></span>multi version concurrency control<br />MVCC</dt>
+<dd><p class="first">A system by which modern databases provide concurrent
+access to database data.   By assigning <em>versions</em> to
+snapshots of data in time, multiple transactions may simultaneously
+view different versions of the data, relative to the time
+that they were begun.</p>
+<div class="admonition-see-also last admonition seealso">
+<p class="first admonition-title">See also</p>
+<p><a class="reference internal" href="relational.html#isolation"><em>Isolation</em></a></p>
+<p class="last"><a class="reference external" href="http://en.wikipedia.org/wiki/Multiversion_concurrency_control">http://en.wikipedia.org/wiki/Multiversion_concurrency_control</a></p>
+</div>
+</dd>
+<dt id="term-natural-primary-key">natural primary key</dt>
+<dd><p class="first">A <a class="reference internal" href="#term-primary-key"><em class="xref std std-term">primary key</em></a> that is formed of attributes that
+already exist in the real world. For example, a USA citizen&#8217;s
+social security number could be used as a natural key. In
+other words, a natural key is a <a class="reference internal" href="#term-candidate-key"><em class="xref std std-term">candidate key</em></a> that has a
+logical relationship to the attributes within that <a class="reference internal" href="#term-row"><em class="xref std std-term">row</em></a>.</p>
+<p>(via Wikipedia)</p>
+<div class="admonition-see-also last admonition seealso">
+<p class="first admonition-title">See also</p>
+<p><a class="reference internal" href="#term-surrogate-primary-key"><em class="xref std std-term">surrogate primary key</em></a></p>
+<p class="last"><a class="reference external" href="http://en.wikipedia.org/wiki/Natural_key">http://en.wikipedia.org/wiki/Natural_key</a></p>
+</div>
+</dd>
+<dt id="term-normalization">normalization</dt>
+<dd><p class="first">Database normalization is the process of organizing the fields
+and tables of a relational database to minimize redundancy and
+dependency. Normalization usually involves dividing large
+tables into smaller (and less redundant) tables and defining
+relationships between them. The objective is to isolate data
+so that additions, deletions, and modifications of a field can
+be made in just one table and then propagated through the rest
+of the database via the defined relationships.
+(via Wikipedia)</p>
+<div class="admonition-see-also last admonition seealso">
+<p class="first admonition-title">See also</p>
+<p><a class="reference internal" href="relational.html#normalization"><em>Normalization</em></a></p>
+<p class="last"><a class="reference external" href="http://en.wikipedia.org/wiki/Database_normalization">http://en.wikipedia.org/wiki/Database_normalization</a></p>
+</div>
+</dd>
+<dt id="term-primary-key"><span id="term-primary-key-constraint"></span>primary key<br />primary key constraint</dt>
+<dd><p class="first">A <a class="reference internal" href="#term-constraint"><em class="xref std std-term">constraint</em></a> that uniquely defines the characteristics
+of each <a class="reference internal" href="#term-row"><em class="xref std std-term">row</em></a>. The primary key has to consist of
+characteristics that cannot be duplicated by any other row.
+The primary key may consist of a single attribute or
+multiple attributes in combination.
+(via Wikipedia)</p>
+<p>The primary key of a table is typically, though not always,
+defined within the <tt class="docutils literal"><span class="pre">CREATE</span> <span class="pre">TABLE</span></tt> <a class="reference internal" href="#term-ddl"><em class="xref std std-term">DDL</em></a>:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">employee</span> <span class="p">(</span>
+     <span class="n">emp_id</span> <span class="nb">INTEGER</span><span class="p">,</span>
+     <span class="n">emp_name</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span>
+     <span class="n">dep_id</span> <span class="nb">INTEGER</span><span class="p">,</span>
+     <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">emp_id</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition-see-also last admonition seealso">
+<p class="first admonition-title">See also</p>
+<p><a class="reference internal" href="relational.html#primary-key"><em>Primary Keys</em></a></p>
+<p class="last"><a class="reference external" href="http://en.wikipedia.org/wiki/Primary_Key">http://en.wikipedia.org/wiki/Primary_Key</a></p>
+</div>
+</dd>
+<dt id="term-query"><span id="term-queries"></span>query<br />queries</dt>
+<dd><p class="first">The means of interrogating a relational database for
+data.   The primary feature in SQL used for querying
+is the <tt class="docutils literal"><span class="pre">SELECT</span></tt> statement.</p>
+<div class="admonition-see-also last admonition seealso">
+<p class="first admonition-title">See also</p>
+<p><a class="reference internal" href="relational.html#queries"><em>Queries</em></a></p>
+<p class="last"><a class="reference external" href="http://en.wikipedia.org/wiki/Sql#Queries">http://en.wikipedia.org/wiki/Sql#Queries</a></p>
+</div>
+</dd>
+<dt id="term-relation"><span id="term-relations"></span>relation<br />relations</dt>
+<dd>In <a class="reference internal" href="#term-relational-algebra"><em class="xref std std-term">relational algebra</em></a>, a single grid of data represented by
+zero or more <a class="reference internal" href="#term-tuples"><em class="xref std std-term">tuples</em></a>. In a SQL database, the most common
+relation is the <a class="reference internal" href="#term-table"><em class="xref std std-term">table</em></a>, which defines one or more columns of zero
+or more <a class="reference internal" href="#term-rows"><em class="xref std std-term">rows</em></a>. The output of a <tt class="docutils literal"><span class="pre">SELECT</span></tt> statement is also a relation.</dd>
+<dt id="term-relational-model"><span id="term-relational-algebra"></span>relational model<br />relational algebra</dt>
+<dd><p class="first">The relational model for database management is a database model
+based on first-order predicate logic, first formulated and
+proposed in 1969 by <a class="reference internal" href="#term-edgar-f-codd"><em class="xref std std-term">Edgar F. Codd</em></a>. In the relational model
+of a database, all data is represented in terms of <a class="reference internal" href="#term-tuples"><em class="xref std std-term">tuples</em></a>, grouped
+into <a class="reference internal" href="#term-relations"><em class="xref std std-term">relations</em></a>. A database organized in terms of the relational
+model is a relational database.
+(via Wikipedia)</p>
+<div class="admonition-see-also last admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference external" href="http://en.wikipedia.org/wiki/Relational_model">http://en.wikipedia.org/wiki/Relational_model</a></p>
+</div>
+</dd>
+<dt id="term-right-outer-join">right outer join</dt>
+<dd>Like a <a class="reference internal" href="#term-left-outer-join"><em class="xref std std-term">left outer join</em></a>, except the left and right side
+are swapped.  At least
+one row will be returned for every row in the right table, and
+columns from the left row will be filled with NULL if the ON
+criteria does not match.  Right outer joins are not frequently
+used.</dd>
+<dt id="term-rollback">rollback</dt>
+<dd><p class="first">Denotes the end to a <a class="reference internal" href="#term-transaction"><em class="xref std std-term">transaction</em></a> which reverses
+all the effects of the transaction that have proceeded thus far; the
+state established within the transaction is discarded.   In SQL,
+this is normally denoted using the <tt class="docutils literal"><span class="pre">ROLLBACK</span></tt> statement:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">BEGIN</span> <span class="n">TRANSACTION</span>
+
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">employee</span> <span class="p">(</span><span class="n">emp_id</span><span class="p">,</span> <span class="n">emp_name</span><span class="p">,</span> <span class="n">dep_id</span><span class="p">)</span>
+            <span class="k">VALUES</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;dilbert&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">employee</span> <span class="p">(</span><span class="n">emp_id</span><span class="p">,</span> <span class="n">emp_name</span><span class="p">,</span> <span class="n">dep_id</span><span class="p">)</span>
+            <span class="k">VALUES</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;wally&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+
+<span class="k">ROLLBACK</span>
+</pre></div>
+</div>
+<p class="last">Above, no new rows will be present in the database following
+the <tt class="docutils literal"><span class="pre">ROLLBACK</span></tt> statement; both rows inserted for <tt class="docutils literal"><span class="pre">dilbert</span></tt>
+and <tt class="docutils literal"><span class="pre">wally</span></tt> will be discarded.</p>
+</dd>
+<dt id="term-row"><span id="term-rows"></span>row<br />rows</dt>
+<dd>A horizontal unit of storage in a <a class="reference internal" href="#term-table"><em class="xref std std-term">table</em></a>.  Each new data
+record inserted into a table comprises a row; the row in turn
+is broken into individual <a class="reference internal" href="#term-column"><em class="xref std std-term">column</em></a> values.</dd>
+<dt id="term-scalar"><span id="term-scalar-value"></span>scalar<br />scalar value</dt>
+<dd>A single value, such as <tt class="docutils literal"><span class="pre">'a'</span></tt>, <tt class="docutils literal"><span class="pre">123</span></tt> or <tt class="docutils literal"><span class="pre">'2008-02-01'</span></tt>.</dd>
+<dt id="term-scalar-subquery"><span id="term-scalar-subqueries"></span>scalar subquery<br />scalar subqueries</dt>
+<dd><p class="first">A scalar subquery is a <a class="reference internal" href="#term-subquery"><em class="xref std std-term">subquery</em></a> that returns a single column from a
+single row.  Scalar subqueries can be used like columns or anywhere
+an expression is required, which typically includes the <a class="reference internal" href="#term-columns-clause"><em class="xref std std-term">columns clause</em></a>
+or <a class="reference internal" href="#term-where-clause"><em class="xref std std-term">WHERE clause</em></a> of a <tt class="docutils literal"><span class="pre">SELECT</span></tt> statement.</p>
+<p>Below, a scalar subquery is used in the columns clause to select the <tt class="docutils literal"><span class="pre">name</span></tt>
+column from the <tt class="docutils literal"><span class="pre">user_account</span></tt> table for each row selected from the
+<tt class="docutils literal"><span class="pre">email_address</span></tt> table:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span>
+    <span class="n">email_address</span><span class="p">.</span><span class="n">email</span><span class="p">,</span>
+    <span class="p">(</span><span class="k">SELECT</span> <span class="n">user_account</span><span class="p">.</span><span class="n">name</span> <span class="k">FROM</span> <span class="n">user_account</span> <span class="k">WHERE</span> <span class="n">id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="k">AS</span> <span class="n">name</span>
+<span class="k">FROM</span> <span class="n">email_address</span> <span class="k">WHERE</span> <span class="n">email_address</span><span class="p">.</span><span class="n">user_account_id</span><span class="o">=</span><span class="mi">1</span>
+
+     <span class="n">email</span>     <span class="o">|</span> <span class="n">name</span>
+<span class="c1">---------------+----------</span>
+ <span class="n">jack</span><span class="o">@</span><span class="n">jack</span><span class="p">.</span><span class="n">com</span> <span class="o">|</span> <span class="n">jack</span>
+</pre></div>
+</div>
+<p>Selecting an email address by user name, using a scalar subquery
+in the <tt class="docutils literal"><span class="pre">WHERE</span></tt> clause:</p>
+<div class="last highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="n">email_address</span><span class="p">.</span><span class="n">email</span> <span class="k">FROM</span> <span class="n">email_address</span>
+<span class="k">WHERE</span> <span class="n">email_address</span><span class="p">.</span><span class="n">user_account_id</span><span class="o">=</span>
+    <span class="p">(</span><span class="k">SELECT</span> <span class="n">id</span> <span class="k">FROM</span> <span class="n">user_account</span> <span class="k">WHERE</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;jack&#39;</span><span class="p">)</span>
+
+    <span class="n">email</span>
+<span class="c1">---------------</span>
+ <span class="n">jack</span><span class="o">@</span><span class="n">jack</span><span class="p">.</span><span class="n">com</span>
+</pre></div>
+</div>
+</dd>
+<dt id="term-structured-query-language"><span id="term-sql"></span>Structured Query Language<br />SQL</dt>
+<dd><p class="first">A special-purpose programming language designed
+for managing data in relational database management systems
+(RDBMS).</p>
+<p>Originally based upon relational algebra and tuple relational
+calculus, its scope includes data insert, query, update and
+delete, schema creation and modification, and data access
+control.</p>
+<p>(via Wikipedia)</p>
+<div class="admonition-see-also last admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference external" href="http://en.wikipedia.org/wiki/Sql">http://en.wikipedia.org/wiki/Sql</a></p>
+</div>
+</dd>
+<dt id="term-subquery">subquery</dt>
+<dd><p class="first">A <tt class="docutils literal"><span class="pre">SELECT</span></tt> statement embedded in another <tt class="docutils literal"><span class="pre">SELECT</span></tt> statement.  Data
+returned from the inner <tt class="docutils literal"><span class="pre">SELECT</span></tt> is available for use by the
+outer.</p>
+<p>The subquery is a fundamental capability in SQL that allows
+so-called <em>derived tables</em> to be created; meaning, the rows
+from a particular <tt class="docutils literal"><span class="pre">SELECT</span></tt> statement can be named as a unit of
+rows within an enclosing <tt class="docutils literal"><span class="pre">SELECT</span></tt> that causes it to behave more or
+less like a plain <a class="reference internal" href="#term-table"><em class="xref std std-term">table</em></a>.</p>
+<p>Example:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="n">user_account</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">subq</span><span class="p">.</span><span class="n">ad_count</span> <span class="k">FROM</span>
+    <span class="n">user_account</span> <span class="k">JOIN</span>
+    <span class="p">(</span><span class="k">SELECT</span> <span class="n">user_account_id</span><span class="p">,</span> <span class="k">count</span><span class="p">(</span><span class="n">id</span><span class="p">)</span> <span class="k">AS</span> <span class="n">ad_count</span>
+    <span class="k">FROM</span> <span class="n">email_address</span> <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">user_account_id</span><span class="p">)</span> <span class="k">AS</span> <span class="n">subq</span>
+    <span class="k">ON</span> <span class="n">user_account</span><span class="p">.</span><span class="n">id</span><span class="o">=</span><span class="n">subq</span><span class="p">.</span><span class="n">user_account_id</span>
+</pre></div>
+</div>
+<p>Subqueries can be placed in a variety of ways inside of an enclosing
+<tt class="docutils literal"><span class="pre">SELECT</span></tt> statement.    Three common locations include the <a class="reference internal" href="#term-columns-clause"><em class="xref std std-term">columns clause</em></a>,
+the <a class="reference internal" href="#term-where-clause"><em class="xref std std-term">WHERE clause</em></a>, and the <a class="reference internal" href="#term-from-clause"><em class="xref std std-term">FROM clause</em></a>.   The placement
+of the subquery has an impact on the kind of data the query must return.
+In standard SQL, subqueries placed within the columns or WHERE clause must
+be <a class="reference internal" href="#term-scalar-subqueries"><em class="xref std std-term">scalar subqueries</em></a>, i.e. queries that return a single value, unless
+they are evaluated by a boolean aggregation operator such as <a class="reference internal" href="#term-in"><em class="xref std std-term">IN</em></a>,
+<a class="reference internal" href="#term-exists"><em class="xref std std-term">EXISTS</em></a>, <tt class="docutils literal"><span class="pre">ANY</span></tt> or <tt class="docutils literal"><span class="pre">ALL</span></tt>.   A subquery used in the <a class="reference internal" href="#term-from-clause"><em class="xref std std-term">FROM clause</em></a>,
+on the other hand, can return any number of rows and columns.</p>
+<p class="last">Subqueries within the WHERE clause or columns clause are often <a class="reference internal" href="#term-correlated-subqueries"><em class="xref std std-term">correlated subqueries</em></a>
+as well, as they are invoked for each row received in the enclosing query.
+For a FROM clause subquery, correlation is not an option as the FROM clause
+is evaluated before the correlatable rows are chosen.</p>
+</dd>
+<dt id="term-surrogate-primary-key">surrogate primary key</dt>
+<dd><p class="first">A <a class="reference internal" href="#term-primary-key"><em class="xref std std-term">primary key</em></a> that is not derived from application
+data.</p>
+<p>(via Wikipedia)</p>
+<p>Surrogate primary keys in practice are often
+integer values generated by database sequences
+or other incrementing counters,
+or less commonly global unique identifiers (GUIDs).</p>
+<div class="admonition-see-also last admonition seealso">
+<p class="first admonition-title">See also</p>
+<p><a class="reference internal" href="#term-natural-primary-key"><em class="xref std std-term">natural primary key</em></a></p>
+<p class="last"><a class="reference external" href="http://en.wikipedia.org/wiki/Surrogate_key">http://en.wikipedia.org/wiki/Surrogate_key</a></p>
+</div>
+</dd>
+<dt id="term-table">table</dt>
+<dd>A fundamental storage component used by relational databases.
+The table corresponds to what&#8217;s known as a <a class="reference internal" href="#term-relation"><em class="xref std std-term">relation</em></a>
+in <a class="reference internal" href="#term-relational-algebra"><em class="xref std std-term">relational algebra</em></a>, and defines a series of
+<a class="reference internal" href="#term-columns"><em class="xref std std-term">columns</em></a>, each of which represents a particular
+type of data value to be stored in the table.  The columns
+are then organized at the data storage level into a collection
+of <a class="reference internal" href="#term-rows"><em class="xref std std-term">rows</em></a>, each of which corresponds to a unit of
+data.</dd>
+<dt id="term-table-value"><span id="term-rowset"></span>table value<br />rowset</dt>
+<dd>An ordered collection of row values, each of the same length and types.</dd>
+<dt id="term-transaction"><span id="term-transactional"></span>transaction<br />transactional</dt>
+<dd><p class="first">A transaction comprises a unit of work (not to be confused
+with SQLAlchemy&#8217;s <a class="reference internal" href="#term-unit-of-work"><em class="xref std std-term">unit of work</em></a> pattern, which is
+similar) performed within a database management system
+against a database, and treated in a coherent and reliable way
+independent of other transactions. Transactions in a database
+environment have two main purposes:</p>
+<blockquote>
+<div><ul class="simple">
+<li>To provide reliable units of work that allow correct
+recovery from failures and keep a database consistent even
+in cases of system failure, when execution stops
+(completely or partially) and many operations upon a
+database remain uncompleted, with unclear status.</li>
+<li>To provide isolation between programs accessing a database
+concurrently. If this isolation is not provided, the
+programs&#8217; outcomes are possibly erroneous.</li>
+</ul>
+</div></blockquote>
+<p>(via Wikipedia)</p>
+<div class="admonition-see-also last admonition seealso">
+<p class="first admonition-title">See also</p>
+<p><a class="reference external" href="http://en.wikipedia.org/wiki/Database_transaction">http://en.wikipedia.org/wiki/Database_transaction</a></p>
+<p><a class="reference internal" href="relational.html#acid-model"><em>ACID Model</em></a></p>
+<p><a class="reference internal" href="#term-commit"><em class="xref std std-term">commit</em></a></p>
+<p class="last"><a class="reference internal" href="#term-rollback"><em class="xref std std-term">rollback</em></a></p>
+</div>
+</dd>
+<dt id="term-tuple"><span id="term-tuples"></span><span id="term-row-value"></span>tuple<br />tuples<br />row value</dt>
+<dd>An ordered collection of typed values, such as
+<tt class="docutils literal"><span class="pre">(1,</span> <span class="pre">'ed',</span> <span class="pre">'ed&#64;msn.com')</span></tt>.</dd>
+<dt id="term-uncorrelated-subquery">uncorrelated subquery</dt>
+<dd><p class="first">A <a class="reference internal" href="#term-subquery"><em class="xref std std-term">subquery</em></a> is uncorrelated if the database can execute it in
+isolation, without referring to the enclosing <tt class="docutils literal"><span class="pre">SELECT</span></tt>
+statement.</p>
+<div class="last highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="n">user_account</span><span class="p">.</span><span class="n">name</span> <span class="k">FROM</span> <span class="n">user_account</span>
+<span class="k">WHERE</span> <span class="n">user_account</span><span class="p">.</span><span class="n">id</span> <span class="k">IN</span> <span class="p">(</span><span class="k">SELECT</span> <span class="n">user_account_id</span> <span class="k">FROM</span> <span class="n">email_address</span><span class="p">)</span>
+
+ <span class="n">name</span>
+<span class="c1">-------</span>
+ <span class="n">jack</span>
+ <span class="n">ed</span>
+ <span class="n">wendy</span>
+</pre></div>
+</div>
+</dd>
+<dt id="term-unique-constraint"><span id="term-unique-key-index"></span>unique constraint<br />unique key index</dt>
+<dd><p class="first">A unique key index can uniquely identify each row of data
+values in a database table. A unique key index comprises a
+single column or a set of columns in a single database table.
+No two distinct rows or data records in a database table can
+have the same data value (or combination of data values) in
+those unique key index columns if NULL values are not used.
+Depending on its design, a database table may have many unique
+key indexes but at most one primary key index.</p>
+<p>(via Wikipedia)</p>
+<div class="admonition-see-also last admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference external" href="http://en.wikipedia.org/wiki/Unique_key#Defining_unique_keys">http://en.wikipedia.org/wiki/Unique_key#Defining_unique_keys</a></p>
+</div>
+</dd>
+<dt id="term-where-clause">WHERE clause</dt>
+<dd><p class="first">A component of the <tt class="docutils literal"><span class="pre">SELECT</span></tt> statement which specifies logical criteria
+to be applied to each row retrieved from the <a class="reference internal" href="#term-from-clause"><em class="xref std std-term">FROM clause</em></a>.
+The <tt class="docutils literal"><span class="pre">SELECT</span></tt> statement discards all rows which do not evaluate to
+&#8220;true&#8221; for a given WHERE clause.</p>
+<p>Below, we select rows from the <tt class="docutils literal"><span class="pre">email_address</span></tt> table, but use the
+WHERE clause to limit the results to only those rows which refer to email
+addresses that contain <tt class="docutils literal"><span class="pre">&#64;gmail.com</span></tt>:</p>
+<div class="last highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="n">id</span><span class="p">,</span> <span class="n">email_address</span> <span class="k">FROM</span> <span class="n">email_address</span>
+<span class="k">WHERE</span> <span class="n">email_address</span> <span class="k">LIKE</span> <span class="s1">&#39;%@gmail.com&#39;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="sqlalchemy-core-object-relational-terms">
+<span id="glossary-sqlalchemy"></span><h2>SQLAlchemy Core / Object Relational Terms<a class="headerlink" href="#sqlalchemy-core-object-relational-terms" title="Permalink to this headline">¶</a></h2>
+<dl class="glossary docutils">
+<dt id="term-association-relationship">association relationship</dt>
+<dd><p class="first">A two-tiered <a class="reference internal" href="#term-relationship"><em class="xref std std-term">relationship</em></a> which links two tables
+together using an association table in the middle.  The
+association relationship differs from a <a class="reference internal" href="#term-many-to-many"><em class="xref std std-term">many to many</em></a>
+relationship in that the many-to-many table is mapped
+by a full class, rather than invisibly handled by the
+<a class="reference external" href="http://www.sqlalchemy.org/docs/orm/relationships.html#sqlalchemy.orm.relationship" title="(in SQLAlchemy v0.8)"><tt class="xref py py-func docutils literal"><span class="pre">sqlalchemy.orm.relationship()</span></tt></a> construct as in the case
+with many-to-many, so that additional attributes are
+explicitly available.</p>
+<p>For example, if we wanted to associate employees with
+projects, also storing the specific role for that employee
+with the project, the relational schema might look like:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">employee</span> <span class="p">(</span>
+    <span class="n">id</span> <span class="nb">INTEGER</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+    <span class="n">name</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">project</span> <span class="p">(</span>
+    <span class="n">id</span> <span class="nb">INTEGER</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+    <span class="n">name</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">employee_project</span> <span class="p">(</span>
+    <span class="n">employee_id</span> <span class="nb">INTEGER</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+    <span class="n">project_id</span> <span class="nb">INTEGER</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+    <span class="n">role_name</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span>
+    <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="n">employee_id</span> <span class="k">REFERENCES</span> <span class="n">employee</span><span class="p">(</span><span class="n">id</span><span class="p">),</span>
+    <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="n">project_id</span> <span class="k">REFERENCES</span> <span class="n">project</span><span class="p">(</span><span class="n">id</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>A SQLAlchemy declarative mapping for the above might look like:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Employee</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s">&#39;employee&#39;</span>
+
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="p">)</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="mi">30</span><span class="p">))</span>
+
+
+<span class="k">class</span> <span class="nc">Project</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s">&#39;project&#39;</span>
+
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="p">)</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="mi">30</span><span class="p">))</span>
+
+
+<span class="k">class</span> <span class="nc">EmployeeProject</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s">&#39;employee_project&#39;</span>
+
+    <span class="n">employee_id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s">&#39;employee.id&#39;</span><span class="p">),</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">project_id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s">&#39;project.id&#39;</span><span class="p">),</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">role_name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="mi">30</span><span class="p">))</span>
+
+    <span class="n">project</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span><span class="s">&quot;Project&quot;</span><span class="p">,</span> <span class="n">backref</span><span class="o">=</span><span class="s">&quot;project_employees&quot;</span><span class="p">)</span>
+    <span class="n">employee</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span><span class="s">&quot;Employee&quot;</span><span class="p">,</span> <span class="n">backref</span><span class="o">=</span><span class="s">&quot;employee_projects&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Employees can be added to a project given a role name:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">proj</span> <span class="o">=</span> <span class="n">Project</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;Client A&quot;</span><span class="p">)</span>
+
+<span class="n">emp1</span> <span class="o">=</span> <span class="n">Employee</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;emp1&quot;</span><span class="p">)</span>
+<span class="n">emp2</span> <span class="o">=</span> <span class="n">Employee</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;emp2&quot;</span><span class="p">)</span>
+
+<span class="n">proj</span><span class="o">.</span><span class="n">project_employees</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span>
+    <span class="n">EmployeeProject</span><span class="p">(</span><span class="n">employee</span><span class="o">=</span><span class="n">emp1</span><span class="p">,</span> <span class="n">role</span><span class="o">=</span><span class="s">&quot;tech lead&quot;</span><span class="p">),</span>
+    <span class="n">EmployeeProject</span><span class="p">(</span><span class="n">employee</span><span class="o">=</span><span class="n">emp2</span><span class="p">,</span> <span class="n">role</span><span class="o">=</span><span class="s">&quot;account executive&quot;</span><span class="p">)</span>
+<span class="p">])</span>
+</pre></div>
+</div>
+<div class="admonition-see-also last admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="#term-many-to-many"><em class="xref std std-term">many to many</em></a></p>
+</div>
+</dd>
+<dt id="term-attribute">attribute</dt>
+<dd><p class="first">In Python, a field of an instance or class.   Essentially, any time
+the &#8221;.&#8221; operator is used to access a field from a parent record, you&#8217;re
+dealing with attribute access.</p>
+<p>Below, the <tt class="docutils literal"><span class="pre">Car</span></tt> class has attributes <tt class="docutils literal"><span class="pre">color</span></tt> and <tt class="docutils literal"><span class="pre">model</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Car</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="s">&quot;green&quot;</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="s">&quot;Dodge&quot;</span>
+</pre></div>
+</div>
+<p>and attributes are accessed using the &#8221;.&#8221; operator:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">print</span><span class="p">(</span><span class="s">&quot;Color: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">Car</span><span class="o">.</span><span class="n">color</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="last">In SQLAlchemy, an ORM <a class="reference internal" href="#term-mapped"><em class="xref std std-term">mapped</em></a> class is <a class="reference internal" href="#term-instrumented"><em class="xref std std-term">instrumented</em></a> using
+Python <a class="reference internal" href="#term-descriptors"><em class="xref std std-term">descriptors</em></a> to provide attributes that have
+additional behaviors used by the mapper, including that changes
+in value are detected and also that SQL load operations can
+transparently occur when they are first accessed (known as
+<a class="reference internal" href="#term-lazy-loading"><em class="xref std std-term">lazy loading</em></a>).</p>
+</dd>
+<dt id="term-autocommit">autocommit</dt>
+<dd><p class="first">This refers to a behavior whereby individual statements are
+automatically committed to the database after execution, essentially
+removing the need to explicitly demarcate the beginining and
+end of a transactional block.   Autocommit is something that
+can take place at many levels and in different ways; some databases
+will start an interactive SQL session with autocommit implicitly
+enabled, and others will not, requiring that the user invoke an
+explicit <tt class="docutils literal"><span class="pre">COMMIT</span></tt> statement in order to commit any changes.</p>
+<p>When using the Python <a class="reference internal" href="#term-dbapi"><em class="xref std std-term">DBAPI</em></a>, the <tt class="docutils literal"><span class="pre">connection</span></tt> object
+provided by DBAPI is always non-autocommitting by default;
+that is, the user must call <tt class="docutils literal"><span class="pre">connection.commit()</span></tt> in order
+for the effect of any statements to be committed.   Some DBAPIs
+offer &#8220;autocommit&#8221; options, but these are not standard.</p>
+<p>SQLAlchemy&#8217;s take on autocommit is that operations which involve
+executing statements using the Core <a class="reference external" href="http://www.sqlalchemy.org/docs/core/connections.html#sqlalchemy.engine.Engine" title="(in SQLAlchemy v0.8)"><tt class="xref py py-class docutils literal"><span class="pre">Engine</span></tt></a>
+or <a class="reference external" href="http://www.sqlalchemy.org/docs/core/connections.html#sqlalchemy.engine.Connection" title="(in SQLAlchemy v0.8)"><tt class="xref py py-class docutils literal"><span class="pre">Connection</span></tt></a>
+objects are by default autocommitting if the statement represents
+one that modifies data.  If one wants to control the scope of these
+transactions explicitly, this control is readily
+available via the <a class="reference external" href="http://www.sqlalchemy.org/docs/core/connections.html#sqlalchemy.engine.Connection.begin" title="(in SQLAlchemy v0.8)"><tt class="xref py py-meth docutils literal"><span class="pre">begin()</span></tt></a>
+method.  The rationale here is that the Core can be expediently
+used in a &#8220;one-off&#8221; style for scripting without the need to
+deal with transaction demarcation if not needed.</p>
+<p class="last">However, when using the ORM
+<a class="reference external" href="http://www.sqlalchemy.org/docs/orm/session.html#sqlalchemy.orm.session.Session" title="(in SQLAlchemy v0.8)"><tt class="xref py py-class docutils literal"><span class="pre">Session</span></tt></a> object, the default
+in modern versions is that the <a class="reference external" href="http://www.sqlalchemy.org/docs/orm/session.html#sqlalchemy.orm.session.Session.commit" title="(in SQLAlchemy v0.8)"><tt class="xref py py-meth docutils literal"><span class="pre">commit()</span></tt></a>
+method must be called in order to commit the ongoing transaction.
+The rationale for this is so that the <a class="reference internal" href="#term-unit-of-work"><em class="xref std std-term">unit of work</em></a> pattern
+can be used most effectively, where it can safely autoflush data
+to the database automatically knowing that it&#8217;s not implicitly
+permanent, as well as that the explicit commit step provides
+a clear boundary as to when the ORM-mapped objects should be
+expired so that they can re-load their state from the database.
+Ironically, the explicit commit pattern of the
+<a class="reference external" href="http://www.sqlalchemy.org/docs/orm/session.html#sqlalchemy.orm.session.Session" title="(in SQLAlchemy v0.8)"><tt class="xref py py-class docutils literal"><span class="pre">Session</span></tt></a> ultimately allows
+for code that is <em>more</em> succinct than if autocommit were turned on,
+as without it, it&#8217;s often the case that flushing and expiration
+must be handled manually.</p>
+</dd>
+<dt id="term-backref">backref</dt>
+<dd><p class="first">An extension to the <a class="reference internal" href="#term-relationship"><em class="xref std std-term">relationship</em></a> system whereby two
+distinct <a class="reference external" href="http://www.sqlalchemy.org/docs/orm/relationships.html#sqlalchemy.orm.relationship" title="(in SQLAlchemy v0.8)"><tt class="xref py py-func docutils literal"><span class="pre">relationship()</span></tt></a> objects can be
+mutually associated with each other, such that they coordinate
+in memory as changes occur to either side.   The most common
+way these two relationships are constructed is by using
+the <a class="reference external" href="http://www.sqlalchemy.org/docs/orm/relationships.html#sqlalchemy.orm.relationship" title="(in SQLAlchemy v0.8)"><tt class="xref py py-func docutils literal"><span class="pre">relationship()</span></tt></a> function explicitly
+for one side and specifying the <tt class="docutils literal"><span class="pre">backref</span></tt> keyword to it so that
+the other <a class="reference external" href="http://www.sqlalchemy.org/docs/orm/relationships.html#sqlalchemy.orm.relationship" title="(in SQLAlchemy v0.8)"><tt class="xref py py-func docutils literal"><span class="pre">relationship()</span></tt></a> is created
+automatically.  We can illustrate this against the example we&#8217;ve
+used in <a class="reference internal" href="#term-one-to-many"><em class="xref std std-term">one to many</em></a> as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Department</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s">&#39;department&#39;</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="mi">30</span><span class="p">))</span>
+    <span class="n">employees</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span><span class="s">&quot;Employee&quot;</span><span class="p">,</span> <span class="n">backref</span><span class="o">=</span><span class="s">&quot;department&quot;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Employee</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s">&#39;employee&#39;</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="mi">30</span><span class="p">))</span>
+    <span class="n">dep_id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s">&#39;department.id&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>A backref can be applied to any relationship, including one to many,
+many to one, and <a class="reference internal" href="#term-many-to-many"><em class="xref std std-term">many to many</em></a>.</p>
+<div class="admonition-see-also last admonition seealso">
+<p class="first admonition-title">See also</p>
+<p><a class="reference internal" href="#term-relationship"><em class="xref std std-term">relationship</em></a></p>
+<p><a class="reference internal" href="#term-one-to-many"><em class="xref std std-term">one to many</em></a></p>
+<p><a class="reference internal" href="#term-many-to-one"><em class="xref std std-term">many to one</em></a></p>
+<p class="last"><a class="reference internal" href="#term-many-to-many"><em class="xref std std-term">many to many</em></a></p>
+</div>
+</dd>
+<dt id="term-bind"><span id="term-bound"></span>bind<br />bound</dt>
+<dd><p class="first">This term refers to the association of a connection-producing
+object, usually an <a class="reference internal" href="#term-engine"><em class="xref std std-term">engine</em></a>, with a query-producing object, which in
+modern usage is usually a <a class="reference internal" href="#term-session"><em class="xref std std-term">session</em></a> object, and in
+less common usage a <a class="reference internal" href="#term-metadata"><em class="xref std std-term">metadata</em></a> object.</p>
+<p>Most of SQLAlchemy&#8217;s usage patterns involve dealing with
+objects that produce SQL queries to be emitted to a database.
+But it makes a distinction between these objects and objects
+that represent actual database connections, or a source
+of database connections.</p>
+<p>For example, we can create an ORM
+<a class="reference external" href="http://www.sqlalchemy.org/docs/orm/session.html#sqlalchemy.orm.session.Session" title="(in SQLAlchemy v0.8)"><tt class="xref py py-class docutils literal"><span class="pre">Session</span></tt></a> object:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">Session</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">session</span> <span class="o">=</span> <span class="n">Session</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>But if we try to execute a query with it, we&#8217;d get an
+error:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">session</span><span class="o">.</span><span class="n">scalar</span><span class="p">(</span><span class="s">&quot;select current_timestamp&quot;</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+  File <span class="nb">&quot;/Users/classic/dev/sqlalchemy/lib/sqlalchemy/orm/session.py&quot;</span>, line <span class="m">921</span>, in <span class="n">scalar</span>
+    <span class="n">clause</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">mapper</span><span class="o">=</span><span class="n">mapper</span><span class="p">,</span> <span class="n">bind</span><span class="o">=</span><span class="n">bind</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span><span class="o">.</span><span class="n">scalar</span><span class="p">()</span>
+  File <span class="nb">&quot;/Users/classic/dev/sqlalchemy/lib/sqlalchemy/orm/session.py&quot;</span>, line <span class="m">912</span>, in <span class="n">execute</span>
+    <span class="n">bind</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_bind</span><span class="p">(</span><span class="n">mapper</span><span class="p">,</span> <span class="n">clause</span><span class="o">=</span><span class="n">clause</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+  File <span class="nb">&quot;/Users/classic/dev/sqlalchemy/lib/sqlalchemy/orm/session.py&quot;</span>, line <span class="m">1083</span>, in <span class="n">get_bind</span>
+    <span class="s">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">context</span><span class="p">)))</span>
+<span class="gr">sqlalchemy.exc.UnboundExecutionError</span>: <span class="n">Could not</span>
+<span class="go">    locate a bind configured on SQL expression or this Session</span>
+</pre></div>
+</div>
+<p>This is because we haven&#8217;t given this <a class="reference external" href="http://www.sqlalchemy.org/docs/orm/session.html#sqlalchemy.orm.session.Session" title="(in SQLAlchemy v0.8)"><tt class="xref py py-class docutils literal"><span class="pre">Session</span></tt></a>
+a source of connectivity.   We can make one using
+<a class="reference external" href="http://www.sqlalchemy.org/docs/core/engines.html#sqlalchemy.create_engine" title="(in SQLAlchemy v0.8)"><tt class="xref py py-func docutils literal"><span class="pre">create_engine()</span></tt></a> and attaching it using <tt class="docutils literal"><span class="pre">.bind</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s">&quot;sqlite://&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">session</span><span class="o">.</span><span class="n">bind</span> <span class="o">=</span> <span class="n">engine</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">session</span><span class="o">.</span><span class="n">scalar</span><span class="p">(</span><span class="s">&quot;select current_timestamp&quot;</span><span class="p">)</span>
+<span class="go">u&#39;2013-02-18 21:13:31&#39;</span>
+</pre></div>
+</div>
+<p class="last">Binding gets more elaborate than this, as a
+<a class="reference external" href="http://www.sqlalchemy.org/docs/orm/session.html#sqlalchemy.orm.session.Session" title="(in SQLAlchemy v0.8)"><tt class="xref py py-class docutils literal"><span class="pre">Session</span></tt></a> can be bound to multiple
+databases at once; some use cases also involve binding
+the session directly to an individual connection object, rather than to
+an engine.   The practice of using binds with a Core <a class="reference internal" href="#term-metadata"><em class="xref std std-term">metadata</em></a>
+object is also something seen commonly, though we&#8217;ve tried to discourage
+the use of this pattern as it tends to be overused and
+misunderstood.</p>
+</dd>
+<dt id="term-cascade">cascade</dt>
+<dd><p class="first">The propagation of particular lifecycle events from one mapped
+instance to another, following along the paths formed
+by <a class="reference internal" href="#term-relationships"><em class="xref std std-term">relationships</em></a> between mappings.</p>
+<p>An example of the most common cascade is the <tt class="docutils literal"><span class="pre">save-update</span></tt>
+cascade, which states that if an object is associated with a
+parent, then that object should also be associated with the same
+<a class="reference internal" href="#term-session"><em class="xref std std-term">session</em></a> as that parent:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">Session</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">session</span> <span class="o">=</span> <span class="n">Session</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">user_obj</span> <span class="o">=</span> <span class="n">User</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">user_obj</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">user_obj</span> <span class="ow">in</span> <span class="n">session</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">address_obj</span> <span class="o">=</span> <span class="n">Address</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">user_obj</span><span class="o">.</span><span class="n">addresses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">address_obj</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">address_obj</span> <span class="ow">in</span> <span class="n">session</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p>Above, we associated an <tt class="docutils literal"><span class="pre">Address</span></tt> object with a
+parent <tt class="docutils literal"><span class="pre">User</span></tt> object by appending it to the mapped
+<tt class="docutils literal"><span class="pre">User.addresses</span></tt> collection.  As a result, that
+<tt class="docutils literal"><span class="pre">Address</span></tt> object became associated with the same
+<a class="reference external" href="http://www.sqlalchemy.org/docs/orm/session.html#sqlalchemy.orm.session.Session" title="(in SQLAlchemy v0.8)"><tt class="xref py py-class docutils literal"><span class="pre">Session</span></tt></a> object
+as that of the <tt class="docutils literal"><span class="pre">User</span></tt>.</p>
+<p>The behavior of cascades is customizable, but in most
+cases the default cascade of <tt class="docutils literal"><span class="pre">save-update</span></tt> remains
+in place.</p>
+<p>There are two optional cascades known as <tt class="docutils literal"><span class="pre">delete</span></tt>
+and <tt class="docutils literal"><span class="pre">delete-orphan</span></tt> which are also very
+prominent.   These cascades add on the behavior that the
+child object should also be <em>deleted</em> when the parent
+object is deleted, and additionally that the child object
+should be deleted when detached from any parent.</p>
+<p>The concept of configurable cascade behavior was part
+of the SQLAlchemy ORM very early on and was inspired
+by the same configurability in the Hibernate
+ORM.</p>
+<div class="admonition-see-also last admonition seealso">
+<p class="first admonition-title">See also</p>
+<p><a class="reference external" href="http://www.sqlalchemy.org/docs/orm/session.html#unitofwork-cascades" title="(in SQLAlchemy v0.8)"><em>Cascades</em></a> - in the SQLAlchemy documentation</p>
+<p class="last"><a class="reference external" href="http://www.sqlalchemy.org/docs/orm/tutorial.html#tutorial-delete-cascade" title="(in SQLAlchemy v0.8)"><em>Configuring delete/delete-orphan Cascade</em></a> - in the SQLAlchemy documentation</p>
+</div>
+</dd>
+<dt id="term-collection">collection</dt>
+<dd><p class="first">In the SQLAlchemy ORM, this refers to a series of objects associated with
+a parent object, using a <a class="reference internal" href="#term-relationship"><em class="xref std std-term">relationship</em></a> to manage
+these associations.   A collection corresponds to either a
+<a class="reference internal" href="#term-one-to-many"><em class="xref std std-term">one to many</em></a> or <a class="reference internal" href="#term-many-to-many"><em class="xref std std-term">many to many</em></a> relationship,
+and can be managed in Python by a variety of data types, the
+most common being the Python <tt class="docutils literal"><span class="pre">list()</span></tt>, but also including the
+Python <tt class="docutils literal"><span class="pre">set()</span></tt>, the Python <tt class="docutils literal"><span class="pre">dict()</span></tt>, as well as any
+user-defined type which corresponds to certain interfaces.</p>
+<p>When starting out with the SQLAlchemy ORM, we generally stick
+to plain lists and sets for collections.  Dictionaries
+and custom-build collections are generally for more advanced
+usage patterns.</p>
+<div class="admonition-see-also last admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference external" href="http://www.sqlalchemy.org/docs/orm/collections.html#collections-toplevel" title="(in SQLAlchemy v0.8)"><em>Collection Configuration and Techniques</em></a> - advanced collection
+options,  in the SQLAlchemy documentation</p>
+</div>
+</dd>
+<dt id="term-connection">connection</dt>
+<dd><p class="first">Refers to an active database handle.  The term &#8220;connection&#8221;
+can refer to different specific constructs; the most fundamental
+is the &#8220;connection&#8221; object provided by the Python <a class="reference internal" href="#term-dbapi"><em class="xref std std-term">DBAPI</em></a>.
+In SQLAlchemy, the DBAPI connection is normally maintained
+transparently behind a
+<em class="xref std std-term">facade</em> known as the <a class="reference external" href="http://www.sqlalchemy.org/docs/core/connections.html#sqlalchemy.engine.Connection" title="(in SQLAlchemy v0.8)"><tt class="xref py py-class docutils literal"><span class="pre">Connection</span></tt></a>
+object.  This object is obtained from a <a class="reference internal" href="#term-engine"><em class="xref std std-term">engine</em></a> object,
+and has a one-to-one correspondence with a DBAPI connection.</p>
+<div class="admonition-see-also last admonition seealso">
+<p class="first admonition-title">See also</p>
+<p><a class="reference external" href="http://www.sqlalchemy.org/docs/core/engines.html#engines-toplevel" title="(in SQLAlchemy v0.8)"><em>Engine Configuration</em></a> - in the SQLAlchemy documentation</p>
+<p class="last"><a class="reference external" href="http://www.sqlalchemy.org/docs/core/connections.html#connections-toplevel" title="(in SQLAlchemy v0.8)"><em>Working with Engines and Connections</em></a> - in the SQLAlchemy documentation</p>
+</div>
+</dd>
+<dt id="term-connection-pool">connection pool</dt>
+<dd><p class="first">An object that maintains a series of <a class="reference internal" href="#term-connection"><em class="xref std std-term">connection</em></a> objects persistently
+in memory, allowing individual connections to be <em>checked out</em> by a particular
+application function, used for some period of time, and then <em>checked in</em>
+to the pool when usage of the connection is complete.</p>
+<p>The usage of connection pools in SQLAlchemy has two primary purposes:</p>
+<ol class="arabic simple">
+<li>To reduce the latency involved in acquiring a database connection.
+By maintaining a series of connections in memory, the overhead of
+the TCP/IP connection as well as the initial negotiation of the
+client <a class="reference internal" href="#term-dbapi"><em class="xref std std-term">DBAPI</em></a> library with the backend database is incurred
+only a limited number of times, rather than for all distinct usages
+of a connection.</li>
+<li>To place a limit on the number of database connections a single
+Python process can use at once.  SQLAlchemy&#8217;s default connection pool
+allows the specification of a <em>pool size</em> as well as <em>max overflow</em>
+parameters; the size indicates the largest number of connections
+that should be held in memory persistently, and the max overflow indicates
+an optional additional number of connections that may be temporarily
+procured on top of the base size.</li>
+</ol>
+<p>The SQLAlchemy <a class="reference internal" href="#term-engine"><em class="xref std std-term">engine</em></a> object maintains a reference to a connection
+pool where it retrieves and stores DBAPI connections - in most cases this
+pool is an instance of <a class="reference external" href="http://www.sqlalchemy.org/docs/core/pooling.html#sqlalchemy.pool.QueuePool" title="(in SQLAlchemy v0.8)"><tt class="xref py py-class docutils literal"><span class="pre">sqlalchemy.pool.QueuePool</span></tt></a>.   Connection
+pooling can be disabled for a particular engine by replacing the pool
+implementation with the so-called <a class="reference external" href="http://www.sqlalchemy.org/docs/core/pooling.html#sqlalchemy.pool.NullPool" title="(in SQLAlchemy v0.8)"><tt class="xref py py-class docutils literal"><span class="pre">sqlalchemy.pool.NullPool</span></tt></a>,
+which has the same interface as a pool but doesn&#8217;t actually maintain
+connections persistently.</p>
+<p>Note that SQLAlchemy&#8217;s built-in pooling is only one style of pooling,
+known as <em>application level pooling</em>.  An architecture can also use
+<em>pool middleware</em>, i.e., a server that runs separately and mediates
+connectivity between one or more applications and a database backend.
+The <a class="reference external" href="http://wiki.postgresql.org/wiki/PgBouncer">PgBouncer</a> product
+is one such middleware service designed for usage with Postgresql.</p>
+<div class="admonition-see-also last admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference external" href="http://www.sqlalchemy.org/docs/core/pooling.html#pooling-toplevel" title="(in SQLAlchemy v0.8)"><em>Connection Pooling</em></a></p>
+</div>
+</dd>
+<dt id="term-dbapi">DBAPI</dt>
+<dd><p class="first">DBAPI is shorthand for the phrase &#8220;Python Database API
+Specification&#8221;.  This is a widely used specification
+within Python to define common usage patterns for all
+database connection packages.   The DBAPI is a &#8220;low level&#8221;
+API which is typically the lowest level system used
+in a Python application to talk to a database.  SQLAlchemy&#8217;s
+<em class="xref std std-term">dialect</em> system is constructed around the
+operation of the DBAPI, providing individual dialect
+classes which service a specific DBAPI on top of a
+specific database engine; for example, the <tt class="xref py py-func docutils literal"><span class="pre">create_engine()</span></tt>
+URL <tt class="docutils literal"><span class="pre">postgresql+psycopg2://&#64;localhost/test</span></tt>
+refers to the <a class="reference external" href="http://www.sqlalchemy.org/docs/dialects/postgresql.html#sqlalchemy.dialects.postgresql.psycopg2" title="(in SQLAlchemy v0.8)"><tt class="xref py py-mod docutils literal"><span class="pre">psycopg2</span></tt></a>
+DBAPI/dialect combination, whereas the URL <tt class="docutils literal"><span class="pre">mysql+mysqldb://&#64;localhost/test</span></tt>
+refers to the <a class="reference external" href="http://www.sqlalchemy.org/docs/dialects/mysql.html#sqlalchemy.dialects.mysql.mysqldb" title="(in SQLAlchemy v0.8)"><tt class="xref py py-mod docutils literal"><span class="pre">MySQL</span> <span class="pre">for</span> <span class="pre">Python</span></tt></a>
+DBAPI/dialect combination.</p>
+<div class="admonition-see-also last admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last">PEP 249 - Python Database API Specification v2.0: <a class="reference external" href="http://www.python.org/dev/peps/pep-0249/">http://www.python.org/dev/peps/pep-0249/</a></p>
+</div>
+</dd>
+<dt id="term-declarative">declarative</dt>
+<dd><p class="first">An API included with the SQLAlchemy ORM that in modern usage
+serves as the primary system used to configure the ORM.
+The central idea of the declarative system is that one
+defines a class to be <a class="reference internal" href="#term-mapped"><em class="xref std std-term">mapped</em></a>, and then applies to
+this class a series of directives which denote the <a class="reference internal" href="#term-table-metadata"><em class="xref std std-term">table metadata</em></a>
+to be associated with this class, which establishes the table(s)
+and columns that this class will be associated with when the
+ORM performs queries.</p>
+<p>The declarative system provides a relatively concise
+and very extensible series of patterns allowing not
+just for basic class mapping, but also allowing
+the construction of repeatable
+and composable mapping patterns using custom base classes,
+abstract classes, and mixins.</p>
+<div class="admonition-see-also last admonition seealso">
+<p class="first admonition-title">See also</p>
+<p><a class="reference external" href="http://www.sqlalchemy.org/docs/orm/tutorial.html#ormtutorial-toplevel" title="(in SQLAlchemy v0.8)"><em>Object Relational Tutorial</em></a></p>
+<p class="last"><a class="reference external" href="http://www.sqlalchemy.org/docs/orm/extensions/declarative.html#declarative-toplevel" title="(in SQLAlchemy v0.8)"><em>Declarative</em></a></p>
+</div>
+</dd>
+<dt id="term-descriptor"><span id="term-descriptors"></span>descriptor<br />descriptors</dt>
+<dd><p class="first">In Python, a descriptor is an object attribute with “binding behavior” whose
+attribute access has been overridden by methods in the <a class="reference external" href="http://docs.python.org/howto/descriptor.html">descriptor protocol</a>.
+Those methods are __get__(), __set__(), and __delete__(). If any of those methods are defined
+for an object, it is said to be a descriptor.</p>
+<p>In SQLAlchemy, descriptors are used heavily in order to provide attribute behavior
+on mapped classes.   When a class is mapped as such:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">MyClass</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s">&#39;foo&#39;</span>
+
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The <tt class="docutils literal"><span class="pre">MyClass</span></tt> class will be <a class="reference internal" href="#term-mapped"><em class="xref std std-term">mapped</em></a> when its definition
+is complete, at which point the <tt class="docutils literal"><span class="pre">id</span></tt> and <tt class="docutils literal"><span class="pre">data</span></tt> attributes,
+starting out as <a class="reference external" href="http://www.sqlalchemy.org/docs/core/schema.html#sqlalchemy.schema.Column" title="(in SQLAlchemy v0.8)"><tt class="xref py py-class docutils literal"><span class="pre">sqlalchemy.schema.Column</span></tt></a> objects, will be replaced
+by the <a class="reference internal" href="#term-instrumentation"><em class="xref std std-term">instrumentation</em></a> system with customized
+descriptor objects, providing special behavior for the
+<tt class="docutils literal"><span class="pre">__get__()</span></tt>, <tt class="docutils literal"><span class="pre">__set__()</span></tt> and <tt class="docutils literal"><span class="pre">__delete__()</span></tt> methods.   The
+descriptors (for the curious, they are instances of
+<a class="reference external" href="http://www.sqlalchemy.org/docs/orm/internals.html#sqlalchemy.orm.attributes.InstrumentedAttribute" title="(in SQLAlchemy v0.8)"><tt class="xref py py-class docutils literal"><span class="pre">sqlalchemy.orm.attributes.InstrumentedAttribute</span></tt></a>, though this detail
+is generally transparent) will generate a SQL expression when used at the class level:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">MyClass</span><span class="o">.</span><span class="n">data</span> <span class="o">==</span> <span class="mi">5</span>
+<span class="go">data = :data_1</span>
+</pre></div>
+</div>
+<p class="last">When used at the instance level, these descriptors help to keep
+track of changes to values, and also <a class="reference internal" href="#term-lazy-load"><em class="xref std std-term">lazy load</em></a> unloaded values
+and collections from the database when the attribute is accessed.</p>
+</dd>
+<dt id="term-detached">detached</dt>
+<dd><p class="first">This describes one of the four major object states which
+an object can have within a <a class="reference internal" href="#term-session"><em class="xref std std-term">session</em></a>; a detached object
+is an object that has a database identity (i.e. a primary key)
+but is not associated with any session.  An object that
+was previously <a class="reference internal" href="#term-persistent"><em class="xref std std-term">persistent</em></a> and was removed from its
+session either because it was expunged, or the owning
+session was closed, moves into the detached state.
+The detached state is generally used when objects are being
+moved between sessions or when being moved to/from an external
+object cache.</p>
+<div class="admonition-see-also last admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference external" href="http://www.sqlalchemy.org/docs/orm/session.html#session-object-states" title="(in SQLAlchemy v0.8)"><em>Quickie Intro to Object States</em></a> - in the SQLAlchemy documentation</p>
+</div>
+</dd>
+<dt id="term-engine">engine</dt>
+<dd><p class="first">An object that provides a source of database connectivity.  The
+<a class="reference external" href="http://www.sqlalchemy.org/docs/core/connections.html#sqlalchemy.engine.Engine" title="(in SQLAlchemy v0.8)"><tt class="xref py py-class docutils literal"><span class="pre">Engine</span></tt></a> object maintains a <a class="reference internal" href="#term-connection-pool"><em class="xref std std-term">connection pool</em></a>,
+which keeps track of a series of <a class="reference internal" href="#term-dbapi"><em class="xref std std-term">DBAPI</em></a> connection objects,
+as well as a <em class="xref std std-term">dialect</em>, which keeps track of all the information known
+about the particular kind of database and Python driver being used
+by this particular engine.  An <a class="reference external" href="http://www.sqlalchemy.org/docs/core/connections.html#sqlalchemy.engine.Engine" title="(in SQLAlchemy v0.8)"><tt class="xref py py-class docutils literal"><span class="pre">Engine</span></tt></a>
+is created using the <a class="reference external" href="http://www.sqlalchemy.org/docs/core/engines.html#sqlalchemy.create_engine" title="(in SQLAlchemy v0.8)"><tt class="xref py py-func docutils literal"><span class="pre">create_engine()</span></tt></a>
+factory function, and a database connection can be requested
+from the <a class="reference external" href="http://www.sqlalchemy.org/docs/core/connections.html#sqlalchemy.engine.Engine" title="(in SQLAlchemy v0.8)"><tt class="xref py py-class docutils literal"><span class="pre">Engine</span></tt></a> using the
+<a class="reference external" href="http://www.sqlalchemy.org/docs/core/connections.html#sqlalchemy.engine.Engine.connect" title="(in SQLAlchemy v0.8)"><tt class="xref py py-meth docutils literal"><span class="pre">connect()</span></tt></a> method:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s">&quot;postgresql://scott:tiger@localhost/test&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">connection</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">connection</span><span class="o">.</span><span class="n">scalar</span><span class="p">(</span><span class="s">&quot;SELECT now()&quot;</span><span class="p">)</span>
+<span class="go">datetime.datetime(2013, 2, 18, 18, 26, 37)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">connection</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>While the above pattern illustrates a literal, rudimentary use of
+<a class="reference external" href="http://www.sqlalchemy.org/docs/core/connections.html#sqlalchemy.engine.Engine" title="(in SQLAlchemy v0.8)"><tt class="xref py py-class docutils literal"><span class="pre">Engine</span></tt></a>, it&#8217;s normally used in a more
+abstracted way than the above.  When dealing with the SQLAlchemy
+ORM, the <a class="reference external" href="http://www.sqlalchemy.org/docs/core/connections.html#sqlalchemy.engine.Engine" title="(in SQLAlchemy v0.8)"><tt class="xref py py-class docutils literal"><span class="pre">Engine</span></tt></a> is usually <a class="reference internal" href="#term-bound"><em class="xref std std-term">bound</em></a>
+to an ORM <a class="reference internal" href="#term-session"><em class="xref std std-term">session</em></a> object when the program starts,
+where it then remains hidden as a source of connectivity for that
+session.</p>
+<p>The primary facade for a database. An <tt class="xref py py-class docutils literal"><span class="pre">Engine</span></tt> manages a pool of
+database connections and provides methods to execute SQL
+statements and fetch result sets.</p>
+<div class="admonition-see-also last admonition seealso">
+<p class="first admonition-title">See also</p>
+<p><a class="reference external" href="http://www.sqlalchemy.org/docs/core/engines.html#engines-toplevel" title="(in SQLAlchemy v0.8)"><em>Engine Configuration</em></a> - in the SQLAlchemy documentation</p>
+<p class="last"><a class="reference external" href="http://www.sqlalchemy.org/docs/core/connections.html#connections-toplevel" title="(in SQLAlchemy v0.8)"><em>Working with Engines and Connections</em></a> - in the SQLAlchemy documentation</p>
+</div>
+</dd>
+<dt id="term-flush">flush</dt>
+<dd><p class="first">The operation by which a <a class="reference internal" href="#term-session"><em class="xref std std-term">session</em></a> emits INSERT, UPDATE
+and DELETE statements to the database in response to the accumulation
+of a series of in-memory changes to objects.  The flush
+operation is a key component of the <a class="reference internal" href="#term-unit-of-work"><em class="xref std std-term">unit of work</em></a> pattern,
+and is normally invoked before the <a class="reference external" href="http://www.sqlalchemy.org/docs/orm/session.html#sqlalchemy.orm.session.Session" title="(in SQLAlchemy v0.8)"><tt class="xref py py-class docutils literal"><span class="pre">Session</span></tt></a>
+emits a new SELECT statement, as well as right before the
+<a class="reference external" href="http://www.sqlalchemy.org/docs/orm/session.html#sqlalchemy.orm.session.Session" title="(in SQLAlchemy v0.8)"><tt class="xref py py-class docutils literal"><span class="pre">Session</span></tt></a> commits a transaction.</p>
+<div class="admonition-see-also last admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference external" href="http://www.sqlalchemy.org/docs/orm/session.html#session-flushing" title="(in SQLAlchemy v0.8)"><em>Flushing</em></a> - in the SQLAlchemy documentation</p>
+</div>
+</dd>
+<dt id="term-identity-map">identity map</dt>
+<dd><p class="first">A mapping between Python objects and their database identities.
+The identity map is a collection that&#8217;s associated with an
+ORM <a class="reference internal" href="#term-session"><em class="xref std std-term">session</em></a> object, and maintains a single instance
+of every database object keyed to its identity.   The advantage
+to this pattern is that all operations which occur for a particular
+database identity are transparently coordinated onto a single
+object instance.  When using an identity map in conjunction with
+an <a class="reference internal" href="#term-isolated"><em class="xref std std-term">isolated</em></a> transaction, having a reference
+to an object that&#8217;s known to have a particular primary key can
+be considered from a practical standpoint to be a
+proxy to the actual database row.</p>
+<div class="admonition-see-also last admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last">Martin Fowler - Identity Map - <a class="reference external" href="http://martinfowler.com/eaaCatalog/identityMap.html">http://martinfowler.com/eaaCatalog/identityMap.html</a></p>
+</div>
+</dd>
+<dt id="term-instance">instance</dt>
+<dd><p class="first">Refers to an instantiated object, that is, the result of calling
+the constructor of a Python class.</p>
+<p>We use this term to specify that we are dealing with a stateful
+Python object, rather than the class.  Suppose we have a class
+called <tt class="docutils literal"><span class="pre">User</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+</pre></div>
+</div>
+<p>The above Python code represents only the <a class="reference external" href="http://docs.python.org/glossary.html#term-class" title="(in Python v2.7)"><em class="xref std std-term">class</em></a> <tt class="docutils literal"><span class="pre">User</span></tt>,
+and not an actual instance.  The instance refers to when we construct
+a <tt class="docutils literal"><span class="pre">User</span></tt>, and in this case assign to it a <tt class="docutils literal"><span class="pre">.name</span></tt> <a class="reference internal" href="#term-attribute"><em class="xref std std-term">attribute</em></a>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">my_user</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span><span class="s">&#39;some user&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="last">The SQLAlchemy ORM deals heavily with user-defined classes and instances
+of those classes; therefore throughout its documentation as well
+as its source code, it&#8217;s important that we keep straight
+whether we&#8217;re dealing with a class or an instance of one.</p>
+</dd>
+<dt id="term-instrumentation"><span id="term-instrumented"></span>instrumentation<br />instrumented</dt>
+<dd>Instrumentation refers to the process of augmenting the functionality
+and attribute set of a particular class.   Ideally, the
+behavior of an instrumented class should remain close to a regular
+class, except that additional behviors and features are
+made available.  The SQLAlchemy <a class="reference internal" href="#term-mapping"><em class="xref std std-term">mapping</em></a> process,
+among other things, adds database-enabled <a class="reference internal" href="#term-descriptors"><em class="xref std std-term">descriptors</em></a>
+to a mapped
+class which each represent a particular database column
+or relationship to a related class.</dd>
+<dt id="term-lazy-load"><span id="term-lazy-loads"></span><span id="term-lazy-loading"></span>lazy load<br />lazy loads<br />lazy loading</dt>
+<dd><p class="first">In object relational mapping, a &#8220;lazy load&#8221; refers to an
+attribute that does not contain its database-side value
+for some period of time, typically when the object is
+first loaded.  Instead, the attribute receives a
+<em>memoization</em> that causes it to go out to the database
+and load its data when it&#8217;s first used.   Using this pattern,
+the complexity and time spent within object fetches can
+sometimes be reduced, in that
+attributes for related tables don&#8217;t need to be addressed
+immediately.</p>
+<div class="admonition-see-also last admonition seealso">
+<p class="first admonition-title">See also</p>
+<p>Martin Fowler - Lazy Load - <a class="reference external" href="http://martinfowler.com/eaaCatalog/lazyLoad.html">http://martinfowler.com/eaaCatalog/lazyLoad.html</a></p>
+<p class="last"><a class="reference internal" href="#term-n-plus-one-problem"><em class="xref std std-term">N plus one problem</em></a></p>
+</div>
+</dd>
+<dt id="term-many-to-many">many to many</dt>
+<dd><p class="first">A style of <a class="reference external" href="http://www.sqlalchemy.org/docs/orm/relationships.html#sqlalchemy.orm.relationship" title="(in SQLAlchemy v0.8)"><tt class="xref py py-func docutils literal"><span class="pre">sqlalchemy.orm.relationship()</span></tt></a> which links two tables together
+via an intermediary table in the middle.   Using this configuration,
+any number of rows on the left side may refer to any number of
+rows on the right, and vice versa.</p>
+<p>A schema where employees can be associated with projects:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">employee</span> <span class="p">(</span>
+    <span class="n">id</span> <span class="nb">INTEGER</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+    <span class="n">name</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">project</span> <span class="p">(</span>
+    <span class="n">id</span> <span class="nb">INTEGER</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+    <span class="n">name</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">employee_project</span> <span class="p">(</span>
+    <span class="n">employee_id</span> <span class="nb">INTEGER</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+    <span class="n">project_id</span> <span class="nb">INTEGER</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+    <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="n">employee_id</span> <span class="k">REFERENCES</span> <span class="n">employee</span><span class="p">(</span><span class="n">id</span><span class="p">),</span>
+    <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="n">project_id</span> <span class="k">REFERENCES</span> <span class="n">project</span><span class="p">(</span><span class="n">id</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Above, the <tt class="docutils literal"><span class="pre">employee_project</span></tt> table is the many-to-many table,
+which naturally forms a composite primary key consisting
+of the primary key from each related table.</p>
+<p>In SQLAlchemy, the <a class="reference external" href="http://www.sqlalchemy.org/docs/orm/relationships.html#sqlalchemy.orm.relationship" title="(in SQLAlchemy v0.8)"><tt class="xref py py-func docutils literal"><span class="pre">sqlalchemy.orm.relationship()</span></tt></a> function
+can represent this style of relationship in a mostly
+transparent fashion, where the many-to-many table is
+specified using plain table metadata:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Employee</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s">&#39;employee&#39;</span>
+
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="p">)</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="mi">30</span><span class="p">))</span>
+
+    <span class="n">projects</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span>
+        <span class="s">&quot;Project&quot;</span><span class="p">,</span>
+        <span class="n">secondary</span><span class="o">=</span><span class="n">Table</span><span class="p">(</span><span class="s">&#39;employee_project&#39;</span><span class="p">,</span> <span class="n">Base</span><span class="o">.</span><span class="n">metadata</span><span class="p">,</span>
+                    <span class="n">Column</span><span class="p">(</span><span class="s">&quot;employee_id&quot;</span><span class="p">,</span> <span class="n">Integer</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s">&#39;employee.id&#39;</span><span class="p">),</span>
+                                <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">),</span>
+                    <span class="n">Column</span><span class="p">(</span><span class="s">&quot;project_id&quot;</span><span class="p">,</span> <span class="n">Integer</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s">&#39;project.id&#39;</span><span class="p">),</span>
+                                <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+                <span class="p">),</span>
+        <span class="n">backref</span><span class="o">=</span><span class="s">&quot;employees&quot;</span>
+        <span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Project</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s">&#39;project&#39;</span>
+
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="p">)</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="mi">30</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Above, the <tt class="docutils literal"><span class="pre">Employee.projects</span></tt> and back-referencing <tt class="docutils literal"><span class="pre">Project.employees</span></tt>
+collections are defined:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">proj</span> <span class="o">=</span> <span class="n">Project</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;Client A&quot;</span><span class="p">)</span>
+
+<span class="n">emp1</span> <span class="o">=</span> <span class="n">Employee</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;emp1&quot;</span><span class="p">)</span>
+<span class="n">emp2</span> <span class="o">=</span> <span class="n">Employee</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;emp2&quot;</span><span class="p">)</span>
+
+<span class="n">proj</span><span class="o">.</span><span class="n">employees</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="n">emp1</span><span class="p">,</span> <span class="n">emp2</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="admonition-see-also last admonition seealso">
+<p class="first admonition-title">See also</p>
+<p><a class="reference internal" href="#term-association-relationship"><em class="xref std std-term">association relationship</em></a></p>
+<p><a class="reference internal" href="#term-relationship"><em class="xref std std-term">relationship</em></a></p>
+<p><a class="reference internal" href="#term-one-to-many"><em class="xref std std-term">one to many</em></a></p>
+<p class="last"><a class="reference internal" href="#term-many-to-one"><em class="xref std std-term">many to one</em></a></p>
+</div>
+</dd>
+<dt id="term-many-to-one">many to one</dt>
+<dd><p class="first">A style of <a class="reference external" href="http://www.sqlalchemy.org/docs/orm/relationships.html#sqlalchemy.orm.relationship" title="(in SQLAlchemy v0.8)"><tt class="xref py py-func docutils literal"><span class="pre">relationship()</span></tt></a> which links
+a foreign key in the parent mapper&#8217;s table to the primary
+key of a related table.   Each parent object can
+then refer to exactly zero or one related object.</p>
+<p>The related objects in turn will have an implicit or
+explicit <a class="reference internal" href="#term-one-to-many"><em class="xref std std-term">one to many</em></a> relationship to any number
+of parent objects that refer to them.</p>
+<p>An example many to one schema (which, note, is identical
+to the <a class="reference internal" href="#term-one-to-many"><em class="xref std std-term">one to many</em></a> schema):</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">department</span> <span class="p">(</span>
+    <span class="n">id</span> <span class="nb">INTEGER</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+    <span class="n">name</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">employee</span> <span class="p">(</span>
+    <span class="n">id</span> <span class="nb">INTEGER</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+    <span class="n">name</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span>
+    <span class="n">dep_id</span> <span class="nb">INTEGER</span> <span class="k">REFERENCES</span> <span class="n">department</span><span class="p">(</span><span class="n">id</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>The relationship from <tt class="docutils literal"><span class="pre">employee</span></tt> to <tt class="docutils literal"><span class="pre">department</span></tt> is
+many to one, since many employee records can be associated with a
+single department.  A SQLAlchemy mapping might look like:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Department</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s">&#39;department&#39;</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="mi">30</span><span class="p">))</span>
+
+<span class="k">class</span> <span class="nc">Employee</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s">&#39;employee&#39;</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="mi">30</span><span class="p">))</span>
+    <span class="n">dep_id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s">&#39;department.id&#39;</span><span class="p">))</span>
+    <span class="n">department</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span><span class="s">&quot;Department&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition-see-also last admonition seealso">
+<p class="first admonition-title">See also</p>
+<p><a class="reference internal" href="#term-relationship"><em class="xref std std-term">relationship</em></a></p>
+<p><a class="reference internal" href="#term-one-to-many"><em class="xref std std-term">one to many</em></a></p>
+<p class="last"><a class="reference internal" href="#term-backref"><em class="xref std std-term">backref</em></a></p>
+</div>
+</dd>
+<dt id="term-mapped"><span id="term-mapper"></span><span id="term-mapping"></span>mapped<br />mapper<br />mapping</dt>
+<dd><p class="first">We say a class is &#8220;mapped&#8221; when it has been passed through the
+<a class="reference external" href="http://www.sqlalchemy.org/docs/orm/mapper_config.html#sqlalchemy.orm.mapper" title="(in SQLAlchemy v0.8)"><tt class="xref py py-func docutils literal"><span class="pre">sqlalchemy.orm.mapper()</span></tt></a> function.   This process associates the
+class with a database table or other <a class="reference internal" href="#term-selectable"><em class="xref std std-term">selectable</em></a>
+construct, so that instances of it can be persisted
+and loaded using a <a class="reference internal" href="#term-session"><em class="xref std std-term">session</em></a> object.</p>
+<p class="last">Modern usage of the SQLAlchemy ORM typically &#8220;maps&#8221; classes using
+the <a class="reference internal" href="#term-declarative"><em class="xref std std-term">declarative</em></a> system, which provides a relatively concise
+and very extensible series of patterns allowing classes to be
+mapped.  The declarative system actually rides on top of the so-called
+<a class="reference external" href="http://www.sqlalchemy.org/docs/orm/mapper_config.html#classical-mapping" title="(in SQLAlchemy v0.8)"><em>Classical Mappings</em></a> system, which is more
+fundamental and less automated.   Early versions of SQLAlchemy
+only featured the classical mapping system.</p>
+</dd>
+<dt id="term-metadata"><span id="term-table-metadata"></span>metadata<br />table metadata</dt>
+<dd><p class="first">A collection of related <tt class="xref py py-class docutils literal"><span class="pre">Table</span></tt> objects.  These objects
+collected together may define <tt class="xref py py-class docutils literal"><span class="pre">ForeignKey</span></tt> objects which refer
+to other tables as dependencies.   The full collection of tables can
+be created and dropped in a target database schema en masse.</p>
+<div class="admonition-see-also last admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference external" href="http://www.sqlalchemy.org/docs/core/schema.html#metadata-toplevel" title="(in SQLAlchemy v0.8)"><em>Schema Definition Language</em></a> - in the SQLAlchemy documentation</p>
+</div>
+</dd>
+<dt id="term-n-plus-one-problem">N plus one problem</dt>
+<dd><p class="first">The N plus one problem is a common side effect of the
+<a class="reference internal" href="#term-lazy-load"><em class="xref std std-term">lazy load</em></a> pattern, whereby an application wishes
+to iterate through a related attribute or collection on
+each member of a result set of objects, where that
+attribute or collection is set to be loaded via the lazy
+load pattern.   The net result is that a SELECT statement
+is emitted to load the initial result set of parent objects;
+then, as the application iterates through each member,
+an additional SELECT statement is emitted for each member
+in order to load the related attribute or collection for
+that member.  The end result is that for a result set of
+N parent objects, there will be N + 1 SELECT statements emitted.</p>
+<p class="last">The N plus one problem is alleviated using <em class="xref std std-term">eager loading</em>.</p>
+</dd>
+<dt id="term-one-to-many">one to many</dt>
+<dd><p class="first">A style of <a class="reference external" href="http://www.sqlalchemy.org/docs/orm/relationships.html#sqlalchemy.orm.relationship" title="(in SQLAlchemy v0.8)"><tt class="xref py py-func docutils literal"><span class="pre">relationship()</span></tt></a> which links
+the primary key of the parent mapper&#8217;s table to the foreign
+key of a related table.   Each unique parent object can
+then refer to zero or more unique related objects.</p>
+<p>The related objects in turn will have an implicit or
+explicit <a class="reference internal" href="#term-many-to-one"><em class="xref std std-term">many to one</em></a> relationship to their parent
+object.</p>
+<p>An example one to many schema (which, note, is identical
+to the <a class="reference internal" href="#term-many-to-one"><em class="xref std std-term">many to one</em></a> schema):</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">department</span> <span class="p">(</span>
+    <span class="n">id</span> <span class="nb">INTEGER</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+    <span class="n">name</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">employee</span> <span class="p">(</span>
+    <span class="n">id</span> <span class="nb">INTEGER</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+    <span class="n">name</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span>
+    <span class="n">dep_id</span> <span class="nb">INTEGER</span> <span class="k">REFERENCES</span> <span class="n">department</span><span class="p">(</span><span class="n">id</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>The relationship from <tt class="docutils literal"><span class="pre">department</span></tt> to <tt class="docutils literal"><span class="pre">employee</span></tt> is
+one to many, since many employee records can be associated with a
+single department.  A SQLAlchemy mapping might look like:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Department</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s">&#39;department&#39;</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="mi">30</span><span class="p">))</span>
+    <span class="n">employees</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span><span class="s">&quot;Employee&quot;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Employee</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s">&#39;employee&#39;</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="mi">30</span><span class="p">))</span>
+    <span class="n">dep_id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s">&#39;department.id&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="admonition-see-also last admonition seealso">
+<p class="first admonition-title">See also</p>
+<p><a class="reference internal" href="#term-relationship"><em class="xref std std-term">relationship</em></a></p>
+<p><a class="reference internal" href="#term-many-to-one"><em class="xref std std-term">many to one</em></a></p>
+<p class="last"><a class="reference internal" href="#term-backref"><em class="xref std std-term">backref</em></a></p>
+</div>
+</dd>
+<dt id="term-pending">pending</dt>
+<dd><p class="first">This describes one of the four major object states which
+an object can have within a <a class="reference internal" href="#term-session"><em class="xref std std-term">session</em></a>; a pending object
+is a new object that doesn&#8217;t have any database identity,
+but has been recently associated with a session.   When
+the session emits a flush and the row is inserted, the
+object moves to the <a class="reference internal" href="#term-persistent"><em class="xref std std-term">persistent</em></a> state.</p>
+<div class="admonition-see-also last admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference external" href="http://www.sqlalchemy.org/docs/orm/session.html#session-object-states" title="(in SQLAlchemy v0.8)"><em>Quickie Intro to Object States</em></a> - in the SQLAlchemy documentation</p>
+</div>
+</dd>
+<dt id="term-persistent">persistent</dt>
+<dd><p class="first">This describes one of the four major object states which
+an object can have within a <a class="reference internal" href="#term-session"><em class="xref std std-term">session</em></a>; a persistent object
+is an object that has a database identity (i.e. a primary key)
+and is currently associated with a session.   Any object
+that was previously <a class="reference internal" href="#term-pending"><em class="xref std std-term">pending</em></a> and has now been inserted
+is in the persistent state, as is any object that&#8217;s
+been loaded by the session from the database.   When a
+persistent object is removed from a session, it is known
+as <a class="reference internal" href="#term-detached"><em class="xref std std-term">detached</em></a>.</p>
+<div class="admonition-see-also last admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference external" href="http://www.sqlalchemy.org/docs/orm/session.html#session-object-states" title="(in SQLAlchemy v0.8)"><em>Quickie Intro to Object States</em></a> - in the SQLAlchemy documentation</p>
+</div>
+</dd>
+<dt id="term-reflection">reflection</dt>
+<dd><p class="first">The process of constructing SQLAlchemy <a class="reference external" href="http://www.sqlalchemy.org/docs/core/schema.html#sqlalchemy.schema.Table" title="(in SQLAlchemy v0.8)"><tt class="xref py py-class docutils literal"><span class="pre">Table</span></tt></a>
+objects in an automated or semi-automated fashion, where information about
+tables, columns and constraints are loaded from an existing
+database&#8217;s internal catalogs in order to compose in-memory
+structures representing a schema.</p>
+<div class="admonition-see-also last admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference external" href="http://www.sqlalchemy.org/docs/core/schema.html#metadata-reflection" title="(in SQLAlchemy v0.8)"><em>Reflecting Database Objects</em></a></p>
+</div>
+</dd>
+<dt id="term-relationship"><span id="term-relationships"></span>relationship<br />relationships</dt>
+<dd><p class="first">A connecting unit between two mapped classes, corresponding
+to some relationship between the two tables in the database.</p>
+<p>The relationship is defined using the SQLAlchemy function
+<a class="reference external" href="http://www.sqlalchemy.org/docs/orm/relationships.html#sqlalchemy.orm.relationship" title="(in SQLAlchemy v0.8)"><tt class="xref py py-func docutils literal"><span class="pre">relationship()</span></tt></a>.   Once created, SQLAlchemy
+inspects the arguments and underlying mappings involved
+in order to classify the relationship as one of three types:
+<a class="reference internal" href="#term-one-to-many"><em class="xref std std-term">one to many</em></a>, <a class="reference internal" href="#term-many-to-one"><em class="xref std std-term">many to one</em></a>, or <a class="reference internal" href="#term-many-to-many"><em class="xref std std-term">many to many</em></a>.
+With this classification, the relationship construct
+handles the task of persisting the appropriate linkages
+in the database in response to in-memory object associations,
+as well as the job of loading object references and collections
+into memory based on the current linkages in the
+database.</p>
+<div class="admonition-see-also last admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference external" href="http://www.sqlalchemy.org/docs/orm/relationships.html#relationship-config-toplevel" title="(in SQLAlchemy v0.8)"><em>Relationship Configuration</em></a> - in the SQLAlchemy documentation</p>
+</div>
+</dd>
+<dt id="term-scoped-session">scoped session</dt>
+<dd><p class="first">A helper object intended to provide a <em>registry</em> of
+<a class="reference internal" href="#term-session"><em class="xref std std-term">session</em></a> objects, allowing an application to refer
+to the registry as a global variable which provides
+access to a contextually appropriate session object.</p>
+<p>The scoped session object is an optional construct
+often used with web applications.</p>
+<div class="admonition-see-also last admonition seealso">
+<p class="first admonition-title">See also</p>
+<p><a class="reference internal" href="#term-session"><em class="xref std std-term">Session</em></a></p>
+<p class="last"><a class="reference external" href="http://www.sqlalchemy.org/docs/orm/session.html#unitofwork-contextual" title="(in SQLAlchemy v0.8)"><em>Contextual/Thread-local Sessions</em></a> - an in-depth
+introduction to the <tt class="xref py py-class docutils literal"><span class="pre">sqlalchemy.orm.scoped_session</span></tt> object,
+in the SQLAlchemy documentation</p>
+</div>
+</dd>
+<dt id="term-selectable">selectable</dt>
+<dd>Refers to the SQLAlchemy analogue for a &#8220;relation&#8221; in relational
+algebra, which is any object that represents a series of
+rows in a database.   &#8220;Selectable&#8221;
+actually refers in the API to objects that extend from the
+<a class="reference external" href="http://www.sqlalchemy.org/docs/core/expression_api.html#sqlalchemy.sql.expression.Selectable" title="(in SQLAlchemy v0.8)"><tt class="xref py py-class docutils literal"><span class="pre">sqlalchemy.sql.expression.Selectable</span></tt></a> class, and
+refers to such row-representing constructs as the
+<a class="reference external" href="http://www.sqlalchemy.org/docs/core/schema.html#sqlalchemy.schema.Table" title="(in SQLAlchemy v0.8)"><tt class="xref py py-class docutils literal"><span class="pre">Table</span></tt></a>, the <a class="reference external" href="http://www.sqlalchemy.org/docs/core/expression_api.html#sqlalchemy.sql.expression.Join" title="(in SQLAlchemy v0.8)"><tt class="xref py py-class docutils literal"><span class="pre">Join</span></tt></a>,
+and the <a class="reference external" href="http://www.sqlalchemy.org/docs/core/expression_api.html#sqlalchemy.sql.expression.Select" title="(in SQLAlchemy v0.8)"><tt class="xref py py-class docutils literal"><span class="pre">Select</span></tt></a>
+construct.</dd>
+<dt id="term-session">Session</dt>
+<dd><p class="first">The container or scope for ORM database operations. Sessions
+load instances from the database, track changes to mapped
+instances and persist changes in a single unit of work when
+flushed.</p>
+<div class="admonition-see-also last admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference external" href="http://www.sqlalchemy.org/docs/orm/session.html#session-toplevel" title="(in SQLAlchemy v0.8)"><em>Using the Session</em></a></p>
+</div>
+</dd>
+<dt id="term-sessionmaker">sessionmaker</dt>
+<dd><p class="first">A <em>factory</em> for <a class="reference internal" href="#term-session"><em class="xref std std-term">session</em></a> objects.   The <a class="reference external" href="http://www.sqlalchemy.org/docs/orm/session.html#sqlalchemy.orm.session.sessionmaker" title="(in SQLAlchemy v0.8)"><tt class="xref py py-class docutils literal"><span class="pre">sessionmaker</span></tt></a>
+construct basically allows a series of parameters to be associated
+with a <a class="reference external" href="http://www.sqlalchemy.org/docs/orm/session.html#sqlalchemy.orm.session.Session" title="(in SQLAlchemy v0.8)"><tt class="xref py py-class docutils literal"><span class="pre">Session</span></tt></a> constructor.</p>
+<p>In reality, the sessionmaker is just slightly more elaborate
+than a simple function.  An expression like this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">sessionmaker</span>
+<span class="n">my_session</span> <span class="o">=</span> <span class="n">sessionmaker</span><span class="p">(</span><span class="n">bind</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span> <span class="n">autoflush</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>is conceptually very similar to the following:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">Session</span>
+<span class="n">my_session</span> <span class="o">=</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">Session</span><span class="p">(</span><span class="n">bind</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span> <span class="n">autoflush</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition-see-also last admonition seealso">
+<p class="first admonition-title">See also</p>
+<p><a class="reference internal" href="#term-session"><em class="xref std std-term">Session</em></a></p>
+<p class="last"><a class="reference internal" href="#term-scoped-session"><em class="xref std std-term">scoped session</em></a></p>
+</div>
+</dd>
+<dt id="term-threadlocal">threadlocal</dt>
+<dd><p class="first">A shared data structure whose data members are visible only to
+the thread which set them. The concept of &#8220;thread local&#8221; in
+Python is normally provided by the <tt class="docutils literal"><span class="pre">threading.local</span></tt>
+construct.</p>
+<div class="admonition-see-also last admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference external" href="http://docs.python.org/2/library/threading.html#threading.local">http://docs.python.org/2/library/threading.html#threading.local</a></p>
+</div>
+</dd>
+<dt id="term-transient">transient</dt>
+<dd><p class="first">This describes one of the four major object states which
+an object can have within a <a class="reference internal" href="#term-session"><em class="xref std std-term">session</em></a>; a transient object
+is a new object that doesn&#8217;t have any database identity
+and has not been associated with a session yet.  When the
+object is added to the session, it moves to the
+<a class="reference internal" href="#term-pending"><em class="xref std std-term">pending</em></a> state.</p>
+<div class="admonition-see-also last admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference external" href="http://www.sqlalchemy.org/docs/orm/session.html#session-object-states" title="(in SQLAlchemy v0.8)"><em>Quickie Intro to Object States</em></a> - in the SQLAlchemy documentation</p>
+</div>
+</dd>
+<dt id="term-unit-of-work">unit of work</dt>
+<dd><p class="first">This pattern is where the system transparently keeps
+track of changes to objects and periodically flushes all those
+pending changes out to the database. SQLAlchemy&#8217;s Session
+implements this pattern fully in a manner similar to that of
+Hibernate.</p>
+<div class="admonition-see-also last admonition seealso">
+<p class="first admonition-title">See also</p>
+<p>Martin Fowler - Unit of Work - <a class="reference external" href="http://martinfowler.com/eaaCatalog/unitOfWork.html">http://martinfowler.com/eaaCatalog/unitOfWork.html</a></p>
+<p class="last"><a class="reference external" href="http://www.sqlalchemy.org/docs/orm/session.html#session-toplevel" title="(in SQLAlchemy v0.8)"><em>Using the Session</em></a> - in the SQLAlchemy documentation</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        «&#160;&#160;<a href="relational.html">Relational Database Review</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="reading.html">Further Reading</a>&#160;&#160;»
+        </p>
+
+      </div>
+
+    <div class="footer">
+        &copy; Copyright 2013, Michael Bayer.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>
