@@ -158,6 +158,8 @@ def app(environ, start_response):
 Тесты
 =====
 
+Python
+
 [nose](https://nose.readthedocs.org/en/latest/)
 
 [selenium](http://docs.seleniumhq.org/)
@@ -165,6 +167,10 @@ def app(environ, start_response):
 [behave](https://github.com/behave/behave)
 
 [lettuce](https://github.com/gabrielfalcao/lettuce)
+
+[splinter](http://splinter.cobrateam.info/)
+
+CI system
 
 [jenkins](http://jenkins-ci.org/)
 
@@ -174,13 +180,16 @@ def app(environ, start_response):
 
 [StriderCD](http://stridercd.com/)
 
+[drone](https://github.com/drone/drone)
+
+Автоматизация
+
 [Fabric](http://docs.fabfile.org/en/1.8/)
 
 [Docker](https://www.docker.io/)
 
 [Vagrant](http://www.vagrantup.com/)
 
-[drone](https://github.com/drone/drone)
 
 Асинхронный Веб
 ===============
